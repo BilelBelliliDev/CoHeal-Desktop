@@ -15,10 +15,10 @@ import java.sql.SQLException;
  */
 public class Connexion {
 
-    final static String URL = "jdbc:mysql://127.0.0.1:3306/coheal";
-    final static String USERNAME = "root";
-    final static String PASSWORD = "";
-    static Connexion instance = null;
+    private final static String URL = "jdbc:mysql://127.0.0.1:3306/coheal";
+    private final static String USERNAME = "root";
+    private final static String PASSWORD = "";
+    private static Connexion instance = null;
     private Connection con;
 
     private Connexion() {
