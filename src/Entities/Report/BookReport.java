@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities.rates;
+package Entities.Report;
 
 /**
  *
  * @author BilelxOS
  */
-public class EventRate extends Rate{
-    private int eventId;
+public class BookReport extends Report{
+    private int bookId;
 
-    public int getEventId() {
-        return eventId;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
-    
+            
 }

@@ -1,4 +1,4 @@
-package Entities.Users;
+package Entities.User;
 
 /**
  *

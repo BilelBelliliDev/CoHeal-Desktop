@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities.reports;
+package Entities.Report;
 
 /**
  *
  * @author BilelxOS
  */
-public class TaskReport extends Report{
-    private int taskId;
+public class EventReport extends Report{
+    private int eventId;
 
-    public int getTaskId() {
-        return taskId;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
     
 }

@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities.rates;
+package Entities.Rate;
 
 /**
  *
  * @author BilelxOS
  */
-public class TaskRate extends Rate{
-    private int taskId;
+public class EventRate extends Rate{
+    private int eventId;
 
-    public int getTaskId() {
-        return taskId;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
     
 }

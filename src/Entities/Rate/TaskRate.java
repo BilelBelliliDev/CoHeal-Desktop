@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities.rates;
+package Entities.Rate;
 
 /**
  *
  * @author BilelxOS
  */
-public class SessionRate extends Rate{
-    private int sesssionId;
+public class TaskRate extends Rate{
+    private int taskId;
 
-    public int getSesssionId() {
-        return sesssionId;
+    public int getTaskId() {
+        return taskId;
     }
 
-    public void setSesssionId(int sesssionId) {
-        this.sesssionId = sesssionId;
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
     
 }

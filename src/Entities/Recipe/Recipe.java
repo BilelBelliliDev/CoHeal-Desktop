@@ -1,4 +1,4 @@
-package Entities.recipe;
+package Entities.Recipe;
 import java.sql.Timestamp;
 
 public class Recipe {

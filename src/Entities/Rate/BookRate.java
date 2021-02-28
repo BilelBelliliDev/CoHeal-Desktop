@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities.reports;
+package Entities.Rate;
 
 /**
  *
  * @author BilelxOS
  */
-public class RecipeReport extends Report{
-    private int recipeId;
+public class BookRate extends Rate{
+    private int bookId;
 
-    public int getRecipeId() {
-        return recipeId;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setRecipeId(int recipeId) {
-        this.recipeId = recipeId;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
-   
+    
 }
