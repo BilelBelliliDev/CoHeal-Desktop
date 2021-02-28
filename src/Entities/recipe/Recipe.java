@@ -60,7 +60,7 @@ public class Recipe {
         this.description = description;
     }
 
-    public int getCalories() {
+    public float getCalories() {
         return calories;
     }
 
