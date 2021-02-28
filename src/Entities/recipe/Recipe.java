@@ -6,7 +6,7 @@ public class Recipe {
     private int userID;
     private String title;
     private String description;
-    private int calories;
+    private float calories;
     private String imgUrl;
     private boolean isDeleted;
     private Timestamp deletedAt;
