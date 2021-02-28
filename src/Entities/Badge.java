@@ -9,27 +9,34 @@ import java.util.ArrayList;
 public class Badge {
     //var 
     private ArrayList<User> listUsers = new ArrayList<>();
-
+    private int badgeId;
     private String badgeName;
     private String imageUrl;
     
     //constructor
 
-    public Badge(String badgeName, String imageUrl) {
+    public Badge(int badgeId, String badgeName, String imageUrl) {
+        this.badgeId = badgeId;
         this.badgeName = badgeName;
         this.imageUrl = imageUrl;
     }
-    //getters & setters
 
-    public ArrayList<User> getBadgeId() {
+    public ArrayList<User> getListUsers() {
         return listUsers;
     }
 
-    public void setBadgeId(ArrayList<User> listUsers) {
+    public void setListUsers(ArrayList<User> listUsers) {
         this.listUsers = listUsers;
     }
 
- 
+    public int getBadgeId() {
+        return badgeId;
+    }
+
+    public void setBadgeId(int badgeId) {
+        this.badgeId = badgeId;
+    }
+
     public String getBadgeName() {
         return badgeName;
     }
@@ -42,16 +49,18 @@ public class Badge {
         return imageUrl;
     }
 
+    //getters & setters
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    
+
     //toString
 
     @Override
     public String toString() {
-        return "Badge{" + "listUsers=" + listUsers + ", badgeName=" + badgeName + ", imageUrl=" + imageUrl + '}';
+        return "Badge{" + "listUsers=" + listUsers + ", badgeId=" + badgeId + ", badgeName=" + badgeName + ", imageUrl=" + imageUrl + '}';
     }
+
     
     
 }
