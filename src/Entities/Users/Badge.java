@@ -1,4 +1,4 @@
-package Entities;
+package Entities.Users;
 
 import java.util.ArrayList;
 
@@ -12,14 +12,6 @@ public class Badge {
     private int badgeId;
     private String badgeName;
     private String imageUrl;
-    
-    //constructor
-
-    public Badge(int badgeId, String badgeName, String imageUrl) {
-        this.badgeId = badgeId;
-        this.badgeName = badgeName;
-        this.imageUrl = imageUrl;
-    }
 
     public ArrayList<User> getListUsers() {
         return listUsers;

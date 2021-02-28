@@ -1,4 +1,4 @@
-package Entities;
+package Entities.Users;
 
 import java.util.ArrayList;
 
@@ -11,13 +11,6 @@ public class Role {
     private ArrayList<User> listUsers = new ArrayList<>();
     private int roleId;
     private String roleName;
-    
-    //constructor
-
-    public Role(int roleId, String roleName) {
-        this.roleId = roleId;
-        this.roleName = roleName;
-    }
 
     public ArrayList<User> getListUsers() {
         return listUsers;
