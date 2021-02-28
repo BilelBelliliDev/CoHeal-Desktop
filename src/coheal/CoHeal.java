@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Admin
+ * @author BilelxOS
  */
 public class CoHeal extends Application {
     
