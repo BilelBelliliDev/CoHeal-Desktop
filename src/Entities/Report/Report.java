@@ -17,7 +17,9 @@ public abstract class Report {
     protected String note;
     protected Timestamp createdAt;
 
-   
+    public int getId() {
+        return id;
+    }
 
     public void setId(int id) {
         this.id = id;
