@@ -13,10 +13,7 @@ public class SessionChat {
     private int chatId;
     private int sessionId;
 
-    public int getChatId() {
-        return chatId;
-    }
-
+    
     public void setChatId(int chatId) {
         this.chatId = chatId;
     }
