@@ -10,24 +10,25 @@ package Entities.Session;
  * @author acer
  */
 public class SessionChat {
-    private int chat_id;
-    private int session_id;
+    private int chatId;
+    private int sessionId;
 
-    public int getChat_id() {
-        return chat_id;
+    public int getChatId() {
+        return chatId;
     }
 
-    public int getSession_id() {
-        return session_id;
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
     }
 
-    public void setChat_id(int chat_id) {
-        this.chat_id = chat_id;
+    public int getSessionId() {
+        return sessionId;
     }
 
-    public void setSession_id(int session_id) {
-        this.session_id = session_id;
+    public void setSessionId(int sessionId) {
+        this.sessionId = sessionId;
     }
-            
+
+
     
 }
