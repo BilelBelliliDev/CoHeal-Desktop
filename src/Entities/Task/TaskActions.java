@@ -15,15 +15,7 @@ public class TaskActions {
     private String title;
     private String description;
 
-    public TaskActions(int actionId, Task task, String title, String description) {
-        this.actionId = actionId;
-        this.task = task;
-        this.title = title;
-        this.description = description;
-    }
-
-    public TaskActions() {
-    }
+   
 
     public int getActionId() {
         return actionId;

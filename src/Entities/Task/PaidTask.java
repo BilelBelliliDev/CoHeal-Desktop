@@ -14,14 +14,10 @@ import java.util.List;
  */
 public class PaidTask extends Task{
      private Double price;
+     private TaskChat taskChat;
 
-    public PaidTask(int taskId,/*List<User> users,*/ TaskCategory category, String imgUrl, String title, String description, int numOfDays, int minUsers, int maxUsers,List<TaskActions> actions, boolean isDeleted, Timestamp deletedAt, Timestamp createdAt, Timestamp modifiedAt,Double price) {
-        super(taskId,/*users,*/ category, imgUrl, title, description, numOfDays, minUsers, maxUsers,actions, isDeleted, deletedAt, createdAt, modifiedAt);
-        this.price=price;
-    }
+  
 
-    public PaidTask() {
-    }
 
     public Double getPrice() {
         return price;
@@ -31,9 +27,18 @@ public class PaidTask extends Task{
         this.price = price;
     }
 
+    public TaskChat getTaskChat() {
+        return taskChat;
+    }
+
+    public void setTaskChat(TaskChat taskChat) {
+        this.taskChat = taskChat;
+    }
+
+    
     @Override
     public String toString() {
-        return super.toString()+" PaidTask{" + "price=" + price + '}';
+        return super.toString()+" PaidTask{" + "price=" + price +" taskChat="+taskChat+ '}';
     }
     
 }

@@ -5,7 +5,10 @@
  */
 package Entities.Task;
 
+import Entities.User.User;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,20 +18,12 @@ public class TaskMessage {
     
     private int msgId;
     private TaskChat taskChat;
-    //private List<User> users;
+    private List<User> users= new ArrayList<>();
     private String msg;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 
-    public TaskMessage(int msgId, TaskChat taskChat, /*List<User> users,*/ String msg, Timestamp createdAt, Timestamp modifiedAt) {
-        this.msgId = msgId;
-        this.taskChat = taskChat;
-        //this.users = users;
-        this.msg = msg;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
-
+   
     public int getMsgId() {
         return msgId;
     }
@@ -45,13 +40,13 @@ public class TaskMessage {
         this.taskChat = taskChat;
     }
 
-    /*public List<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }*/
+    }
 
     public String getMsg() {
         return msg;

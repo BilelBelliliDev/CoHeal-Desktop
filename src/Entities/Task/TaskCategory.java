@@ -6,12 +6,14 @@
 package Entities.Task;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
 public class TaskCategory {
+
     private int catgid;
     private String name;
     private String imgUrl;
@@ -19,16 +21,6 @@ public class TaskCategory {
     private Timestamp deletedAt;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
-
-    public TaskCategory(int catgid, String name, String imgUrl, boolean isDeleted, Timestamp deletedAt, Timestamp createdAt, Timestamp modifiedAt) {
-        this.catgid = catgid;
-        this.name = name;
-        this.imgUrl = imgUrl;
-        this.isDeleted = isDeleted;
-        this.deletedAt = deletedAt;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
 
     public int getCatgid() {
         return catgid;
@@ -90,5 +82,5 @@ public class TaskCategory {
     public String toString() {
         return "TaskCategory{" + "catgid=" + catgid + ", name=" + name + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
     }
-    
+
 }
