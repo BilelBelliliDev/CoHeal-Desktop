@@ -3,7 +3,8 @@ import java.sql.Timestamp;
 
 public class Recipe {
     private int recipeId;
-    private int userID;
+    private int userId;
+    private int catId;
     private String title;
     private String description;
     private float calories;
@@ -13,20 +14,6 @@ public class Recipe {
     private Timestamp created_At;
     private Timestamp modified_at;
 
-    public Recipe(){}
-
-    public Recipe(int recipeId, int userID, String title, String description, float calories, String imgUrl, boolean isDeleted, Timestamp deletedAt, Timestamp created_At, Timestamp modified_at) {
-        this.recipeId = recipeId;
-        this.userID = userID;
-        this.title = title;
-        this.description = description;
-        this.calories = calories;
-        this.imgUrl = imgUrl;
-        this.isDeleted = isDeleted;
-        this.deletedAt = deletedAt;
-        this.created_At = created_At;
-        this.modified_at = modified_at;
-    }
 
     public int getRecipeId() {
         return recipeId;
@@ -36,12 +23,12 @@ public class Recipe {
         this.recipeId = recipeId;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -110,7 +97,7 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Recipe{" + "recipeId=" + recipeId + ", userID=" + userID + ", title=" + title + ", description=" + description + ", calories=" + calories + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", created_At=" + created_At + ", modified_at=" + modified_at + '}';
+        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", title=" + title + ", description=" + description + ", calories=" + calories + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", created_At=" + created_At + ", modified_at=" + modified_at + '}';
     }
     
     
