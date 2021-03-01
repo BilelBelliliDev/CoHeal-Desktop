@@ -31,6 +31,14 @@ public class Recipe {
         this.userId = userId;
     }
 
+    public int getCatId() {
+        return catId;
+    }
+
+    public void setCatId(int catId) {
+        this.catId = catId;
+    }
+
     public String getTitle() {
         return title;
     }
