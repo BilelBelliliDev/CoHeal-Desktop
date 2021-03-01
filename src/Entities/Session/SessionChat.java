@@ -10,6 +10,7 @@ package Entities.Session;
  * @author acer
  */
 public class SessionChat {
+    //var
     private int chatId;
     private int sessionId;
 
