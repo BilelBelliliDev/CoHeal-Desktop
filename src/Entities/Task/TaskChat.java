@@ -5,6 +5,8 @@
  */
 package Entities.Task;
 
+import Entities.User.User;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,15 +14,11 @@ import java.util.List;
  * @author Admin
  */
 public class TaskChat {
-    private int chatId;
-    //private List<User> users;
-    private List<TaskMessage> messages;
 
-    public TaskChat(int chatId/*, List<User> users*/,List<TaskMessage> messages) {
-        this.chatId = chatId;
-       // this.users = users;
-       this.messages=messages;
-    }
+    private int chatId;
+    private List<UserTask> userTask = new ArrayList<UserTask>();
+    private List<TaskMessage> messages = new ArrayList<>();
+    private PaidTask paidTask;
 
     public TaskChat() {
     }
@@ -33,25 +31,35 @@ public class TaskChat {
         this.chatId = chatId;
     }
 
-    
     public List<TaskMessage> getMessages() {
         return messages;
     }
 
-    /*  public List<User> getUsers() {
-    return users;
+    public List<UserTask> getUserTask() {
+        return userTask;
     }
-    public void setUsers(List<User> users) {
-    this.users = users;
+
+    public void setUserTask(List<UserTask> users) {
+        this.userTask = users;
     }
-     */
+
     public void setMessages(List<TaskMessage> messages) {
         this.messages = messages;
     }
 
-    @Override
-    public String toString() {
-        return "TaskChat{" + "chatId=" + chatId/* + ", users=" + users */+" message="+messages+ '}';
+    public PaidTask getPaidTask() {
+        return paidTask;
+    }
+
+    public void setPaidTask(PaidTask paidTask) {
+        this.paidTask = paidTask;
     }
     
+   
+
+    @Override
+    public String toString() {
+        return "TaskChat{" + "chatId=" + chatId + ", userTask=" + userTask  + " message=" + messages+" paidTask="+paidTask + '}';
+    }
+
 }

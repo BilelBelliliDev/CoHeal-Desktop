@@ -5,7 +5,9 @@
  */
 package Entities.Task;
 
+import Entities.User.User;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +15,9 @@ import java.util.List;
  * @author Admin
  */
 public class Task {
+
     private int taskId;
-    //  private List<User> users;
+    private List<UserTask> usersTask = new ArrayList<UserTask>();
     private TaskCategory category;
     private String imgUrl;
     private String title;
@@ -28,33 +31,6 @@ public class Task {
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 
-    public Task(int taskId, /*List<User> users,*/ TaskCategory category, String imgUrl, String title, String description, int numOfDays, int minUsers, int maxUsers,List<TaskActions> actions, boolean isDeleted, Timestamp deletedAt, Timestamp createdAt, Timestamp modifiedAt) {
-        this.taskId = taskId;
-        // this.users = users;
-        this.category = category;
-        this.imgUrl = imgUrl;
-        this.title = title;
-        this.description = description;
-        this.numOfDays = numOfDays;
-        this.minUsers = minUsers;
-        this.maxUsers = maxUsers;
-        this.actions=actions;
-        this.isDeleted = isDeleted;
-        this.deletedAt = deletedAt;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
-    
-    public Task( String imgUrl, String title, String description, int numOfDays, int minUsers, int maxUsers) {
-       
-        this.imgUrl = imgUrl;
-        this.title = title;
-        this.description = description;
-        this.numOfDays = numOfDays;
-        this.minUsers = minUsers;
-        this.maxUsers = maxUsers;
-    }
-
     public Task() {
     }
 
@@ -66,13 +42,14 @@ public class Task {
         this.taskId = taskId;
     }
 
-    /* public List<User> getUsers() {
-        return users;
+    public List<UserTask> getUsersTasks() {
+        return usersTask;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }*/
+    public void setUsersTasks(List<UserTask> users) {
+        this.usersTask = users;
+    }
+
     public TaskCategory getCategory() {
         return category;
     }
@@ -137,7 +114,6 @@ public class Task {
         this.actions = actions;
     }
 
-    
     public boolean isIsDeleted() {
         return isDeleted;
     }
