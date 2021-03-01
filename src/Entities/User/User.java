@@ -21,6 +21,8 @@ public class User {
     protected Date dateOfBirth;
     protected double balance;
     protected int score;
+    protected boolean isLimited;
+    protected Timestamp limitedAt;
     protected boolean isDeleted;
     protected Timestamp deletedAt;
     protected Timestamp createdAt;
@@ -109,6 +111,24 @@ public class User {
         this.score = score;
     }
 
+    public boolean isIsLimited() {
+        return isLimited;
+    }
+
+    public void setIsLimited(boolean isLimited) {
+        this.isLimited = isLimited;
+    }
+
+    public Timestamp getLimitedAt() {
+        return limitedAt;
+    }
+
+    public void setLimitedAt(Timestamp limitedAt) {
+        this.limitedAt = limitedAt;
+    }
+    
+    
+
     public boolean isIsDeleted() {
         return isDeleted;
     }
@@ -143,9 +163,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "listBadges=" + listBadges + ", listRoles=" + listRoles + ", userId=" + userId + ", email=" + email + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", balance=" + balance + ", score=" + score + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}'+"\n";
+        return "User{" + "listBadges=" + listBadges + ", listRoles=" + listRoles + ", userId=" + userId + ", email=" + email + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", balance=" + balance + ", score=" + score + ", isLimited=" + isLimited + ", limitedAt=" + limitedAt + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
     }
-   
+
+ 
+    
     
     
     
