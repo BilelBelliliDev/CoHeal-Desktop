@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities.Task;
+package coheal.entities.Task;
 
-import Entities.User.User;
+import coheal.entities.User.User;
 
 /**
  *
  * @author Admin
  */
-public class UserChat {
+public class UserTask {
     private User user;
-    private TaskChat chat;
+    private Task task;
 
-    public UserChat() {
+    public UserTask() {
     }
 
     public User getUser() {
@@ -26,12 +26,12 @@ public class UserChat {
         this.user = user;
     }
 
-    public TaskChat getChat() {
-        return chat;
+    public Task getTask() {
+        return task;
     }
 
-    public void setChat(TaskChat chat) {
-        this.chat = chat;
+    public void setTask(Task task) {
+        this.task = task;
     }
     
     

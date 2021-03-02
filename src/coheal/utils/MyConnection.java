@@ -1,4 +1,4 @@
-package utils;
+package coheal.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
