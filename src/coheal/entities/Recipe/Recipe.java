@@ -11,8 +11,8 @@ public class Recipe {
     private String imgUrl;
     private boolean isDeleted;
     private Timestamp deletedAt;
-    private Timestamp created_At;
-    private Timestamp modified_at;
+    private Timestamp createdAt;
+    private Timestamp modifiedAt;
 
 
     public int getRecipeId() {
@@ -87,26 +87,28 @@ public class Recipe {
         this.deletedAt = deletedAt;
     }
 
-    public Timestamp getCreated_At() {
-        return created_At;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_At(Timestamp created_At) {
-        this.created_At = created_At;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Timestamp getModified_at() {
-        return modified_at;
+    public Timestamp getModifiedAt() {
+        return modifiedAt;
     }
 
-    public void setModified_at(Timestamp modified_at) {
-        this.modified_at = modified_at;
+    public void setModifiedAt(Timestamp modifiedAt) {
+        this.modifiedAt = modifiedAt;
     }
 
     @Override
     public String toString() {
-        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", title=" + title + ", description=" + description + ", calories=" + calories + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", created_At=" + created_At + ", modified_at=" + modified_at + '}';
+        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", calories=" + calories + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
     }
+
+    
     
     
     
