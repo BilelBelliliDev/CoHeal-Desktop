@@ -1,6 +1,6 @@
 package coheal.services.user;
 
-import coheal.entities.User.User;
+import coheal.entities.user.User;
 import coheal.utils.MyConnection;
 import coheal.iservices.user.IServiceUser;
 import java.sql.Connection;

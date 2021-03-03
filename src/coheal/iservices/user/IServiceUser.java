@@ -1,6 +1,6 @@
 package coheal.iservices.user;
 
-import coheal.entities.User.User;
+import coheal.entities.user.User;
 import java.util.List;
 
 /**

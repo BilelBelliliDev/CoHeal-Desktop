@@ -1,6 +1,6 @@
 package coheal.controllers.user;
 
-import coheal.entities.User.User;
+import coheal.entities.user.User;
 import coheal.services.user.ServiceUser;
 import coheal.services.user.UserSession;
 import java.net.URL;
