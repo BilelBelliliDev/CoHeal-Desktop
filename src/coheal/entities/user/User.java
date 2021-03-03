@@ -165,12 +165,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "listBadges=" + listBadges + ", listRoles=" + listRoles + ", userId=" + userId + ", email=" + email + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", balance=" + balance + ", score=" + score + ", isLimited=" + isLimited + ", limitedAt=" + limitedAt + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
-    }
-
- 
-    
-    
-    
-    
+    }  
     
 }
