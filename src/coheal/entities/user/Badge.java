@@ -8,16 +8,16 @@ import java.util.ArrayList;
  */
 public class Badge {
     //var 
-    private ArrayList<User> listUsers = new ArrayList<>();
+    private ArrayList<UserBadge> listUsers = new ArrayList<>();
     private int badgeId;
     private String badgeName;
     private String imageUrl;
 
-    public ArrayList<User> getListUsers() {
+    public ArrayList<UserBadge> getListUsers() {
         return listUsers;
     }
 
-    public void setListUsers(ArrayList<User> listUsers) {
+    public void setListUsers(ArrayList<UserBadge> listUsers) {
         this.listUsers = listUsers;
     }
 

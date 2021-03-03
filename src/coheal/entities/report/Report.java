@@ -42,7 +42,6 @@ public abstract class Report {
     public void setNote(String note) {
         this.note = note;
     }
-
     public boolean isIsClosed() {
         return isClosed;
     }
@@ -58,7 +57,6 @@ public abstract class Report {
     public void setClosedAt(Timestamp closedAt) {
         this.closedAt = closedAt;
     }
-
     public Timestamp getCreatedAt() {
         return createdAt;
     }

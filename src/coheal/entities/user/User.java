@@ -11,8 +11,9 @@ import java.util.ArrayList;
 public class User {
     //user var
     
-    private ArrayList<Badge> listBadges = new ArrayList<>();
-    private ArrayList<Role> listRoles = new ArrayList<>();
+    private ArrayList<UserBadge> listBadges = new ArrayList<>();
+    private ArrayList<UserRole> listRoles = new ArrayList<>();
+    
     protected int userId;
     protected String email;
     protected String password;
@@ -31,19 +32,19 @@ public class User {
 
     //getters & setters
 
-    public ArrayList<Badge> getListBadges() {
+    public ArrayList<UserBadge> getListBadges() {
         return listBadges;
     }
 
-    public void setListBadges(ArrayList<Badge> listBadges) {
+    public void setListBadges(ArrayList<UserBadge> listBadges) {
         this.listBadges = listBadges;
     }
 
-    public ArrayList<Role> getListRoles() {
+    public ArrayList<UserRole> getListRoles() {
         return listRoles;
     }
 
-    public void setListRoles(ArrayList<Role> listRoles) {
+    public void setListRoles(ArrayList<UserRole> listRoles) {
         this.listRoles = listRoles;
     }
 
@@ -164,12 +165,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "listBadges=" + listBadges + ", listRoles=" + listRoles + ", userId=" + userId + ", email=" + email + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", balance=" + balance + ", score=" + score + ", isLimited=" + isLimited + ", limitedAt=" + limitedAt + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
-    }
-
- 
-    
-    
-    
-    
+    }  
     
 }
