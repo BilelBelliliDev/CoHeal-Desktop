@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package iservices.Task;
+package coheal.iservices.Task;
 
-import entities.Task.Task;
+import coheal.entities.Task.Task;
 import java.util.List;
 
 /**

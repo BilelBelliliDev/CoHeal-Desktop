@@ -8,15 +8,15 @@ import java.util.ArrayList;
  */
 public class Role {
     //Role var
-    private ArrayList<User> listUsers = new ArrayList<>();
+    private ArrayList<UserRole> listUsers = new ArrayList<>();
     private int roleId;
     private String roleName;
 
-    public ArrayList<User> getListUsers() {
+    public ArrayList<UserRole> getListUsers() {
         return listUsers;
     }
 
-    public void setListUsers(ArrayList<User> listUsers) {
+    public void setListUsers(ArrayList<UserRole> listUsers) {
         this.listUsers = listUsers;
     }
 
