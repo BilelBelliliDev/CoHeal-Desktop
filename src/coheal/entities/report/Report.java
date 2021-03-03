@@ -15,6 +15,8 @@ public abstract class Report {
     protected int id;
     protected int reporterId;
     protected String note;
+    protected boolean isClosed;
+    protected Timestamp closedAt;
     protected Timestamp createdAt;
 
     public int getId() {
@@ -40,7 +42,21 @@ public abstract class Report {
     public void setNote(String note) {
         this.note = note;
     }
+    public boolean isIsClosed() {
+        return isClosed;
+    }
 
+    public void setIsClosed(boolean isClosed) {
+        this.isClosed = isClosed;
+    }
+
+    public Timestamp getClosedAt() {
+        return closedAt;
+    }
+
+    public void setClosedAt(Timestamp closedAt) {
+        this.closedAt = closedAt;
+    }
     public Timestamp getCreatedAt() {
         return createdAt;
     }
