@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package coheal.controllers;
+package coheal.controllers.recipe;
 
 import coheal.entities.Recipe.Recipe;
 import coheal.services.RecipeService;
@@ -18,12 +18,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-
 /**
+ * FXML Controller class
  *
- * @author BilelxOS
+ * @author HP
  */
-public class FXMLDocumentController implements Initializable {
+public class CreateRecipeUIController implements Initializable {
+
+    /**
+     * Initializes the controller class.
+     */
     
     @FXML
     private Label label;
@@ -36,15 +40,16 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label Affichage;
     
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
 
     @FXML
     private void Bouton_Ajouter(ActionEvent event) throws SQLException {
@@ -78,50 +83,4 @@ public class FXMLDocumentController implements Initializable {
        System.out.println("");
     }
 
-   
-    /* @FXML
-    private void Importer_img_button(ActionEvent event) {
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-
-        String filename = f.getAbsolutePath();
-        //ImageIcon imageIcon = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(img.getWidth(), img.getHeight(), Image.SCALE_DEFAULT));
-
-        //  *error* img.setIcon(imageIcon);
-
-        try {
-            File image = new File(filename);
-            FileInputStream fis = new FileInputStream (image);
-            ByteArrayOutputStream bos= new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            for(int readNum; (readNum=fis.read(buf))!=-1; ){
-                bos.write(buf,0,readNum);
-            }
-            byte[] person_image = bos.toByteArray();
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-    }*/
-
-    @FXML
-    private void Importer_img_button(ActionEvent event) {
-    }
-    
-    /*
-     Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/coheal/views/FXMLDocument2.fxml"));
-            Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-        // Hide this current window (if this is what you want)
-            ((Node)(event.getSource())).getScene().getWindow().hide();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    */
 }
