@@ -14,8 +14,9 @@ import java.util.List;
  * @author BilelxOS
  */
 public interface IReportService {
-    public void addReport(int reporterId, int reportedId, String note);
+    public void addReport(Report r, int id);
     public void closeReport(int reportId);
-    public void limitUser(int userId);
+    public void banUser(int userId);
+    public void unbanUser(int userId);
     public List<Report> reportsList();
 }
