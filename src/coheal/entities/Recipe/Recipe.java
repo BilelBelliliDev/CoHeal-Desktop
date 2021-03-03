@@ -7,13 +7,11 @@ public class Recipe {
     private int catId;
     private String title;
     private String description;
-    private float calories;
     private String imgUrl;
     private boolean isDeleted;
     private Timestamp deletedAt;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
-
 
     public int getRecipeId() {
         return recipeId;
@@ -53,14 +51,6 @@ public class Recipe {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public float getCalories() {
-        return calories;
-    }
-
-    public void setCalories(float calories) {
-        this.calories = calories;
     }
 
     public String getImgUrl() {
@@ -105,9 +95,12 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", calories=" + calories + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
+        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
     }
 
+    
+
+    
     
     
     
