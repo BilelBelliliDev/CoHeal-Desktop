@@ -5,10 +5,17 @@
  */
 package coheal.iservices.report;
 
+
+import coheal.entities.report.Report;
+import java.util.List;
+
 /**
  *
  * @author BilelxOS
  */
 public interface IReportService {
-    
+    public void addReport(int reporterId, int reportedId, String note);
+    public void closeReport(int reportId);
+    public void limitUser(int userId);
+    public List<Report> reportsList();
 }
