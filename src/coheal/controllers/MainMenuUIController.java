@@ -64,7 +64,7 @@ public class MainMenuUIController implements Initializable {
 
     @FXML
     private void taskMangAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/task/Task.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/task/TaskCategory.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

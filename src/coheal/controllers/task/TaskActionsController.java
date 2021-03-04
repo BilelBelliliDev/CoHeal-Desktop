@@ -78,8 +78,8 @@ public class TaskActionsController implements Initializable {
         ta.setTitle(txtTitre.getText());
         ta.setDescription(txtDescrp.getText());
         sta.createTaskActions(task,ta);
-         data.getItems().clear();
-        init();
+        // data.getItems().clear();
+       // init();
         
     }
 
@@ -93,7 +93,7 @@ public class TaskActionsController implements Initializable {
         
         stage.setScene(scene);
         stage.show();
-        // Hide this current window (if this is what you want)
+        // Hide this current window 
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (IOException ex) {
             ex.printStackTrace();

@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -37,6 +38,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 /**
@@ -83,6 +85,8 @@ public class TaskController implements Initializable {
     Task t = new Task();
     ServiceTaskCategory stc = new ServiceTaskCategory();
     String cat = "";
+    @FXML
+    private Button addButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -137,6 +141,28 @@ public class TaskController implements Initializable {
     @FXML
     private void addTask(ActionEvent event) {
 
+        Window owner = addButton.getScene().getWindow();
+        if(Titre.getText().isEmpty() ){
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                "Veuillez saisir le titre");
+            return;
+        }
+        else if(Desceiption.getText().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                "Veuillez saisir le description");
+            return;}
+        else if(numOfDays.getText().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                "Veuillez remplir les champs");
+            return;}
+        else if(maxUsers.getText().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                "Veuillez remplir les champs");
+            return;}
+        else if(numOfDays.getText().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                "Veuillez remplir les champs");
+            return;}
+        else if(comboCatg.getSelectionModel().getSelectedItem().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                "Veuillez choisir un categorie");
+            return;}
+        else{
         t.setTitle(Titre.getText());
         t.setDescription(Desceiption.getText());
         int n = Integer.parseInt(numOfDays.getText());
@@ -148,7 +174,7 @@ public class TaskController implements Initializable {
         st.createTask(1, cat, t);
          tableview.getItems().clear();
         init();
-
+        }
     }
 
    
@@ -168,10 +194,6 @@ public class TaskController implements Initializable {
 
     }
 
-    @FXML
-    private void selectAction(ActionEvent event) {
-      
-    }
 
     @FXML
     private void updateAction(ActionEvent event) {
@@ -205,6 +227,15 @@ public class TaskController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 
 }

@@ -47,7 +47,9 @@ public class ServiceTask implements IServiceTask {
             
             
             String query = "INSERT INTO task(user_id,cat_id, img_url, title, description, num_of_days, min_users, max_users, created_at) "
-                    + "VALUES ('"+therapistId + "','" + t.getCategory().getCatgid() + "','" + t.getImgUrl() + "','" + t.getTitle() + "','" + t.getDescription() + "','" + t.getNumOfDays() + "','" + t.getMinUsers() + "','" + t.getMaxUsers() + "','" + d + "');";
+                    + "VALUES ('"+therapistId + "','" + t.getCategory().getCatgid() + "','" + t.getImgUrl() + "','" 
+                    + t.getTitle() + "','" + t.getDescription() + "','" + t.getNumOfDays() + "','" + t.getMinUsers() + "','" 
+                    + t.getMaxUsers() + "','" + d + "');";
             
             st.executeUpdate(query);
             
@@ -83,7 +85,7 @@ public class ServiceTask implements IServiceTask {
         try {
             Calendar calendar = Calendar.getInstance();
             Timestamp d = new Timestamp(calendar.getTime().getTime());
-            String query = "UPDATE  task set cat_id=" + t.getCategory().getCatgid() + ", img_url='" + t.getImgUrl() + "', title='" + t.getTitle() + "', description='" + t.getDescription() + "', num_of_days=" + t.getNumOfDays() + ", min_users=" + t.getMinUsers() + ", max_users=" + t.getMaxUsers() +"where task_id="+idt+";";
+            String query = "UPDATE  task set cat_id=" + t.getCategory().getCatgid() + ", img_url='" + t.getImgUrl() + "', title='" + t.getTitle() + "', description='" + t.getDescription() + "', num_of_days=" + t.getNumOfDays() + ", min_users=" + t.getMinUsers() + ", max_users=" + t.getMaxUsers() +" where task_id="+idt+";";
             System.out.println(query);
             Statement st = con.createStatement();
             st.executeUpdate(query);
