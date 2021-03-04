@@ -54,6 +54,7 @@ public class MainMenuUIController implements Initializable {
 
     @FXML
     private void recipeMangAction(ActionEvent event) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/recipeui/CreateRecipeCategoryUI.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
