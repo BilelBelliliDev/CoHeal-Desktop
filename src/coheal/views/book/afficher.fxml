@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="875.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="book.AfficherController">
+<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="875.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="coheal.controllers.book.AfficherController">
    <children>
       <DialogPane layoutX="-27.0" layoutY="71.0" />
       <TableView fx:id="tabviewsbook" layoutX="222.0" layoutY="71.0" prefHeight="455.0" prefWidth="618.0">
