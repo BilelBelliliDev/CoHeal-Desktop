@@ -45,8 +45,10 @@ public class RecipeService implements IRecipeService {
 
     @Override
     public List<Recipe> Afficher_Recipe() {
-        ObservableList<Recipe> ListR = FXCollections.observableArrayList();
-        try {
+
+          ObservableList<Recipe> ListR = FXCollections.observableArrayList();       
+            try {
+
             Statement st = con.createStatement();
             String res = "SELECT * FROM recipe WHERE is_deleted=0";
             ResultSet rs = st.executeQuery(res);

@@ -49,6 +49,9 @@ public class CreateRecipeUIController implements Initializable {
     private TableColumn<Recipe, String> img_col;
     @FXML
     private TableView<Recipe> table;
+
+    boolean isSelected = false;
+
     RecipeService rs = new RecipeService();
 
     ObservableList<Recipe> l = FXCollections.observableList(rs.Afficher_Recipe());
@@ -63,21 +66,28 @@ public class CreateRecipeUIController implements Initializable {
         title_col.setCellValueFactory(new PropertyValueFactory<>("title"));
         desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
         img_col.setCellValueFactory(new PropertyValueFactory<>("img_url"));
-        table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
 
-        table.setRowFactory(tv -> {
-            TableRow<Recipe> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 1 && (!row.isEmpty())) {
-                    Recipe rowData = row.getItem();
-                    TitreTF.setText(rowData.getTitle());
-                    DescTF.setText(rowData.getDescription());
-                    imgTF.setText(rowData.getImgUrl());
-                }
-            });
-            return row;
+    table.setItems (l);
+
+    table.setRowFactory (tv  
+         
+        -> {
+        TableRow<Recipe> row = new TableRow<>();
+        row.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1 && (!row.isEmpty())) {
+                Recipe rowData = row.getItem();
+                TitreTF.setText(rowData.getTitle());
+                DescTF.setText(rowData.getDescription());
+                imgTF.setText(rowData.getImgUrl());
+                isSelected = true;
+            }
         });
+        return row;
     }
+
+
+);
+}
 
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -85,19 +95,24 @@ public class CreateRecipeUIController implements Initializable {
     }
 
     @FXML
-    private void Bouton_Ajouter(ActionEvent event) throws SQLException {
-        //RecipeService RS = new RecipeService();
+        private void Bouton_Ajouter(ActionEvent event) throws SQLException {
+        RecipeService RS = new RecipeService();
         Recipe R = new Recipe();
         R.setCatId(1);
         R.setTitle(TitreTF.getText());
         R.setDescription(DescTF.getText());
         R.setImgUrl(imgTF.getText());
-        rs.Create_Recipe(1, "Lunch", R);
+
+        RS.Create_Recipe(1,"Lunch",R);
+
         table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
     }
 
     @FXML
-    private void Bouton_Modifier(ActionEvent event) {
+        private void Bouton_Modifier(ActionEvent event) {
+
+       
+        if(isSelected){
 
         Recipe r = table.getSelectionModel().getSelectedItem();
         RecipeService RS = new RecipeService();
@@ -106,19 +121,22 @@ public class CreateRecipeUIController implements Initializable {
         R.setTitle(TitreTF.getText());
         R.setDescription(DescTF.getText());
         R.setImgUrl(imgTF.getText());
-        RS.Update_Recipe(R, r.getRecipeId());
+
+        RS.Update_Recipe(R,r.getRecipeId());
         table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
+        }
+        else System.out.println("Sélectionner un objet!");
+
     }
 
     @FXML
-    private void Bouton_Supprimer(ActionEvent event) {
+        private void Bouton_Supprimer(ActionEvent event) {
+       if(isSelected){
         RecipeService RS = new RecipeService();
-        Recipe recipe = new Recipe();
-        recipe = table.getSelectionModel().getSelectedItem();
-        System.out.println(table.getSelectionModel().getSelectedItem());
-        RS.Delete_Recipe(recipe.getRecipeId());
-        table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
-        //table.setItems((ObservableList<Recipe>)RS.Afficher_Recipe());
-    }
-
+       Recipe recipe = new Recipe();
+       recipe = table.getSelectionModel().getSelectedItem();
+       System.out.println(table.getSelectionModel().getSelectedItem());
+       RS.Delete_Recipe(recipe.getRecipeId());
+       table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
+    }}
 }
