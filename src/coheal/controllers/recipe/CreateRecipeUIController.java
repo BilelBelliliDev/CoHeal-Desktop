@@ -75,21 +75,21 @@ public class CreateRecipeUIController implements Initializable {
         title_col.setCellValueFactory(new PropertyValueFactory<>("title"));
         desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
         img_col.setCellValueFactory(new PropertyValueFactory<>("img_url"));
-        table.setItems (l);
-        table.setRowFactory (tv -> {
-        TableRow<Recipe> row = new TableRow<>();
-        row.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1 && (!row.isEmpty())) {
-                Recipe rowData = row.getItem();
-                TitreTF.setText(rowData.getTitle());
-                DescTF.setText(rowData.getDescription());
-                imgTF.setText(rowData.getImgUrl());
-                isSelected = true;
-            }
+        table.setItems(l);
+        table.setRowFactory(tv -> {
+            TableRow<Recipe> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && (!row.isEmpty())) {
+                    Recipe rowData = row.getItem();
+                    TitreTF.setText(rowData.getTitle());
+                    DescTF.setText(rowData.getDescription());
+                    imgTF.setText(rowData.getImgUrl());
+                    isSelected = true;
+                }
+            });
+            return row;
         });
-        return row;
-    });
-}
+    }
 
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -97,68 +97,75 @@ public class CreateRecipeUIController implements Initializable {
     }
 
     @FXML
-        private void Bouton_Ajouter(ActionEvent event) throws SQLException {
-        
+    private void Bouton_Ajouter(ActionEvent event) throws SQLException {
+
         javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
         if (TitreTF.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
-                "Entrer un titre pour votre recette!");
+                    "Entrer un titre pour votre recette!");
             return;
         }
         if (DescTF.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
-                "Decrire votre recette!");
+                    "Decrire votre recette!");
             return;
         }
         if (imgTF.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
-                "Entrer l'URL de l'image!");
+                    "Entrer l'URL de l'image!");
             return;
         }
-            
+
         RecipeService RS = new RecipeService();
         Recipe R = new Recipe();
         R.setCatId(1);
         R.setTitle(TitreTF.getText());
         R.setDescription(DescTF.getText());
         R.setImgUrl(imgTF.getText());
-        RS.Create_Recipe(1,"Lunch",R);
+        RS.Create_Recipe(1, "Lunch", R);
         table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
+
+        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                "Recette Ajoutée avec succés!");
     }
 
     @FXML
-        private void Bouton_Modifier(ActionEvent event) {
-            if(isSelected){
-        Recipe r = table.getSelectionModel().getSelectedItem();
-        RecipeService RS = new RecipeService();
-        Recipe R = new Recipe();
-        R.setCatId(1);
-        R.setTitle(TitreTF.getText());
-        R.setDescription(DescTF.getText());
-        R.setImgUrl(imgTF.getText());
-        RS.Update_Recipe(R,r.getRecipeId());
-        table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
-        }
-        else {
-            javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur!","Selectionner une recette!");
+    private void Bouton_Modifier(ActionEvent event) {
+        javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
+        if (isSelected) {
+            Recipe r = table.getSelectionModel().getSelectedItem();
+            RecipeService RS = new RecipeService();
+            Recipe R = new Recipe();
+            R.setCatId(1);
+            R.setTitle(TitreTF.getText());
+            R.setDescription(DescTF.getText());
+            R.setImgUrl(imgTF.getText());
+            RS.Update_Recipe(R, r.getRecipeId());
+            table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
+
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                    "Recette Modifiée avec succés!");
+        } else {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!", "Selectionner une recette!");
             return;
         }
 
     }
 
     @FXML
-        private void Bouton_Supprimer(ActionEvent event) {
-       if(isSelected){
-        RecipeService RS = new RecipeService();
-       Recipe recipe = new Recipe();
-       recipe = table.getSelectionModel().getSelectedItem();
-       System.out.println(table.getSelectionModel().getSelectedItem());
-       RS.Delete_Recipe(recipe.getRecipeId());
-       table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
-       } else{
-            javafx.stage.Window owner = BoutonSupprimer.getScene().getWindow();
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur!","Selectionner une recette!");
+    private void Bouton_Supprimer(ActionEvent event) {
+        javafx.stage.Window owner = BoutonSupprimer.getScene().getWindow();
+        if (isSelected) {
+            RecipeService RS = new RecipeService();
+            Recipe recipe = new Recipe();
+            recipe = table.getSelectionModel().getSelectedItem();
+            System.out.println(table.getSelectionModel().getSelectedItem());
+            RS.Delete_Recipe(recipe.getRecipeId());
+            table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                    "Recette Supprimée avec succés!");
+        } else {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!", "Selectionner une recette!");
             return;
         }
     }
@@ -169,6 +176,6 @@ public class CreateRecipeUIController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.initOwner(owner);
-        alert.show();    
+        alert.show();
     }
 }

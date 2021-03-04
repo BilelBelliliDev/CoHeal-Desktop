@@ -92,19 +92,19 @@ public class CreateRecipeCategoryUIController implements Initializable {
 
     @FXML
     private void Bouton_Ajouter(ActionEvent event) throws SQLException {
-        
+
         javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
         if (nomTF.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
-                "Entrer un nom pour votre catégorie!");
+                    "Entrer un nom pour votre catégorie!");
             return;
         }
         if (imgTF.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
-                "Entrer l'URL de l'image!");
+                    "Entrer l'URL de l'image!");
             return;
         }
-        
+
         RecipeCategoryService rcs = new RecipeCategoryService();
         RecipeCategory RC = new RecipeCategory();
         RC.setName(nomTF.getText());
@@ -112,10 +112,14 @@ public class CreateRecipeCategoryUIController implements Initializable {
         rcs.Create_RecipeCategory(RC);
         table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
 
+        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                "Catégorie Ajoutée avec succés!");
+
     }
 
     @FXML
     private void Bouton_Modifier(ActionEvent event) {
+        javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
         if (isSelected) {
             RecipeCategory RC = new RecipeCategory();
             RecipeCategory rc = table.getSelectionModel().getSelectedItem();
@@ -123,25 +127,31 @@ public class CreateRecipeCategoryUIController implements Initializable {
             RC.setImgUrl(imgTF.getText());
             rcs.Update_RecipeCategory(RC, rc.getCatId());
             table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
+
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                    "Catégorie Modifiée avec succés!");
+
         } else {
-            javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur!","Selectionner une catégorie!");
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!", "Selectionner une catégorie!");
             return;
         }
-        }
-    
-        
+    }
+
     @FXML
     private void Bouton_Supprimer(ActionEvent event) {
+
+        javafx.stage.Window owner = BoutonSupprimer.getScene().getWindow();
         if (isSelected) {
             RecipeCategory rc = new RecipeCategory();
             rc = table.getSelectionModel().getSelectedItem();
             System.out.println(table.getSelectionModel().getSelectedItem());
             rcs.Delete_RecipeCategory(rc.getCatId());
             table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
-        }else {
-            javafx.stage.Window owner = BoutonSupprimer.getScene().getWindow();
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur!","Selectionner une catégorie!");
+
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                    "Catégorie Supprimée avec succés!");
+        } else {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!", "Selectionner une catégorie!");
             return;
         }
     }
@@ -163,6 +173,6 @@ public class CreateRecipeCategoryUIController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.initOwner(owner);
-        alert.show();    
+        alert.show();
     }
 }
