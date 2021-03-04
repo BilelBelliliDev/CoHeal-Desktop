@@ -5,6 +5,7 @@
  */
 package coheal.controllers.task;
 
+import coheal.controllers.book.FXMLDocumentController;
 import coheal.entities.task.Task;
 import coheal.entities.task.TaskCategory;
 import coheal.services.task.ServiceTask;
@@ -13,7 +14,10 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -210,6 +214,7 @@ public class TaskController implements Initializable {
         st.updateTask(t,task.getTaskId());
          tableview.getItems().clear();
         init();
+        //tableview.setItems((ObservableList<Task>) st.ListTask());
     }
 
     @FXML
