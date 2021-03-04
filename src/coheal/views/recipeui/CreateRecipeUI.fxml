@@ -46,8 +46,8 @@
       <TableView id="tableview" fx:id="table" layoutX="382.0" layoutY="119.0" prefHeight="217.0" prefWidth="255.0" style="-fx-background-color: bisque;">
         <columns>
           <TableColumn fx:id="title_col" prefWidth="75.0" text="Titre" />
-          <TableColumn fx:id="desc_col" prefWidth="105.0" text="Description" />
-            <TableColumn fx:id="img_col" prefWidth="61.0" text="Image" />
+          <TableColumn fx:id="desc_col" prefWidth="117.0" text="Description" />
+            <TableColumn fx:id="img_col" prefWidth="62.0" text="Image" />
         </columns>
       </TableView>
       <TextField fx:id="imgTF" layoutX="95.0" layoutY="231.0" prefHeight="25.0" prefWidth="200.0" promptText="Entrer l'URL" />
