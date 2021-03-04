@@ -23,6 +23,7 @@ public class ServiceUser implements IServiceUser{
     }
     
     //ajouter un utilisateur "SingUp"
+    @Override
     public void AddUser(User u){           
         try {            
             Statement stm=cnx.createStatement();
@@ -36,6 +37,7 @@ public class ServiceUser implements IServiceUser{
     }
   
     //---------login----------------------------------------------------
+    @Override
     public boolean Validate_Login(String email , String password){           
         try {     
             String query = "SELECT * FROM user WHERE email = ? and password = ? and is_deleted=0 ";
@@ -80,6 +82,7 @@ public class ServiceUser implements IServiceUser{
     }
 
 //---------------------------------------------
+    @Override
     public List<User> AfficherPersonne() {        
         try {
             Statement stm=cnx.createStatement();
@@ -101,6 +104,7 @@ public class ServiceUser implements IServiceUser{
        
     }
  //---------------------------------------------
+    @Override
     public void ModifierUser(User u ,int id) {
         try {
             String query = "UPDATE `user` SET `email`= '"+u.getEmail()+"' ,`password`= '"
@@ -116,6 +120,7 @@ public class ServiceUser implements IServiceUser{
     }   
     
  //---------------------------------------------   
+    @Override
     public void DeleteUser(int idU) {
         try {
             String query = "UPDATE  user set  is_deleted=1,deleted_at=CURRENT_TIMESTAMP()  where user_id=" + idU +" ";
