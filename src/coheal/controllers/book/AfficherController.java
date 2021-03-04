@@ -132,7 +132,7 @@ public class AfficherController implements Initializable {
 
         @FXML
         private void retour1(ActionEvent event) throws IOException {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("accueil.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/book/accueil.fxml"));
                 Parent root=loader.load();
                 AccueilController s2 = loader.getController();
                 Stage stage =new Stage();

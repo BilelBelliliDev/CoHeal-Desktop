@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="book.AjouterCategoryBookController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="coheal.controllers.book.AjouterCategoryBookController">
    <children>
       <Label layoutX="120.0" layoutY="38.0" prefHeight="50.0" prefWidth="342.0" text="ajouter une catégorie">
          <font>
