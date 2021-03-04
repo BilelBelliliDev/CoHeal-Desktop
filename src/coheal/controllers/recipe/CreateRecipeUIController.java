@@ -5,7 +5,7 @@
  */
 package coheal.controllers.recipe;
 
-import coheal.entities.Recipe.Recipe;
+import coheal.entities.recipe.Recipe;
 import coheal.services.recipe.RecipeService;
 import java.net.URL;
 import java.sql.SQLException;

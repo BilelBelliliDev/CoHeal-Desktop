@@ -5,7 +5,7 @@
  */
 package coheal.controllers.recipe;
 
-import coheal.entities.Recipe.RecipeCategory;
+import coheal.entities.recipe.RecipeCategory;
 import coheal.services.recipe.RecipeCategoryService;
 import java.io.IOException;
 import java.net.URL;
@@ -120,7 +120,6 @@ public class CreateRecipeCategoryUIController implements Initializable {
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
        }
-    
-    }
+}
     
 

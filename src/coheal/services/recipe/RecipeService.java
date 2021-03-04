@@ -5,7 +5,7 @@
  */
 package coheal.services.recipe;
 
-import coheal.entities.Recipe.Recipe;
+import coheal.entities.recipe.Recipe;
 import coheal.iservices.recipe.IRecipeService;
 import coheal.utils.MyConnection;
 import java.sql.Connection;

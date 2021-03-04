@@ -5,7 +5,7 @@
  */
 package coheal.iservices.recipe;
 
-import coheal.entities.Recipe.RecipeCategory;
+import coheal.entities.recipe.RecipeCategory;
 import java.util.List;
 
 /**
