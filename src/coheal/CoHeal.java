@@ -18,8 +18,8 @@ public class CoHeal extends Application {
     public void start(Stage stage) throws Exception {
 
 
-        //Parent root = FXMLLoader.load(getClass().getResource("views/user/SignIn.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("views/MainMenuUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/session/SessionFXML.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("views/MainMenuUI.fxml"));
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
