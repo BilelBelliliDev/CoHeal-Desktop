@@ -62,7 +62,7 @@ public class ServiceSession implements ISessionService {
     }
 
     @Override
-    public void SupprimerSession(Session s, int id) {
+    public void SupprimerSession(int id) {
         try {
             Calendar calendar = Calendar.getInstance();
             Timestamp d = new Timestamp(calendar.getTime().getTime());

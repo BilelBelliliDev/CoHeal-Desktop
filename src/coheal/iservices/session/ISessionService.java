@@ -15,7 +15,7 @@ import java.util.List;
 public interface ISessionService {
      public void createSession(Session s);
         public void modifierSession(Session s,int i);
-        public void SupprimerSession(Session s,int i);
+        public void SupprimerSession(int i);
         public List<Session> listSesion();
     
     
