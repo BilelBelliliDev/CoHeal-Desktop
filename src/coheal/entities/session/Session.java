@@ -23,6 +23,16 @@ public class Session {
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 
+     public Session(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
+    public Session() {
+    }
+
+    
+
     public int getSessionId() {
         return sessionId;
     }
@@ -38,6 +48,8 @@ public class Session {
     public void setTherpId(int therpId) {
         this.therpId = therpId;
     }
+
+    
 
     public int getUserId() {
         return userId;
@@ -102,8 +114,11 @@ public class Session {
     public void setModifiedAt(Timestamp modifiedAt) {
         this.modifiedAt = modifiedAt;
     }
-    
 
+    @Override
+    public String toString() {
+        return "Session{" + "sessionId=" + sessionId + ", therpId=" + therpId + ", userId=" + userId + ", title=" + title + ", description=" + description + ", isDeleted=" + isDeleted + ", numOfDays=" + numOfDays + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
+    }
     
 
 }
