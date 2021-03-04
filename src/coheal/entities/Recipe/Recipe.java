@@ -95,7 +95,7 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
+        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}'+"\n";
     }
 
     

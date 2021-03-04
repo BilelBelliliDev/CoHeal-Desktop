@@ -16,7 +16,7 @@ public class CoHeal extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/coheal/views/recipeui/CreateRecipeUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/coheal/views/recipeui/CreateRecipeCategoryUI.fxml"));
         
         Scene scene = new Scene(root);
         

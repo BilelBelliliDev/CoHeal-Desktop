@@ -10,22 +10,6 @@ public class RecipeCategory {
     private Timestamp created_At;
     private Timestamp modified_at;
 
-    public RecipeCategory(){};
-    
-    public RecipeCategory(int catId, String name, String imgUrl, boolean isDeleted, Timestamp deletedAt, Timestamp created_At, Timestamp modified_at) {
-        this.catId = catId;
-        this.name = name;
-        this.imgUrl = imgUrl;
-        this.isDeleted = isDeleted;
-        this.deletedAt = deletedAt;
-        this.created_At = created_At;
-        this.modified_at = modified_at;
-    }
-
-    public RecipeCategory(int aInt, String string, String string0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public int getCatId() {
         return catId;
     }

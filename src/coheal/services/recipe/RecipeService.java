@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package coheal.services;
+package coheal.services.recipe;
 
 import coheal.entities.Recipe.Recipe;
-import coheal.iservices.IRecipeService;
+import coheal.iservices.recipe.IRecipeService;
 import coheal.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 
@@ -48,10 +46,11 @@ public class RecipeService implements IRecipeService {
         ArrayList<Recipe> ListR = new ArrayList();
         try {
             Statement st = con.createStatement();
-            String res = "SELECT * FROM recipe";
+            String res = "SELECT * FROM recipe WHERE is_deleted=0";
             ResultSet rs = st.executeQuery(res);
             while (rs.next()){
                 Recipe r = new Recipe();
+                r.setRecipeId(rs.getInt("recipe_id"));
                 r.setUserId(rs.getInt("user_id"));
                 r.setCatId(rs.getInt("cat_id"));
                 r.setTitle(rs.getString("title"));
@@ -66,19 +65,19 @@ public class RecipeService implements IRecipeService {
     @Override
     public void Update_Recipe(Recipe r,int id) {
        try {
-            String query = "UPDATE recipe SET recipe_id=" + r.getRecipeId() + ", user_id=" + r.getUserId() + ", cat_id=" + r.getCatId() + ",' title=" + r.getTitle() + "',' description" + r.getDescription() + "',' img_url=" + r.getImgUrl() + "',' WHERE recipe_id="+id+";";
+            String query = "UPDATE recipe SET user_id=1" + ", cat_id=" + r.getCatId() + ", title='" + r.getTitle() + "', description='" + r.getDescription() + "', img_url='" + r.getImgUrl() + "' WHERE recipe_id="+id+";";
             Statement st = con.createStatement();
             st.executeUpdate(query);
             System.out.println("Recette modifiée avec succés!");
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la modification de la Recette!");
+            System.out.println("Erreur lors de la modification de la Recette!"+e.getMessage());
         }
     }
 
     @Override
    public void Delete_Recipe(int idR) {
        try {
-            String query = "UPDATE  recipe SET  is_deleted=1,deleted_at=CURRENT_TIMESTAMP() where task_id=" + idR +"" ;
+            String query = "UPDATE  recipe SET  is_deleted=1,deleted_at=CURRENT_TIMESTAMP() where recipe_id=" + idR +"" ;
             Statement st = con.createStatement();
             st.executeUpdate(query);
             System.out.println("Suppression de la recette avec succés!");

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package coheal.iservices;
+package coheal.iservices.recipe;
 
 import coheal.entities.Recipe.RecipeCategory;
 import java.util.List;
@@ -18,7 +18,7 @@ public interface IRecipeCategoryService {
     
     public List<RecipeCategory> Afficher_RecipeCategory();
     
-    public void Update_RecipeCategory(RecipeCategory RC);
+    public void Update_RecipeCategory(RecipeCategory RC,int id);
     
-    public void Delete_RecipeCategory(int idC);
+    public void Delete_RecipeCategory(int idc);
 }
