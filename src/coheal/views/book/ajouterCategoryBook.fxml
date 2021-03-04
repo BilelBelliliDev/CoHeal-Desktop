@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="book.AjouterCategoryBookController">
+   <children>
+      <Label layoutX="120.0" layoutY="38.0" prefHeight="50.0" prefWidth="342.0" text="ajouter une catégorie">
+         <font>
+            <Font name="Cambria" size="34.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfimagecat" layoutX="73.0" layoutY="174.0" promptText="inserer l'image" />
+      <TextField fx:id="tfnomcat" layoutX="73.0" layoutY="137.0" promptText="inserer le nom" />
+      <Label layoutX="17.0" layoutY="136.0" text="nom">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="173.0" text="image">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="365.0" layoutY="272.0" mnemonicParsing="false" onAction="#ajoutercat" text="ajouter" />
+      <Button layoutX="470.0" layoutY="272.0" mnemonicParsing="false" onAction="#retour3" text="retour" />
+   </children>
+</AnchorPane>
