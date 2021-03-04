@@ -117,7 +117,7 @@ import javafx.stage.Stage;
     private void supprimerSessionAction(ActionEvent event) {
          Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/coheal/views/sessionDeleteFXML.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/coheal/views/session/DeleteFXML.fxml"));
             Stage stage = new Stage();
         Scene scene = new Scene(root);
         
