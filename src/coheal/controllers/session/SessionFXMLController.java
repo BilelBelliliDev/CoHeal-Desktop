@@ -83,7 +83,7 @@ import javafx.stage.Stage;
     private void MessageShow(ActionEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/coheal/SessionMessageFXML.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/coheal/views/session/SessionMessageFXML.fxml"));
             Stage stage = new Stage();
         Scene scene = new Scene(root);
         
@@ -100,7 +100,7 @@ import javafx.stage.Stage;
     private void ModifierAction(ActionEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/coheal/UpdateUI.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/coheal/views/session/UpdateUIController.fxml"));
             Stage stage = new Stage();
         Scene scene = new Scene(root);
         
@@ -117,7 +117,7 @@ import javafx.stage.Stage;
     private void supprimerSessionAction(ActionEvent event) {
          Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/coheal/DeleteFXML.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/coheal/views/sessionDeleteFXML.fxml"));
             Stage stage = new Stage();
         Scene scene = new Scene(root);
         
