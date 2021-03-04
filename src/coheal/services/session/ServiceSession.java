@@ -16,6 +16,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -76,14 +78,21 @@ public class ServiceSession implements ISessionService {
 
     @Override
     public List<Session> listSesion() {
-        ArrayList<Session> s = new ArrayList();
+        ObservableList<Session> s =FXCollections.observableArrayList();
         try {
             Statement st = con.createStatement();
             String res = "select * from `session`";
             ResultSet rs = st.executeQuery(res);
 
             while (rs.next()) {
-                s.add(new Session(rs.getString("title"), rs.getString("description")));
+                Session e = new Session() ;
+                e.setSessionId(rs.getInt("session_id"));
+                e.setTherpId(rs.getInt("therp_id"));
+                e.setTitle(rs.getString("title"));
+                e.setDescription(rs.getString("description"));         
+                e.setNumOfDays(rs.getInt("num_of_days"));
+       
+                s.add(e);
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'affichage");
