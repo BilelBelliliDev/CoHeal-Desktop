@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class TaskMessage {
     
+   
     private int msgId;
     private TaskChat taskChat;
     private List<User> users= new ArrayList<>();

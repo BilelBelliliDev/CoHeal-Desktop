@@ -22,6 +22,22 @@ public class TaskCategory {
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 
+    public TaskCategory(int catgid,String name, String imgUrl) {
+        this.name = name;
+        this.imgUrl = imgUrl;
+        this.catgid=catgid;
+    }
+
+    public TaskCategory() {
+    }
+
+    public TaskCategory(String name) {
+       
+        this.name = name;
+    }
+    
+    
+
     public int getCatgid() {
         return catgid;
     }
@@ -80,7 +96,6 @@ public class TaskCategory {
 
     @Override
     public String toString() {
-        return "TaskCategory{" + "catgid=" + catgid + ", name=" + name + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
+        return  " name=" + name + ", imgUrl=" + imgUrl +"\n";
     }
-
 }

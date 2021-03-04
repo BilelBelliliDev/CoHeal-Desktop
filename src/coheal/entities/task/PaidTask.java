@@ -13,7 +13,7 @@ import java.util.List;
  * @author Admin
  */
 public class PaidTask extends Task{
-     private Double price;
+    private Double price;
      private TaskChat taskChat;
 
   
