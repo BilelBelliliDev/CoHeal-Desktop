@@ -40,7 +40,7 @@ public class DeleteFXMLController implements Initializable {
         Session s=new Session();
         int n = Integer.parseInt(sessionId.getText());
         
-        se.SupprimerSession(s,n );
+        se.SupprimerSession(n );
     }
     
 }
