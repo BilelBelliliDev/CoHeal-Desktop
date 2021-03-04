@@ -5,7 +5,7 @@
  */
 package coheal.controllers.book;
 
-import coheal.entities.Book.BookCategory;
+import coheal.entities.book.BookCategory;
 import coheal.services.book.ServiceBookCategory;
 import java.io.IOException;
 import java.net.URL;
