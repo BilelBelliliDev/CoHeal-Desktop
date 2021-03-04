@@ -15,6 +15,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -22,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -55,6 +58,12 @@ public class CreateRecipeUIController implements Initializable {
     RecipeService rs = new RecipeService();
 
     ObservableList<Recipe> l = FXCollections.observableList(rs.Afficher_Recipe());
+    @FXML
+    private Button BoutonAjouter;
+    @FXML
+    private Button BoutonModifier;
+    @FXML
+    private Button BoutonSupprimer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -66,12 +75,8 @@ public class CreateRecipeUIController implements Initializable {
         title_col.setCellValueFactory(new PropertyValueFactory<>("title"));
         desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
         img_col.setCellValueFactory(new PropertyValueFactory<>("img_url"));
-
-    table.setItems (l);
-
-    table.setRowFactory (tv  
-         
-        -> {
+        table.setItems (l);
+        table.setRowFactory (tv -> {
         TableRow<Recipe> row = new TableRow<>();
         row.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1 && (!row.isEmpty())) {
@@ -83,10 +88,7 @@ public class CreateRecipeUIController implements Initializable {
             }
         });
         return row;
-    }
-
-
-);
+    });
 }
 
     private void handleButtonAction(ActionEvent event) {
@@ -96,24 +98,37 @@ public class CreateRecipeUIController implements Initializable {
 
     @FXML
         private void Bouton_Ajouter(ActionEvent event) throws SQLException {
+        
+        javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
+        if (TitreTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
+                "Entrer un titre pour votre recette!");
+            return;
+        }
+        if (DescTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
+                "Decrire votre recette!");
+            return;
+        }
+        if (imgTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
+                "Entrer l'URL de l'image!");
+            return;
+        }
+            
         RecipeService RS = new RecipeService();
         Recipe R = new Recipe();
         R.setCatId(1);
         R.setTitle(TitreTF.getText());
         R.setDescription(DescTF.getText());
         R.setImgUrl(imgTF.getText());
-
         RS.Create_Recipe(1,"Lunch",R);
-
         table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
     }
 
     @FXML
         private void Bouton_Modifier(ActionEvent event) {
-
-       
-        if(isSelected){
-
+            if(isSelected){
         Recipe r = table.getSelectionModel().getSelectedItem();
         RecipeService RS = new RecipeService();
         Recipe R = new Recipe();
@@ -121,11 +136,14 @@ public class CreateRecipeUIController implements Initializable {
         R.setTitle(TitreTF.getText());
         R.setDescription(DescTF.getText());
         R.setImgUrl(imgTF.getText());
-
         RS.Update_Recipe(R,r.getRecipeId());
         table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
         }
-        else System.out.println("Sélectionner un objet!");
+        else {
+            javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!","Selectionner une recette!");
+            return;
+        }
 
     }
 
@@ -138,5 +156,19 @@ public class CreateRecipeUIController implements Initializable {
        System.out.println(table.getSelectionModel().getSelectedItem());
        RS.Delete_Recipe(recipe.getRecipeId());
        table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
-    }}
+       } else{
+            javafx.stage.Window owner = BoutonSupprimer.getScene().getWindow();
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!","Selectionner une recette!");
+            return;
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();    
+    }
 }

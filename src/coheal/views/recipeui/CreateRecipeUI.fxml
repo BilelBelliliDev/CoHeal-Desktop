@@ -27,15 +27,15 @@
          </font></Label>
       <TextField fx:id="TitreTF" layoutX="95.0" layoutY="101.0" prefHeight="25.0" prefWidth="200.0" promptText="Entrer le titre de votre recette" />
       <TextArea fx:id="DescTF" layoutX="95.0" layoutY="137.0" prefHeight="83.0" prefWidth="200.0" promptText="Décrire votre recette (calories, ...)" />
-      <Button layoutX="45.0" layoutY="297.0" mnemonicParsing="false" onAction="#Bouton_Ajouter" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Ajouter">
+      <Button fx:id="BoutonAjouter" layoutX="45.0" layoutY="297.0" mnemonicParsing="false" onAction="#Bouton_Ajouter" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Ajouter">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button layoutX="134.0" layoutY="297.0" mnemonicParsing="false" onAction="#Bouton_Modifier" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Modifier">
+      <Button fx:id="BoutonModifier" layoutX="134.0" layoutY="297.0" mnemonicParsing="false" onAction="#Bouton_Modifier" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Modifier">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button layoutX="223.0" layoutY="297.0" mnemonicParsing="false" onAction="#Bouton_Supprimer" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Supprimer">
+      <Button fx:id="BoutonSupprimer" layoutX="223.0" layoutY="297.0" mnemonicParsing="false" onAction="#Bouton_Supprimer" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Supprimer">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -52,7 +52,7 @@
       </TableView>
       <TextField fx:id="imgTF" layoutX="95.0" layoutY="231.0" prefHeight="25.0" prefWidth="200.0" promptText="Entrer l'URL" />
       <Pane layoutY="54.0" prefHeight="7.0" prefWidth="657.0" style="-fx-background-color: red;" />
-      <Label layoutX="455.0" layoutY="82.0" text="Liste des recettes" textFill="#ae2020" underline="true">
+      <Label layoutX="455.0" layoutY="82.0" text="Liste des recettes" textFill="#ae2020">
          <font>
             <Font name="Berlin Sans FB" size="16.0" />
          </font>
