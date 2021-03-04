@@ -19,6 +19,15 @@ public class SessionMessage {
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 
+     public SessionMessage() {
+    }
+
+    
+    public SessionMessage(String msg) {
+        this.msg = msg;
+    }
+
+    
     public int getMsgId() {
         return msgId;
     }
@@ -67,9 +76,15 @@ public class SessionMessage {
         this.modifiedAt = modifiedAt;
     }
 
+    @Override
+    public String toString() {
+        return "SessionMessage{" + "msg=" + msg + '}'+"\n";
+    }
+
+   
+
 
 
  
-    
     
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="coheal.controllers.MainMenuUIController">
+   <children>
+      <Label layoutX="257.0" layoutY="42.0" prefHeight="55.0" prefWidth="127.0" text="CoHeal" textAlignment="CENTER">
+         <font>
+            <Font name="Calibri" size="42.0" />
+         </font>
+      </Label>
+      <Button layoutX="62.0" layoutY="155.0" mnemonicParsing="false" onAction="#userMangAction" prefHeight="42.0" prefWidth="127.0" text="User Management">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="249.0" layoutY="155.0" mnemonicParsing="false" onAction="#bookMangAction" prefHeight="42.0" prefWidth="127.0" text="Book Management">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="442.0" layoutY="155.0" mnemonicParsing="false" onAction="#recipeMangAction" prefHeight="42.0" prefWidth="137.0" text="Recipe Management">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="62.0" layoutY="249.0" mnemonicParsing="false" onAction="#taskMangAction" prefHeight="42.0" prefWidth="127.0" text="Task Management">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="249.0" layoutY="249.0" mnemonicParsing="false" onAction="#eventMangAction" prefHeight="42.0" prefWidth="127.0" text="Event Management">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="442.0" layoutY="249.0" mnemonicParsing="false" onAction="#sessionMangAction" prefHeight="42.0" prefWidth="137.0" text="Session Management">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="244.0" layoutY="356.0" mnemonicParsing="false" onAction="#reportMangAction" prefHeight="42.0" prefWidth="137.0" text="Report Management">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="60.0" layoutY="138.0" text="Mohamed Wajdi Brahem" textFill="#d71010" />
+      <Label layoutX="272.0" layoutY="138.0" text="Marwen Abassi" textFill="#d71010" />
+      <Label layoutX="468.0" layoutY="138.0" text="Farah Gargabou" textFill="#d71010" />
+      <Label layoutX="75.0" layoutY="232.0" text="Amani Ben Hassine" textFill="#d71010" />
+      <Label layoutX="268.0" layoutY="232.0" text="Mohamed Belaid" textFill="#d71010" />
+      <Label layoutX="463.0" layoutY="232.0" text="Haitham Othmani" textFill="#d71010" />
+      <Label layoutX="286.0" layoutY="339.0" text="Bilel Bellili" textFill="#d71010" />
+   </children>
+</AnchorPane>

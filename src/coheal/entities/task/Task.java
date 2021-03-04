@@ -15,8 +15,7 @@ import java.util.List;
  * @author Admin
  */
 public class Task {
-
-    private int taskId;
+ private int taskId;
     private List<UserTask> usersTask = new ArrayList<UserTask>();
     private TaskCategory category;
     private String imgUrl;
@@ -25,7 +24,7 @@ public class Task {
     private int numOfDays;
     private int minUsers;
     private int maxUsers;
-    private List<TaskActions> actions;
+    private TaskActions actions;
     private boolean isDeleted;
     private Timestamp deletedAt;
     private Timestamp createdAt;
@@ -33,6 +32,18 @@ public class Task {
 
     public Task() {
     }
+
+    public Task(int idT,int idCat,String title, String description, int numOfDays, int minUsers, int maxUsers) {
+        this.taskId=idT;
+        
+        this.title = title;
+        this.description = description;
+        this.numOfDays = numOfDays;
+        this.minUsers = minUsers;
+        this.maxUsers = maxUsers;
+    }
+    
+    
 
     public int getTaskId() {
         return taskId;
@@ -106,11 +117,11 @@ public class Task {
         this.maxUsers = maxUsers;
     }
 
-    public List<TaskActions> getActions() {
+    public TaskActions getActions() {
         return actions;
     }
 
-    public void setActions(List<TaskActions> actions) {
+    public void setActions(TaskActions actions) {
         this.actions = actions;
     }
 
@@ -148,6 +159,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" + "taskId=" + taskId + ", category=" + category + ", imgUrl=" + imgUrl + ", title=" + title + ", description=" + description + ", numOfDays=" + numOfDays + ", minUsers=" + minUsers + ", maxUsers=" + maxUsers + ", actions=" + actions + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
+        return  "title=" + title + ", description=" + description + ", numOfDays=" + numOfDays + ", minUsers=" + minUsers + ", maxUsers=" + maxUsers + ", actions=" + actions +"\n";
     }
 }
