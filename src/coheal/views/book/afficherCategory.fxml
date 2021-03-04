@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="644.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="book.AfficherCategoryController">
+   <children>
+      <TableView fx:id="tabviewcat" layoutX="240.0" layoutY="100.0" prefHeight="200.0" prefWidth="272.0">
+        <columns>
+          <TableColumn fx:id="colid" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="nomcol" prefWidth="106.4000244140625" text="nom" />
+            <TableColumn fx:id="imagecol" prefWidth="88.0" text="image" />
+        </columns>
+      </TableView>
+      <Label layoutX="174.0" layoutY="14.0" text="liste des catégories">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="selectednomcat" layoutX="35.0" layoutY="130.0" />
+      <TextField fx:id="selectedimagecat" layoutX="35.0" layoutY="187.0" />
+      <Button layoutX="65.0" layoutY="247.0" mnemonicParsing="false" onAction="#suppcat" prefHeight="26.0" prefWidth="79.0" text="supprimer" />
+      <Button layoutX="65.0" layoutY="325.0" mnemonicParsing="false" onAction="#retour5" prefHeight="26.0" prefWidth="79.0" text="retour" />
+      <Button layoutX="64.0" layoutY="287.0" mnemonicParsing="false" onAction="#modifiercat" prefHeight="26.0" prefWidth="79.0" text="modifier" />
+   </children>
+</AnchorPane>

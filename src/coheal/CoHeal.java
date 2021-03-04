@@ -11,15 +11,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author BilelxOS
- */
+
 public class CoHeal extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/task/TaskCategory.fxml"));
+
+
+        Parent root = FXMLLoader.load(getClass().getResource("views/user/SignIn.fxml"));
         
         Scene scene = new Scene(root);
         
