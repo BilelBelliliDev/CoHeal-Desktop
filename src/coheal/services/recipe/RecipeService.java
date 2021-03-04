@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -43,7 +45,7 @@ public class RecipeService implements IRecipeService {
 
     @Override
     public List<Recipe> Afficher_Recipe() {
-        ArrayList<Recipe> ListR = new ArrayList();
+        ObservableList<Recipe> ListR = FXCollections.observableArrayList();
         try {
             Statement st = con.createStatement();
             String res = "SELECT * FROM recipe WHERE is_deleted=0";
