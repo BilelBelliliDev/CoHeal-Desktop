@@ -14,8 +14,7 @@ import java.util.List;
  * @author Admin
  */
 public class TaskChat {
-
-    private int chatId;
+private int chatId;
     private List<UserTask> userTask = new ArrayList<UserTask>();
     private List<TaskMessage> messages = new ArrayList<>();
     private PaidTask paidTask;

@@ -15,6 +15,15 @@ public class TaskActions {
     private String title;
     private String description;
 
+    public TaskActions(int actionId, String title, String description) {
+        this.actionId = actionId;
+        this.title = title;
+        this.description = description;
+    }
+
+    public TaskActions() {
+    }
+
    
 
     public int getActionId() {
