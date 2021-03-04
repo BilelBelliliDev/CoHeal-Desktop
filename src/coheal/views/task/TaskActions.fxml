@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.task.TaskActionsController">
+   <children>
+      <TextField fx:id="txtTitre" layoutX="42.0" layoutY="68.0" promptText="titre" />
+      <TextField fx:id="txtDescrp" layoutX="42.0" layoutY="131.0" promptText="description" />
+      <Button layoutX="42.0" layoutY="231.0" mnemonicParsing="false" onAction="#addActions" text="ajouter" />
+      <Button layoutX="259.0" layoutY="360.0" mnemonicParsing="false" onAction="#getTasks" text="Gestion tasks" textFill="#121212" />
+      <TableView fx:id="data" layoutX="259.0" layoutY="68.0" prefHeight="200.0" prefWidth="418.0">
+        <columns>
+          <TableColumn fx:id="titrecol" prefWidth="110.4000244140625" text="titre" />
+            <TableColumn fx:id="desccol" prefWidth="190.39993286132812" text="description" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="comboTask" layoutX="41.0" layoutY="187.0" onAction="#taskAction" prefWidth="150.0" promptText="tache" />
+      <Label layoutX="258.0" layoutY="14.0" text="Gestion des actions">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

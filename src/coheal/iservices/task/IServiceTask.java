@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package coheal.iservices.Task;
+package coheal.iservices.task;
 
-
-import coheal.entities.Task.Task;
+import coheal.entities.task.Task;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
 public interface IServiceTask {
     public void createTask(int therapistId,String title,Task t);
     public List<Task> ListTask();
-    public void updateTask(Task t);
+    public void updateTask(Task t,int idt);
     public void deleteTask(int idt);
     public Task searchTask(int idT);
 }

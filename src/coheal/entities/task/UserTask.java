@@ -12,7 +12,7 @@ import coheal.entities.user.User;
  * @author Admin
  */
 public class UserTask {
-    private User user;
+     private User user;
     private Task task;
 
     public UserTask() {
