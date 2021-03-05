@@ -5,8 +5,6 @@
  */
 package coheal.controllers;
 
-import coheal.controllers.book.AfficherController;
-import coheal.controllers.user.SignInController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -91,7 +88,7 @@ public class MainMenuUIController implements Initializable {
 
     @FXML
     private void reportMangAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/ReportUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/RateReportUI.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
