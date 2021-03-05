@@ -5,6 +5,7 @@
  */
 package coheal.controllers.book;
 
+
 import coheal.entities.book.Book;
 import coheal.services.book.ServiceBook;
 import java.io.IOException;
@@ -54,25 +55,40 @@ public class RestrecherhceController implements Initializable {
          */
         @Override
         public void initialize(URL url, ResourceBundle rb) {
-            ServiceBook sb=new ServiceBook();
-            vrimage.setCellValueFactory(new PropertyValueFactory <Book , String>("imgUrl") );
-            vrtitre.setCellValueFactory(new PropertyValueFactory <Book , String>("title") );
-            vrauteur.setCellValueFactory(new PropertyValueFactory <Book , String>("author") );
-            vrdesc.setCellValueFactory(new PropertyValueFactory <Book , String>("description") );
-            vrid.setCellValueFactory(new PropertyValueFactory <Book , Integer>("bookId") );
-            //vrecherche.setItems(sb.Try());
+
+                   try{
+                     ServiceBook sb=new ServiceBook();
+                      vrimage.setCellValueFactory(new PropertyValueFactory <Book , String>("imgUrl") );
+                      vrtitre.setCellValueFactory(new PropertyValueFactory <Book , String>("title") );
+                       vrauteur.setCellValueFactory(new PropertyValueFactory <Book , String>("author") );
+                        vrdesc.setCellValueFactory(new PropertyValueFactory <Book , String>("description") );
+                        vrid.setCellValueFactory(new PropertyValueFactory <Book , Integer>("bookId") );
+                        
+                        vrecherche.setItems(sb.Try());}
+                catch(SQLException ex){
+                 Logger.getLogger(AfficherController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
         }        
 
         @FXML
         private void recherhcebook(ActionEvent event) {
-            ServiceBook sb=new ServiceBook();
-            vrimage.setCellValueFactory(new PropertyValueFactory <Book , String>("imgUrl") );
-            vrtitre.setCellValueFactory(new PropertyValueFactory <Book , String>("title") );
-            vrauteur.setCellValueFactory(new PropertyValueFactory <Book , String>("author") );
-            vrdesc.setCellValueFactory(new PropertyValueFactory <Book , String>("description") );
-            vrid.setCellValueFactory(new PropertyValueFactory <Book , Integer>("bookId") );
-            int t=Integer.valueOf(tfrecherchebook.getText());
-            //vrecherche.setItems(sb.Rechercher(t));
+
+                 try{
+                     ServiceBook sb=new ServiceBook();
+                      vrimage.setCellValueFactory(new PropertyValueFactory <Book , String>("imgUrl") );
+                      vrtitre.setCellValueFactory(new PropertyValueFactory <Book , String>("title") );
+                       vrauteur.setCellValueFactory(new PropertyValueFactory <Book , String>("author") );
+                        vrdesc.setCellValueFactory(new PropertyValueFactory <Book , String>("description") );
+                        vrid.setCellValueFactory(new PropertyValueFactory <Book , Integer>("bookId") );
+                       int t=Integer.valueOf(tfrecherchebook.getText());
+                      
+                        
+                        vrecherche.setItems(sb.Rechercher(t));}
+                catch(SQLException ex){
+                 Logger.getLogger(AfficherController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
         }
 
         @FXML
