@@ -7,6 +7,7 @@ package coheal.controllers.recipe;
 
 import coheal.controllers.report.RateAlertUIController;
 import coheal.controllers.report.RatePopupUIController;
+import coheal.controllers.report.ReportPopupUIController;
 import coheal.entities.recipe.Recipe;
 import coheal.services.recipe.RecipeService;
 import coheal.services.report.RateService;
@@ -184,7 +185,14 @@ public class CreateRecipeUIController implements Initializable {
     }
 
     @FXML
-    private void reportAction(ActionEvent event) {
+    private void reportAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/ReportPopupUI.fxml"));
+        Parent root = loader.load();
+        ReportPopupUIController c = loader.getController();
+        c.setData(selectedId, userIdBox.getValue(), "Recipe");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
         
     }
 }

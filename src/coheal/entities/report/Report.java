@@ -12,19 +12,20 @@ import java.sql.Timestamp;
  * @author BilelxOS
  */
 public abstract class Report {
-    protected int id;
+    protected int reportId;
     protected int reporterId;
+    protected String type;
     protected String note;
     protected boolean isClosed;
     protected Timestamp closedAt;
     protected Timestamp createdAt;
 
-    public int getId() {
-        return id;
+    public int getReportId() {
+        return reportId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setReportId(int id) {
+        this.reportId = id;
     }
 
     public int getReporterId() {
@@ -33,6 +34,14 @@ public abstract class Report {
 
     public void setReporterId(int reporterId) {
         this.reporterId = reporterId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getNote() {

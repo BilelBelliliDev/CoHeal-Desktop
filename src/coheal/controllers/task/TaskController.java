@@ -6,10 +6,15 @@
 package coheal.controllers.task;
 
 import coheal.controllers.book.FXMLDocumentController;
+import coheal.controllers.report.RateAlertUIController;
+import coheal.controllers.report.RatePopupUIController;
+import coheal.controllers.report.ReportPopupUIController;
 import coheal.entities.task.Task;
 import coheal.entities.task.TaskCategory;
+import coheal.services.report.RateService;
 import coheal.services.task.ServiceTask;
 import coheal.services.task.ServiceTaskCategory;
+import coheal.services.user.ServiceUser;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
@@ -52,6 +57,10 @@ import javafx.util.Callback;
  */
 public class TaskController implements Initializable {
 
+    //Report/Rate Module (Bilel Bellili)
+    private ServiceUser su = new ServiceUser();
+    private RateService sr = new RateService();
+    private int selectedId;
     @FXML
     private TextField Titre;
     @FXML
@@ -91,6 +100,8 @@ public class TaskController implements Initializable {
     String cat = "";
     @FXML
     private Button addButton;
+    @FXML
+    private ComboBox<Integer> userIdBox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,6 +112,12 @@ public class TaskController implements Initializable {
         }
 
         init();
+
+        //Report/Rate Module (Bilel Bellili)  
+        int num = su.AfficherPersonne().size();
+        for (int i = 0; i < num; i++) {
+            userIdBox.getItems().add(su.AfficherPersonne().get(i).getUserId());
+        }
 
     }
 
@@ -123,7 +140,7 @@ public class TaskController implements Initializable {
                     String m = "" + rowData.getNumOfDays();
                     String min = "" + rowData.getMinUsers();
                     String max = "" + rowData.getMaxUsers();
-
+                    selectedId = tableview.getSelectionModel().getSelectedItem().getTaskId();
                     numOfDays.setText(m);
                     minUsers.setText(min);
                     maxUsers.setText(max);
@@ -146,42 +163,45 @@ public class TaskController implements Initializable {
     private void addTask(ActionEvent event) {
 
         Window owner = addButton.getScene().getWindow();
-        if(Titre.getText().isEmpty() ){
+        if (Titre.getText().isEmpty()) {
             AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                "Veuillez saisir le titre");
+                    "Veuillez saisir le titre");
             return;
-        }
-        else if(Desceiption.getText().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                "Veuillez saisir le description");
-            return;}
-        else if(numOfDays.getText().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                "Veuillez remplir les champs");
-            return;}
-        else if(maxUsers.getText().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                "Veuillez remplir les champs");
-            return;}
-        else if(numOfDays.getText().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                "Veuillez remplir les champs");
-            return;}
-        else if(comboCatg.getSelectionModel().getSelectedItem().isEmpty()){AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                "Veuillez choisir un categorie");
-            return;}
-        else{
-        t.setTitle(Titre.getText());
-        t.setDescription(Desceiption.getText());
-        int n = Integer.parseInt(numOfDays.getText());
-        t.setNumOfDays(n);
-        int min = Integer.parseInt(minUsers.getText());
-        int max = Integer.parseInt(maxUsers.getText());
-        t.setMaxUsers(max);
-        t.setMinUsers(min);
-        st.createTask(1, cat, t);
-         tableview.getItems().clear();
-        init();
+        } else if (Desceiption.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez saisir le description");
+            return;
+        } else if (numOfDays.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez remplir les champs");
+            return;
+        } else if (maxUsers.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez remplir les champs");
+            return;
+        } else if (numOfDays.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez remplir les champs");
+            return;
+        } else if (comboCatg.getSelectionModel().getSelectedItem().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez choisir un categorie");
+            return;
+        } else {
+            t.setTitle(Titre.getText());
+            t.setDescription(Desceiption.getText());
+            int n = Integer.parseInt(numOfDays.getText());
+            t.setNumOfDays(n);
+            int min = Integer.parseInt(minUsers.getText());
+            int max = Integer.parseInt(maxUsers.getText());
+            t.setMaxUsers(max);
+            t.setMinUsers(min);
+            st.createTask(1, cat, t);
+            tableview.getItems().clear();
+            init();
         }
     }
 
-   
     @FXML
     private void listCategoryCombo(ActionEvent event) {
         cat = comboCatg.getValue();
@@ -191,13 +211,12 @@ public class TaskController implements Initializable {
     @FXML
     private void deleteAction(ActionEvent event) {
         task = tableview.getSelectionModel().getSelectedItem();
-      
+
         st.deleteTask(task.getTaskId());
         tableview.getItems().clear();
         init();
 
     }
-
 
     @FXML
     private void updateAction(ActionEvent event) {
@@ -211,8 +230,8 @@ public class TaskController implements Initializable {
         t.setMaxUsers(max);
         t.setMinUsers(min);
         System.out.println(task);
-        st.updateTask(t,task.getTaskId());
-         tableview.getItems().clear();
+        st.updateTask(t, task.getTaskId());
+        tableview.getItems().clear();
         init();
         //tableview.setItems((ObservableList<Task>) st.ListTask());
     }
@@ -233,7 +252,7 @@ public class TaskController implements Initializable {
             ex.printStackTrace();
         }
     }
-    
+
     private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -241,6 +260,38 @@ public class TaskController implements Initializable {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    @FXML
+    private void ratePopupAction(ActionEvent event) throws IOException {
+        if (sr.isRated(selectedId, userIdBox.getValue(), "Task")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateAlertUI.fxml"));
+            Parent root = loader.load();
+            RateAlertUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Task");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RatePopupUI.fxml"));
+            Parent root = loader.load();
+            RatePopupUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Task");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+    }
+
+    @FXML
+    private void reportPopupAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/ReportPopupUI.fxml"));
+        Parent root = loader.load();
+        ReportPopupUIController c = loader.getController();
+        c.setData(selectedId, userIdBox.getValue(), "Task");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }
