@@ -10,14 +10,14 @@ package coheal.entities.rate;
  * @author BilelxOS
  */
 public class SessionRate extends Rate{
-    private int sesssionId;
+    private int sessionId;
 
-    public int getSesssionId() {
-        return sesssionId;
+    public int getSessionId() {
+        return sessionId;
     }
 
-    public void setSesssionId(int sesssionId) {
-        this.sesssionId = sesssionId;
+    public void setSessionId(int sessionId) {
+        this.sessionId = sessionId;
     }
     
 }

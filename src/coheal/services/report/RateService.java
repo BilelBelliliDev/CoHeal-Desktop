@@ -91,7 +91,6 @@ public class RateService implements IRateService {
         }
     }
 
-
     @Override
     public boolean isRated(int id, int userId, String type) {
         switch (type) {
@@ -189,15 +188,42 @@ public class RateService implements IRateService {
         ObservableList<Rate> rates = FXCollections.observableArrayList();
         try {
             Statement stm = cnx.createStatement();
-            String query = "select x.rate_id, y.user_id, round(avg(y.score),2) as score, y.created_at from rate y, "+type+"_rate x where x.rate_id=y.rate_id group by "+type+"_id";
+            String query = "select x." + type + "_id, round(avg(y.score),2) as score from rate y, " + type + "_rate x where x.rate_id=y.rate_id group by x." + type + "_id";
             ResultSet rst = stm.executeQuery(query);
             while (rst.next()) {
-                Rate r = new BookRate();
-                r.setRateId(rst.getInt("rate_id"));
-                r.setUserId(rst.getInt("user_id"));
-                r.setScore(rst.getDouble("score"));
-                r.setCreatedAt(rst.getTimestamp("created_at"));
-                rates.add(r);
+                switch (type) {
+                    case "book":
+                        BookRate br = new BookRate();
+                        br.setBookId(rst.getInt("" + type + "_id"));
+                        br.setScore(rst.getDouble("score"));
+                        rates.add(br);
+                        break;
+                    case "recipe":
+                        RecipeRate rr = new RecipeRate();
+                        rr.setRecipeId(rst.getInt("" + type + "_id"));
+                        rr.setScore(rst.getDouble("score"));
+                        rates.add(rr);
+                        break;
+                    case "task":
+                        TaskRate tr = new TaskRate();
+                        tr.setTaskId(rst.getInt("" + type + "_id"));
+                        tr.setScore(rst.getDouble("score"));
+                        rates.add(tr);
+                        break;
+                    case "event":
+                        EventRate er = new EventRate();
+                        er.setEventId(rst.getInt("" + type + "_id"));
+                        er.setScore(rst.getDouble("score"));
+                        rates.add(er);
+                        break;
+                    case "session":
+                        SessionRate sr = new SessionRate();
+                        sr.setSessionId(rst.getInt("" + type + "_id"));
+                        sr.setScore(rst.getDouble("score"));
+                        rates.add(sr);
+                        break;
+                }
+
             }
 
         } catch (SQLException ex) {
