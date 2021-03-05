@@ -5,9 +5,9 @@
  */
 package coheal.controllers.book;
 
-import coheal.controllers.reportcontroller.RateAlertUIController;
-import coheal.controllers.reportcontroller.RatePopupUIController;
-import coheal.controllers.reportcontroller.ReportPopupUIController;
+import coheal.controllers.report.RateAlertUIController;
+import coheal.controllers.report.RatePopupUIController;
+import coheal.controllers.report.ReportPopupUIController;
 import coheal.entities.book.Book;
 import coheal.services.book.ServiceBook;
 import coheal.services.report.RateService;

@@ -5,8 +5,8 @@
  */
 package coheal.controllers.recipe;
 
-import coheal.controllers.reportcontroller.RateAlertUIController;
-import coheal.controllers.reportcontroller.RatePopupUIController;
+import coheal.controllers.report.RateAlertUIController;
+import coheal.controllers.report.RatePopupUIController;
 import coheal.entities.recipe.Recipe;
 import coheal.services.recipe.RecipeService;
 import coheal.services.report.RateService;
