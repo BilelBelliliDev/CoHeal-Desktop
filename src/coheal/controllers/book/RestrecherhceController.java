@@ -6,6 +6,8 @@
 package coheal.controllers.book;
 
 
+import coheal.entities.book.Book;
+import coheal.services.book.ServiceBook;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
