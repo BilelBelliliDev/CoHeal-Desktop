@@ -24,7 +24,7 @@ public class Task {
     private int numOfDays;
     private int minUsers;
     private int maxUsers;
-    private TaskActions actions;
+    private List<TaskActions> actions;
     private boolean isDeleted;
     private Timestamp deletedAt;
     private Timestamp createdAt;
@@ -117,11 +117,11 @@ public class Task {
         this.maxUsers = maxUsers;
     }
 
-    public TaskActions getActions() {
+    public List<TaskActions> getActions() {
         return actions;
     }
 
-    public void setActions(TaskActions actions) {
+    public void setActions(List<TaskActions> actions) {
         this.actions = actions;
     }
 
