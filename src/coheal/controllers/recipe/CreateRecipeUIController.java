@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -64,6 +65,8 @@ public class CreateRecipeUIController implements Initializable {
     private Button BoutonModifier;
     @FXML
     private Button BoutonSupprimer;
+    @FXML
+    private ComboBox ComboBox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -89,6 +92,12 @@ public class CreateRecipeUIController implements Initializable {
             });
             return row;
         });
+        
+        //ComboBox
+        //RecipeCategory rc = new RecipeCategory();
+        //ObservableList<String> list = FXCollections.observableArrayList(rc.getName());
+        ObservableList<String> list = FXCollections.observableArrayList("Soupes","Thé","Boissons","Salades","Plats poulets");
+        ComboBox.setItems(list);
     }
 
     private void handleButtonAction(ActionEvent event) {
@@ -177,5 +186,11 @@ public class CreateRecipeUIController implements Initializable {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    @FXML
+    private void SelectChoix(ActionEvent event) {
+        String s = ComboBox.getSelectionModel().getSelectedItem().toString();
+
     }
 }
