@@ -63,6 +63,32 @@ public class ServiceAdmin implements IServiceAdmin{
         return Roles;  
     }
 //------------------------------------------------------------------
+
+    public void AddRole(User u,Role r){           
+        try {            
+            Statement stm=cnx.createStatement();
+            String query = "INSERT INTO user_role (user_id,role_id) VALUES('"+u.getUserId()+"','"+r.getRoleId()+"')";
+            stm.executeUpdate(query);   
+            System.out.println("Role added to user");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+  //------------------------------------------------------------------
+
+    public void DeleteRole(User u,Role r){           
+        try {            
+            Statement stm=cnx.createStatement();
+            String query = "DELETE FROM `user_role` WHERE `user_id`= '"+u.getUserId()+ "' and `role_id`='"+r.getRoleId()+"' " ;
+            System.out.println(query);
+            stm.executeUpdate(query);   
+            System.out.println("Role Deleted to user");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }  
     
     
 }

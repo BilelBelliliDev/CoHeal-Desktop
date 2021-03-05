@@ -2,6 +2,7 @@ package coheal.controllers.user;
 
 import coheal.entities.user.Role;
 import coheal.entities.user.User;
+import coheal.entities.user.UserRole;
 import coheal.services.user.ServiceAdmin;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -74,7 +75,13 @@ public class AdminRoleBadgeController implements Initializable {
 
     @FXML
     private void AddRoleBadge(ActionEvent event) {
+        ServiceAdmin sa= new ServiceAdmin();
+        User u =new User();  
+        Role r = new Role();
         
+        u.setUserId(Integer.valueOf(TFUserId.getText()));        
+        r.setRoleId(Integer.valueOf(TFRoleId.getText()));  
+        sa.AddRole(u, r);
     }
     
      //------------------------------------------------------------------ 
@@ -98,6 +105,17 @@ public class AdminRoleBadgeController implements Initializable {
          
          TVListRole.setItems(list);
      }
+
+    @FXML
+    private void DeleteRoleBadge(ActionEvent event) {
+        ServiceAdmin sa= new ServiceAdmin();
+        User u =new User();  
+        Role r = new Role();
+        
+        u.setUserId(Integer.valueOf(TFUserId.getText()));        
+        r.setRoleId(Integer.valueOf(TFRoleId.getText()));  
+        sa.AddRole(u, r);        
+    }
 
     
      
