@@ -11,7 +11,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< Updated upstream:src/coheal/views/recipeui/CreateRecipeUI.fxml
 <AnchorPane id="AnchorPane" prefHeight="389.0" prefWidth="650.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.recipe.CreateRecipeUIController">
+=======
+<AnchorPane id="AnchorPane" prefHeight="407.0" prefWidth="657.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.recipe.CreateRecipeUIController">
+>>>>>>> Stashed changes:src/coheal/views/recipe/CreateRecipeUI.fxml
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Label layoutX="49.0" layoutY="106.0" text="Titre">
@@ -64,5 +68,20 @@
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font>
       </Label>
+<<<<<<< Updated upstream:src/coheal/views/recipeui/CreateRecipeUI.fxml
+=======
+      <Button layoutX="309.0" layoutY="362.0" mnemonicParsing="false" onAction="#rateAction" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Rate">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="398.0" layoutY="362.0" mnemonicParsing="false" onAction="#reportAction" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Report">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="userIdBox" layoutX="487.0" layoutY="365.0" prefWidth="150.0" promptText="User ID" />
+      <Button fx:id="RetourBT" layoutX="539.0" layoutY="20.0" mnemonicParsing="false" onAction="#Bouton_RetourCat" text="Retour" />
+>>>>>>> Stashed changes:src/coheal/views/recipe/CreateRecipeUI.fxml
     </children>
 </AnchorPane>

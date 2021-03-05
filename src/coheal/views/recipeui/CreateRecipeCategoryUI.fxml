@@ -63,5 +63,6 @@
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font>
       </Button>
+      <Button fx:id="Retour2BT" layoutX="496.0" layoutY="18.0" mnemonicParsing="false" onAction="#Bouton_RetourMenu" text="Retour" />
    </children>
 </AnchorPane>

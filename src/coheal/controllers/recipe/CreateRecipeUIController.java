@@ -15,6 +15,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+<<<<<<< Updated upstream
+=======
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+>>>>>>> Stashed changes
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -67,6 +73,13 @@ public class CreateRecipeUIController implements Initializable {
     private Button BoutonSupprimer;
     @FXML
     private ComboBox ComboBox;
+<<<<<<< Updated upstream
+=======
+    @FXML
+    private ComboBox<Integer> userIdBox;
+    @FXML
+    private Button RetourBT;
+>>>>>>> Stashed changes
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -193,4 +206,52 @@ public class CreateRecipeUIController implements Initializable {
         String s = ComboBox.getSelectionModel().getSelectedItem().toString();
 
     }
+<<<<<<< Updated upstream
+=======
+
+    @FXML
+    private void rateAction(ActionEvent event) throws IOException {
+        if (sr.isRated(selectedId, userIdBox.getValue(), "Recipe")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateAlertUI.fxml"));
+            Parent root = loader.load();
+            RateAlertUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Recipe");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RatePopupUI.fxml"));
+            Parent root = loader.load();
+            RatePopupUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Recipe");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+    }
+
+    @FXML
+    private void reportAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/ReportPopupUI.fxml"));
+        Parent root = loader.load();
+        ReportPopupUIController c = loader.getController();
+        c.setData(selectedId, userIdBox.getValue(), "Recipe");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void Bouton_RetourCat(ActionEvent event) throws IOException {
+        Parent root = null;
+        root = FXMLLoader.load(getClass().getResource("/coheal/views/recipe/CreateRecipeCategoryUI.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+>>>>>>> Stashed changes
 }
+    
+
