@@ -5,10 +5,15 @@
  */
 package coheal.iservices.task;
 
+import coheal.entities.task.Task;
+import java.util.List;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Admin
  */
 public interface IServiceUserTask {
     public void participer(int idUser,int idTask);
+    public ObservableList<Task> ListerTasksByIdUser(int id);
 }

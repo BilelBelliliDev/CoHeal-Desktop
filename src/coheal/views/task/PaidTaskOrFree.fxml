@@ -5,8 +5,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.task.PaidTaskOrFreeController">
    <children>
-      <Button layoutX="209.0" layoutY="99.0" mnemonicParsing="false" onAction="#FreeButton" prefHeight="31.0" prefWidth="181.0" text="Liste des taches gratuites" />
-      <Button layoutX="209.0" layoutY="184.0" mnemonicParsing="false" onAction="#PaidButton" prefHeight="31.0" prefWidth="181.0" text="Liste des taches payantes" />
-      <Button layoutX="208.0" layoutY="275.0" mnemonicParsing="false" onAction="#listeTaskButton" prefHeight="26.0" prefWidth="182.0" text="Liste des Taches" />
+      <Button layoutX="208.0" layoutY="51.0" mnemonicParsing="false" onAction="#FreeButton" prefHeight="31.0" prefWidth="181.0" text="Liste des taches gratuites" />
+      <Button layoutX="208.0" layoutY="118.0" mnemonicParsing="false" onAction="#PaidButton" prefHeight="31.0" prefWidth="181.0" text="Liste des taches payantes" />
+      <Button layoutX="208.0" layoutY="187.0" mnemonicParsing="false" onAction="#listeTaskButton" prefHeight="26.0" prefWidth="182.0" text="Liste des Taches" />
+      <Button layoutX="208.0" layoutY="264.0" mnemonicParsing="false" onAction="#chercherButtonAction" prefHeight="26.0" prefWidth="182.0" text="chercher des taches" />
    </children>
 </AnchorPane>
