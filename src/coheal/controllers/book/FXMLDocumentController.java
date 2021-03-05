@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -64,7 +65,29 @@ public class FXMLDocumentController implements Initializable {
                 b.setAuthor(tfauthor.getText());
                 b.setTitle(tftiltle.getText());
                 b.setDescription(tfdescription.getText());
-                sb.AjouterBook(b);
+                String n1=tfauthor.getText();
+                String n2=tftiltle.getText();
+                //System.out.println(n2 instanceof String);
+                if((n1.length()==0)||(n1.length()>10)){    
+                 Alert a1= new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Alert");
+                a1.setHeaderText("Alert (saisie) ");
+                a1.setContentText("le nom de l'auteur doit etre compris entre 0 et 10 lettres");
+                a1.showAndWait();}
+                if((n2.length()==0)||(n2.length()>10)){    
+                  Alert a1= new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Alert");
+                a1.setHeaderText("Alert (saisie) ");
+                a1.setContentText("le titre doit etre compris entre 0 et 10 lettres");
+                a1.showAndWait();}
+                else{
+                          Alert a1= new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("info");
+                a1.setHeaderText("livre ajouter avec succès");
+                
+                a1.showAndWait();
+                sb.AjouterBook(b);}
+                //sb.AjouterBook(b);
                 
         }
     FileChooser fileChooser = new FileChooser();

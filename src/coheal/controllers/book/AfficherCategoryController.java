@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -95,6 +96,11 @@ public class AfficherCategoryController implements Initializable {
                 System.out.println(selectedId);
                  if (canModify) {
         sbc.supprimerBookCat(selectedId);
+         Alert a1= new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("info");
+                a1.setHeaderText("catégorie supprimer avec succès");
+                
+                a1.showAndWait();
         try {
               tabviewcat.setItems(sbc.AfficherBookCat());
             } catch (SQLException ex) {
@@ -125,6 +131,11 @@ public class AfficherCategoryController implements Initializable {
             bc.setImgUrl(selectedimagecat.getText());
            
             sbc.modifierBookCat(selectedId, bc);
+             Alert a1= new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("info");
+                a1.setHeaderText("catégorie modifier avec succès");
+                
+                a1.showAndWait();
             try {
                 tabviewcat.setItems(sbc.AfficherBookCat());
             } catch (SQLException ex) {
