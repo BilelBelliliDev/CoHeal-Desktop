@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 public abstract class Rate {
     protected int rateId;
     protected int userId;
+    protected String type;
     protected double score;
     protected Timestamp createdAt;
 
@@ -31,6 +32,14 @@ public abstract class Rate {
 
     public void setUserId(int userID) {
         this.userId = userID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public double getScore() {

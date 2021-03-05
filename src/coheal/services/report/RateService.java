@@ -35,10 +35,11 @@ public class RateService implements IRateService {
 
     @Override
     public void addRate(Rate r, int id) {
-        String query = "INSERT INTO rate(user_id,score) VALUES (" + r.getUserId() + ", " + r.getScore() + ")";
+        String query;
         if (r instanceof BookRate) {
             try {
                 Statement stm = cnx.createStatement();
+                query = "INSERT INTO rate(user_id,type,score) VALUES (" + r.getUserId() + ",'book', " + r.getScore() + ")";
                 stm.executeUpdate(query);
                 query = "INSERT INTO book_rate(rate_id,book_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -48,6 +49,7 @@ public class RateService implements IRateService {
         } else if (r instanceof EventRate) {
             try {
                 Statement stm = cnx.createStatement();
+                query = "INSERT INTO rate(user_id,type,score) VALUES (" + r.getUserId() + ",'event', " + r.getScore() + ")";
                 stm.executeUpdate(query);
                 query = "INSERT INTO event_rate(rate_id,event_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -57,6 +59,7 @@ public class RateService implements IRateService {
         } else if (r instanceof TaskRate) {
             try {
                 Statement stm = cnx.createStatement();
+                query = "INSERT INTO rate(user_id,type,score) VALUES (" + r.getUserId() + ",'task', " + r.getScore() + ")";
                 stm.executeUpdate(query);
                 query = "INSERT INTO task_rate(rate_id,task_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -66,6 +69,7 @@ public class RateService implements IRateService {
         } else if (r instanceof SessionRate) {
             try {
                 Statement stm = cnx.createStatement();
+                query = "INSERT INTO rate(user_id,type,score) VALUES (" + r.getUserId() + ",'session', " + r.getScore() + ")";
                 stm.executeUpdate(query);
                 query = "INSERT INTO session_rate(rate_id,session_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -75,6 +79,7 @@ public class RateService implements IRateService {
         } else if (r instanceof RecipeRate) {
             try {
                 Statement stm = cnx.createStatement();
+                query = "INSERT INTO rate(user_id,type,score) VALUES (" + r.getUserId() + ",'recipe', " + r.getScore() + ")";
                 stm.executeUpdate(query);
                 query = "INSERT INTO recipe_rate(rate_id,recipe_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
