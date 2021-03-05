@@ -213,7 +213,7 @@ public class AjoutEventFXMLController implements Initializable {
 
     @FXML
     private void moveToCategory(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/eventui/AjoutEventCatFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/event/AjoutEventCatFXML.fxml"));
                 Parent root=loader.load();
                 AjoutEventCatFXMLController s2 = loader.getController();
                 Stage stage =new Stage();

@@ -185,5 +185,6 @@ public class CreateRecipeUIController implements Initializable {
 
     @FXML
     private void reportAction(ActionEvent event) {
+        
     }
 }
