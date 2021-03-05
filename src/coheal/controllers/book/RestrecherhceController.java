@@ -5,7 +5,8 @@
  */
 package book;
 
-import entites.book;
+import coheal.controllers.book.AfficherController;
+import entites.Book;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import service.Servicebook;
+import service.ServiceBook;
 
 /**
  * FXML Controller class
@@ -34,19 +35,19 @@ import service.Servicebook;
 public class RestrecherhceController implements Initializable {
 
         @FXML
-        private TableView<book> vrecherche;
+        private TableView<Book> vrecherche;
         @FXML
-        private TableColumn<book, Integer> vrid;
+        private TableColumn<Book, Integer> vrid;
         @FXML
-        private TableColumn<book, String> vrtitre;
+        private TableColumn<Book, String> vrtitre;
         @FXML
         private TextField tfrecherchebook;
         @FXML
-        private TableColumn<book, String> vrimage;
+        private TableColumn<Book, String> vrimage;
         @FXML
-        private TableColumn<book, String> vrauteur;
+        private TableColumn<Book, String> vrauteur;
         @FXML
-        private TableColumn<book, String> vrdesc;
+        private TableColumn<Book, String> vrdesc;
 
         /**
          * Initializes the controller class.
@@ -54,12 +55,12 @@ public class RestrecherhceController implements Initializable {
         @Override
         public void initialize(URL url, ResourceBundle rb) {
                    try{
-                     Servicebook sb=new Servicebook();
-                      vrimage.setCellValueFactory(new PropertyValueFactory <book , String>("imgUrl") );
-                      vrtitre.setCellValueFactory(new PropertyValueFactory <book , String>("title") );
-                       vrauteur.setCellValueFactory(new PropertyValueFactory <book , String>("author") );
-                        vrdesc.setCellValueFactory(new PropertyValueFactory <book , String>("description") );
-                        vrid.setCellValueFactory(new PropertyValueFactory <book , Integer>("bookId") );
+                     ServiceBook sb=new ServiceBook();
+                      vrimage.setCellValueFactory(new PropertyValueFactory <Book , String>("imgUrl") );
+                      vrtitre.setCellValueFactory(new PropertyValueFactory <Book , String>("title") );
+                       vrauteur.setCellValueFactory(new PropertyValueFactory <Book , String>("author") );
+                        vrdesc.setCellValueFactory(new PropertyValueFactory <Book , String>("description") );
+                        vrid.setCellValueFactory(new PropertyValueFactory <Book , Integer>("bookId") );
                         
                         vrecherche.setItems(sb.Try());}
                 catch(SQLException ex){
@@ -70,12 +71,12 @@ public class RestrecherhceController implements Initializable {
         @FXML
         private void recherhcebook(ActionEvent event) {
                  try{
-                     Servicebook sb=new Servicebook();
-                      vrimage.setCellValueFactory(new PropertyValueFactory <book , String>("imgUrl") );
-                      vrtitre.setCellValueFactory(new PropertyValueFactory <book , String>("title") );
-                       vrauteur.setCellValueFactory(new PropertyValueFactory <book , String>("author") );
-                        vrdesc.setCellValueFactory(new PropertyValueFactory <book , String>("description") );
-                        vrid.setCellValueFactory(new PropertyValueFactory <book , Integer>("bookId") );
+                     ServiceBook sb=new ServiceBook();
+                      vrimage.setCellValueFactory(new PropertyValueFactory <Book , String>("imgUrl") );
+                      vrtitre.setCellValueFactory(new PropertyValueFactory <Book , String>("title") );
+                       vrauteur.setCellValueFactory(new PropertyValueFactory <Book , String>("author") );
+                        vrdesc.setCellValueFactory(new PropertyValueFactory <Book , String>("description") );
+                        vrid.setCellValueFactory(new PropertyValueFactory <Book , Integer>("bookId") );
                        int t=Integer.valueOf(tfrecherchebook.getText());
                       
                         

@@ -97,4 +97,42 @@ public class ServiceBook  {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-}}
+          
+
+}
+          public ObservableList<Book>Rechercher(int t)throws SQLException{
+                Statement stm=cnx.createStatement();
+                        String query="SELECT * FROM book WHERE is_deleted = 0 AND book_id = "+t+"";
+                        ResultSet rst=stm.executeQuery(query);
+                         ObservableList<Book> data = FXCollections.observableArrayList();
+                          while(rst.next()){
+                                Book b= new Book();
+                                b.setImgUrl(rst.getString("img_url"));
+                                b.setTitle(rst.getString("title"));
+                                b.setAuthor(rst.getString("author"));
+                                b.setDescription(rst.getString("description"));
+                                b.setBookId(rst.getInt("book_id"));
+                                data.add(b);
+                               
+                                
+                        }
+                          return data;
+        }
+        public ObservableList<Book>Try()throws SQLException{
+                Statement stm=cnx.createStatement();
+                        String query="SELECT * FROM book WHERE is_deleted = 0 ORDER BY views DESC  ";
+                        ResultSet rst=stm.executeQuery(query);
+                         ObservableList<Book> data = FXCollections.observableArrayList();
+                          while(rst.next()){
+                                Book b= new Book();
+                                b.setImgUrl(rst.getString("img_url"));
+                                b.setTitle(rst.getString("title"));
+                                b.setAuthor(rst.getString("author"));
+                                b.setDescription(rst.getString("description"));
+                                b.setBookId(rst.getInt("book_id"));
+                                data.add(b);
+                               
+                                
+                        }
+                          return data;
+        }}

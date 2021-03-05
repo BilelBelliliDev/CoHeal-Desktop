@@ -8,6 +8,7 @@ package coheal.iservices.book;
 import coheal.entities.Book.Book;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -16,5 +17,8 @@ import java.util.List;
 public interface IServiceBook {
         public void AjouterBook(Book b);
      public List<Book>AfficherBook()throws SQLException ;
+     public ObservableList<Book>Rechercher(int t)throws SQLException;
+      public ObservableList<Book>Try()throws SQLException;
+     
      
 }
