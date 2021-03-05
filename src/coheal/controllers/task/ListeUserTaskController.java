@@ -6,6 +6,7 @@
 package coheal.controllers.task;
 
 import coheal.entities.task.Task;
+import coheal.services.task.ServiceUserTask;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -33,6 +34,7 @@ public class ListeUserTaskController implements Initializable {
     private TableColumn<Task, String> minUsersCol;
     @FXML
     private TableColumn<Task, String> maxUsersCol;
+    ServiceUserTask su=new ServiceUserTask();
 
     /**
      * Initializes the controller class.
@@ -44,6 +46,7 @@ public class ListeUserTaskController implements Initializable {
 
     @FXML
     private void retourButton(ActionEvent event) {
+        System.out.println(su.ListerTasksByIdUser(1));
     }
     
 }

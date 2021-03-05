@@ -83,4 +83,20 @@ public class PaidTaskOrFreeController implements Initializable {
         }
     }
 
+    @FXML
+    private void chercherButtonAction(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/coheal/views/task/ListTaskByCategory.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.show(); 
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }
