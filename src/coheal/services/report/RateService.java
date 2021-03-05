@@ -20,6 +20,8 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -89,10 +91,6 @@ public class RateService implements IRateService {
         }
     }
 
-    @Override
-    public List<Rate> ratesList() {
-        return null;
-    }
 
     @Override
     public boolean isRated(int id, int userId, String type) {
@@ -161,6 +159,51 @@ public class RateService implements IRateService {
                 return false;
         }
 
+    }
+
+    @Override
+    public List<Rate> allRatesList() {
+        ObservableList<Rate> rates = FXCollections.observableArrayList();
+        try {
+            Statement stm = cnx.createStatement();
+            String query = "select * from rate ";
+            ResultSet rst = stm.executeQuery(query);
+            while (rst.next()) {
+                Rate r = new BookRate();
+                r.setRateId(rst.getInt("rate_id"));
+                r.setUserId(rst.getInt("user_id"));
+                r.setType(rst.getString("type"));
+                r.setScore(rst.getDouble("score"));
+                r.setCreatedAt(rst.getTimestamp("created_at"));
+                rates.add(r);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rates;
+    }
+
+    @Override
+    public List<Rate> ratesList(String type) {
+        ObservableList<Rate> rates = FXCollections.observableArrayList();
+        try {
+            Statement stm = cnx.createStatement();
+            String query = "select x.rate_id, y.user_id, y.score, y.created_at from rate y, "+type+" x where x.rate_id=y.rate_id";
+            ResultSet rst = stm.executeQuery(query);
+            while (rst.next()) {
+                Rate r = new BookRate();
+                r.setRateId(rst.getInt("rate_id"));
+                r.setUserId(rst.getInt("user_id"));
+                r.setScore(rst.getDouble("score"));
+                r.setCreatedAt(rst.getTimestamp("created_at"));
+                rates.add(r);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rates;
     }
 
 }

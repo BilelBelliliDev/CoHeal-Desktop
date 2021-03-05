@@ -33,7 +33,7 @@ public class RateReportUIController implements Initializable {
 
     @FXML
     private void rateDashAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateDashboardUI.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

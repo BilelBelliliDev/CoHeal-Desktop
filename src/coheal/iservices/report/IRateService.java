@@ -15,6 +15,7 @@ import java.util.List;
  */
 public interface IRateService {
     public void addRate(Rate r, int id);
-    public List<Rate> ratesList();
+    public List<Rate> allRatesList();
+    public List<Rate> ratesList(String type);
     public boolean isRated(int id, int userId, String type);
 }
