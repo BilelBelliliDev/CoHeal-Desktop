@@ -121,7 +121,7 @@ public class CreateRecipeCategoryUIController implements Initializable {
     @FXML
     private void GotoRecettes_Button(ActionEvent event) throws IOException {
         Parent root = null;
-        root = FXMLLoader.load(getClass().getResource("/coheal/views/recipeui/CreateRecipeUI.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/coheal/views/recipe/CreateRecipeUI.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);

@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="224.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.reportcontroller.RatePopupUIController">
+<AnchorPane id="AnchorPane" prefHeight="224.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.report.RatePopupUIController">
    <children>
       <Rating fx:id="ratingId" layoutX="98.0" layoutY="80.0" />
       <Button fx:id="rateBtn" layoutX="98.0" layoutY="155.0" mnemonicParsing="false" onAction="#rateAction" prefHeight="25.0" prefWidth="79.0" text="Rate" />

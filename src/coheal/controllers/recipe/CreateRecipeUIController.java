@@ -165,7 +165,7 @@ public class CreateRecipeUIController implements Initializable {
     @FXML
     private void rateAction(ActionEvent event) throws IOException {
         if (sr.isRated(selectedId, userIdBox.getValue(), "Recipe")) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/RateAlertUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateAlertUI.fxml"));
             Parent root = loader.load();
             RateAlertUIController c = loader.getController();
             c.setData(selectedId, userIdBox.getValue(), "Recipe");
@@ -173,7 +173,7 @@ public class CreateRecipeUIController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/RatePopupUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RatePopupUI.fxml"));
             Parent root = loader.load();
             RatePopupUIController c = loader.getController();
             c.setData(selectedId, userIdBox.getValue(), "Recipe");

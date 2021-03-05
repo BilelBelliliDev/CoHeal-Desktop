@@ -161,7 +161,7 @@ public class AfficherController implements Initializable {
     @FXML
     private void ratePopupAction(ActionEvent event) throws IOException {
         if (sr.isRated(selectedId, userIdBox.getValue(), "Book")) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/RateAlertUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateAlertUI.fxml"));
             Parent root = loader.load();
             RateAlertUIController c = loader.getController();
             c.setData(selectedId, userIdBox.getValue(), "Book");
@@ -169,7 +169,7 @@ public class AfficherController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/RatePopupUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RatePopupUI.fxml"));
             Parent root = loader.load();
             RatePopupUIController c = loader.getController();
             c.setData(selectedId, userIdBox.getValue(), "Book");

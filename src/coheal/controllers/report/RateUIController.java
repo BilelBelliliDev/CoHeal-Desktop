@@ -103,7 +103,7 @@ public class RateUIController implements Initializable {
 //        Stage stage = new Stage();
 //        stage.show();
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/RatePopupUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RatePopupUI.fxml"));
         Parent root = loader.load();
         RatePopupUIController c = loader.getController();
         //c.setData(selectedId, 1, "Book");
