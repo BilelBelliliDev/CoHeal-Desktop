@@ -91,6 +91,7 @@ public class ServiceUser implements IServiceUser{
              
              while (rst.next()){
                  User p=new User();
+                 p.setUserId(rst.getInt("user_id"));
                  p.setEmail(rst.getString("email"));
                  p.setPassword(rst.getString("password"));
                  

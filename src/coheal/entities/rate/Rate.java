@@ -12,32 +12,32 @@ import java.sql.Timestamp;
  * @author BilelxOS
  */
 public abstract class Rate {
-    protected int rateID;
-    protected int userID;
-    protected int score;
+    protected int rateId;
+    protected int userId;
+    protected double score;
     protected Timestamp createdAt;
 
-    public int getRateID() {
-        return rateID;
+    public int getRateId() {
+        return rateId;
     }
 
-    public void setRateID(int rateID) {
-        this.rateID = rateID;
+    public void setRateId(int rateID) {
+        this.rateId = rateID;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userID) {
+        this.userId = userID;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
