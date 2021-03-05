@@ -143,7 +143,7 @@ public class TaskCategoryController implements Initializable {
 
             stage.setScene(scene);
             stage.show();
-            // Hide this current window (if this is what you want)
+            // Hide this current window
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -169,7 +169,7 @@ public class TaskCategoryController implements Initializable {
 
             stage.setScene(scene);
             stage.show();
-            // Hide this current window (if this is what you want)
+            // Hide this current window
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -185,5 +185,22 @@ public class TaskCategoryController implements Initializable {
         st.updateTaskCategory(tc);
         table.getItems().clear();
         init();
+    }
+
+    @FXML
+    private void goToInterfacePaidOrFree(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/coheal/views/task/PaidTaskOrFree.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.show();
+            // Hide this current window 
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
