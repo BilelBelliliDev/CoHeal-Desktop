@@ -12,7 +12,7 @@
    <children>
       <Pane layoutX="208.0" layoutY="89.0" prefHeight="386.0" prefWidth="584.0">
          <children>
-            <TableView fx:id="allRatesTable" layoutX="-1.0" layoutY="1.0" prefHeight="386.0" prefWidth="584.0">
+            <TableView fx:id="allRatesTable" layoutX="-1.0" layoutY="1.0" prefHeight="386.0" prefWidth="584.0" visible="false">
               <columns>
                 <TableColumn fx:id="col1Id" prefWidth="75.0" text="Rate Id" />
                 <TableColumn fx:id="col2Id" prefWidth="75.0" text="User Id" />
@@ -21,12 +21,10 @@
                   <TableColumn fx:id="col5Id" prefWidth="159.0" text="Time" />
               </columns>
             </TableView>
-            <TableView fx:id="ratesTable" prefHeight="386.0" prefWidth="584.0" visible="false">
+            <TableView fx:id="ratesTable" prefHeight="386.0" prefWidth="584.0">
                <columns>
-                  <TableColumn fx:id="col1Id1" prefWidth="107.0" text="Rate Id" />
-                  <TableColumn fx:id="col2Id1" prefWidth="87.0" text="User Id" />
-                  <TableColumn fx:id="col3Id1" prefWidth="207.0" text="Score" />
-                  <TableColumn fx:id="col4Id1" prefWidth="182.0" text="Time" />
+                  <TableColumn fx:id="col1Id1" prefWidth="107.0" text="Book Id" />
+                  <TableColumn fx:id="col2Id1" prefWidth="132.0" text="Score" />
                </columns>
             </TableView>
          </children>
