@@ -52,7 +52,7 @@ public class MainMenuUIController implements Initializable {
     @FXML
     private void recipeMangAction(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/recipeui/CreateRecipeCategoryUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/recipe/CreateRecipeCategoryUI.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -70,7 +70,7 @@ public class MainMenuUIController implements Initializable {
 
     @FXML
     private void eventMangAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/eventui/AjoutEventFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/event/AjoutEventFXML.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -88,7 +88,7 @@ public class MainMenuUIController implements Initializable {
 
     @FXML
     private void reportMangAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/RateReportUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateReportUI.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

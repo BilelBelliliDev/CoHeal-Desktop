@@ -182,7 +182,7 @@ public class AfficherController implements Initializable {
     //Report/Rate Module (Bilel Bellili)
     @FXML
     private void reportPopupAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/ReportPopupUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/ReportPopupUI.fxml"));
         Parent root = loader.load();
         ReportPopupUIController c = loader.getController();
         c.setData(selectedId, userIdBox.getValue(), "Book");
