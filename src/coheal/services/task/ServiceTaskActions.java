@@ -17,34 +17,35 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 /**
  *
  * @author Admin
  */
-public class ServiceTaskActions implements IServiceTaskActions{
-    
-     Connection con;
+public class ServiceTaskActions implements IServiceTaskActions {
+
+    Connection con;
 
     public ServiceTaskActions() {
         con = MyConnection.getInstance().getConnection();
     }
 
     @Override
-    public void createTaskActions(String titre,TaskActions t) {
+    public void createTaskActions(String titre, TaskActions t) {
         try {
-           Statement st = con.createStatement();
+            Statement st = con.createStatement();
             Calendar calendar = Calendar.getInstance();
             Timestamp d = new Timestamp(calendar.getTime().getTime());
-            
-           Task task=new Task();
-            String selecttaskId="select * from task where title='"+titre+"';" ;
-              ResultSet rs = st.executeQuery(selecttaskId);
-             while (rs.next()) {
-          
-           task.setTaskId(rs.getInt("task_id"));
-          
-           System.out.println(task.getTaskId());
-             }
+
+            Task task = new Task();
+            String selecttaskId = "select * from task where title='" + titre + "';";
+            ResultSet rs = st.executeQuery(selecttaskId);
+            while (rs.next()) {
+
+                task.setTaskId(rs.getInt("task_id"));
+
+                System.out.println(task.getTaskId());
+            }
             String query = "INSERT INTO task_actions( task_id, title, description) "
                     + "VALUES ('" + task.getTaskId() + "','" + t.getTitle() + "','" + t.getDescription() + "');";
             System.out.println(query);
@@ -57,7 +58,7 @@ public class ServiceTaskActions implements IServiceTaskActions{
 
     @Override
     public List<TaskActions> ListTaskActions() {
-      ArrayList<TaskActions> t = new ArrayList();
+        ArrayList<TaskActions> t = new ArrayList();
         TaskActions taskAction = new TaskActions();
         try {
 
@@ -70,20 +71,20 @@ public class ServiceTaskActions implements IServiceTaskActions{
 //                taskAction.setTitle(rs.getString("title"));
 //                //taskAction.setTask(rs.getInt("task_id"));
 //                taskAction.setTitle(rs.getString("description"));
-               
-                t.add(new TaskActions(rs.getInt("action_id"),rs.getString("title"),rs.getString("description")));
+
+                t.add(new TaskActions(rs.getInt("action_id"), rs.getString("title"), rs.getString("description")));
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'affichage");
         }
-        return t;      
+        return t;
     }
 
     @Override
     public void updateTaskActions(TaskActions t) {
-    try {
-            
-            String query = "UPDATE  task_actions set title=" + t.getTitle() + "',' description=" + t.getDescription() +";";
+        try {
+
+            String query = "UPDATE  task_actions set title=" + t.getTitle() + "',' description=" + t.getDescription() + ";";
             Statement st = con.createStatement();
             st.executeUpdate(query);
             System.out.println("modification avec succes");
@@ -91,14 +92,14 @@ public class ServiceTaskActions implements IServiceTaskActions{
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
-        }     
+        }
     }
 
     @Override
     public void deleteTaskActions(int idTA) {
-     try {
-            
-            String query = "DELETE FROM task_actions WHERE action_id=" + idTA  +";";
+        try {
+
+            String query = "DELETE FROM task_actions WHERE action_id=" + idTA + ";";
             Statement st = con.createStatement();
             st.executeUpdate(query);
             System.out.println("suppression avec succes");
@@ -106,11 +107,31 @@ public class ServiceTaskActions implements IServiceTaskActions{
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
-        }      
+        }
     }
 
     @Override
     public TaskActions searchTaskActions(int idTA) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<TaskActions> ListTaskActionsByTaskId(int id) {
+        ArrayList<TaskActions> t = new ArrayList();
+        TaskActions taskAction = new TaskActions();
+        try {
+
+            Statement st = con.createStatement();
+            String query = "SELECT action_id, task_id, title, description FROM task_actions where task_id="+id;
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+
+                t.add(new TaskActions(rs.getInt("action_id"), rs.getString("title"), rs.getString("description")));
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de l'affichage");
+        }
+        return t;
     }
 }

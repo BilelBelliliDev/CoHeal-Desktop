@@ -5,6 +5,7 @@
  */
 package coheal.controllers.recipe;
 
+import coheal.entities.recipe.Recipe;
 import coheal.entities.recipe.RecipeCategory;
 import coheal.services.recipe.RecipeCategoryService;
 import java.io.IOException;
@@ -49,36 +50,40 @@ public class CreateRecipeCategoryUIController implements Initializable {
     /**
      * Initializes the controller class.
      */
-   
     RecipeCategoryService rc = new RecipeCategoryService();
-    
+    RecipeCategoryService rcs = new RecipeCategoryService();
+
     ObservableList<RecipeCategory> l = FXCollections.observableList(rc.Afficher_RecipeCategory());
     @FXML
     private Button GotoRecettesBT;
-    
+
+    boolean isSelected = false;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-               init();
-    }    
+        init();
+    }
 
-    public void init(){
+    public void init() {
         System.out.println(l);
         nom_col.setCellValueFactory(new PropertyValueFactory<>("name"));
         img_col.setCellValueFactory(new PropertyValueFactory<>("img_url"));
         table.setItems(l);
-        
-        table.setRowFactory( tv -> {
-        TableRow<RecipeCategory> row = new TableRow<>();
-        row.setOnMouseClicked(event -> {
-        if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
-            RecipeCategory rowData = row.getItem();
-            nomTF.setText(rowData.getName());
-            imgTF.setText(rowData.getImgUrl());
-        }
-    });
-    return row ;});
-}
-    
+
+        table.setRowFactory(tv -> {
+            TableRow<RecipeCategory> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && (!row.isEmpty())) {
+                    RecipeCategory rowData = row.getItem();
+                    nomTF.setText(rowData.getName());
+                    imgTF.setText(rowData.getImgUrl());
+                    isSelected = true;
+                }
+            });
+            return row;
+        });
+    }
+
     @FXML
     private void Bouton_Ajouter(ActionEvent event) throws SQLException {
         RecipeCategoryService rcs = new RecipeCategoryService();
@@ -86,40 +91,41 @@ public class CreateRecipeCategoryUIController implements Initializable {
         RC.setName(nomTF.getText());
         RC.setImgUrl(imgTF.getText());
         rcs.Create_RecipeCategory(RC);
+        table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
+
     }
-    
 
     @FXML
     private void Bouton_Modifier(ActionEvent event) {
-        RecipeCategory rc = table.getSelectionModel().getSelectedItem();
-        RecipeCategoryService rcs = new RecipeCategoryService();
-        RecipeCategory RC = new RecipeCategory();
-        RC.setName(nomTF.getText());
-        RC.setImgUrl(imgTF.getText());
-        rcs.Update_RecipeCategory(rc,RC.getCatId());
-        table.setItems(l);
+        if (isSelected) {
+            RecipeCategory RC = new RecipeCategory();
+            RecipeCategory rc = table.getSelectionModel().getSelectedItem();
+            RC.setName(nomTF.getText());
+            RC.setImgUrl(imgTF.getText());
+            rcs.Update_RecipeCategory(RC, rc.getCatId());
+            table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
+        }
     }
 
     @FXML
     private void Bouton_Supprimer(ActionEvent event) {
-       RecipeCategoryService rcs = new RecipeCategoryService();
-       RecipeCategory rc = new RecipeCategory();
-       rc = table.getSelectionModel().getSelectedItem();
-       System.out.println(table.getSelectionModel().getSelectedItem());
-       rcs.Delete_RecipeCategory(rc.getCatId());
-       //table.setItems((ObservableList<Recipe>)rcs.Afficher_RecipeCategory());
+        if (isSelected) {
+            RecipeCategory rc = new RecipeCategory();
+            rc = table.getSelectionModel().getSelectedItem();
+            System.out.println(table.getSelectionModel().getSelectedItem());
+            rcs.Delete_RecipeCategory(rc.getCatId());
+            table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
+        }
     }
 
     @FXML
     private void GotoRecettes_Button(ActionEvent event) throws IOException {
         Parent root = null;
-        root = FXMLLoader.load(getClass().getResource("/coheal/views/recipeui/CreateRecipeUI.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/coheal/views/recipe/CreateRecipeUI.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
-       }
+    }
 }
-    
-

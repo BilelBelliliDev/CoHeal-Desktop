@@ -18,5 +18,6 @@ public interface IServiceTaskActions {
     public void updateTaskActions(TaskActions t);
     public void deleteTaskActions(int idTA);
     public TaskActions searchTaskActions(int idTA);
+    public List<TaskActions> ListTaskActionsByTaskId(int id);
 
 }
