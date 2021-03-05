@@ -28,8 +28,18 @@ public class User {
     protected Timestamp deletedAt;
     protected Timestamp createdAt;
     protected Timestamp updatedAt;
-    
 
+    public User(int userId, String email, String firstName, String lastName) {
+        this.userId = userId;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public User() {
+    }
+   
+    
     //getters & setters
 
     public ArrayList<UserBadge> getListBadges() {

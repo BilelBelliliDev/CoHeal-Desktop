@@ -8,10 +8,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -19,42 +17,52 @@ import java.util.logging.Logger;
  */
 public class ServiceAdmin implements IServiceAdmin{
     Connection cnx;
-    List<User> Users = new ArrayList<>();
+    
     
     public ServiceAdmin(){
         cnx=MyConnection.getInstance().getConnection();
     }
     
-     public List<User> AfficherListPersonnes() {        
+    
+  //------------------------------------------------------------------
+     public ObservableList<User> GetListPersonnes() {          
+        ObservableList<User> Users = FXCollections.observableArrayList();
         try {
-            Statement stm=cnx.createStatement();
-             String query = "SELECT * FROM `user` ";
-             ResultSet rst=stm.executeQuery(query);
-             
-             while (rst.next()){
-                 User u=new User();
-                 
-                 u.setEmail(rst.getString("email"));
-                 u.setPassword(rst.getString("password"));
-                 
-                 Users.add(u);
+            String query = "SELECT user_id,email,first_name,last_name FROM `user` ";
+            Statement stm=cnx.createStatement();             
+            ResultSet rst=stm.executeQuery(query);
+            User user;
+             while (rst.next()){                 
+                 user = new User(rst.getInt("user_id"),rst.getString("email"),rst.getString("first_name"),rst.getString("last_name"));
+                 Users.add(user);
              }
              
         } catch (SQLException ex) {
-            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
-        return Users;
-       
+        return Users;       
     }
- //---------------------------------------------
 
-    @Override
-    public List<Role> AfficherListRoles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//------------------------------------------------------------------
+
+    public ObservableList<Role> GetListRoles() {
+      ObservableList<Role> Roles = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT role_id,role_name FROM `role` ";
+            Statement stm=cnx.createStatement();             
+            ResultSet rst=stm.executeQuery(query);
+            Role role;
+             while (rst.next()){                 
+                 role = new Role(rst.getInt("role_id"),rst.getString("role_name"));
+                 Roles.add(role);
+             }
+             
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return Roles;  
     }
-    
- //---------------------------------------------
-    
+//------------------------------------------------------------------
     
     
 }

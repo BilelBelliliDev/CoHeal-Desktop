@@ -50,7 +50,7 @@ public class SignUpController implements Initializable {
     @FXML
     private void SingUp(ActionEvent event) throws SQLException {
         ServiceUser sp= new ServiceUser();
-        User u =new User();        
+        User u =new User();         
         if(TFPassword.getText().equals(TFconfirmPassword.getText())){
             //sets
             u.setFirstName(TFFirstName.getText());
