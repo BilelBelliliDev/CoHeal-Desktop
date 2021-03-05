@@ -13,37 +13,37 @@
             <Font name="Calibri" size="42.0" />
          </font>
       </Label>
-      <Button layoutX="62.0" layoutY="155.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="127.0" text="User Management">
+      <Button layoutX="62.0" layoutY="155.0" mnemonicParsing="false" onAction="#userMangAction" prefHeight="42.0" prefWidth="127.0" text="User Management">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="249.0" layoutY="155.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="127.0" text="Book Management">
+      <Button layoutX="249.0" layoutY="155.0" mnemonicParsing="false" onAction="#bookMangAction" prefHeight="42.0" prefWidth="127.0" text="Book Management">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="442.0" layoutY="155.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Recipe Management">
+      <Button layoutX="442.0" layoutY="155.0" mnemonicParsing="false" onAction="#recipeMangAction" prefHeight="42.0" prefWidth="137.0" text="Recipe Management">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="62.0" layoutY="249.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="127.0" text="Task Management">
+      <Button layoutX="62.0" layoutY="249.0" mnemonicParsing="false" onAction="#taskMangAction" prefHeight="42.0" prefWidth="127.0" text="Task Management">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="249.0" layoutY="249.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="127.0" text="Event Management">
+      <Button layoutX="249.0" layoutY="249.0" mnemonicParsing="false" onAction="#eventMangAction" prefHeight="42.0" prefWidth="127.0" text="Event Management">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="442.0" layoutY="249.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Session Management">
+      <Button layoutX="442.0" layoutY="249.0" mnemonicParsing="false" onAction="#sessionMangAction" prefHeight="42.0" prefWidth="137.0" text="Session Management">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="244.0" layoutY="356.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Report Management">
+      <Button layoutX="244.0" layoutY="356.0" mnemonicParsing="false" onAction="#reportMangAction" prefHeight="42.0" prefWidth="137.0" text="Report Management">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
