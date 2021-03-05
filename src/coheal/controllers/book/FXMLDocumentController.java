@@ -5,7 +5,7 @@
  */
 package coheal.controllers.book;
 
-import coheal.entities.Book.Book;
+import coheal.entities.book.Book;
 import coheal.services.book.ServiceBook;
 import java.io.File;
 import java.io.IOException;
@@ -110,7 +110,7 @@ public class FXMLDocumentController implements Initializable {
 
         @FXML
         private void retour2(ActionEvent event) throws IOException {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("accueil.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/book/accueil.fxml"));
                 Parent root=loader.load();
                 AccueilController s2 = loader.getController();
                 Stage stage =new Stage();

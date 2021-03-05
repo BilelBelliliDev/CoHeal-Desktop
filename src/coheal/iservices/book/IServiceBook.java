@@ -5,7 +5,7 @@
  */
 package coheal.iservices.book;
 
-import coheal.entities.Book.Book;
+import coheal.entities.book.Book;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.ObservableList;

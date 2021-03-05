@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package book;
+package coheal.controllers.book;
 
-import coheal.controllers.book.AfficherController;
-import entites.Book;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -25,7 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import service.ServiceBook;
+
 
 /**
  * FXML Controller class
@@ -54,6 +53,7 @@ public class RestrecherhceController implements Initializable {
          */
         @Override
         public void initialize(URL url, ResourceBundle rb) {
+
                    try{
                      ServiceBook sb=new ServiceBook();
                       vrimage.setCellValueFactory(new PropertyValueFactory <Book , String>("imgUrl") );
@@ -66,10 +66,12 @@ public class RestrecherhceController implements Initializable {
                 catch(SQLException ex){
                  Logger.getLogger(AfficherController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
         }        
 
         @FXML
         private void recherhcebook(ActionEvent event) {
+
                  try{
                      ServiceBook sb=new ServiceBook();
                       vrimage.setCellValueFactory(new PropertyValueFactory <Book , String>("imgUrl") );
@@ -84,6 +86,7 @@ public class RestrecherhceController implements Initializable {
                 catch(SQLException ex){
                  Logger.getLogger(AfficherController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
         }
 
         @FXML

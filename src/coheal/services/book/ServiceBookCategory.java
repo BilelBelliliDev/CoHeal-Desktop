@@ -5,7 +5,7 @@
  */
 package coheal.services.book;
 
-import coheal.entities.Book.BookCategory;
+import coheal.entities.book.BookCategory;
 import coheal.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
