@@ -189,7 +189,7 @@ public class RateService implements IRateService {
         ObservableList<Rate> rates = FXCollections.observableArrayList();
         try {
             Statement stm = cnx.createStatement();
-            String query = "select x.rate_id, y.user_id, y.score, y.created_at from rate y, "+type+" x where x.rate_id=y.rate_id";
+            String query = "select x.rate_id, y.user_id, round(avg(y.score),2) as score, y.created_at from rate y, "+type+"_rate x where x.rate_id=y.rate_id group by "+type+"_id";
             ResultSet rst = stm.executeQuery(query);
             while (rst.next()) {
                 Rate r = new BookRate();
