@@ -93,7 +93,7 @@ public class RestrecherhceController implements Initializable {
 
         @FXML
         private void retour6(ActionEvent event) throws IOException {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("afficher.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/book/afficher.fxml"));
                 Parent root=loader.load();
                 AfficherController s2 = loader.getController();
                 Stage stage =new Stage();

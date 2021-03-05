@@ -37,5 +37,6 @@
       <Button layoutX="25.0" layoutY="501.0" mnemonicParsing="false" onAction="#ratePopupAction" prefHeight="25.0" prefWidth="59.0" text="Rate" />
       <Button layoutX="120.0" layoutY="501.0" mnemonicParsing="false" onAction="#reportPopupAction" prefHeight="25.0" prefWidth="59.0" text="Report" />
       <ComboBox fx:id="userIdBox" layoutX="25.0" layoutY="14.0" prefWidth="150.0" promptText="User ID" />
+      <Button layoutX="65.0" layoutY="59.0" mnemonicParsing="false" onAction="#rechercheAction" text="Recherche" />
    </children>
 </AnchorPane>
