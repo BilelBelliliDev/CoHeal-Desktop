@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -116,6 +117,11 @@ public class AfficherController implements Initializable {
         System.out.println(selectedId);
         if (canModify) {
             sb.supprimerBook(selectedId);
+            Alert a1= new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("info");
+                a1.setHeaderText("livre supprimer avec succès");
+                
+                a1.showAndWait();
             try {
                 tabviewsbook.setItems(sb.AfficherBook2());
             } catch (SQLException ex) {
@@ -136,6 +142,11 @@ public class AfficherController implements Initializable {
             b.setAuthor(selectauteur.getText());
             b.setDescription(selectdescription.getText());
             sb.modifierBook(selectedId, b);
+            Alert a1= new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("info");
+                a1.setHeaderText("livre modifier avec succès");
+                
+                a1.showAndWait();
             try {
                 tabviewsbook.setItems(sb.AfficherBook2());
             } catch (SQLException ex) {
