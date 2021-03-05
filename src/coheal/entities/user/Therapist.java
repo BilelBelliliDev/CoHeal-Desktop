@@ -13,6 +13,10 @@ public class Therapist extends User{
     private boolean canCreateSession;
     private boolean canCreateTask;
     private boolean canUploadBook;
+
+    public Therapist(int userId, String email, String firstName, String lastName) {
+        super(userId, email, firstName, lastName);
+    }
     
     
     //getters & setters

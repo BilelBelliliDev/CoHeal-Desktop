@@ -5,8 +5,10 @@
  */
 package coheal.iservices.task;
 
+import coheal.entities.task.Task;
 import coheal.entities.task.TaskCategory;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -18,4 +20,5 @@ public interface IServiceTaskCategory {
     public void updateTaskCategory(TaskCategory t);
     public void deleteTaskCategory(int idTC);
     public TaskCategory searchTaskCategory(int idTC);
+     public ObservableList<Task> ListerTasksByIdCatg(String title);
 }

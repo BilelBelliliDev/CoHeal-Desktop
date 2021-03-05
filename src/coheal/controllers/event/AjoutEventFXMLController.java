@@ -5,8 +5,13 @@
  */
 package coheal.controllers.event;
 
+import coheal.controllers.report.RateAlertUIController;
+import coheal.controllers.report.RatePopupUIController;
+import coheal.controllers.report.ReportPopupUIController;
 import coheal.entities.event.Event;
 import coheal.services.event.ServiceEvent;
+import coheal.services.report.RateService;
+import coheal.services.user.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -21,6 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -38,6 +44,9 @@ import javafx.stage.Stage;
  */
 public class AjoutEventFXMLController implements Initializable {
 
+    //Report/Rate Module (Bilel Bellili)
+    private ServiceUser su = new ServiceUser();
+    private RateService sr = new RateService();
     @FXML
     private Label label;
     @FXML
@@ -89,6 +98,8 @@ public class AjoutEventFXMLController implements Initializable {
 //    private TableColumn<?, ?> col7Id1;
     @FXML
     private TableColumn<?, ?> col7Id1;
+    @FXML
+    private ComboBox<Integer> userIdBox;
    
    
 
@@ -133,6 +144,12 @@ public class AjoutEventFXMLController implements Initializable {
                 }
             }
         });
+        
+        //Report/Rate Module (Bilel Bellili)  
+        int num = su.AfficherPersonne().size();
+        for (int i = 0; i < num; i++) {
+            userIdBox.getItems().add(su.AfficherPersonne().get(i).getUserId());
+        }
 
     }
 
@@ -213,12 +230,44 @@ public class AjoutEventFXMLController implements Initializable {
 
     @FXML
     private void moveToCategory(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/eventui/AjoutEventCatFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/event/AjoutEventCatFXML.fxml"));
                 Parent root=loader.load();
                 AjoutEventCatFXMLController s2 = loader.getController();
                 Stage stage =new Stage();
                 
                 stage.setScene(new Scene(root));
                 stage.show();
+    }
+
+    @FXML
+    private void ratePopupAction(ActionEvent event) throws IOException {
+        if (sr.isRated(selectedId, userIdBox.getValue(), "Event")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateAlertUI.fxml"));
+            Parent root = loader.load();
+            RateAlertUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Event");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RatePopupUI.fxml"));
+            Parent root = loader.load();
+            RatePopupUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Event");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+    }
+
+    @FXML
+    private void reportPopupAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/ReportPopupUI.fxml"));
+        Parent root = loader.load();
+        ReportPopupUIController c = loader.getController();
+        c.setData(selectedId, userIdBox.getValue(), "Event");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

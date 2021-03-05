@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package coheal.controllers.reportcontroller;
+package coheal.controllers.report;
 
 import coheal.entities.report.BookReport;
 import coheal.entities.report.EventReport;

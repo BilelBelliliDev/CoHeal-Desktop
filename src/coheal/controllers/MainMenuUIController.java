@@ -5,8 +5,6 @@
  */
 package coheal.controllers;
 
-import coheal.controllers.book.AfficherController;
-import coheal.controllers.user.SignInController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -55,7 +52,7 @@ public class MainMenuUIController implements Initializable {
     @FXML
     private void recipeMangAction(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/recipeui/CreateRecipeCategoryUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/recipe/CreateRecipeCategoryUI.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -64,7 +61,7 @@ public class MainMenuUIController implements Initializable {
 
     @FXML
     private void taskMangAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/task/Task.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/task/TaskCategory.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -73,7 +70,7 @@ public class MainMenuUIController implements Initializable {
 
     @FXML
     private void eventMangAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/eventui/AjoutEventFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/event/AjoutEventFXML.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -91,7 +88,7 @@ public class MainMenuUIController implements Initializable {
 
     @FXML
     private void reportMangAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/reportui/ReportUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateReportUI.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

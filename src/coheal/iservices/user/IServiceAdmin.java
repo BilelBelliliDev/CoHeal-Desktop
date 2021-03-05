@@ -8,13 +8,15 @@ package coheal.iservices.user;
 import coheal.entities.user.Role;
 import coheal.entities.user.User;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author wajdi's pc
  */
 public interface IServiceAdmin {
-    public List<User> AfficherListPersonnes();
-    public List<Role> AfficherListRoles();
+    public ObservableList<User> GetListPersonnes();
+    
+    public ObservableList<Role> GetListRoles();
     
 }
