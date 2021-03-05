@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="444.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.user.AdminRoleBadgeAddController">
+<AnchorPane id="AnchorPane" prefHeight="444.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.user.AdminRoleBadgeController">
    <children>
       <TableView fx:id="TVListRole" layoutX="211.0" layoutY="76.0" onMouseClicked="#GetRoleRow" prefHeight="309.0" prefWidth="157.0">
         <columns>
@@ -16,7 +16,7 @@
           <TableColumn fx:id="RnameCol" prefWidth="107.0" text="Role_name" />
         </columns>
       </TableView>
-      <TableView fx:id="TVListUser" layoutX="377.0" layoutY="74.0" onMouseClicked="#GetUserList" prefHeight="309.0" prefWidth="410.0">
+      <TableView fx:id="TVListUser" layoutX="377.0" layoutY="74.0" onMouseClicked="#GetUserRow" prefHeight="309.0" prefWidth="410.0">
         <columns>
           <TableColumn fx:id="UidCol" prefWidth="64.0" text="user_id" />
           <TableColumn fx:id="UFNCol" prefWidth="96.0" text="first_name" />

@@ -60,14 +60,18 @@ public class AdminRoleBadgeController implements Initializable {
 
     @FXML
     private void GetRoleRow(MouseEvent event) {
-        
-        
+        Role Lrole=TVListRole.getSelectionModel().getSelectedItem();
+        TFRoleId.setText(""+Lrole.getRoleId());
+        TFRoleName.setText(Lrole.getRoleName());
+    }
+    
+    @FXML
+    private void GetUserRow(MouseEvent event) {
+        User Luser =TVListUser.getSelectionModel().getSelectedItem();
+        TFUserId.setText(""+Luser.getUserId());
+        TFUserName.setText(Luser.getFirstName());
     }
 
-    @FXML
-    private void GetUserList() {
-        
-    }
     @FXML
     private void AddRoleBadge(ActionEvent event) {
         
@@ -94,6 +98,8 @@ public class AdminRoleBadgeController implements Initializable {
          
          TVListRole.setItems(list);
      }
+
+    
      
     
 }
