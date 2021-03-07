@@ -21,12 +21,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -51,6 +54,8 @@ public class TaskActionsController implements Initializable {
     private TableColumn<TaskActions,String> titrecol;
     @FXML
     private TableColumn<TaskActions, String> desccol;
+    @FXML
+    private Button addButton;
      
 
     /**
@@ -75,11 +80,23 @@ public class TaskActionsController implements Initializable {
     }
     @FXML
     private void addActions(ActionEvent event) {
+        Window owner = addButton.getScene().getWindow();
+        if (txtTitre.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez saisir le titre");
+            return;
+        }else if(txtDescrp.getText().isEmpty()){
+             AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez saisir la description");
+            return;
+        } 
+        else {
         ta.setTitle(txtTitre.getText());
         ta.setDescription(txtDescrp.getText());
         sta.createTaskActions(task,ta);
-        // data.getItems().clear();
-       // init();
+         data.getItems().clear();
+       init();
+        }
         
     }
 
@@ -105,4 +122,12 @@ public class TaskActionsController implements Initializable {
         task=comboTask.getValue();
     }
     
+    private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
 }

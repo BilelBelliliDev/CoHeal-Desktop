@@ -42,7 +42,6 @@ public class ServiceTask implements IServiceTask {
            TaskCategory tc=new TaskCategory();
            tc.setCatgid(rs.getInt("cat_id"));
            t.setCategory(tc);
-           System.out.println(tc.getCatgid());
              }
             
             
@@ -67,7 +66,7 @@ public class ServiceTask implements IServiceTask {
         try {
 
             Statement st = con.createStatement();
-            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task where is_deleted=0;";
+            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task  where is_deleted=0 and task_id not in(select t.task_id from paid_task t natural join task );";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
