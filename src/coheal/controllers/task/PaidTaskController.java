@@ -5,14 +5,14 @@
  */
 package coheal.controllers.task;
 
+import coheal.entities.task.PaidTask;
 import coheal.entities.task.Task;
-import coheal.services.task.ServiceTask;
+import coheal.services.task.ServicePaidTask;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,59 +32,55 @@ import javafx.stage.Stage;
  *
  * @author Admin
  */
-public class ParticiperUserFreeTaskController implements Initializable {
+public class PaidTaskController implements Initializable {
 
     @FXML
-    private TableView<Task> data;
+    private TableView<PaidTask> data;
     @FXML
-    private TableColumn<Task, String> titreCol;
+    private TableColumn<PaidTask, String> titreCol;
     @FXML
-    private TableColumn<Task, String> descpCol;
+    private TableColumn<PaidTask, String> descpCol;
     @FXML
-    private TableColumn<Task, String> numDaysCol;
+    private TableColumn<PaidTask, String> numDaysCol;
     @FXML
-    private TableColumn<Task, String> minUsersCol;
+    private TableColumn<PaidTask, String> minUsersCol;
     @FXML
-    private TableColumn<Task, String> maxUsersCol;
-    ServiceTask st = new ServiceTask();
-    ObservableList<Task> l = FXCollections.observableList(st.ListTask());
-    Task rowData;
-    Task selected;
+    private TableColumn<PaidTask, String> maxUsersCol;
+    @FXML
+    private TableColumn<PaidTask, String> prixCol;
+    ServicePaidTask st=new ServicePaidTask();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        init();
-    }
-
-    public void init() {
-
-        titreCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+         ObservableList<PaidTask> l = FXCollections.observableList(st.listPaidTask());
+       titreCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descpCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         numDaysCol.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
         maxUsersCol.setCellValueFactory(new PropertyValueFactory<>("maxUsers"));
         minUsersCol.setCellValueFactory(new PropertyValueFactory<>("minUsers"));
-
-        
+        prixCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         data.setItems(l);
-        selected = data.getSelectionModel().getSelectedItem();
-        data.setRowFactory(tv -> {
-            TableRow<Task> row = new TableRow<>();
+        
+         data.setRowFactory(tv -> {
+            TableRow<PaidTask> row = new TableRow<>();
             row.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                        rowData = row.getItem();
+                      PaidTask  rowData = row.getItem();
+                        System.out.println(rowData);
                         Parent root = null;
+
                         Node node = (Node) event.getSource();
                         Stage stage = (Stage) node.getScene().getWindow();
                         stage.close();
                         try {
                             TaskActionsHolder holder = TaskActionsHolder.getINSTANCE();
                             holder.setTc(rowData.getTaskId());
-                            root = FXMLLoader.load(ParticiperUserFreeTaskController.this.getClass().getResource("/coheal/views/task/ListTaskActions.fxml"));
+                            root = FXMLLoader.load(PaidTaskController.this.getClass().getResource("/coheal/views/task/ListTaskActions.fxml"));
                             
                             Scene scene = new Scene(root);
                             stage.setScene(scene);
@@ -97,23 +93,6 @@ public class ParticiperUserFreeTaskController implements Initializable {
             });
             return row;
         });
-    }
-
-    @FXML
-    private void retourButton(ActionEvent event) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/coheal/views/task/PaidTaskOrFree.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-
-            stage.setScene(scene);
-            stage.show();
-            // Hide  current window 
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
+    }    
+    
 }
