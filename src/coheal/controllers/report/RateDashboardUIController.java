@@ -41,7 +41,7 @@ public class RateDashboardUIController implements Initializable {
     @FXML
     private TableColumn<Rate, Integer> col1Id1;
     @FXML
-    private TableColumn<Rate, Integer> col2Id1;
+    private TableColumn<Rate, Double> col2Id1;
     @FXML
     private TableColumn<Rate, Double> col3Id1;
     @FXML
@@ -87,10 +87,9 @@ public class RateDashboardUIController implements Initializable {
         labelId.setText("Book Rates");
         allRatesTable.setVisible(false);
         ratesTable.setVisible(true);
-        col1Id1.setCellValueFactory(new PropertyValueFactory<>("rateId"));
-        col2Id1.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        col3Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
-        col4Id1.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+        col1Id1.setText("Book Id");
+        col1Id1.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        col2Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
         ratesTable.setItems((ObservableList<Rate>) rs.ratesList("book"));
     }
 
@@ -99,10 +98,9 @@ public class RateDashboardUIController implements Initializable {
         labelId.setText("Recipe Rates");
         allRatesTable.setVisible(false);
         ratesTable.setVisible(true);
-        col1Id1.setCellValueFactory(new PropertyValueFactory<>("rateId"));
-        col2Id1.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        col3Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
-        col4Id1.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+        col1Id1.setText("Recipe Id");
+        col1Id1.setCellValueFactory(new PropertyValueFactory<>("recipeId"));
+        col2Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
         ratesTable.setItems((ObservableList<Rate>) rs.ratesList("recipe"));
     }
 
@@ -111,10 +109,9 @@ public class RateDashboardUIController implements Initializable {
         labelId.setText("Task Rates");
         allRatesTable.setVisible(false);
         ratesTable.setVisible(true);
-        col1Id1.setCellValueFactory(new PropertyValueFactory<>("rateId"));
-        col2Id1.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        col3Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
-        col4Id1.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+        col1Id1.setText("Task Id");
+        col1Id1.setCellValueFactory(new PropertyValueFactory<>("taskId"));
+        col2Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
         ratesTable.setItems((ObservableList<Rate>) rs.ratesList("task"));
     }
 
@@ -123,10 +120,9 @@ public class RateDashboardUIController implements Initializable {
         labelId.setText("Event Rates");
         allRatesTable.setVisible(false);
         ratesTable.setVisible(true);
-        col1Id1.setCellValueFactory(new PropertyValueFactory<>("rateId"));
-        col2Id1.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        col3Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
-        col4Id1.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+        col1Id1.setText("Event Id");
+        col1Id1.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+        col2Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
         ratesTable.setItems((ObservableList<Rate>) rs.ratesList("event"));
     }
 
@@ -135,10 +131,9 @@ public class RateDashboardUIController implements Initializable {
         labelId.setText("Session Rates");
         allRatesTable.setVisible(false);
         ratesTable.setVisible(true);
-        col1Id1.setCellValueFactory(new PropertyValueFactory<>("rateId"));
-        col2Id1.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        col3Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
-        col4Id1.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+        col1Id1.setText("Session Id");
+        col1Id1.setCellValueFactory(new PropertyValueFactory<>("sessionId"));
+        col2Id1.setCellValueFactory(new PropertyValueFactory<>("score"));
         ratesTable.setItems((ObservableList<Rate>) rs.ratesList("session"));
     }
     

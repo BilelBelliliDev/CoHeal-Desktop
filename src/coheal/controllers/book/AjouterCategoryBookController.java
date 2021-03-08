@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -47,7 +48,24 @@ public class AjouterCategoryBookController implements Initializable {
 //                bc.setCatId(num);
                 bc.setName(tfnomcat.getText());
                 bc.setImgUrl(tfimagecat.getText());
-                sbc.AjouterBookCategory(bc);
+                   String n=tfnomcat.getText();
+                
+                if((n.length()==0)||(n.length()>10)){
+                        Alert a1= new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Alert");
+                a1.setHeaderText("Alert (saisie) ");
+                a1.setContentText("le nom doit etre compris entre 0 et 10 lettres");
+                a1.showAndWait();
+                }
+                else{
+                                Alert a1= new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("info");
+                a1.setHeaderText("catégorie ajouter avec succès");
+                
+                a1.showAndWait();
+               sbc.AjouterBookCategory(bc);
+                }
+               // sbc.AjouterBookCategory(bc);
         }
 
         @FXML
