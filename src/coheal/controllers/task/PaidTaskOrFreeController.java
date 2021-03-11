@@ -42,7 +42,6 @@ public class PaidTaskOrFreeController implements Initializable {
 
             stage.setScene(scene);
             stage.show();
-            // Hide this current window 
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -53,13 +52,12 @@ public class PaidTaskOrFreeController implements Initializable {
     private void PaidButton(ActionEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/coheal/views/task/TaskActions.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/coheal/views/task/PaidTask.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
 
             stage.setScene(scene);
             stage.show();
-            // Hide this current window 
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -70,7 +68,7 @@ public class PaidTaskOrFreeController implements Initializable {
     private void listeTaskButton(ActionEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/coheal/views/task/ListeUserTask.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/coheal/views/task/ListFreeOrPaidUserTask.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
 
