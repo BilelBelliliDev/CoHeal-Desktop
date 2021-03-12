@@ -7,9 +7,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.session.SessionMessageFXMLController">
    <children>
-      <TextArea fx:id="messageId" layoutX="154.0" layoutY="172.0" prefHeight="77.0" prefWidth="307.0" />
-      <Label fx:id="msgEnvoyer" layoutX="154.0" layoutY="32.0" prefHeight="119.0" prefWidth="307.0" />
-      <Button layoutX="351.0" layoutY="281.0" mnemonicParsing="false" onAction="#EnvoyerAction" text="envoyer" />
-      <Button layoutX="189.0" layoutY="281.0" mnemonicParsing="false" onAction="#afficherMessageAction" text="afficher" />
+      <TextArea fx:id="messageId" layoutX="85.0" layoutY="228.0" prefHeight="77.0" prefWidth="307.0" />
+      <Label fx:id="msgEnvoyer" layoutX="85.0" layoutY="12.0" prefHeight="212.0" prefWidth="307.0" style="-fx-background-color: #FFFAFA;" />
+      <Button layoutX="400.0" layoutY="254.0" mnemonicParsing="false" onAction="#EnvoyerAction" style="-fx-background-radius: 30;" text="envoyer" />
    </children>
 </AnchorPane>

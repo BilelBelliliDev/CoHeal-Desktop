@@ -5,7 +5,9 @@
  */
 package coheal.entities.session;
 
+import coheal.entities.user.Therapist;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  *
@@ -28,6 +30,22 @@ public class Session {
         this.description = description;
     }
 
+    public Session(int sessionId, int therpId, int userId, String title, String description, boolean isDeleted, int numOfDays, Timestamp deletedAt, Timestamp createdAt, Timestamp modifiedAt) {
+        this.sessionId = sessionId;
+        this.therpId = therpId;
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.isDeleted = isDeleted;
+        this.numOfDays = numOfDays;
+        this.deletedAt = deletedAt;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+    }
+
+   
+     
+
     public Session() {
     }
 
@@ -48,6 +66,10 @@ public class Session {
     public void setTherpId(int therpId) {
         this.therpId = therpId;
     }
+
+   
+
+   
 
     
 

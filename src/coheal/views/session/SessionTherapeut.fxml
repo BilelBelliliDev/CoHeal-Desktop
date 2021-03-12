@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="homePane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="801.0" prefWidth="1400.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1737.0" prefWidth="1396.0" style="-fx-background-color: #FFFEFB;">
+         <children>
+            <HBox layoutX="24.0" layoutY="94.0" prefHeight="336.0" prefWidth="1311.0" spacing="30.0">
+               <children>
+                  <Pane prefHeight="286.0" prefWidth="308.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item">
+                     <children>
+                        <Label alignment="CENTER" layoutX="68.0" layoutY="14.0" prefHeight="34.0" prefWidth="152.0" text="Titre" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXButton layoutX="64.0" layoutY="255.0" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" text="update" textFill="#fffefb">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <Label alignment="CENTER" layoutX="9.0" layoutY="48.0" prefHeight="154.0" prefWidth="287.0" text="Discription" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" layoutX="228.0" layoutY="133.0" prefHeight="26.0" prefWidth="61.0" spacing="5.0" style="-fx-background-color: transparent;" />
+                        <JFXButton layoutX="188.0" layoutY="255.0" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" text="delete" textFill="#fffefb">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="286.0" prefWidth="308.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item">
+                     <children>
+                        <Label alignment="CENTER" layoutX="68.0" layoutY="14.0" prefHeight="34.0" prefWidth="152.0" text="Titre" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXButton layoutX="66.0" layoutY="253.0" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" text="update" textFill="#fffefb">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <Label alignment="CENTER" layoutX="9.0" layoutY="48.0" prefHeight="154.0" prefWidth="287.0" text="Discription" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" layoutX="228.0" layoutY="133.0" prefHeight="26.0" prefWidth="61.0" spacing="5.0" style="-fx-background-color: transparent;" />
+                        <JFXButton layoutX="185.0" layoutY="253.0" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" text="delete" textFill="#fffefb">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="286.0" prefWidth="308.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item">
+                     <children>
+                        <Label alignment="CENTER" layoutX="68.0" layoutY="14.0" prefHeight="34.0" prefWidth="152.0" text="Titre" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXButton layoutX="62.0" layoutY="255.0" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" text="update" textFill="#fffefb">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <Label alignment="CENTER" layoutX="9.0" layoutY="48.0" prefHeight="154.0" prefWidth="287.0" text="Discription" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" layoutX="228.0" layoutY="133.0" prefHeight="26.0" prefWidth="61.0" spacing="5.0" style="-fx-background-color: transparent;" />
+                        <JFXButton layoutX="181.0" layoutY="255.0" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" text="delete" textFill="#fffefb">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="286.0" prefWidth="308.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item">
+                     <children>
+                        <Label alignment="CENTER" layoutX="68.0" layoutY="14.0" prefHeight="34.0" prefWidth="152.0" text="Titre" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXButton layoutX="52.0" layoutY="251.0" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" text="update" textFill="#fffefb">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <Label alignment="CENTER" layoutX="9.0" layoutY="48.0" prefHeight="154.0" prefWidth="287.0" text="Discription" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" layoutX="228.0" layoutY="133.0" prefHeight="26.0" prefWidth="61.0" spacing="5.0" style="-fx-background-color: transparent;" />
+                        <JFXButton layoutX="171.0" layoutY="251.0" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" text="delete" textFill="#fffefb">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <Label layoutX="1239.0" layoutY="45.0" text="View All" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="56.0" layoutY="19.0" prefHeight="25.0" prefWidth="254.0" text="All sesions" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
