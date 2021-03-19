@@ -23,6 +23,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -37,6 +39,7 @@ import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -45,8 +48,6 @@ import javafx.stage.Stage;
  */
 public class TaskCategoryController implements Initializable {
 
-    @FXML
-    private Label imageLabel;
     @FXML
     private TextField nom;
     @FXML
@@ -61,6 +62,10 @@ public class TaskCategoryController implements Initializable {
     ServiceTaskCategory st = new ServiceTaskCategory();
     TaskCategory tc = new TaskCategory();
     TaskCategory taskc = null;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button addButton;
 
     /**
      * Initializes the controller class.
@@ -103,12 +108,18 @@ public class TaskCategoryController implements Initializable {
 
     @FXML
     private void ajouterTaskCategory(ActionEvent event) {
-
-        tc.setName(nom.getText());
-        st.createTaskCategory(tc);
-        //table.setItems((ObservableList<TaskCategory>)st.ListTaskCategory());
-        table.getItems().clear();
-        init();
+        Window owner = addButton.getScene().getWindow();
+        if (nom.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez saisir le titre");
+            return;
+        } else {
+            tc.setName(nom.getText());
+            st.createTaskCategory(tc);
+            //table.setItems((ObservableList<TaskCategory>)st.ListTaskCategory());
+            table.getItems().clear();
+            init();
+        }
     }
 
     private void afficherTasksCategory(ActionEvent event) {
@@ -143,7 +154,7 @@ public class TaskCategoryController implements Initializable {
 
             stage.setScene(scene);
             stage.show();
-            // Hide this current window (if this is what you want)
+            // Hide this current window
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -152,11 +163,18 @@ public class TaskCategoryController implements Initializable {
 
     @FXML
     private void deleteAction(ActionEvent event) {
-        taskc = table.getSelectionModel().getSelectedItem();
-        System.out.println(taskc.getCatgid());
-        st.deleteTaskCategory(taskc.getCatgid());
-        table.getItems().clear();
-        init();
+        Window owner = deleteButton.getScene().getWindow();
+        if (table.getSelectionModel().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez selectionner une categorie");
+            return;
+        }
+        {
+            taskc = table.getSelectionModel().getSelectedItem();
+            st.deleteTaskCategory(taskc.getCatgid());
+            table.getItems().clear();
+            init();
+        }
     }
 
     @FXML
@@ -169,7 +187,7 @@ public class TaskCategoryController implements Initializable {
 
             stage.setScene(scene);
             stage.show();
-            // Hide this current window (if this is what you want)
+            // Hide this current window
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -185,5 +203,31 @@ public class TaskCategoryController implements Initializable {
         st.updateTaskCategory(tc);
         table.getItems().clear();
         init();
+    }
+
+    @FXML
+    private void goToInterfacePaidOrFree(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/coheal/views/task/PaidTaskOrFree.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.show();
+            // Hide this current window 
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 }

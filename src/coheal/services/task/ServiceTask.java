@@ -42,12 +42,13 @@ public class ServiceTask implements IServiceTask {
            TaskCategory tc=new TaskCategory();
            tc.setCatgid(rs.getInt("cat_id"));
            t.setCategory(tc);
-           System.out.println(tc.getCatgid());
              }
             
             
             String query = "INSERT INTO task(user_id,cat_id, img_url, title, description, num_of_days, min_users, max_users, created_at) "
-                    + "VALUES ('"+therapistId + "','" + t.getCategory().getCatgid() + "','" + t.getImgUrl() + "','" + t.getTitle() + "','" + t.getDescription() + "','" + t.getNumOfDays() + "','" + t.getMinUsers() + "','" + t.getMaxUsers() + "','" + d + "');";
+                    + "VALUES ('"+therapistId + "','" + t.getCategory().getCatgid() + "','" + t.getImgUrl() + "','" 
+                    + t.getTitle() + "','" + t.getDescription() + "','" + t.getNumOfDays() + "','" + t.getMinUsers() + "','" 
+                    + t.getMaxUsers() + "','" + d + "');";
             
             st.executeUpdate(query);
             
@@ -65,7 +66,7 @@ public class ServiceTask implements IServiceTask {
         try {
 
             Statement st = con.createStatement();
-            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task where is_deleted=0;";
+            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task  where is_deleted=0 and task_id not in(select t.task_id from paid_task t natural join task );";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
@@ -83,7 +84,7 @@ public class ServiceTask implements IServiceTask {
         try {
             Calendar calendar = Calendar.getInstance();
             Timestamp d = new Timestamp(calendar.getTime().getTime());
-            String query = "UPDATE  task set cat_id=" + t.getCategory().getCatgid() + ", img_url='" + t.getImgUrl() + "', title='" + t.getTitle() + "', description='" + t.getDescription() + "', num_of_days=" + t.getNumOfDays() + ", min_users=" + t.getMinUsers() + ", max_users=" + t.getMaxUsers() +"where task_id="+idt+";";
+            String query = "UPDATE  task set cat_id=" + t.getCategory().getCatgid() + ", img_url='" + t.getImgUrl() + "', title='" + t.getTitle() + "', description='" + t.getDescription() + "', num_of_days=" + t.getNumOfDays() + ", min_users=" + t.getMinUsers() + ", max_users=" + t.getMaxUsers() +" where task_id="+idt+";";
             System.out.println(query);
             Statement st = con.createStatement();
             st.executeUpdate(query);

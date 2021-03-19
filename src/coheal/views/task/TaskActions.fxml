@@ -13,7 +13,7 @@
    <children>
       <TextField fx:id="txtTitre" layoutX="42.0" layoutY="68.0" promptText="titre" />
       <TextField fx:id="txtDescrp" layoutX="42.0" layoutY="131.0" promptText="description" />
-      <Button layoutX="42.0" layoutY="231.0" mnemonicParsing="false" onAction="#addActions" text="ajouter" />
+      <Button fx:id="addButton" layoutX="42.0" layoutY="231.0" mnemonicParsing="false" onAction="#addActions" text="ajouter" />
       <Button layoutX="259.0" layoutY="360.0" mnemonicParsing="false" onAction="#getTasks" text="Gestion tasks" textFill="#121212" />
       <TableView fx:id="data" layoutX="259.0" layoutY="68.0" prefHeight="200.0" prefWidth="418.0">
         <columns>

@@ -81,7 +81,7 @@ public class ServiceSession implements ISessionService {
         ObservableList<Session> s =FXCollections.observableArrayList();
         try {
             Statement st = con.createStatement();
-            String res = "select * from `session`";
+            String res = "select * from `session` where is_deleted=0";
             ResultSet rs = st.executeQuery(res);
 
             while (rs.next()) {

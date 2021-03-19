@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,8 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="875.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="coheal.controllers.book.AfficherController">
+<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.book.AfficherController">
    <children>
       <DialogPane layoutX="-27.0" layoutY="71.0" />
       <TableView fx:id="tabviewsbook" layoutX="222.0" layoutY="71.0" prefHeight="455.0" prefWidth="618.0">
@@ -34,5 +34,9 @@
       <Button layoutX="54.0" layoutY="347.0" mnemonicParsing="false" onAction="#supprimeract" prefHeight="26.0" prefWidth="90.0" text="supprimer" />
       <Button layoutX="54.0" layoutY="395.0" mnemonicParsing="false" onAction="#modifieract" prefHeight="26.0" prefWidth="89.0" text="modifier" />
       <Button layoutX="54.0" layoutY="438.0" mnemonicParsing="false" onAction="#retour1" prefHeight="26.0" prefWidth="90.0" text="retour" />
+      <Button layoutX="25.0" layoutY="501.0" mnemonicParsing="false" onAction="#ratePopupAction" prefHeight="25.0" prefWidth="59.0" text="Rate" />
+      <Button layoutX="120.0" layoutY="501.0" mnemonicParsing="false" onAction="#reportPopupAction" prefHeight="25.0" prefWidth="59.0" text="Report" />
+      <ComboBox fx:id="userIdBox" layoutX="25.0" layoutY="14.0" prefWidth="150.0" promptText="User ID" />
+      <Button layoutX="65.0" layoutY="59.0" mnemonicParsing="false" onAction="#rechercheAction" text="Recherche" />
    </children>
 </AnchorPane>

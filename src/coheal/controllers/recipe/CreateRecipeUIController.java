@@ -5,8 +5,14 @@
  */
 package coheal.controllers.recipe;
 
+import coheal.controllers.report.RateAlertUIController;
+import coheal.controllers.report.RatePopupUIController;
+import coheal.controllers.report.ReportPopupUIController;
 import coheal.entities.recipe.Recipe;
 import coheal.services.recipe.RecipeService;
+import coheal.services.report.RateService;
+import coheal.services.user.ServiceUser;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -14,13 +20,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-<<<<<<< Updated upstream
-=======
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
->>>>>>> Stashed changes
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -31,6 +37,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 /**
@@ -38,11 +45,18 @@ import javafx.stage.Window;
  *
  * @author HP
  */
+
+
 public class CreateRecipeUIController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
+    //Report/Rate Module (Bilel Bellili)
+    private ServiceUser su = new ServiceUser();
+    private RateService sr = new RateService();
+    private int selectedId;
+
     @FXML
     private Label label;
     @FXML
@@ -73,17 +87,21 @@ public class CreateRecipeUIController implements Initializable {
     private Button BoutonSupprimer;
     @FXML
     private ComboBox ComboBox;
-<<<<<<< Updated upstream
-=======
     @FXML
     private ComboBox<Integer> userIdBox;
     @FXML
     private Button RetourBT;
->>>>>>> Stashed changes
 
     @Override
+
     public void initialize(URL url, ResourceBundle rb) {
         init();
+
+        //Report/Rate Module (Bilel Bellili)      
+        int num = su.AfficherPersonne().size();
+        for (int i = 0; i < num; i++) {
+            userIdBox.getItems().add(su.AfficherPersonne().get(i).getUserId());
+        }
     }
 
     public void init() {
@@ -100,16 +118,17 @@ public class CreateRecipeUIController implements Initializable {
                     TitreTF.setText(rowData.getTitle());
                     DescTF.setText(rowData.getDescription());
                     imgTF.setText(rowData.getImgUrl());
+                    selectedId = table.getSelectionModel().getSelectedItem().getRecipeId();
                     isSelected = true;
                 }
             });
             return row;
         });
-        
+
         //ComboBox
         //RecipeCategory rc = new RecipeCategory();
         //ObservableList<String> list = FXCollections.observableArrayList(rc.getName());
-        ObservableList<String> list = FXCollections.observableArrayList("Soupes","Thé","Boissons","Salades","Plats poulets");
+        ObservableList<String> list = FXCollections.observableArrayList("Soupes", "Thé", "Boissons", "Salades", "Plats poulets");
         ComboBox.setItems(list);
     }
 
@@ -206,8 +225,6 @@ public class CreateRecipeUIController implements Initializable {
         String s = ComboBox.getSelectionModel().getSelectedItem().toString();
 
     }
-<<<<<<< Updated upstream
-=======
 
     @FXML
     private void rateAction(ActionEvent event) throws IOException {
@@ -251,7 +268,5 @@ public class CreateRecipeUIController implements Initializable {
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
->>>>>>> Stashed changes
-}
-    
 
+}

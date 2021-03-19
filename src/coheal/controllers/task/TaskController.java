@@ -5,15 +5,28 @@
  */
 package coheal.controllers.task;
 
+import coheal.controllers.book.FXMLDocumentController;
+import coheal.controllers.report.RateAlertUIController;
+import coheal.controllers.report.RatePopupUIController;
+import coheal.controllers.report.ReportPopupUIController;
+import coheal.entities.task.PaidTask;
 import coheal.entities.task.Task;
 import coheal.entities.task.TaskCategory;
+import coheal.services.report.RateService;
+import coheal.services.task.ServicePaidTask;
 import coheal.services.task.ServiceTask;
 import coheal.services.task.ServiceTaskCategory;
+import coheal.services.user.ServiceUser;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,19 +37,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 /**
@@ -46,6 +64,10 @@ import javafx.util.Callback;
  */
 public class TaskController implements Initializable {
 
+    //Report/Rate Module (Bilel Bellili)
+    private ServiceUser su = new ServiceUser();
+    private RateService sr = new RateService();
+    private int selectedId;
     @FXML
     private TextField Titre;
     @FXML
@@ -83,6 +105,18 @@ public class TaskController implements Initializable {
     Task t = new Task();
     ServiceTaskCategory stc = new ServiceTaskCategory();
     String cat = "";
+    @FXML
+    private Button addButton;
+    @FXML
+    private ComboBox<Integer> userIdBox;
+    @FXML
+    private RadioButton freeRadio;
+    @FXML
+    private RadioButton PaidRadio;
+    @FXML
+    private TextField price;
+    private ToggleGroup group = new ToggleGroup();
+    ServicePaidTask spt = new ServicePaidTask();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -93,6 +127,12 @@ public class TaskController implements Initializable {
         }
 
         init();
+
+        //Report/Rate Module (Bilel Bellili)  
+        int num = su.AfficherPersonne().size();
+        for (int i = 0; i < num; i++) {
+            userIdBox.getItems().add(su.AfficherPersonne().get(i).getUserId());
+        }
 
     }
 
@@ -115,7 +155,7 @@ public class TaskController implements Initializable {
                     String m = "" + rowData.getNumOfDays();
                     String min = "" + rowData.getMinUsers();
                     String max = "" + rowData.getMaxUsers();
-
+                    selectedId = tableview.getSelectionModel().getSelectedItem().getTaskId();
                     numOfDays.setText(m);
                     minUsers.setText(min);
                     maxUsers.setText(max);
@@ -123,6 +163,11 @@ public class TaskController implements Initializable {
             });
             return row;
         });
+        //price.setDisable(true);
+        PaidRadio.setToggleGroup(group);
+        freeRadio.setToggleGroup(group);
+        freeRadio.setSelected(true);
+        price.disableProperty().bind(freeRadio.selectedProperty());
     }
 
     @FXML
@@ -137,21 +182,64 @@ public class TaskController implements Initializable {
     @FXML
     private void addTask(ActionEvent event) {
 
-        t.setTitle(Titre.getText());
-        t.setDescription(Desceiption.getText());
-        int n = Integer.parseInt(numOfDays.getText());
-        t.setNumOfDays(n);
-        int min = Integer.parseInt(minUsers.getText());
-        int max = Integer.parseInt(maxUsers.getText());
-        t.setMaxUsers(max);
-        t.setMinUsers(min);
-        st.createTask(1, cat, t);
-         tableview.getItems().clear();
-        init();
+        Window owner = addButton.getScene().getWindow();
+        if (Titre.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez saisir le titre");
+            return;
+        } else if (Desceiption.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez saisir le description");
+            return;
+        } else if (numOfDays.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez remplir les champs");
+            return;
+        } else if (maxUsers.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez remplir les champs");
+            return;
+        } else if (numOfDays.getText().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez remplir les champs");
+            return;
+        } else if (comboCatg.getSelectionModel().getSelectedItem().isEmpty()) {
+            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Veuillez choisir un categorie");
+            return;
+        } else {
 
+            if (PaidRadio.isSelected()) {
+                PaidTask pt = new PaidTask();
+                pt.setTitle(Titre.getText());
+                pt.setDescription(Desceiption.getText());
+                int n = Integer.parseInt(numOfDays.getText());
+                pt.setNumOfDays(n);
+                int min = Integer.parseInt(minUsers.getText());
+                int max = Integer.parseInt(maxUsers.getText());
+                pt.setMaxUsers(max);
+                pt.setMinUsers(min);
+                pt.setPrice(Double.valueOf(price.getText()));
+                spt.addPaidTask(1, cat, pt);
+                 tableview.getItems().clear();
+                init();
+            } else {
+
+                t.setTitle(Titre.getText());
+                t.setDescription(Desceiption.getText());
+                int n = Integer.parseInt(numOfDays.getText());
+                t.setNumOfDays(n);
+                int min = Integer.parseInt(minUsers.getText());
+                int max = Integer.parseInt(maxUsers.getText());
+                t.setMaxUsers(max);
+                t.setMinUsers(min);
+                st.createTask(1, cat, t);
+                tableview.getItems().clear();
+                init();
+            }
+        }
     }
 
-   
     @FXML
     private void listCategoryCombo(ActionEvent event) {
         cat = comboCatg.getValue();
@@ -161,16 +249,11 @@ public class TaskController implements Initializable {
     @FXML
     private void deleteAction(ActionEvent event) {
         task = tableview.getSelectionModel().getSelectedItem();
-      
+
         st.deleteTask(task.getTaskId());
         tableview.getItems().clear();
         init();
 
-    }
-
-    @FXML
-    private void selectAction(ActionEvent event) {
-      
     }
 
     @FXML
@@ -185,9 +268,10 @@ public class TaskController implements Initializable {
         t.setMaxUsers(max);
         t.setMinUsers(min);
         System.out.println(task);
-        st.updateTask(t,task.getTaskId());
-         tableview.getItems().clear();
+        st.updateTask(t, task.getTaskId());
+        tableview.getItems().clear();
         init();
+        //tableview.setItems((ObservableList<Task>) st.ListTask());
     }
 
     @FXML
@@ -205,6 +289,47 @@ public class TaskController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
+    @FXML
+    private void ratePopupAction(ActionEvent event) throws IOException {
+        if (sr.isRated(selectedId, userIdBox.getValue(), "Task")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateAlertUI.fxml"));
+            Parent root = loader.load();
+            RateAlertUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Task");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RatePopupUI.fxml"));
+            Parent root = loader.load();
+            RatePopupUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Task");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+    }
+
+    @FXML
+    private void reportPopupAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/ReportPopupUI.fxml"));
+        Parent root = loader.load();
+        ReportPopupUIController c = loader.getController();
+        c.setData(selectedId, userIdBox.getValue(), "Task");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }
