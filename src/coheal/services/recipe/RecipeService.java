@@ -13,7 +13,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,8 +34,8 @@ public class RecipeService implements IRecipeService {
     public void Create_Recipe(int user_id, String name, Recipe R) {
         try {
             Statement st = con.createStatement();
-            String query = "INSERT INTO recipe(user_id, cat_id, title, description, img_url, duration, persons, ingredients, steps) "
-                    + "VALUES (" + user_id + "," + R.getCatId() + ",'" + R.getTitle() + "','" + R.getDescription() + "','" + R.getImgUrl() +"','" + R.getIngredients()+ "','" + R.getSteps()+ "," + R.getDuration()+ "," + R.getPersons() +")";
+            String query = "INSERT INTO recipe(user_id, cat_id, title, description, img_url, calories, duration, persons, ingredients, steps) "
+                    + "VALUES (" + user_id + "," + R.getCatId() + ",'" + R.getTitle() + "','" + R.getDescription() + "','" + R.getImgUrl() + "'," + R.getCalories() + ",'" + R.getIngredients() + "','" + R.getSteps() + "," + R.getDuration() + "," + R.getPersons() + ")";
             st.executeUpdate(query);
             System.out.println("Recipe added successfully!");
         } catch (SQLException ex) {
@@ -60,6 +59,7 @@ public class RecipeService implements IRecipeService {
                 r.setCatId(rs.getInt("cat_id"));
                 r.setTitle(rs.getString("title"));
                 r.setDescription(rs.getString("description"));
+                r.setCalories(rs.getFloat("description"));
                 r.setDuration(rs.getInt("duration"));
                 r.setIngredients(rs.getString("ingredients"));
                 r.setSteps(rs.getString("steps"));
@@ -83,7 +83,7 @@ public class RecipeService implements IRecipeService {
     @Override
     public void Update_Recipe(Recipe r, int id) {
         try {
-            String query = "UPDATE recipe SET user_id=1" + ", cat_id=" + r.getCatId() + ", title='" + r.getTitle() + "', description='" + r.getDescription() + "', img_url='" + r.getImgUrl() + "' WHERE recipe_id=" + id + ";";
+            String query = "UPDATE recipe SET user_id=1" + ", cat_id=" + r.getCatId() + ", title='" + r.getTitle() + "', description='" + r.getDescription() + "', img_url='" + r.getImgUrl() + ", calories=" + r.getCalories() + "', ingredients='" + r.getIngredients() + "', steps='" + r.getSteps() + ", duration=" + r.getDuration() + ", persons=" + r.getPersons() + " WHERE recipe_id=" + id + ";";
             Statement st = con.createStatement();
             st.executeUpdate(query);
             System.out.println("Recipe modified successfully!");
@@ -116,7 +116,12 @@ public class RecipeService implements IRecipeService {
             r.setRecipeId(rst.getInt("recipe_id"));
             r.setTitle(rst.getString("title"));
             r.setDescription(rst.getString("description"));
+            r.setIngredients(rst.getString("ingredients"));
+            r.setSteps(rst.getString("steps"));
             r.setImgUrl(rst.getString("img_url"));
+            r.setCalories(rst.getFloat("calories"));
+            r.setDuration(rst.getInt("duration"));
+            r.setPersons(rst.getInt("persons"));
             recipe.add(r);
         }
         return recipe;
@@ -133,7 +138,12 @@ public class RecipeService implements IRecipeService {
             r.setRecipeId(rs.getInt("recipe_id"));
             r.setTitle(rs.getString("title"));
             r.setDescription(rs.getString("description"));
+            r.setIngredients(rs.getString("ingredients"));
+            r.setSteps(rs.getString("steps"));
             r.setImgUrl(rs.getString("img_url"));
+            r.setCalories(rs.getFloat("calories"));
+            r.setDuration(rs.getInt("duration"));
+            r.setPersons(rs.getInt("persons"));
             ListR.add(r);
         }
         return ListR;

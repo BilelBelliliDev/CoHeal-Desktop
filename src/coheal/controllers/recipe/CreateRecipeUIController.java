@@ -117,6 +117,10 @@ public class CreateRecipeUIController implements Initializable {
                     Recipe rowData = row.getItem();
                     TitreTF.setText(rowData.getTitle());
                     DescTF.setText(rowData.getDescription());
+                    /*
+                    IngredientsTF.setText(rowData.getIngedients());
+                    StepsTF.setText(rowData.getSteps())
+                    */
                     imgTF.setText(rowData.getImgUrl());
                     selectedId = table.getSelectionModel().getSelectedItem().getRecipeId();
                     isSelected = true;

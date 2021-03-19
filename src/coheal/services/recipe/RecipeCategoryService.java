@@ -5,7 +5,6 @@
  */
 package coheal.services.recipe;
 
-import coheal.entities.recipe.Recipe;
 import coheal.entities.recipe.RecipeCategory;
 import coheal.iservices.recipe.IRecipeCategoryService;
 import coheal.utils.MyConnection;
@@ -13,7 +12,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +35,7 @@ public class RecipeCategoryService implements IRecipeCategoryService {
             String query = "INSERT INTO recipe_category(cat_id, name, img_url) "
                     + "VALUES (" + RC.getCatId() + ",'" + RC.getName() + "','" + RC.getImgUrl() + "')";
             st.executeUpdate(query);
-            System.out.println("Catégorie ajoutée avec succés!");
+            System.out.println("Category created successfully!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -69,9 +67,9 @@ public class RecipeCategoryService implements IRecipeCategoryService {
             String query = "UPDATE recipe_category SET name='" + RC.getName() + "', img_url='" + RC.getImgUrl() + "' WHERE cat_id=" + id + ";";
             Statement st = con.createStatement();
             st.executeUpdate(query);
-            System.out.println("Catégorie modifiée avec succés!");
+            System.out.println("Category modified successfully!");
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la modification de la Catégorie!" + e.getMessage());
+            System.out.println("Error!" + e.getMessage());
         }
     }
 
@@ -81,7 +79,7 @@ public class RecipeCategoryService implements IRecipeCategoryService {
             String query = "UPDATE  recipe_category SET  is_deleted=1,deleted_at=CURRENT_TIMESTAMP() where cat_id=" + idc + "";
             Statement st = con.createStatement();
             st.executeUpdate(query);
-            System.out.println("Suppression de la catégorie avec succés!");
+            System.out.println("Category deleted successfully!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

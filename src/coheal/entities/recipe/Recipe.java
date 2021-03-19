@@ -14,6 +14,15 @@ public class Recipe {
     private String steps;
     private int persons;
     private int duration;
+    private float calories;
+
+    public float getCalories() {
+        return calories;
+    }
+
+    public void setCalories(float calories) {
+        this.calories = calories;
+    }
     private String imgUrl;
     private ImageView img;
 
@@ -143,7 +152,9 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", ingredients=" + ingredients + ", steps=" + steps + ", persons=" + persons + ", duration=" + duration + ", imgUrl=" + imgUrl + ", img=" + img + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
+        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", ingredients=" + ingredients + ", steps=" + steps + ", persons=" + persons + ", duration=" + duration + ", calories=" + calories + ", imgUrl=" + imgUrl + ", img=" + img + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
     }
+
+   
 
 }
