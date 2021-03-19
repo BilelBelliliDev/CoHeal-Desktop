@@ -1,13 +1,61 @@
 package coheal.entities.recipe;
+
 import java.sql.Timestamp;
+import javafx.scene.image.ImageView;
 
 public class Recipe {
+
     private int recipeId;
     private int userId;
     private int catId;
     private String title;
     private String description;
+    private String ingredients;
+    private String steps;
+    private int persons;
+    private int duration;
     private String imgUrl;
+    private ImageView img;
+
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
+
+    public int getPersons() {
+        return persons;
+    }
+
+    public void setPersons(int persons) {
+        this.persons = persons;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
     private boolean isDeleted;
     private Timestamp deletedAt;
     private Timestamp createdAt;
@@ -95,16 +143,7 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}'+"\n";
+        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", ingredients=" + ingredients + ", steps=" + steps + ", persons=" + persons + ", duration=" + duration + ", imgUrl=" + imgUrl + ", img=" + img + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
     }
-
-    
-
-    
-    
-    
-    
-    
-    
 
 }
