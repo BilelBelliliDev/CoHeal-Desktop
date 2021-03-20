@@ -59,11 +59,11 @@ public class RecipeService implements IRecipeService {
                 r.setCatId(rs.getInt("cat_id"));
                 r.setTitle(rs.getString("title"));
                 r.setDescription(rs.getString("description"));
-                r.setCalories(rs.getFloat("description"));
-                r.setDuration(rs.getInt("duration"));
+                r.setCalories(rs.getString("description"));
+                r.setDuration(rs.getString("duration"));
                 r.setIngredients(rs.getString("ingredients"));
                 r.setSteps(rs.getString("steps"));
-                r.setPersons(rs.getInt("persons"));
+                r.setPersons(rs.getString("persons"));
                 ListR.add(r);
                 //image
                 ImageView img = null;
@@ -119,9 +119,9 @@ public class RecipeService implements IRecipeService {
             r.setIngredients(rst.getString("ingredients"));
             r.setSteps(rst.getString("steps"));
             r.setImgUrl(rst.getString("img_url"));
-            r.setCalories(rst.getFloat("calories"));
-            r.setDuration(rst.getInt("duration"));
-            r.setPersons(rst.getInt("persons"));
+            r.setCalories(rst.getString("calories"));
+            r.setDuration(rst.getString("duration"));
+            r.setPersons(rst.getString("persons"));
             recipe.add(r);
         }
         return recipe;
@@ -141,9 +141,9 @@ public class RecipeService implements IRecipeService {
             r.setIngredients(rs.getString("ingredients"));
             r.setSteps(rs.getString("steps"));
             r.setImgUrl(rs.getString("img_url"));
-            r.setCalories(rs.getFloat("calories"));
-            r.setDuration(rs.getInt("duration"));
-            r.setPersons(rs.getInt("persons"));
+            r.setCalories(rs.getString("calories"));
+            r.setDuration(rs.getString("duration"));
+            r.setPersons(rs.getString("persons"));
             ListR.add(r);
         }
         return ListR;

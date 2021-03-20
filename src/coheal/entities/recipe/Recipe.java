@@ -12,17 +12,11 @@ public class Recipe {
     private String description;
     private String ingredients;
     private String steps;
-    private int persons;
-    private int duration;
-    private float calories;
+    private String persons;
+    private String duration;
+    private String calories;
 
-    public float getCalories() {
-        return calories;
-    }
-
-    public void setCalories(float calories) {
-        this.calories = calories;
-    }
+    
     private String imgUrl;
     private ImageView img;
 
@@ -50,21 +44,7 @@ public class Recipe {
         this.steps = steps;
     }
 
-    public int getPersons() {
-        return persons;
-    }
-
-    public void setPersons(int persons) {
-        this.persons = persons;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+    
     private boolean isDeleted;
     private Timestamp deletedAt;
     private Timestamp createdAt;
@@ -150,10 +130,36 @@ public class Recipe {
         this.modifiedAt = modifiedAt;
     }
 
+    public String getPersons() {
+        return persons;
+    }
+
+    public void setPersons(String persons) {
+        this.persons = persons;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getCalories() {
+        return calories;
+    }
+
+    public void setCalories(String calories) {
+        this.calories = calories;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", ingredients=" + ingredients + ", steps=" + steps + ", persons=" + persons + ", duration=" + duration + ", calories=" + calories + ", imgUrl=" + imgUrl + ", img=" + img + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
     }
+
+    
 
    
 

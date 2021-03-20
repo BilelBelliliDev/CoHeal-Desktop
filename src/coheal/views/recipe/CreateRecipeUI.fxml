@@ -22,21 +22,21 @@
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Label>
-      <Label layoutX="44.0" layoutY="236.0" text="Image">
+      <Label layoutX="44.0" layoutY="312.0" text="Image">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Label>
-      <TextField fx:id="TitreTF" layoutX="95.0" layoutY="101.0" prefHeight="25.0" prefWidth="200.0" promptText="Entrer le titre de votre recette" />
-      <TextArea fx:id="DescTF" layoutX="95.0" layoutY="137.0" prefHeight="83.0" prefWidth="200.0" promptText="Décrire votre recette (calories, ...)" />
-      <Button fx:id="BoutonAjouter" layoutX="42.0" layoutY="321.0" mnemonicParsing="false" onAction="#Bouton_Ajouter" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Ajouter">
+      <TextField fx:id="TitreTF" layoutX="95.0" layoutY="79.0" prefHeight="25.0" prefWidth="200.0" promptText="Entrer le titre de votre recette" />
+      <TextArea fx:id="DescTF" layoutX="95.0" layoutY="110.0" prefHeight="31.0" prefWidth="200.0" promptText="Décrire votre recette (calories, ...)" />
+      <Button fx:id="BoutonAjouter" layoutX="32.0" layoutY="350.0" mnemonicParsing="false" onAction="#Bouton_Ajouter" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Ajouter">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="BoutonModifier" layoutX="134.0" layoutY="321.0" mnemonicParsing="false" onAction="#Bouton_Modifier" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Modifier">
+      <Button fx:id="BoutonModifier" layoutX="122.0" layoutY="350.0" mnemonicParsing="false" onAction="#Bouton_Modifier" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Modifier">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="BoutonSupprimer" layoutX="223.0" layoutY="321.0" mnemonicParsing="false" onAction="#Bouton_Supprimer" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Supprimer">
+      <Button fx:id="BoutonSupprimer" layoutX="217.0" layoutY="350.0" mnemonicParsing="false" onAction="#Bouton_Supprimer" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Supprimer">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -51,17 +51,10 @@
             <TableColumn fx:id="img_col" prefWidth="62.0" text="Image" />
         </columns>
       </TableView>
-      <TextField fx:id="imgTF" layoutX="95.0" layoutY="231.0" prefHeight="25.0" prefWidth="200.0" promptText="ImgName" />
       <Pane layoutY="54.0" prefHeight="7.0" prefWidth="657.0" style="-fx-background-color: red;" />
       <Label layoutX="455.0" layoutY="82.0" text="Liste des recettes" textFill="#ae2020">
          <font>
             <Font name="Berlin Sans FB" size="16.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="ComboBox" layoutX="95.0" layoutY="267.0" onAction="#SelectChoix" prefWidth="150.0" />
-      <Label layoutX="28.0" layoutY="272.0" text="Catégorie">
-         <font>
-            <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font>
       </Label>
       <Button layoutX="309.0" layoutY="362.0" mnemonicParsing="false" onAction="#rateAction" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: coral;" text="Rate">
@@ -75,6 +68,17 @@
          </font>
       </Button>
       <ComboBox fx:id="userIdBox" layoutX="487.0" layoutY="365.0" prefWidth="150.0" promptText="User ID" />
-      <Button fx:id="AjouterImageBT" layoutX="295.0" layoutY="231.0" mnemonicParsing="false" onAction="#Addimage" text="add" />
+      <Button fx:id="AjouterImageBT" layoutX="282.0" layoutY="307.0" mnemonicParsing="false" onAction="#Addimage" text="add" />
+      <Label fx:id="imgTF" layoutX="89.0" layoutY="307.0" prefHeight="25.0" prefWidth="193.0" />
+      <Label layoutX="33.0" layoutY="187.0" text="Ingredients" />
+      <Label layoutX="49.0" layoutY="220.0" text="steps" />
+      <Label layoutX="37.0" layoutY="268.0" text="Durations" />
+      <Label layoutX="50.0" layoutY="291.0" text="persons" />
+      <TextField fx:id="DurationTF" layoutX="99.0" layoutY="256.0" />
+      <TextField fx:id="PersonsTF" layoutX="99.0" layoutY="287.0" />
+      <TextArea fx:id="IngredientsTF" layoutX="95.0" layoutY="152.0" prefHeight="7.0" prefWidth="200.0" />
+      <TextArea fx:id="StepsTF" layoutX="95.0" layoutY="196.0" prefHeight="17.0" prefWidth="200.0" />
+      <TextField fx:id="CaloriesTF" layoutX="99.0" layoutY="234.0" prefHeight="17.0" prefWidth="149.0" />
+      <Label layoutX="49.0" layoutY="238.0" text="calories" />
     </children>
 </AnchorPane>

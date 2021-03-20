@@ -67,7 +67,7 @@ public class CreateRecipeUIController implements Initializable {
     @FXML
     private TextArea DescTF;
     @FXML
-    private TextField imgTF;
+    private Label imgTF;
     @FXML
     private TableColumn<Recipe, String> title_col;
     @FXML
@@ -88,7 +88,6 @@ public class CreateRecipeUIController implements Initializable {
     private Button BoutonModifier;
     @FXML
     private Button BoutonSupprimer;
-    @FXML
     private ComboBox ComboBox;
     @FXML
     private ComboBox<Integer> userIdBox;
@@ -96,6 +95,16 @@ public class CreateRecipeUIController implements Initializable {
     File file = null;
     @FXML
     private Button AjouterImageBT;
+    @FXML
+    private TextField DurationTF;
+    @FXML
+    private TextField PersonsTF;
+    @FXML
+    private TextArea IngredientsTF;
+    @FXML
+    private TextArea StepsTF;
+    @FXML
+    private TextField CaloriesTF;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -122,26 +131,17 @@ public class CreateRecipeUIController implements Initializable {
                     TitreTF.setText(rowData.getTitle());
                     DescTF.setText(rowData.getDescription());
                     imgTF.setText(rowData.getImgUrl());
-                    /*
-                    IngredientsTF.setText(rowData.getIngedients());
+                    IngredientsTF.setText(rowData.getIngredients());
                     StepsTF.setText(rowData.getSteps());
                     DurationTF.setText(rowData.getDuration());
                     CaloriesTF.setText(rowData.getDuration());
                     PersonsTF.setText(rowData.getPersons());
-                     */
-
                     selectedId = table.getSelectionModel().getSelectedItem().getRecipeId();
                     isSelected = true;
                 }
             });
             return row;
         });
-
-        //ComboBox
-        //RecipeCategory rc = new RecipeCategory();
-        //ObservableList<String> list = FXCollections.observableArrayList(rc.getName());
-        ObservableList<String> list = FXCollections.observableArrayList("Soupes", "Thé", "Boissons", "Salades", "Plats poulets");
-        ComboBox.setItems(list);
     }
 
     @FXML
@@ -158,9 +158,29 @@ public class CreateRecipeUIController implements Initializable {
                     "Describe your recipe!");
             return;
         }
-        if (imgTF.getText().isEmpty()) {
+        if (IngredientsTF.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Error!",
-                    "Entrer l'URL de l'image!");
+                    "Enter the required ingredients for your recipe !");
+            return;
+        }
+        if (StepsTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter the steps of preparing of your recipe !");
+            return;
+        }
+        if (CaloriesTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter the number of calories of your recipe !");
+            return;
+        }
+        if (DurationTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter the  required ingredients for your recipe !");
+            return;
+        }
+        if (PersonsTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter the number of persons of your recipe !");
             return;
         }
 
@@ -169,7 +189,11 @@ public class CreateRecipeUIController implements Initializable {
         R.setCatId(1);
         R.setTitle(TitreTF.getText());
         R.setDescription(DescTF.getText());
-        R.setImgUrl(imgTF.getText());
+        R.setIngredients(IngredientsTF.getText());
+        R.setSteps(StepsTF.getText());
+        R.setCalories(CaloriesTF.getText());
+        R.setDuration(DurationTF.getText());
+        R.setPersons(PersonsTF.getText());
 
         File dest = new File(projectPath + "src/coheal/images/recipe" + file.getName());
         FileUtils.copyFile(file, dest);
@@ -197,11 +221,17 @@ public class CreateRecipeUIController implements Initializable {
         if (isSelected) {
             Recipe r = table.getSelectionModel().getSelectedItem();
             RecipeService RS = new RecipeService();
+
             Recipe R = new Recipe();
             R.setCatId(1);
             R.setTitle(TitreTF.getText());
             R.setDescription(DescTF.getText());
-            R.setImgUrl(imgTF.getText());
+            R.setIngredients(IngredientsTF.getText());
+            R.setSteps(StepsTF.getText());
+            R.setCalories(CaloriesTF.getText());
+            R.setDuration(DurationTF.getText());
+            R.setPersons(PersonsTF.getText());
+
             RS.Update_Recipe(R, r.getRecipeId());
             table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
 
@@ -209,7 +239,6 @@ public class CreateRecipeUIController implements Initializable {
                     "Recipe modified successfully!");
         } else {
             showAlert(Alert.AlertType.ERROR, owner, "Error!", "Select a recipe!");
-            return;
         }
 
     }
@@ -240,7 +269,6 @@ public class CreateRecipeUIController implements Initializable {
         alert.show();
     }
 
-    @FXML
     private void SelectChoix(ActionEvent event) {
         String s = ComboBox.getSelectionModel().getSelectedItem().toString();
     }
