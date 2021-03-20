@@ -51,7 +51,7 @@
             <TableColumn fx:id="img_col" prefWidth="62.0" text="Image" />
         </columns>
       </TableView>
-      <TextField fx:id="imgTF" layoutX="95.0" layoutY="231.0" prefHeight="25.0" prefWidth="200.0" promptText="Entrer l'URL" />
+      <TextField fx:id="imgTF" layoutX="95.0" layoutY="231.0" prefHeight="25.0" prefWidth="200.0" promptText="ImgName" />
       <Pane layoutY="54.0" prefHeight="7.0" prefWidth="657.0" style="-fx-background-color: red;" />
       <Label layoutX="455.0" layoutY="82.0" text="Liste des recettes" textFill="#ae2020">
          <font>
@@ -75,5 +75,6 @@
          </font>
       </Button>
       <ComboBox fx:id="userIdBox" layoutX="487.0" layoutY="365.0" prefWidth="150.0" promptText="User ID" />
+      <Button fx:id="AjouterImageBT" layoutX="295.0" layoutY="231.0" mnemonicParsing="false" onAction="#Addimage" text="add" />
     </children>
 </AnchorPane>
