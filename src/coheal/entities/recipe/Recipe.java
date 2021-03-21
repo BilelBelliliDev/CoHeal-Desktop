@@ -1,13 +1,50 @@
 package coheal.entities.recipe;
+
 import java.sql.Timestamp;
+import javafx.scene.image.ImageView;
 
 public class Recipe {
+
     private int recipeId;
     private int userId;
     private int catId;
     private String title;
     private String description;
+    private String ingredients;
+    private String steps;
+    private String persons;
+    private String duration;
+    private String calories;
+
+    
     private String imgUrl;
+    private ImageView img;
+
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
+
+    
     private boolean isDeleted;
     private Timestamp deletedAt;
     private Timestamp createdAt;
@@ -93,18 +130,37 @@ public class Recipe {
         this.modifiedAt = modifiedAt;
     }
 
+    public String getPersons() {
+        return persons;
+    }
+
+    public void setPersons(String persons) {
+        this.persons = persons;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getCalories() {
+        return calories;
+    }
+
+    public void setCalories(String calories) {
+        this.calories = calories;
+    }
+
     @Override
     public String toString() {
-        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}'+"\n";
+        return "Recipe{" + "recipeId=" + recipeId + ", userId=" + userId + ", catId=" + catId + ", title=" + title + ", description=" + description + ", ingredients=" + ingredients + ", steps=" + steps + ", persons=" + persons + ", duration=" + duration + ", calories=" + calories + ", imgUrl=" + imgUrl + ", img=" + img + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + '}';
     }
 
     
 
-    
-    
-    
-    
-    
-    
+   
 
 }

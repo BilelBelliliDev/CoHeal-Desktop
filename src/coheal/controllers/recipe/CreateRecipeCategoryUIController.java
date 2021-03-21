@@ -65,6 +65,10 @@ public class CreateRecipeCategoryUIController implements Initializable {
     @FXML
     private Button BoutonSupprimer;
 
+    @FXML
+    private Button Retour2BT;
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         init();
@@ -175,4 +179,16 @@ public class CreateRecipeCategoryUIController implements Initializable {
         alert.initOwner(owner);
         alert.show();
     }
+
+    @FXML
+    private void Bouton_RetourMenu(ActionEvent event) throws IOException {
+        Parent root = null;
+        root = FXMLLoader.load(getClass().getResource("/coheal/views/MainMenuUI.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+
 }
