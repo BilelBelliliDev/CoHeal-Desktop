@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="789.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.LoginController">
+   <children>
+      <AnchorPane layoutX="32.0" layoutY="47.0" prefHeight="262.0" prefWidth="347.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="47.0">
+         <children>
+            <AnchorPane fx:id="layer" layoutX="12.0" layoutY="30.0" maxWidth="630.0" prefHeight="446.0" prefWidth="630.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="30.0">
+               <children>
+                  <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="577.1428565979004" layoutY="21.0" onMouseClicked="#minAction" size="16" style="-fx-cursor: hand;" AnchorPane.rightAnchor="40.285715103149414" AnchorPane.topAnchor="7.285714149475098" />
+                  <FontAwesomeIconView fill="#13547a" glyphName="CLOSE" layoutX="272.0" layoutY="19.0" onMouseClicked="#closeAction" size="16" style="-fx-cursor: hand;" AnchorPane.rightAnchor="15.428571701049805" AnchorPane.topAnchor="5.285714149475098" />
+                  <Pane fx:id="signInPane" layoutX="401.0" layoutY="28.0" prefHeight="407.0" prefWidth="256.0">
+                     <children>
+                        <Label fx:id="signInLabel" layoutX="78.0" layoutY="31.0" style="-fx-font-size: 28px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Sign In" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="TFEmailSIN" focusColor="#13547a" layoutX="13.0" layoutY="145.0" opacity="0.8" prefHeight="27.0" prefWidth="231.0" promptText="Email" unFocusColor="#000000cc">
+                           <font>
+                              <Font name="Century Gothic Bold" size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXPasswordField fx:id="TFPasswordSIN" focusColor="#13547a" layoutX="13.0" layoutY="214.0" opacity="0.8" prefHeight="28.0" prefWidth="231.0" promptText="Password" unFocusColor="#000000cc">
+                           <font>
+                              <Font name="Century Gothic Bold" size="14.0" />
+                           </font>
+                        </JFXPasswordField>
+                        <JFXButton fx:id="BTNSignIn" buttonType="RAISED" layoutX="78.0" layoutY="291.0" onAction="#signInAction" prefHeight="38.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #13547A; -fx-cursor: hand; -fx-background-radius: 1em; -fx-font-size: 16px;" stylesheets="@../../../resources/css/main.css" text="Sign In" textFill="WHITE">
+                           <font>
+                              <Font name="Nirmala UI" size="16.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="button" />
+                              <String fx:value="text" />
+                           </styleClass>
+                        </JFXButton>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="signUpPane2" layoutX="64.0" layoutY="24.0" prefHeight="384.0" prefWidth="256.0">
+                     <children>
+                        <Label fx:id="signUpLabel" layoutX="71.0" layoutY="33.0" style="-fx-font-size: 28px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Sign Up" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="TFEmailSUP" focusColor="#13547a" layoutX="13.0" layoutY="103.0" opacity="0.8" prefHeight="35.0" prefWidth="231.0" promptText="Email" unFocusColor="#000000cc">
+                           <font>
+                              <Font name="Century Gothic Bold" size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXPasswordField fx:id="TFConfirmPasswordSUP" focusColor="#13547a" layoutX="13.0" layoutY="228.0" opacity="0.8" prefHeight="35.0" prefWidth="231.0" promptText="Confirm Password" unFocusColor="#000000cc">
+                           <font>
+                              <Font name="Century Gothic Bold" size="14.0" />
+                           </font>
+                        </JFXPasswordField>
+                        <JFXButton fx:id="BTNSignUp" buttonType="RAISED" layoutX="77.0" layoutY="297.0" onAction="#signUpAction" prefHeight="38.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #13547A; -fx-cursor: hand; -fx-background-radius: 1em; -fx-font-size: 16px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Sign Up" textFill="WHITE">
+                           <font>
+                              <Font name="Nirmala UI" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXPasswordField fx:id="TFPasswordSUP" focusColor="#13547a" layoutX="13.0" layoutY="164.0" opacity="0.8" prefHeight="35.0" prefWidth="231.0" promptText="Password" unFocusColor="#000000cc">
+                           <font>
+                              <Font name="Century Gothic Bold" size="14.0" />
+                           </font>
+                        </JFXPasswordField>
+                        <FontAwesomeIconView glyphName="ARROW_LEFT" layoutX="5.0" layoutY="65.0" onMouseClicked="#prevSignUp" size="25" style="-fx-fill: linear-gradient(to right top, #13547a, #1e7292, #3891a6, #59b1b7, #80d0c7); -fx-cursor: hand;" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="signUpPane" layoutX="64.0" layoutY="24.0" prefHeight="384.0" prefWidth="256.0">
+                     <children>
+                        <Label fx:id="signUpLabel1" layoutX="71.0" layoutY="33.0" style="-fx-font-size: 28px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Sign Up" textFill="#13547a">
+                           <font>
+                              <Font name="Century Gothic Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="TFFirstNameSUP" focusColor="#13547a" layoutX="13.0" layoutY="103.0" opacity="0.8" prefHeight="35.0" prefWidth="231.0" promptText="First Name" unFocusColor="#000000cc">
+                           <font>
+                              <Font name="Century Gothic Bold" size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField fx:id="TFLastNameSUP" focusColor="#13547a" layoutX="13.0" layoutY="164.0" opacity="0.8" prefHeight="35.0" prefWidth="231.0" promptText="Last Name" unFocusColor="#000000cc">
+                           <font>
+                              <Font name="Century Gothic Bold" size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXButton fx:id="btnNext" buttonType="RAISED" layoutX="78.0" layoutY="298.0" onAction="#NextAction" prefHeight="38.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #13547A; -fx-cursor: hand; -fx-background-radius: 1em; -fx-font-size: 16px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Next" textFill="WHITE">
+                           <font>
+                              <Font name="Nirmala UI" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXDatePicker fx:id="DPDateOfBirthSUP" layoutX="13.0" layoutY="226.0" prefHeight="35.0" prefWidth="231.0" promptText="Date of birth" style="-jfx-default-color: linear-gradient(to right top, #13547a, #1e7292, #3891a6, #59b1b7, #80d0c7);" stylesheets="@../../../resources/css/datePicker.css" />
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="animatedLayer" layoutX="12.0" layoutY="19.0" prefHeight="468.0" prefWidth="341.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1e7292, #3891a6, #59b1b7, #80d0c7); -fx-background-radius: 1em;" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="19.0">
+               <children>
+                  <VBox alignment="CENTER" layoutX="63.0" layoutY="134.0" prefHeight="100.0" prefWidth="216.0" AnchorPane.bottomAnchor="234.0" AnchorPane.topAnchor="134.0">
+                     <children>
+                        <Label style="-fx-font-size: 48px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="CoHeal" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label style="-fx-font-size: 18px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Your way for better life" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <JFXButton fx:id="btnSignUpAnim" buttonType="RAISED" layoutX="120.0" layoutY="254.0" onAction="#signUpAnimAction" prefHeight="38.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 1em; -fx-font-size: 16px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Sign Up" textFill="#13547a" AnchorPane.bottomAnchor="176.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0">
+                     <font>
+                        <Font name="Nirmala UI" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <FontAwesomeIconView fx:id="minIcon" fill="WHITE" glyphName="MINUS" layoutX="290.0" layoutY="24.0" onMouseClicked="#minAction" size="16" style="-fx-cursor: hand;" visible="false" />
+                  <FontAwesomeIconView fx:id="closeIcon" fill="WHITE" glyphName="CLOSE" layoutX="314.0" layoutY="22.0" onMouseClicked="#closeAction" size="16" style="-fx-cursor: hand;" visible="false" />
+                  <JFXButton fx:id="btnSignInAnim" buttonType="RAISED" layoutX="120.0" layoutY="254.0" onAction="#signInAnimAction" prefHeight="38.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 1em; -fx-font-size: 16px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Sign In" textFill="#005f82" visible="false">
+                     <font>
+                        <Font name="Nirmala UI" size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

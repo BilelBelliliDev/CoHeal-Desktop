@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="moderationPane" prefHeight="720.0" prefWidth="1084.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.report.ModerationPageController">
+   <children>
+      <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="1059.0" layoutY="24.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
+      <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="1035.0" layoutY="25.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+      <TableView layoutX="76.0" layoutY="312.0" prefHeight="391.0" prefWidth="984.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+        <columns>
+          <TableColumn prefWidth="150.0" text="C1" />
+          <TableColumn minWidth="0.0" prefWidth="198.0" text="C2" />
+            <TableColumn prefWidth="183.0" text="C3" />
+            <TableColumn prefWidth="215.0" text="C4" />
+            <TableColumn prefWidth="237.0" text="C5" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

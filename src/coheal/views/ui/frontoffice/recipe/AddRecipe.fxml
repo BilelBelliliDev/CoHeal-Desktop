@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="891.0" style="-fx-background-color: #FFFEFB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.AddRecipeController">
+   <children>
+      <TextArea fx:id="DescTF" layoutX="305.0" layoutY="196.0" prefHeight="155.0" prefWidth="431.0" promptText="Describe your recipe here" style="-fx-border-color: orange;">
+         <font>
+            <Font name="Century Gothic" size="28.0" />
+         </font>
+      </TextArea>
+      <Pane layoutX="28.0" layoutY="90.0" prefHeight="269.0" prefWidth="248.0" style="-fx-border-color: orange;">
+         <children>
+            <ImageView fitHeight="267.0" fitWidth="245.0" layoutX="3.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="27.0" layoutY="287.0" prefHeight="41.0" prefWidth="194.0" />
+            <Button layoutX="27.0" layoutY="285.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="198.0" style="-fx-background-color: #FFFEFB; -fx-border-color: orange;" text="Upload image" textFill="#ff9c24">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <TextField fx:id="CaloriesTF" layoutX="305.0" layoutY="359.0" prefHeight="46.0" prefWidth="165.0" promptText="calories" style="-fx-border-color: orange;">
+         <font>
+            <Font name="Century Gothic" size="28.0" />
+         </font>
+      </TextField>
+      <Label layoutX="20.0" layoutY="9.0" prefHeight="71.0" prefWidth="265.0" style="-fx-font-size: 32px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Create a recipe" textFill="#13547a">
+         <font>
+            <Font name="Century Gothic Bold" size="60.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fill="#13547a" glyphName="TIMES" layoutX="845.0" layoutY="40.0" onMouseClicked="#closeAction" size="30" text="" />
+      <Button layoutX="736.0" layoutY="417.0" mnemonicParsing="false" onAction="#addRecipeAction" prefHeight="45.0" prefWidth="121.0" style="-fx-background-color: #13547a; -fx-font-size: 18px; -fx-background-radius: 1em;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Confirm" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="27.0" />
+         </font>
+      </Button>
+      <TextField fx:id="TitleTF" layoutX="229.0" layoutY="116.0" prefHeight="62.0" prefWidth="507.0" promptText="Recipe Name" style="-fx-border-color: orange;">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

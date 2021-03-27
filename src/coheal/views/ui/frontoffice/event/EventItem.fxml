@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="105.0" prefWidth="483.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 0.5em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.event.EventItemController">
+   <children>
+      <AnchorPane prefHeight="105.0" prefWidth="90.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 0.5em 0 0 0.5em;">
+         <children>
+            <VBox alignment="CENTER" layoutY="16.0" prefHeight="74.0" prefWidth="108.0">
+               <children>
+                  <Label fx:id="eventDay" alignment="CENTER" prefHeight="53.0" prefWidth="52.0" style="-fx-font-size: 26;" styleClass="text" text="25" textFill="WHITE">
+                     <font>
+                        <Font name="Leelawadee UI" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="eventMonth" style="-fx-font-size: 24;" styleClass="text" text="MAR" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="eventImg" fitHeight="112.0" fitWidth="105.0" layoutX="108.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../../resources/images/events/hiking-activities.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="213.0" prefHeight="105.0" prefWidth="169.0" spacing="5.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="eventTitle" prefHeight="23.0" prefWidth="149.0" style="-fx-font-size: 20;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Title" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="eventLocation" prefHeight="18.0" prefWidth="263.0" style="-fx-font-size: 14;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Location" textFill="#303c5d">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="eventType" prefHeight="21.0" prefWidth="149.0" style="-fx-font-size: 16;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Free/Paid" textFill="#303c5d">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" top="5.0" />
+         </padding>
+      </VBox>
+      <JFXButton alignment="CENTER" layoutX="411.0" layoutY="53.0" prefHeight="36.0" prefWidth="58.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em; -fx-font-size: 14;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View" textFill="#fffefb" AnchorPane.rightAnchor="14.0">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
