@@ -43,10 +43,6 @@ public class RateDashboardUIController implements Initializable {
     @FXML
     private TableColumn<Rate, Double> col2Id1;
     @FXML
-    private TableColumn<Rate, Double> col3Id1;
-    @FXML
-    private TableColumn<Rate, Timestamp> col4Id1;
-    @FXML
     private Label labelId;
     @FXML
     private TableView<Rate> allRatesTable;

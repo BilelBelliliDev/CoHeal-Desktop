@@ -10,14 +10,21 @@ import coheal.services.report.ReportService;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -55,6 +62,15 @@ public class ReportDashboardUIController implements Initializable {
     private TableColumn<Report, Timestamp> col5Id1;
     @FXML
     private TableView<Report> reportsTable;
+    private Timer timer = new Timer();
+    private boolean isSelected = false;
+    private int selectedId;
+    @FXML
+    private AnchorPane ancId;
+    @FXML
+    private CheckBox chk1;
+    @FXML
+    private CheckBox chk2;
 
     /**
      * Initializes the controller class.
@@ -68,6 +84,7 @@ public class ReportDashboardUIController implements Initializable {
         col5Id.setCellValueFactory(new PropertyValueFactory<>("isClosed"));
         col6Id.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
         allReportsTable.setItems((ObservableList<Report>) rs.allReportsList());
+
     }
 
     @FXML
@@ -82,6 +99,11 @@ public class ReportDashboardUIController implements Initializable {
         col5Id.setCellValueFactory(new PropertyValueFactory<>("isClosed"));
         col6Id.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
         allReportsTable.setItems((ObservableList<Report>) rs.allReportsList());
+        Stage stage = (Stage) ancId.getScene().getWindow();
+        stage.setOnCloseRequest(e -> {
+            timer.cancel();
+            System.exit(0);
+        });
     }
 
     @FXML
@@ -95,6 +117,40 @@ public class ReportDashboardUIController implements Initializable {
         col4Id1.setCellValueFactory(new PropertyValueFactory<>("isClosed"));
         col5Id1.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
         reportsTable.setItems((ObservableList<Report>) rs.reportsList("book_report"));
+
+        reportsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+                //Check whether item is selected and set value of selected item to Label
+                if (reportsTable.getSelectionModel().getSelectedItem() != null) {
+                    Report selectedReport = reportsTable.getSelectionModel().getSelectedItem();
+                    selectedId = selectedReport.getReportId();
+                    isSelected = true;
+                }
+            }
+        });
+
+        chk1.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                rs.closedReportsList();
+            }
+        });
+        
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (rs.reportsList("book_report").size() != reportsTable.getItems().size()) {
+                    reportsTable.setItems((ObservableList<Report>) rs.reportsList("book_report"));
+                }
+            }
+        }, 0, 1000);
+        Stage stage = (Stage) ancId.getScene().getWindow();
+        stage.setOnCloseRequest(e -> {
+            timer.cancel();
+            System.exit(0);
+        });
     }
 
     @FXML
@@ -147,6 +203,15 @@ public class ReportDashboardUIController implements Initializable {
         col4Id1.setCellValueFactory(new PropertyValueFactory<>("isClosed"));
         col5Id1.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
         reportsTable.setItems((ObservableList<Report>) rs.reportsList("session_report"));
+    }
+
+    @FXML
+    private void closeReportAction(ActionEvent event) {
+        if (isSelected) {
+            rs.closeReport(selectedId);
+            reportsTable.setItems((ObservableList<Report>) rs.reportsList("book_report"));
+        }
+
     }
 
 }

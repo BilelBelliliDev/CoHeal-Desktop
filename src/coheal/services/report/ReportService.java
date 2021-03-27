@@ -183,4 +183,50 @@ public class ReportService implements IReportService {
         return reports;
     }
 
+    @Override
+    public List<Report> closedReportsList() {
+        ObservableList<Report> reports = FXCollections.observableArrayList();
+        try {
+            Statement stm = cnx.createStatement();
+            String query = "select x.report_id, y.reporter_id, y.note, y.is_closed, y.created_at from report y, book_report x where x.report_id=y.report_id and y.is_closed=1";
+            ResultSet rst = stm.executeQuery(query);
+            while (rst.next()) {
+                Report r = new BookReport();
+                r.setReportId(rst.getInt("report_id"));
+                r.setReporterId(rst.getInt("reporter_id"));
+                r.setNote(rst.getString("note"));
+                r.setIsClosed(rst.getBoolean("is_closed"));
+                r.setCreatedAt(rst.getTimestamp("created_at"));
+                reports.add(r);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return reports;
+    }
+
+    @Override
+    public List<Report> openReportsList() {
+        ObservableList<Report> reports = FXCollections.observableArrayList();
+        try {
+            Statement stm = cnx.createStatement();
+            String query = "select x.report_id, y.reporter_id, y.note, y.is_closed, y.created_at from report y, book_report x where x.report_id=y.report_id and y.is_closed=0";
+            ResultSet rst = stm.executeQuery(query);
+            while (rst.next()) {
+                Report r = new BookReport();
+                r.setReportId(rst.getInt("report_id"));
+                r.setReporterId(rst.getInt("reporter_id"));
+                r.setNote(rst.getString("note"));
+                r.setIsClosed(rst.getBoolean("is_closed"));
+                r.setCreatedAt(rst.getTimestamp("created_at"));
+                reports.add(r);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return reports;
+    }
+
 }

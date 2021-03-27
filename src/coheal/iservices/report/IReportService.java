@@ -20,4 +20,6 @@ public interface IReportService {
     public void unbanUser(int userId);
     public List<Report> allReportsList();
     public List<Report> reportsList(String type);
+    public List<Report> closedReportsList();
+    public List<Report> openReportsList();
 }
