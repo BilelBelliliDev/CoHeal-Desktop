@@ -219,7 +219,7 @@ public class ServiceTaskCategory implements IServiceTaskCategory {
         }
         return l;
     }
-
+/*
     @Override
     public ObservableList<Task> ListerTasksByIdCatg(String title) {
         ObservableList<Task> l = FXCollections.observableArrayList();
@@ -244,5 +244,5 @@ public class ServiceTaskCategory implements IServiceTaskCategory {
         }
         return l;
 
-    }
+    }*/
 }
