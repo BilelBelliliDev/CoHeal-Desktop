@@ -10,22 +10,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="627.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.task.TaskController">
+<AnchorPane id="AnchorPane" prefHeight="627.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.task.TaskController">
    <children>
       <Label layoutX="397.0" layoutY="23.0" text="Gestion Tache">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="Titre" layoutX="24.0" layoutY="90.0" promptText="Titre" />
-      <TextField fx:id="numOfDays" layoutX="24.0" layoutY="138.0" promptText="nombre des jours" />
+      <TextField fx:id="Titre" layoutX="38.0" layoutY="90.0" promptText="Titre" />
+      <TextField fx:id="numOfDays" layoutX="38.0" layoutY="138.0" promptText="nombre des jours" />
       <TextField fx:id="minUsers" layoutX="249.0" layoutY="90.0" prefHeight="26.0" prefWidth="196.0" promptText="nombre minimale des utilisateurs" />
       <TextField fx:id="maxUsers" layoutX="249.0" layoutY="138.0" prefHeight="26.0" prefWidth="196.0" promptText="numbre maximale des utilisateurs" />
       <TextArea fx:id="Desceiption" layoutX="38.0" layoutY="199.0" prefHeight="80.0" prefWidth="222.0" promptText="Description" />
       <ComboBox fx:id="comboCatg" layoutX="528.0" layoutY="90.0" onAction="#listCategoryCombo" prefWidth="150.0" promptText="les categories" />
       <Button fx:id="addButton" layoutX="321.0" layoutY="226.0" mnemonicParsing="false" onAction="#addTask" prefHeight="26.0" prefWidth="90.0" text="Ajouter" />
       <Button layoutX="514.0" layoutY="139.0" mnemonicParsing="false" onAction="#addImage" text="ajouter image" />
-      <Button layoutX="618.0" layoutY="587.0" mnemonicParsing="false" onAction="#afficherTaskActions" text="afficher les taches Actions" />
+      <Button layoutX="678.0" layoutY="575.0" mnemonicParsing="false" onAction="#afficherTaskActions" text="afficher les taches Actions" />
       <TextField fx:id="imageTEXT" layoutX="626.0" layoutY="140.0" />
       <TableView fx:id="tableview" layoutX="32.0" layoutY="354.0" prefHeight="200.0" prefWidth="801.0">
         <columns>
@@ -38,5 +38,8 @@
       </TableView>
       <Button layoutX="579.0" layoutY="226.0" mnemonicParsing="false" onAction="#deleteAction" text="delete" />
       <Button layoutX="461.0" layoutY="226.0" mnemonicParsing="false" onAction="#updateAction" text="modifier" />
+      <ComboBox fx:id="userIdBox" layoutX="207.0" layoutY="575.0" prefWidth="150.0" promptText="User ID" />
+      <Button layoutX="38.0" layoutY="575.0" mnemonicParsing="false" onAction="#ratePopupAction" prefHeight="25.0" prefWidth="59.0" text="Rate" />
+      <Button layoutX="106.0" layoutY="575.0" mnemonicParsing="false" onAction="#reportPopupAction" prefHeight="25.0" prefWidth="59.0" text="Report" />
    </children>
 </AnchorPane>

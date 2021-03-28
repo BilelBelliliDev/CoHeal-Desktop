@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="380.0" style="-fx-background-color: #FFFEFB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.session.AddSessionController">
+   <children>
+      <TextField fx:id="titleId" layoutX="96.0" layoutY="114.0" promptText="Title" />
+      <TextArea fx:id="descriptionId" layoutX="96.0" layoutY="166.0" prefHeight="113.0" prefWidth="200.0" promptText="Description" />
+      <TextField fx:id="numDays" layoutX="96.0" layoutY="294.0" promptText="Number of days" />
+      <Label layoutX="113.0" layoutY="32.0" style="-fx-font-size: 24;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Add Session" textFill="#13547a" />
+      <JFXButton layoutX="127.0" layoutY="360.0" onAction="#addSessionAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="ADD" textFill="#fffefb">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <FontAwesomeIconView fill="#13547a" glyphName="TIMES" layoutX="347.0" layoutY="31.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" wrappingWidth="18.714285850524902" />
+   </children>
+</AnchorPane>

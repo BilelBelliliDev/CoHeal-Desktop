@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="item" prefHeight="182.0" prefWidth="308.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.book.BookItemController">
+   <children>
+      <Label fx:id="bookTitle" alignment="CENTER" layoutX="135.0" layoutY="14.0" prefHeight="34.0" prefWidth="152.0" style="-fx-font-size: 22px;" text="Meditation" textFill="#13547a">
+         <font>
+            <Font name="Century Gothic Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="bookAuthor" alignment="CENTER" layoutX="132.0" layoutY="48.0" prefHeight="34.0" prefWidth="159.0" text="By Flen" textFill="#13547a">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="236.0" layoutY="148.0" prefHeight="26.0" prefWidth="61.0" spacing="5.0" style="-fx-background-color: transparent;">
+         <children>
+            <FontAwesomeIconView fill="#00000080" glyphName="EYE" size="20" />
+            <Label fx:id="bookViews" text="30" textFill="#00000080">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <ImageView fx:id="bookimg" fitHeight="211.0" fitWidth="142.0" layoutX="-16.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../resources/images/books/517OWT+6IUL._SX331_BO1,204,203,200_.jpg" />
+         </image>
+         <effect>
+            <DropShadow color="#0000004d" />
+         </effect>
+      </ImageView>
+      <OctIconView glyphName="BOOK" layoutX="191.0" layoutY="135.0" onMouseClicked="#displayAction" size="40" style="-fx-cursor: hand; -fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+   </children>
+</Pane>

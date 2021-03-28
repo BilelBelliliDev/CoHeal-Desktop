@@ -18,5 +18,8 @@ public interface IReportService {
     public void closeReport(int reportId);
     public void banUser(int userId);
     public void unbanUser(int userId);
-    public List<Report> reportsList();
+    public List<Report> allReportsList();
+    public List<Report> reportsList(String type);
+    public List<Report> closedReportsList();
+    public List<Report> openReportsList();
 }

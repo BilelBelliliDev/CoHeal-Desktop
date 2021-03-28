@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="276.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.task.TaskItemController">
+   <children>
+      <ImageView fx:id="taskImg" fitHeight="152.0" fitWidth="251.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../resources/images/tasks/anger_medium.jpg" />
+         </image>
+         <effect>
+            <DropShadow color="#0000004d" />
+         </effect>
+      </ImageView>
+      <Label fx:id="taskDesc" alignment="TOP_LEFT" layoutX="13.0" layoutY="232.0" prefHeight="75.0" prefWidth="251.0" style="-fx-font-size: 16px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Description" textFill="#4693bf" wrapText="true">
+         <font>
+            <Font name="Century Gothic Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="taskTitle" alignment="CENTER" layoutX="-4.0" layoutY="187.0" prefHeight="36.0" prefWidth="285.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Control you anger" textFill="#13547a">
+         <font>
+            <Font name="Century Gothic Bold" size="24.0" />
+         </font>
+      </Label>
+      <Pane layoutX="22.0" layoutY="21.0" prefHeight="28.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 0.5em;" styleClass="text" stylesheets="@../../../../../../../CoHealUi/src/coheal/css/main.css">
+         <effect>
+            <DropShadow color="#00000080" />
+         </effect>
+         <children>
+            <Label fx:id="price" contentDisplay="CENTER" layoutX="8.0" layoutY="6.0" style="-fx-font-size: 12px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="FREE" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="70.0" layoutY="324.0" onMouseClicked="#showTaskDetails" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em; -fx-cursor: hand;">
+         <children>
+            <Label layoutX="19.0" layoutY="6.0" style="-fx-font-size: 16px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View details" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

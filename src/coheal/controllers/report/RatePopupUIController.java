@@ -6,8 +6,11 @@
 package coheal.controllers.report;
 
 import coheal.entities.rate.BookRate;
+import coheal.entities.rate.EventRate;
 import coheal.entities.rate.Rate;
 import coheal.entities.rate.RecipeRate;
+import coheal.entities.rate.SessionRate;
+import coheal.entities.rate.TaskRate;
 import coheal.services.report.RateService;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -62,6 +65,30 @@ public class RatePopupUIController implements Initializable {
                 break;
             case "Recipe":
                 r = new RecipeRate();
+                r.setUserId(userId);
+                r.setScore(ratingId.getRating());
+                rs.addRate(r, id);
+                stage = (Stage) rateBtn.getScene().getWindow();
+                stage.close();
+                break;
+            case "Task":
+                r = new TaskRate();
+                r.setUserId(userId);
+                r.setScore(ratingId.getRating());
+                rs.addRate(r, id);
+                stage = (Stage) rateBtn.getScene().getWindow();
+                stage.close();
+                break;
+            case "Event":
+                r = new EventRate();
+                r.setUserId(userId);
+                r.setScore(ratingId.getRating());
+                rs.addRate(r, id);
+                stage = (Stage) rateBtn.getScene().getWindow();
+                stage.close();
+                break;
+            case "Session":
+                r = new SessionRate();
                 r.setUserId(userId);
                 r.setScore(ratingId.getRating());
                 rs.addRate(r, id);

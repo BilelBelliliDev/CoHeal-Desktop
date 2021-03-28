@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="recipePane" prefHeight="720.0" prefWidth="1084.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.recipe.RecipePageController">
+   <children>
+      <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="1059.0" layoutY="24.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
+      <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="1035.0" layoutY="25.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+      <TableView fx:id="TableView" layoutX="76.0" layoutY="312.0" prefHeight="391.0" prefWidth="1020.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="14.0">
+        <columns>
+          <TableColumn fx:id="rID_col" prefWidth="54.0" text="ID" />
+          <TableColumn fx:id="UserID_col" minWidth="0.0" prefWidth="66.0" text="User ID" />
+            <TableColumn fx:id="titre_col" prefWidth="93.0" text="Title" />
+            <TableColumn fx:id="cat_col" prefWidth="76.0" text="Category" />
+            <TableColumn fx:id="Desc_col" prefWidth="140.0" text="Description" />
+            <TableColumn fx:id="cal_col" prefWidth="64.0" text="Calories" />
+            <TableColumn fx:id="dur_col" prefWidth="75.0" text="Duration" />
+            <TableColumn fx:id="persons_col" prefWidth="65.0" text="Persons" />
+            <TableColumn fx:id="ingred_col" minWidth="0.0" prefWidth="181.0" text="Ingredients" />
+            <TableColumn fx:id="Steps_col" prefWidth="290.0" text="Steps" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

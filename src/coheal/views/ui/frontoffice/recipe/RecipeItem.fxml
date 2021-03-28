@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="335.0" prefWidth="305.0" style="-fx-background-color: transparent;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.RecipeItemController">
+   <children>
+      <AnchorPane layoutY="-3.0" prefHeight="321.0" prefWidth="217.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="recipeTitle" layoutX="15.0" layoutY="12.0" prefHeight="34.0" prefWidth="171.0" style="-fx-font-size: 20px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Ginger Tea" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="cat" layoutX="17.0" layoutY="44.0" prefHeight="34.0" prefWidth="171.0" style="-fx-font-size: 16px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Tea" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="recipeDesc" alignment="TOP_LEFT" layoutX="9.0" layoutY="226.0" prefHeight="57.0" prefWidth="204.0" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Description Description DescriptionDescription Description" textFill="#13547a" wrapText="true">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </Label>
+            <OctIconView glyphName="FLAME" layoutX="12.0" layoutY="150.0" size="20" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" wrappingWidth="20.0" />
+            <Label fx:id="cals" layoutX="36.0" layoutY="104.0" prefHeight="85.0" prefWidth="91.0" style="-fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Calories">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView glyphName="USER" layoutX="15.0" layoutY="121.0" size="18" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+            <Label fx:id="persons" layoutX="36.0" layoutY="98.0" prefHeight="34.0" prefWidth="91.0" style="-fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Persons">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+            </Label>
+            <Pane layoutX="71.0" layoutY="287.0" onMouseClicked="#showRecipeDetails" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em; -fx-cursor: hand;">
+               <children>
+                  <Label layoutX="17.0" layoutY="4.0" style="-fx-font-size: 16px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Read" textFill="WHITE" />
+               </children>
+            </Pane>
+            <Label fx:id="durat" layoutX="36.0" layoutY="155.0" prefHeight="48.0" prefWidth="91.0" style="-fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Duration">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+            </Label>
+            <OctIconView glyphName="CLOCK" layoutX="12.0" layoutY="185.0" size="20" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" wrappingWidth="20.0" />
+         </children>
+      </AnchorPane>
+      <Pane layoutX="113.0" layoutY="81.0" prefHeight="134.0" prefWidth="171.0" style="-fx-background-color: #13547a; -fx-background-radius: 1em;">
+         <children>
+            <ImageView fx:id="recipeImg" fitHeight="100.0" fitWidth="141.0" layoutX="15.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../resources/images/recipes/Oregano-Teapurchased123featuredimage.jpg" />
+               </image>
+               <effect>
+                  <DropShadow color="#00000080" height="25.0" radius="12.0" width="25.0" />
+               </effect>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow color="#000000cc" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -9,6 +9,7 @@ import coheal.entities.user.User;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -29,6 +30,8 @@ public class Task {
     private Timestamp deletedAt;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
+    private ImageView img;
+    private User user;
 
     public Task() {
     }
@@ -157,6 +160,24 @@ public class Task {
         this.modifiedAt = modifiedAt;
     }
 
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    
+    
     @Override
     public String toString() {
         return  "title=" + title + ", description=" + description + ", numOfDays=" + numOfDays + ", minUsers=" + minUsers + ", maxUsers=" + maxUsers + ", actions=" + actions +"\n";

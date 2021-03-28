@@ -6,14 +6,17 @@
 package coheal.controllers.report;
 
 import coheal.entities.report.BookReport;
+import coheal.entities.report.EventReport;
+import coheal.entities.report.RecipeReport;
 import coheal.entities.report.Report;
+import coheal.entities.report.SessionReport;
+import coheal.entities.report.TaskReport;
 import coheal.services.report.ReportService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -30,7 +33,7 @@ public class ReportPopupUIController implements Initializable {
     private String s;
     @FXML
     private Label dataId;
-    ReportService rs = new ReportService();
+
     @FXML
     private TextArea noteId;
     @FXML
@@ -48,12 +51,52 @@ public class ReportPopupUIController implements Initializable {
 
     @FXML
     private void reportAction(ActionEvent event) {
-        Report r = new BookReport();
-        r.setReporterId(userId);
-        r.setNote(noteId.getText());
-        rs.addReport(r, id);
-        Stage stage = (Stage) reportBtn.getScene().getWindow();
-        stage.close();
+        Report r;
+        Stage stage;
+        ReportService rs = new ReportService();
+        switch (s) {
+            case "Book":
+                r = new BookReport();
+                r.setReporterId(userId);
+                r.setNote(noteId.getText());
+                rs.addReport(r, id);
+                stage = (Stage) reportBtn.getScene().getWindow();
+                stage.close();
+                break;
+            case "Recipe":
+                r = new RecipeReport();
+                r.setReporterId(userId);
+                r.setNote(noteId.getText());
+                rs.addReport(r, id);
+                stage = (Stage) reportBtn.getScene().getWindow();
+                stage.close();
+                break;
+            case "Task":
+                r = new TaskReport();
+                r.setReporterId(userId);
+                r.setNote(noteId.getText());
+                rs.addReport(r, id);
+                stage = (Stage) reportBtn.getScene().getWindow();
+                stage.close();
+                break;
+            case "Event":
+                r = new EventReport();
+                r.setReporterId(userId);
+                r.setNote(noteId.getText());
+                rs.addReport(r, id);
+                stage = (Stage) reportBtn.getScene().getWindow();
+                stage.close();
+                break;
+            case "Session":
+                r = new SessionReport();
+                r.setReporterId(userId);
+                r.setNote(noteId.getText());
+                rs.addReport(r, id);
+                stage = (Stage) reportBtn.getScene().getWindow();
+                stage.close();
+                break;
+        }
+
     }
 
     @FXML
@@ -68,9 +111,9 @@ public class ReportPopupUIController implements Initializable {
 
     public void setData(int id, int userId, String s) {
         this.id = id;
-        this.userId=userId;
-        this.s=s;
-        dataId.setText(s+" id: "+id+", User id: "+userId);
+        this.userId = userId;
+        this.s = s;
+        dataId.setText(s + " id: " + id + ", User id: " + userId);
     }
 
 }

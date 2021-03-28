@@ -4,6 +4,7 @@ import coheal.entities.user.User;
 import coheal.utils.MyConnection;
 import coheal.iservices.user.IServiceUser;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +29,9 @@ public class ServiceUser implements IServiceUser{
         try {            
             Statement stm=cnx.createStatement();
             String query = "INSERT INTO user(email,password,first_name,last_name,date_of_birth) VALUES('"+u.getEmail()+"','"+u.getPassword()+"','"+u.getFirstName()+"','"+u.getLastName()+"','"+u.getDateOfBirth()+"')";
-            stm.executeUpdate(query);   
+            stm.executeUpdate(query);  
+            query = "INSERT INTO user_role(user_id,role_id) VALUES(LAST_INSERT_ID(),4)";
+            stm.executeUpdate(query);
             System.out.println("user ajouter");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -44,19 +47,31 @@ public class ServiceUser implements IServiceUser{
             // Step 2:Create a statement using connection object
             PreparedStatement pS = cnx.prepareStatement(query);
             pS.setString(1, email);
-            pS.setString(2, password);
-            System.out.println(pS);
-            
+            pS.setString(2, password);            
             ResultSet resultSet = pS.executeQuery();
             
             if (resultSet.next()) {
                 //recuperation d'id de user loged in
-                int id = resultSet.getInt("user_id") ;
-                System.out.println(id);
+                int ID = resultSet.getInt("user_id") ;
+                String EMAIL =resultSet.getString("email");
+                String PASSWORD =resultSet.getString("password");
+                String FIRSTNAME =resultSet.getString("first_name");
+                String LASTNAME =resultSet.getString("last_name");
+                Date DATEOFBIRTH =resultSet.getDate("date_of_birth");
                 //user session created with user id when logging in
-                UserSession.getInstace(id);
+                //
+                String req="select r.role_name from role r,user_role ur where ur.role_id=r.role_id and ur.user_id="+ID+"";
+                Statement stm=cnx.createStatement();
+                ResultSet resultSet2 = stm.executeQuery(req);
+
+                if(resultSet2.next()){
+                   String role =resultSet2.getString("role_name"); 
+                   UserSession.getInstace(ID,EMAIL,PASSWORD,FIRSTNAME,LASTNAME,DATEOFBIRTH,role);
+                }
+                
                 return true;
             }
+            
 
         } catch (SQLException ex) {
             // print SQL exception information
@@ -108,9 +123,9 @@ public class ServiceUser implements IServiceUser{
     @Override
     public void ModifierUser(User u ,int id) {
         try {
-            String query = "UPDATE `user` SET `email`= '"+u.getEmail()+"' ,`password`= '"
-                +u.getPassword()+"' ,`first_name`= '"+u.getFirstName()+"' ,`last_name`= '"
-                +u.getLastName()+"' ,`date_of_birth`= '"+u.getDateOfBirth()+"'"
+            String query = "UPDATE `user` SET `email`= '"+u.getEmail()+"' ,"
+                + "`first_name`= '"+u.getFirstName()+"' ,`last_name`= '"
+                +u.getLastName()+"' ,`date_of_birth`= '"+u.getDateOfBirth()+"' "
                 + " WHERE user_id = "+id+" ";
             Statement st = cnx.createStatement();
             st.executeUpdate(query);
@@ -119,6 +134,18 @@ public class ServiceUser implements IServiceUser{
             System.out.println(ex.getMessage());
         }
     }   
+   //---------------------------------------------
+    public void ModifierUserPassword(String pw ,int id) {
+        try {
+            String query = "UPDATE `user` SET `password`='"+pw+"' WHERE user_id = "+id+" ";
+            Statement st = cnx.createStatement();
+            st.executeUpdate(query);
+            System.out.println("User password updated succesfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    } 
+    
     
  //---------------------------------------------   
     @Override

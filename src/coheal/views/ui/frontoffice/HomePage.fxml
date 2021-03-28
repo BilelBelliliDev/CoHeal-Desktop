@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="homePane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.HomePageController">
+   <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1856.0" prefWidth="1068.0" style="-fx-background-color: #FFFEFB;">
+         <children>
+            <Label layoutX="26.0" layoutY="557.0" prefHeight="46.0" prefWidth="267.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Featured Books" textFill="#303c5d">
+               <font>
+                  <Font name="Century Gothic Bold" size="30.0" />
+               </font>
+            </Label>
+            <HBox fx:id="bookHBox" layoutX="34.0" layoutY="652.0" prefHeight="182.0" prefWidth="1037.0" spacing="45.0" />
+            <Label alignment="CENTER" layoutX="949.0" layoutY="566.0" prefHeight="34.0" prefWidth="83.0" style="-fx-cursor: hand; -fx-font-size: 18px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="View All" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="889.0" prefHeight="46.0" prefWidth="248.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Featured Tasks" textFill="#303c5d">
+               <font>
+                  <Font name="Century Gothic Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="934.0" layoutY="895.0" prefHeight="34.0" prefWidth="83.0" style="-fx-cursor: hand; -fx-font-size: 18px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="View All" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="341.0" prefHeight="46.0" prefWidth="285.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Upcoming Events" textFill="#303c5d">
+               <font>
+                  <Font name="Century Gothic Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="943.0" layoutY="349.0" prefHeight="34.0" prefWidth="83.0" style="-fx-cursor: hand; -fx-font-size: 18px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="View All" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox fx:id="taskHBox" layoutX="26.0" layoutY="961.0" prefHeight="374.0" prefWidth="1008.0" spacing="90.0" />
+            <HBox fx:id="eventHBox" layoutX="31.0" layoutY="413.0" prefHeight="103.0" prefWidth="994.0" spacing="20.0" />
+            <Label layoutX="31.0" layoutY="1390.0" prefHeight="46.0" prefWidth="235.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Featured Recipes" textFill="#303c5d">
+               <font>
+                  <Font name="Century Gothic Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="942.0" layoutY="1393.0" prefHeight="34.0" prefWidth="83.0" style="-fx-cursor: hand; -fx-font-size: 18px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="View All" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox fx:id="recipeHBox" layoutX="32.0" layoutY="1475.0" prefHeight="336.0" prefWidth="993.0" spacing="45.0" />
+            <Label layoutX="23.0" layoutY="23.0" prefHeight="46.0" prefWidth="285.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="New Sessions" textFill="#303c5d">
+               <font>
+                  <Font name="Century Gothic Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="944.0" layoutY="27.0" prefHeight="34.0" prefWidth="83.0" style="-fx-cursor: hand; -fx-font-size: 18px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="View All" textFill="#13547a">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox fx:id="sessionHBox" layoutX="32.0" layoutY="85.0" prefHeight="215.0" prefWidth="1000.0" spacing="35.0" />
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

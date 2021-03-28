@@ -17,5 +17,6 @@ public interface IServiceTask {
     public List<Task> ListTask();
     public void updateTask(Task t,int idt);
     public void deleteTask(int idt);
-    public Task searchTask(int idT);
+    public Task getTask(int idT);
+    public int getCountTask();
 }

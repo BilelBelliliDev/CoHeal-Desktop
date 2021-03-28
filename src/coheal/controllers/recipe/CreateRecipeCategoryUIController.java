@@ -7,7 +7,10 @@ package coheal.controllers.recipe;
 
 import coheal.entities.recipe.Recipe;
 import coheal.entities.recipe.RecipeCategory;
+import static coheal.services.recipe.Constants.projectPath;
 import coheal.services.recipe.RecipeCategoryService;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -21,13 +24,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import org.apache.commons.io.FileUtils;
 
 /**
  * FXML Controller class
@@ -58,6 +65,12 @@ public class CreateRecipeCategoryUIController implements Initializable {
     private Button GotoRecettesBT;
 
     boolean isSelected = false;
+    @FXML
+    private Button BoutonModifier;
+    @FXML
+    private Button BoutonSupprimer;
+    
+    File file = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -85,7 +98,20 @@ public class CreateRecipeCategoryUIController implements Initializable {
     }
 
     @FXML
-    private void Bouton_Ajouter(ActionEvent event) throws SQLException {
+    private void Bouton_Ajouter(ActionEvent event) throws SQLException, IOException {
+
+        javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
+        if (nomTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
+                    "Entrer un nom pour votre catégorie!");
+            return;
+        }
+        if (imgTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
+                    "Entrer l'URL de l'image!");
+            return;
+        }
+
         RecipeCategoryService rcs = new RecipeCategoryService();
         RecipeCategory RC = new RecipeCategory();
         RC.setName(nomTF.getText());
@@ -93,10 +119,28 @@ public class CreateRecipeCategoryUIController implements Initializable {
         rcs.Create_RecipeCategory(RC);
         table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
 
+        File dest = new File(projectPath + "src/coheal/images/recipe" + file.getName());
+        FileUtils.copyFile(file, dest);
+
+        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                "Catégorie Ajoutée avec succés!");
+
     }
 
+    Desktop desktop = Desktop.getDesktop();
+    FileChooser fileChooser = new FileChooser();
+
+    /*@FXML
+    private void Addimage(ActionEvent event) {
+        Stage stage = null;
+        file = fileChooser.showOpenDialog(stage);
+        imgTF.setText(file.getName());
+    }
+        
+    }*/
     @FXML
     private void Bouton_Modifier(ActionEvent event) {
+        javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
         if (isSelected) {
             RecipeCategory RC = new RecipeCategory();
             RecipeCategory rc = table.getSelectionModel().getSelectedItem();
@@ -104,17 +148,32 @@ public class CreateRecipeCategoryUIController implements Initializable {
             RC.setImgUrl(imgTF.getText());
             rcs.Update_RecipeCategory(RC, rc.getCatId());
             table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
+
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                    "Catégorie Modifiée avec succés!");
+
+        } else {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!", "Selectionner une catégorie!");
+            return;
         }
     }
 
     @FXML
     private void Bouton_Supprimer(ActionEvent event) {
+
+        javafx.stage.Window owner = BoutonSupprimer.getScene().getWindow();
         if (isSelected) {
             RecipeCategory rc = new RecipeCategory();
             rc = table.getSelectionModel().getSelectedItem();
             System.out.println(table.getSelectionModel().getSelectedItem());
             rcs.Delete_RecipeCategory(rc.getCatId());
             table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
+
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                    "Catégorie Supprimée avec succés!");
+        } else {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur!", "Selectionner une catégorie!");
+            return;
         }
     }
 
@@ -127,5 +186,14 @@ public class CreateRecipeCategoryUIController implements Initializable {
         stage.setScene(scene);
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+
+    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 }

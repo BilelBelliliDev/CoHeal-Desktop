@@ -13,9 +13,9 @@ import java.util.List;
  * @author Admin
  */
 public interface IServiceTaskActions {
-     public void createTaskActions(String titre,TaskActions t);
+     public void createTaskActions(int id,TaskActions t);
     public List<TaskActions> ListTaskActions();
-    public void updateTaskActions(TaskActions t);
+    public void updateTaskActions(int id,TaskActions t);
     public void deleteTaskActions(int idTA);
     public TaskActions searchTaskActions(int idTA);
     public List<TaskActions> ListTaskActionsByTaskId(int id);

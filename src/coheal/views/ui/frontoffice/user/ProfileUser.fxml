@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="AnchorPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../css/main.css" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.user.ProfileUserController">
+   <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="589.0" prefWidth="1073.0" style="-fx-background-color: #FFFEFB;">
+         <children>
+            <Pane layoutX="31.0" layoutY="29.0" prefHeight="255.0" prefWidth="1012.0" style="-fx-background-color: #DAE6ED; -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="32.0" layoutY="18.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Profile details :" textFill="#13547a" />
+               </children>
+            </Pane>
+            <Pane layoutX="32.0" layoutY="312.0" prefHeight="255.0" prefWidth="1013.0" style="-fx-background-color: #DAE6ED; -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="36.0" layoutY="17.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Edit Password :" textFill="#13547a" />
+               </children>
+            </Pane>
+            <JFXTextField fx:id="TFFirstName" focusColor="#13547a" labelFloat="true" layoutX="181.0" layoutY="126.0" opacity="0.8" prefHeight="35.0" prefWidth="264.0" promptText="First Name" unFocusColor="BLACK" />
+            <JFXTextField fx:id="TFLastName" focusColor="#13547a" labelFloat="true" layoutX="181.0" layoutY="196.0" opacity="0.8" prefHeight="35.0" prefWidth="264.0" promptText="Last Name" unFocusColor="BLACK" />
+            <JFXTextField fx:id="TFEmail" focusColor="#13547a" labelFloat="true" layoutX="565.0" layoutY="196.0" opacity="0.8" prefHeight="35.0" prefWidth="231.0" promptText="Email" unFocusColor="BLACK" />
+            <JFXDatePicker fx:id="DPDateOfBirth" layoutX="565.0" layoutY="126.0" prefHeight="35.0" prefWidth="231.0" promptText="Birth of date" />
+            <JFXPasswordField fx:id="TFPassword" focusColor="#13547a" labelFloat="true" layoutX="194.0" layoutY="477.0" opacity="0.8" prefHeight="35.0" prefWidth="264.0" promptText="Password" unFocusColor="BLACK" />
+            <JFXPasswordField fx:id="TFConfirmPassword" focusColor="#13547a" labelFloat="true" layoutX="576.0" layoutY="477.0" opacity="0.8" prefHeight="35.0" prefWidth="231.0" promptText="Confirm Password" unFocusColor="BLACK" />
+            <JFXPasswordField fx:id="TFOldPassword" focusColor="#13547a" labelFloat="true" layoutX="194.0" layoutY="402.0" opacity="0.8" prefHeight="35.0" prefWidth="263.0" promptText="Old Password" unFocusColor="BLACK" />
+            <JFXButton fx:id="BTNDeactivate" layoutX="866.0" layoutY="48.0" onAction="#DeactivateAccount" style="-fx-background-color: #bb0000; -fx-font-size: 16px; -fx-background-radius: 1em;" stylesheets="@../../../../resources/css/main.css" text="Deactivate" textFill="WHITE" />
+            <JFXButton fx:id="BTNUpdateProfile" layoutX="869.0" layoutY="202.0" onAction="#UpdateProfile" prefHeight="37.0" prefWidth="100.0" style="-fx-background-color: #13547a #13547a; -fx-background-radius: 1em; -fx-font-size: 16px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Update" textFill="#fffefb">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="BTNUpdatePassword" layoutX="872.0" layoutY="477.0" onAction="#UpdatePassword" prefHeight="37.0" prefWidth="100.0" style="-fx-background-color: #13547a; -fx-background-radius: 1em; -fx-font-size: 16px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Update" textFill="#fffefb">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+            </JFXButton>
+         </children></AnchorPane>
+   </content>
+</ScrollPane>

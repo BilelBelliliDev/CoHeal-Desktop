@@ -38,7 +38,7 @@ public class ServiceEvent implements IServiceEvent{
         try {
             Statement stm=cnx.createStatement();
             String query;
-            query ="insert into event(user_id,title,description,start_date,end_date,location,type) values("+e.getUserId()+",'"+e.getTitle()+"','"+e.getDescription()+"','"+e.getStartDate()+"','"+e.getEndDate()+"','"+e.getLocation()+"','"+e.getType()+"')";
+            query ="insert into event(user_id,title,description,start_date,end_date,location) values("+e.getUserId()+",'"+e.getTitle()+"','"+e.getDescription()+"','"+e.getStartDate()+"','"+e.getEndDate()+"','"+e.getLocation()+"')";
             stm.executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -50,7 +50,7 @@ public class ServiceEvent implements IServiceEvent{
     public ObservableList<Event> AfficherEvent() throws SQLException{
       
             Statement stm=cnx.createStatement();
-            String query="select * from `event` ";
+            String query="select * from `event` order by created_at desc";
             
             ResultSet  rst=stm.executeQuery(query);
             

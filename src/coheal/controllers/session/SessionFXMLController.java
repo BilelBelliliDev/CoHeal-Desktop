@@ -5,12 +5,17 @@
  */
 package coheal.controllers.session;
 
+import coheal.controllers.report.RateAlertUIController;
+import coheal.controllers.report.RatePopupUIController;
+import coheal.controllers.report.ReportPopupUIController;
 import coheal.entities.event.Event;
 import coheal.entities.event.EventCategory;
 import coheal.entities.session.Session;
 import coheal.services.event.ServiceEvent;
+import coheal.services.report.RateService;
 import coheal.services.session.ServiceSession;
 import coheal.services.session.ServiceSessionChat;
+import coheal.services.user.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -25,6 +30,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -40,6 +46,10 @@ import javafx.stage.Stage;
  * @author acer
  */
 public class SessionFXMLController implements Initializable {
+
+    //Report/Rate Module (Bilel Bellili)
+    private ServiceUser su = new ServiceUser();
+    private RateService sr = new RateService();
 
     @FXML
     private TextField titleId;
@@ -68,6 +78,8 @@ public class SessionFXMLController implements Initializable {
     @FXML
     private TableView<Session> tableId;
     private ServiceSession ss = new ServiceSession();
+    @FXML
+    private ComboBox<Integer> userIdBox;
 
     /**
      * Initializes the controller class.
@@ -87,17 +99,20 @@ public class SessionFXMLController implements Initializable {
                 //Check whether item is selected and set value of selected item to Label
                 if (tableId.getSelectionModel().getSelectedItem() != null) {
                     Session selectedSession = tableId.getSelectionModel().getSelectedItem();
-                    col3Id.setText(selectedSession.getTitle());
-                    col4Id.setText(selectedSession.getDescription());
-                    col5Id.setText(selectedSession.getDescription());
-
+                    titleId.setText(selectedSession.getTitle());
+                    d.setText(selectedSession.getDescription());
+                    numberofdaysId.setText(String.valueOf(selectedSession.getNumOfDays()));
                     selectedId = selectedSession.getSessionId();
                     canModify = true;
                 }
             }
-
         });
-
+        
+        //Report/Rate Module (Bilel Bellili)  
+        int num = su.AfficherPersonne().size();
+        for (int i = 0; i < num; i++) {
+            userIdBox.getItems().add(su.AfficherPersonne().get(i).getUserId());
+        }
     }
 
     @FXML
@@ -142,18 +157,15 @@ public class SessionFXMLController implements Initializable {
 
     @FXML
     private void ModifierAction(ActionEvent event) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/coheal/views/session/UpdateUIController.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-
-            stage.setScene(scene);
-            stage.show();
-            // Hide this current window (if this is what you want)
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        if (canModify) {
+            Session e = new Session();
+            e.setTitle(titleId.getText());
+            e.setDescription(d.getText());
+            e.setNumOfDays(Integer.valueOf(numberofdaysId.getText()));
+            se.modifierSession(e, selectedId);
+            tableId.setItems((ObservableList<Session>) ss.listSesion());
+        } else {
+            System.out.println("can't modify please select an item form the table");
         }
     }
 
@@ -166,6 +178,38 @@ public class SessionFXMLController implements Initializable {
         } else {
             System.out.println("can't delete please select an item form the table");
         }
+    }
+
+    @FXML
+    private void ratePopupAction(ActionEvent event) throws IOException {
+        if (sr.isRated(selectedId, userIdBox.getValue(), "Session")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RateAlertUI.fxml"));
+            Parent root = loader.load();
+            RateAlertUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Session");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/RatePopupUI.fxml"));
+            Parent root = loader.load();
+            RatePopupUIController c = loader.getController();
+            c.setData(selectedId, userIdBox.getValue(), "Session");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+    }
+
+    @FXML
+    private void reportPopupAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/report/ReportPopupUI.fxml"));
+        Parent root = loader.load();
+        ReportPopupUIController c = loader.getController();
+        c.setData(selectedId, userIdBox.getValue(), "Session");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }

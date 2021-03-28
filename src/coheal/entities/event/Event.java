@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 public class Event {
     private int eventId;
     private int userId;
+    private int catId;
     private String title ;
     private String description ;
     private Time startTime ;
@@ -41,6 +42,14 @@ public class Event {
 
     public int getUserId() {
         return userId;
+    }
+
+    public int getCatId() {
+        return catId;
+    }
+
+    public void setCatId(int catId) {
+        this.catId = catId;
     }
 
     public void setUserId(int userId) {
