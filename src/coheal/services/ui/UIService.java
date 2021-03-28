@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -29,6 +30,7 @@ import javafx.collections.ObservableList;
 public class UIService {
 
     Connection cnx;
+    private static String projectPath = System.getProperty("user.dir").replace("\\", "/");
 
     public UIService() {
         cnx = MyConnection.getInstance().getConnection();
@@ -90,6 +92,7 @@ public class UIService {
 
     public ObservableList<Task> topThreeTask() {
         ObservableList<Task> t = FXCollections.observableArrayList();
+        ImageView img = null;
         try {
 
             Statement st = cnx.createStatement();
@@ -98,8 +101,17 @@ public class UIService {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-
-                t.add(new Task(rs.getInt("task_id"), rs.getInt("cat_id"), rs.getString("title"), rs.getString("description"), rs.getInt("num_of_days"), rs.getInt("min_users"), rs.getInt("max_users")));
+                Task task = new Task();
+                task.setTaskId(rs.getInt("task_id"));
+                task.setDescription(rs.getString("description"));
+                task.setTitle(rs.getString("title"));
+                task.setNumOfDays(rs.getInt("num_of_days"));
+                task.setMinUsers(rs.getInt("min_users"));
+                task.setMaxUsers(rs.getInt("max_users"));
+                String url = "file:///" + projectPath + "/src/coheal/resources/images/tasks/" + rs.getString("img_url");
+                img = new ImageView(url);
+                task.setImg(img);
+                t.add(task);
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'affichage");
@@ -166,8 +178,8 @@ public class UIService {
     }
 
     public ObservableList<TaskCategory> topThreeCatg() {
+        ImageView img = null;
         ObservableList<TaskCategory> t = FXCollections.observableArrayList();
-        TaskCategory taskCategory = new TaskCategory();
         try {
 
             Statement st = cnx.createStatement();
@@ -177,7 +189,13 @@ public class UIService {
 
             while (rs.next()) {
 
-                t.add(new TaskCategory(rs.getInt("tc.cat_id"), rs.getString("tc.name"), rs.getString("tc.img_url")));
+                TaskCategory taskCategory = new TaskCategory();
+                taskCategory.setCatgid(rs.getInt("cat_id"));
+                taskCategory.setName(rs.getString("name"));
+                String urlc = "file:///" + projectPath + "/src/coheal/resources/images/tasks/" + rs.getString("img_url");
+                img = new ImageView(urlc);
+                taskCategory.setImg(img);
+                t.add(taskCategory);
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'affichage");

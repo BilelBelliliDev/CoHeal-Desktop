@@ -84,7 +84,7 @@
                </textFill>
             </Label>
             <FontAwesomeIconView fill="#fffefb" glyphName="LIST" layoutX="230.0" layoutY="49.0" size="30" text="" />
-            <Label layoutX="33.0" layoutY="65.0" style="-fx-text-fill: #FFFEFB; -fx-font-size: 32px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="20">
+            <Label fx:id="nbTasks" layoutX="33.0" layoutY="65.0" style="-fx-text-fill: #FFFEFB; -fx-font-size: 32px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="20">
                <font>
                   <Font name="Century Gothic Bold" size="68.0" />
                </font>

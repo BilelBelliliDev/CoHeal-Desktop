@@ -66,14 +66,14 @@ public class ListTaskByCategoryController implements Initializable {
     private void comboBoxAction(ActionEvent event) {
         cat=comboCat.getValue();
         System.out.println(cat);
-        ObservableList<Task> l = stc.ListerTasksByIdCatg(cat);
+        //ObservableList<Task> l = stc.ListerTasksByIdCatg(cat);
         titreCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descpCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         numDaysCol.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
         maxCol.setCellValueFactory(new PropertyValueFactory<>("maxUsers"));
         minUsersCol.setCellValueFactory(new PropertyValueFactory<>("minUsers"));
-        tableview.setItems(l);
-        System.out.println(l);
+//        tableview.setItems(l);
+//        System.out.println(l);
     }
 
     @FXML

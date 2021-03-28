@@ -7,6 +7,7 @@ package coheal.entities.task;
 
 import java.sql.Timestamp;
 import java.util.List;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -21,7 +22,8 @@ public class TaskCategory {
     private Timestamp deletedAt;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
-
+    private ImageView img;
+    
     public TaskCategory(int catgid,String name, String imgUrl) {
         this.name = name;
         this.imgUrl = imgUrl;
@@ -94,6 +96,15 @@ public class TaskCategory {
         this.modifiedAt = modifiedAt;
     }
 
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
+    
     @Override
     public String toString() {
         return  " name=" + name + ", imgUrl=" + imgUrl +"\n";
