@@ -99,7 +99,7 @@ public class AddTaskController implements Initializable {
             AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
                     "Veuillez remplir les champs");
             return;
-        }  else if (comboCatg.getSelectionModel().getSelectedItem().isEmpty()) {
+        } else if (comboCatg.getSelectionModel().getSelectedItem().isEmpty()) {
             AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
                     "Veuillez choisir un categorie");
             return;
@@ -112,6 +112,30 @@ public class AddTaskController implements Initializable {
                 pt.setMaxUsers(1);
                 pt.setMinUsers(1);
                 pt.setPrice(Double.valueOf(price.getText()));
+                File dest = null;
+                if (f != null) {
+                    dest = new File(projectPath + "/src/coheal/resources/images/tasks/" + f.getName());
+                }
+                try {
+                    if (dest != null) {
+                        if (FileUtils.contentEquals(f, dest)) {
+                            System.out.println("existe");
+                        } else {
+                            FileUtils.copyFile(f, dest);
+                        }
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                spt.addPaidTask(UserSession.getUser_id(), cat, pt);
+            } else {
+
+                t.setTitle(Titre.getText());
+                t.setDescription(Description.getText());
+                t.setNumOfDays(Integer.valueOf(numOfDays.getText()));
+                t.setMaxUsers(1);
+                t.setMinUsers(1);
                 File dest = new File(projectPath + "/src/coheal/resources/images/tasks/" + f.getName());
                 try {
                     FileUtils.copyFile(f, dest);
@@ -119,23 +143,8 @@ public class AddTaskController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                spt.addPaidTask(UserSession.getUser_id(), cat, pt);
-            }else{
-
-            t.setTitle(Titre.getText());
-            t.setDescription(Description.getText());
-            t.setNumOfDays(Integer.valueOf(numOfDays.getText()));
-            t.setMaxUsers(1);
-            t.setMinUsers(1);
-            File dest = new File(projectPath + "/src/coheal/resources/images/tasks/" + f.getName());
-            try {
-                FileUtils.copyFile(f, dest);
-
-            } catch (IOException e) {
-                e.printStackTrace();
+                st.createTask(UserSession.getUser_id(), cat, t);
             }
-            st.createTask(UserSession.getUser_id(), cat, t);
-        }
         }
     }
 
