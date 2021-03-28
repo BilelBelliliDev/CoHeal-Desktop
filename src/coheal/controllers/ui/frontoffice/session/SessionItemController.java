@@ -41,7 +41,6 @@ public class SessionItemController implements Initializable {
         sessionTitle.setText(s.getTitle());
         sessionDesc.setText(s.getDescription());
         try {
-            System.out.println(us.therpSession(s.getTherpId()));
             therpName.setText(us.therpSession(s.getTherpId()));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

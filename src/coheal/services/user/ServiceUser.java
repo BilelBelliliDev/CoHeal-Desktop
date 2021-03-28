@@ -47,9 +47,7 @@ public class ServiceUser implements IServiceUser{
             // Step 2:Create a statement using connection object
             PreparedStatement pS = cnx.prepareStatement(query);
             pS.setString(1, email);
-            pS.setString(2, password);
-            System.out.println(pS);
-            
+            pS.setString(2, password);            
             ResultSet resultSet = pS.executeQuery();
             
             if (resultSet.next()) {
@@ -60,8 +58,6 @@ public class ServiceUser implements IServiceUser{
                 String FIRSTNAME =resultSet.getString("first_name");
                 String LASTNAME =resultSet.getString("last_name");
                 Date DATEOFBIRTH =resultSet.getDate("date_of_birth");
-                
-                System.out.println(ID+EMAIL+PASSWORD+FIRSTNAME+LASTNAME+DATEOFBIRTH);
                 //user session created with user id when logging in
                 //
                 String req="select r.role_name from role r,user_role ur where ur.role_id=r.role_id and ur.user_id="+ID+"";

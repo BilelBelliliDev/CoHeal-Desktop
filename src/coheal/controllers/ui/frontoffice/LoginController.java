@@ -132,23 +132,17 @@ public class LoginController implements Initializable {
 
     @FXML
     private void signInAction(ActionEvent event) throws IOException {
-
-        System.out.println(emailSI);
         //login code    
         Window owner = BTNSignIn.getScene().getWindow();
         //test empty fields
         if (emailSI) {
-            System.out.println("test");
             String email = TFEmailSIN.getText();
             String password = TFPasswordSIN.getText();
             ServiceUser su = new ServiceUser();
             boolean flag = su.Validate_Login(email, password);
-            System.out.println(flag);
             if (!flag) {
-                System.out.println("faild");
                 infoBox("Please enter correct Email and Password or maybe your your account is deleted", null, "Failed");
             } else {
-                System.out.println("success");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
@@ -366,7 +360,6 @@ public class LoginController implements Initializable {
         TFFirstNameSUP.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
-                System.out.println(oldPropertyValue + " " + newPropertyValue);
                 if (!newPropertyValue) {
                     TFFirstNameSUP.validate();
                     if (TFFirstNameSUP.validate()) {
@@ -393,7 +386,6 @@ public class LoginController implements Initializable {
         TFLastNameSUP.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
-                System.out.println(oldPropertyValue + " " + newPropertyValue);
                 if (!newPropertyValue) {
                     TFLastNameSUP.validate();
                     if (TFLastNameSUP.validate()) {

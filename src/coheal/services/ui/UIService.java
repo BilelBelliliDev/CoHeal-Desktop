@@ -114,12 +114,13 @@ public class UIService {
                 t.add(task);
             }
         } catch (SQLException ex) {
-            System.out.println("erreur lors de l'affichage");
+            System.out.println(ex.getMessage());
         }
         return t;
     }
 
     public ObservableList<Recipe> topThreeRecipe() {
+        ImageView img = null;
         ObservableList<Recipe> ListR = FXCollections.observableArrayList();
         try {
 
@@ -136,6 +137,9 @@ public class UIService {
                // r.setCat(rs.getInt("rc.cat_id"));
                 r.setTitle(rs.getString("r.title"));
                 r.setDescription(rs.getString("r.description"));
+                String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
+                img = new ImageView(url);
+                r.setImg(img);
                 ListR.add(r);
             }
         } catch (SQLException ex) {
@@ -199,7 +203,7 @@ public class UIService {
                 t.add(taskCategory);
             }
         } catch (SQLException ex) {
-            System.out.println("erreur lors de l'affichage");
+            System.out.println(ex.getMessage());
         }
         return t;
     }
@@ -223,7 +227,7 @@ public class UIService {
                 data.add(bc);
             }
         } catch (SQLException ex) {
-            System.out.println("erreur lors de l'affichage");
+            System.out.println(ex.getMessage());
         }
         return data;
     }
@@ -238,9 +242,7 @@ public class UIService {
             while (rs.next()) {
                 id = rs.getInt("cat_id");
             }
-
             String query = "select * from book where is_deleted=0 and cat_id=" + id + ";";
-            System.out.println(query);
             ResultSet rst = st.executeQuery(query);
             while (rst.next()) {
                 Book b = new Book();
@@ -252,7 +254,6 @@ public class UIService {
                 b.setCatId(rst.getInt("cat_id"));
                 l.add(b);
             }
-            System.out.println(l);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -271,7 +272,6 @@ public class UIService {
                 id = rs.getInt("cat_id");
             }
             String query = "select * from event where is_deleted=0 and cat_id=" + id + ";";
-            System.out.println(query);
             ResultSet rst = st.executeQuery(query);
             while (rst.next()) {
                 Event e = new Event() ;
@@ -285,7 +285,6 @@ public class UIService {
                 e.setCatId(rst.getInt("cat_id"));
                 l.add(e);
             }
-            System.out.println(l);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -335,7 +334,7 @@ public class UIService {
                 data.add(bc);
             }
         } catch (SQLException ex) {
-            System.out.println("topThreeRecCatg :"+ex.getMessage());
+            System.out.println(ex.getMessage());
         }
         return data;
     }
@@ -351,7 +350,6 @@ public class UIService {
                 id = rs.getInt("cat_id");
             }
             String query = "select * from recipe where is_deleted=0 and cat_id=" + id + ";";
-            System.out.println(query);
             Statement st2 = cnx.createStatement();
             ResultSet rst = st2.executeQuery(query);
             while (rst.next()) {
@@ -363,11 +361,9 @@ public class UIService {
                 r.setDescription(rst.getString("description"));
                 l.add(r);
             }
-            System.out.println(l);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return l;
-
     }
 }

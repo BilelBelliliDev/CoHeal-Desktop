@@ -9,6 +9,8 @@ import coheal.services.user.UserSession;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -76,12 +78,11 @@ public class HomePageHolderController implements Initializable {
         userName.setText(UserSession.getFirst_name() + " " + UserSession.getLast_name());
         userName1.setText(UserSession.getFirst_name() + " " + UserSession.getLast_name());
         userEmail.setText(UserSession.getEmail());
-        System.out.println(UserSession.getRole());
 
         try {
             pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/HomePage.fxml")));
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            Logger.getLogger(HomePageHolderController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

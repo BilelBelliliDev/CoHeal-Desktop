@@ -16,7 +16,6 @@ import coheal.entities.event.Event;
 import coheal.entities.recipe.Recipe;
 import coheal.entities.session.Session;
 import coheal.entities.task.Task;
-import coheal.services.task.ServiceTask;
 import coheal.services.ui.UIService;
 import java.io.IOException;
 import java.net.URL;
@@ -24,8 +23,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,12 +62,12 @@ public class HomePageController implements Initializable {
         try {
             sessionHBox();
         } catch (SQLException ex) {
-            Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
         try {
             eventHBox();
         } catch (SQLException ex) {
-            Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
         recipeHBox();
     }
@@ -155,7 +152,6 @@ public class HomePageController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/session/SessionItem.fxml"));
             try {
-                System.out.println(sessions.get(i));
                 AnchorPane pane=loader.load();
                 SessionItemController c=loader.getController();
                 c.setData(sessions.get(i));
