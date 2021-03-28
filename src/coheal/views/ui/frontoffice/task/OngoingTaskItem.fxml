@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMouseClicked="#showTaskDetails" prefHeight="70.0" prefWidth="293.0" style="-fx-background-color: #5EA9BE; -fx-background-radius: 1em; -fx-cursor: hand;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.task.OngoingTaskItemController">
+   <children>
+      <Label fx:id="TaskTitle" layoutX="15.0" layoutY="1.0" prefHeight="34.0" prefWidth="273.0" style="-fx-font-size: 16px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Yoga Class" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="taskDescription" layoutX="16.0" layoutY="28.0" prefHeight="34.0" prefWidth="273.0" style="-fx-font-size: 12px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Description Description Description" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

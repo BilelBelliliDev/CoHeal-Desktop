@@ -6,11 +6,14 @@
 package coheal.controllers.ui.backoffice;
 
 import animatefx.animation.ZoomIn;
+import coheal.services.task.ServicePaidTask;
+import coheal.services.task.ServiceTask;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -26,6 +29,10 @@ public class DashboardPageController implements Initializable {
     private FontAwesomeIconView close;
     @FXML
     private AnchorPane dashboardPane;
+    @FXML
+    private Label nbTasks;
+    ServicePaidTask spt = new ServicePaidTask();
+    ServiceTask st = new ServiceTask();
 
     /**
      * Initializes the controller class.
@@ -33,6 +40,7 @@ public class DashboardPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         new ZoomIn(dashboardPane).play();
+        nbTasks.setText(String.valueOf(spt.getCountPaidTask()+st.getCountTask()));
     }    
 
     @FXML

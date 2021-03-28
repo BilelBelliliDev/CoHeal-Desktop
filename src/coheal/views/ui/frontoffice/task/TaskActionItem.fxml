@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="243.0" prefWidth="474.0" style="-fx-background-color: #F5F5F5;" styleClass="item" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.task.TaskActionItemController">
+   <children>
+      <Label fx:id="taskActionName" alignment="CENTER" layoutX="14.0" layoutY="27.0" prefHeight="34.0" prefWidth="220.0" text="Action Name">
+         <font>
+            <Font name="Century Gothic Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="taskActionDescription" layoutX="21.0" layoutY="68.0" prefHeight="151.0" prefWidth="432.0" text="Let go of late-night worries Let go of late-night worries" textFill="#6d7072" wrapText="true">
+         <font>
+            <Font name="Century Gothic Bold" size="16.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fx:id="updateIcon" fill="#053c80" glyphName="EDIT" layoutX="358.0" layoutY="50.0" onMouseClicked="#updateTaskAction" size="30" visible="false" wrappingWidth="31.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </FontAwesomeIconView>
+      <FontAwesomeIconView fx:id="deleteIcon" fill="#797777" glyphName="TRASH" layoutX="415.0" layoutY="48.0" onMouseClicked="#deleteTaskAction" size="30" visible="false" wrappingWidth="31.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </FontAwesomeIconView>
+   </children>
+</AnchorPane>
