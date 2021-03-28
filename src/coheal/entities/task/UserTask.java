@@ -6,14 +6,19 @@
 package coheal.entities.task;
 
 import coheal.entities.user.User;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
  * @author Admin
  */
 public class UserTask {
-     private User user;
+
+    private User user;
     private Task task;
+    private Date createdAt;
+    private int nbr;
 
     public UserTask() {
     }
@@ -33,6 +38,22 @@ public class UserTask {
     public void setTask(Task task) {
         this.task = task;
     }
-    
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public int getNbr() {
+        return nbr;
+    }
+
+    public void setNbr(int nbr) {
+        this.nbr = nbr;
+    }
+
     
 }

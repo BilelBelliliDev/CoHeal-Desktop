@@ -77,7 +77,7 @@ public class TaskActionsController implements Initializable {
     private void addActions(ActionEvent event) {
         ta.setTitle(txtTitre.getText());
         ta.setDescription(txtDescrp.getText());
-        sta.createTaskActions(task,ta);
+        //sta.createTaskActions(task,ta);
         // data.getItems().clear();
        // init();
         

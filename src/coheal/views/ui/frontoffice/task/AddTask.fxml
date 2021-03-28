@@ -17,7 +17,7 @@
    <children>
       <Pane blendMode="SRC_ATOP" layoutX="14.0" layoutY="10.0" prefHeight="717.0" prefWidth="421.0" style="-fx-background-color: white; -fx-background-radius: 1em;">
          <children>
-            <Pane layoutX="226.0" layoutY="572.0" prefHeight="65.0" prefWidth="85.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 1em;">
+            <Pane layoutX="226.0" layoutY="572.0" onMouseClicked="#addImage" prefHeight="65.0" prefWidth="85.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 1em;">
                <children>
                   <Label layoutX="22.0" layoutY="39.0" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="upload" textFill="#13547a" />
                   <FontAwesomeIconView fill="#303c5d" glyphName="UPLOAD" layoutX="34.0" layoutY="31.0" size="20" text="" wrappingWidth="12.142857551574707" />
@@ -28,50 +28,43 @@
                   <Font name="Century Gothic Bold" size="27.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="Titre" cacheShape="false" centerShape="false" layoutX="66.0" layoutY="94.0" prefHeight="50.0" prefWidth="292.0" promptText="Title" scaleShape="false" unFocusColor="#0b89db">
+            <JFXTextField fx:id="Titre" cacheShape="false" centerShape="false" layoutX="66.0" layoutY="102.0" prefHeight="50.0" prefWidth="292.0" promptText="Title" scaleShape="false" unFocusColor="#0b89db">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="numOfDays" layoutX="65.0" layoutY="162.0" prefHeight="39.0" prefWidth="292.0" promptText="Nombre de jours" text="Number of days" unFocusColor="#0b89db">
+            <JFXTextField fx:id="numOfDays" layoutX="65.0" layoutY="185.0" prefHeight="39.0" prefWidth="292.0" promptText="Nombre de jours" unFocusColor="#0b89db">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font></JFXTextField>
-            <JFXTextArea fx:id="Desceiption" layoutX="66.0" layoutY="455.0" prefHeight="90.0" prefWidth="292.0" promptText="Description" unFocusColor="#0b89db" wrapText="true">
+            <JFXTextArea fx:id="Description" layoutX="66.0" layoutY="404.0" prefHeight="112.0" prefWidth="292.0" promptText="Description" unFocusColor="#0b89db" wrapText="true">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font></JFXTextArea>
-            <JFXTextField fx:id="minUsers" layoutX="65.0" layoutY="217.0" prefHeight="39.0" prefWidth="292.0" promptText="min users" unFocusColor="#0b89db">
-               <font>
-                  <Font name="Century Gothic Bold" size="14.0" />
-               </font></JFXTextField>
-            <JFXTextField fx:id="maxUsers" layoutX="65.0" layoutY="279.0" prefHeight="39.0" prefWidth="292.0" promptText="max users" unFocusColor="#0b89db">
-               <font>
-                  <Font name="Century Gothic Bold" size="14.0" />
-               </font></JFXTextField>
             <ImageView fitHeight="65.0" fitWidth="85.0" layoutX="112.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXRadioButton layoutX="66.0" layoutY="413.0" selected="true" stylesheets="@../../../../resources/css/main.css" text="FREE">
+            <JFXRadioButton fx:id="free" layoutX="66.0" layoutY="349.0" selected="true" stylesheets="@../../../../resources/css/main.css" text="FREE">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
                <toggleGroup>
                   <ToggleGroup fx:id="type" />
                </toggleGroup></JFXRadioButton>
-            <JFXRadioButton layoutX="160.0" layoutY="413.0" stylesheets="@../../../../resources/css/main.css" text="PAID" toggleGroup="$type">
+            <JFXRadioButton fx:id="paid" layoutX="160.0" layoutY="349.0" onAction="#paidAction" stylesheets="@../../../../resources/css/main.css" text="PAID" toggleGroup="$type">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font></JFXRadioButton>
-            <JFXComboBox fx:id="comboCatg" layoutX="65.0" layoutY="341.0" onAction="#listCategoryCombo" prefHeight="35.0" prefWidth="292.0" promptText="select cateory" stylesheets="@../../../../resources/css/main.css" unFocusColor="#0b89db" />
+            <JFXComboBox fx:id="comboCatg" layoutX="65.0" layoutY="262.0" onAction="#listCategoryCombo" prefHeight="35.0" prefWidth="292.0" promptText="select cateory" stylesheets="@../../../../resources/css/main.css" unFocusColor="#0b89db" />
             <JFXButton layoutX="157.0" layoutY="668.0" onAction="#addTaskAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="ADD" textFill="#fffefb">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </JFXButton>
             <FontAwesomeIconView fill="#13547a" glyphName="TIMES" layoutX="388.0" layoutY="29.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" />
-            <JFXTextField disable="true" layoutX="242.0" layoutY="403.0" prefHeight="35.0" prefWidth="111.0" promptText="price" unFocusColor="#0b89db">
+            <JFXTextField fx:id="price" disable="true" layoutX="242.0" layoutY="339.0" prefHeight="35.0" prefWidth="111.0" promptText="price" unFocusColor="#0b89db">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
             </JFXTextField>
+            <Label fx:id="imageTxt" layoutX="70.0" layoutY="581.0" prefHeight="24.0" prefWidth="130.0" wrapText="true" />
          </children>
       </Pane>
    </children>

@@ -17,6 +17,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,24 +33,13 @@ public class ServiceTaskActions implements IServiceTaskActions {
     }
 
     @Override
-    public void createTaskActions(String titre, TaskActions t) {
+    public void createTaskActions(int id, TaskActions t) {
         try {
             Statement st = con.createStatement();
             Calendar calendar = Calendar.getInstance();
             Timestamp d = new Timestamp(calendar.getTime().getTime());
-
-            Task task = new Task();
-            String selecttaskId = "select * from task where title='" + titre + "';";
-            ResultSet rs = st.executeQuery(selecttaskId);
-            while (rs.next()) {
-
-                task.setTaskId(rs.getInt("task_id"));
-
-                System.out.println(task.getTaskId());
-            }
             String query = "INSERT INTO task_actions( task_id, title, description) "
-                    + "VALUES ('" + task.getTaskId() + "','" + t.getTitle() + "','" + t.getDescription() + "');";
-            System.out.println(query);
+                    + "VALUES ('" + id + "','" + t.getTitle() + "','" + t.getDescription() + "');";
             st.executeUpdate(query);
             System.out.println("Task actions ajouter ");
         } catch (SQLException ex) {
@@ -59,7 +50,7 @@ public class ServiceTaskActions implements IServiceTaskActions {
     @Override
     public List<TaskActions> ListTaskActions() {
         ArrayList<TaskActions> t = new ArrayList();
-        TaskActions taskAction = new TaskActions();
+
         try {
 
             Statement st = con.createStatement();
@@ -67,12 +58,13 @@ public class ServiceTaskActions implements IServiceTaskActions {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-//                taskAction.setActionId(rs.getInt("action_id"));
-//                taskAction.setTitle(rs.getString("title"));
-//                //taskAction.setTask(rs.getInt("task_id"));
-//                taskAction.setTitle(rs.getString("description"));
+                TaskActions taskAction = new TaskActions();
+                taskAction.setActionId(rs.getInt("action_id"));
+                taskAction.setTitle(rs.getString("title"));
+                //taskAction.setTask(rs.getInt("task_id"));
+                taskAction.setTitle(rs.getString("description"));
 
-                t.add(new TaskActions(rs.getInt("action_id"), rs.getString("title"), rs.getString("description")));
+                t.add(taskAction);
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'affichage");
@@ -81,10 +73,10 @@ public class ServiceTaskActions implements IServiceTaskActions {
     }
 
     @Override
-    public void updateTaskActions(TaskActions t) {
+    public void updateTaskActions(int id,TaskActions t) {
         try {
 
-            String query = "UPDATE  task_actions set title=" + t.getTitle() + "',' description=" + t.getDescription() + ";";
+            String query = "UPDATE  task_actions set title='" + t.getTitle() + "', description='" + t.getDescription() + "' where action_id="+id+";";
             Statement st = con.createStatement();
             st.executeUpdate(query);
             System.out.println("modification avec succes");
@@ -112,22 +104,40 @@ public class ServiceTaskActions implements IServiceTaskActions {
 
     @Override
     public TaskActions searchTaskActions(int idTA) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       TaskActions ta = null;
+        String query = "SELECT action_id, task_id, title, description FROM task_actions where action_id="+idTA;
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                TaskActions taskAction = new TaskActions();
+                taskAction.setActionId(rs.getInt("action_id"));
+                taskAction.setTitle(rs.getString("title"));
+                taskAction.setDescription(rs.getString("description"));
+                ta=taskAction;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       return ta;
     }
 
     @Override
     public List<TaskActions> ListTaskActionsByTaskId(int id) {
         ArrayList<TaskActions> t = new ArrayList();
-        TaskActions taskAction = new TaskActions();
         try {
 
             Statement st = con.createStatement();
-            String query = "SELECT action_id, task_id, title, description FROM task_actions where task_id="+id;
+            String query = "SELECT action_id, task_id, title, description FROM task_actions where task_id=" + id;
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
+                TaskActions taskAction = new TaskActions();
+                taskAction.setActionId(rs.getInt("action_id"));
+                taskAction.setTitle(rs.getString("title"));
+                taskAction.setDescription(rs.getString("description"));
 
-                t.add(new TaskActions(rs.getInt("action_id"), rs.getString("title"), rs.getString("description")));
+                t.add(taskAction);
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'affichage");

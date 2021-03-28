@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,12 +25,12 @@
                   <Font name="Century Gothic Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="938.0" layoutY="42.0" style="-fx-font-size: 20px; -fx-cursor: hand;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View All" textFill="#13547a">
+            <Label layoutX="938.0" layoutY="42.0" onMouseClicked="#allCategories" style="-fx-font-size: 20px; -fx-cursor: hand;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View All" textFill="#13547a">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>
             </Label>
-            <GridPane fx:id="taskGrid" alignment="CENTER" hgap="80.0" layoutX="31.0" layoutY="489.0" prefHeight="1288.0" prefWidth="999.0" vgap="60.0">
+            <GridPane fx:id="taskGrid" alignment="CENTER" hgap="80.0" layoutX="31.0" layoutY="532.0" prefHeight="1288.0" prefWidth="999.0" vgap="30.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -47,6 +48,7 @@
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </JFXButton>
+            <JFXComboBox fx:id="comboBox" layoutX="72.0" layoutY="469.0" onAction="#comboBoxAction" prefHeight="0.0" prefWidth="145.0" promptText="Select" />
          </children>
       </AnchorPane>
    </content>
