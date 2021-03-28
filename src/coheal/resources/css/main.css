@@ -43,6 +43,13 @@ and open the template in the editor.
     -fx-background-color:  linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);
     -fx-background-radius: 5em;   
 }
+.scroll-bar:horizontal{
+    -fx-background-color: #FFFEFB;
+}
+.scroll-bar:horizontal .thumb {
+    -fx-background-color:  linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);
+    -fx-background-radius: 5em;   
+}
 .item:hover{
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3),10,0,0,0);
     -fx-background-color:  linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);
