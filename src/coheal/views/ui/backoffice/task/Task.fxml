@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -24,7 +25,7 @@
             <TableColumn fx:id="priceCol" minWidth="0.0" prefWidth="101.0" text="price" />
          </columns>
       </TableView>
-      <JFXButton layoutX="860.0" layoutY="284.0" onAction="#addCategoryAction" prefHeight="35.0" prefWidth="163.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Add Category" textFill="#fffefb">
+      <JFXButton layoutX="802.0" layoutY="284.0" onAction="#addCategoryAction" prefHeight="35.0" prefWidth="163.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Categories" textFill="#fffefb">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
@@ -38,5 +39,10 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
+      <FontAwesomeIconView fill="#797777" glyphName="TRASH" layoutX="1004.0" layoutY="312.0" onMouseClicked="#deleteTaskAction" size="30" wrappingWidth="31.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </FontAwesomeIconView>
    </children>
 </AnchorPane>

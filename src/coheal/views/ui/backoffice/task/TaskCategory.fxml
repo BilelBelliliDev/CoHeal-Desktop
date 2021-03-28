@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -19,40 +20,41 @@
                   <Font name="Century Gothic Bold" size="27.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="name" cacheShape="false" centerShape="false" layoutX="33.0" layoutY="109.0" prefHeight="50.0" prefWidth="224.0" promptText="Name" scaleShape="false" unFocusColor="#0b89db">
+            <JFXTextField fx:id="name" cacheShape="false" centerShape="false" labelFloat="true" layoutX="37.0" layoutY="103.0" prefHeight="50.0" prefWidth="224.0" promptText="Name" scaleShape="false" unFocusColor="#0b89db">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="351.0" layoutY="176.0" onAction="#addCategoryAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="ADD" textFill="#fffefb">
+            <JFXButton fx:id="addButton" layoutX="289.0" layoutY="237.0" onAction="#addCategoryAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="ADD" textFill="#fffefb">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </JFXButton>
             <FontAwesomeIconView fill="#13547a" glyphName="TIMES" layoutX="498.0" layoutY="34.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" />
-            <TableView fx:id="categoryTable" layoutX="25.0" layoutY="281.0" prefHeight="168.0" prefWidth="200.0">
+            <TableView fx:id="categoryTable" layoutX="25.0" layoutY="281.0" prefHeight="168.0" prefWidth="486.0">
               <columns>
-                <TableColumn fx:id="nameCol" prefWidth="194.0" text="Name" />
+                <TableColumn fx:id="nameCol" prefWidth="338.0" text="Name" />
+                  <TableColumn fx:id="imgCol" prefWidth="134.0" text="Image" />
               </columns>
             </TableView>
-            <JFXButton layoutX="351.0" layoutY="225.0" onAction="#updateCategoryAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="UPDATE" textFill="#fffefb">
-               <font>
-                  <Font name="Century Gothic Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="351.0" layoutY="282.0" onAction="#deleteCategoryAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="DELETE" textFill="#fffefb">
-               <font>
-                  <Font name="Century Gothic Bold" size="18.0" />
-               </font>
-            </JFXButton>
+            <FontAwesomeIconView fx:id="deleteButton" fill="#797777" glyphName="TRASH" layoutX="477.0" layoutY="265.0" onMouseClicked="#deleteCategoryAction" size="30" wrappingWidth="31.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontAwesomeIconView>
+            <FontAwesomeIconView fx:id="updateButton" fill="#053c80" glyphName="EDIT" layoutX="420.0" layoutY="266.0" onMouseClicked="#updateCategoryAction" size="30" text="" wrappingWidth="31.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontAwesomeIconView>
+            <Pane layoutX="321.0" layoutY="115.0" onMouseClicked="#addImage" prefHeight="65.0" prefWidth="85.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="22.0" layoutY="39.0" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="upload" textFill="#13547a" />
+                  <FontAwesomeIconView fill="#303c5d" glyphName="UPLOAD" layoutX="34.0" layoutY="31.0" size="20" text="" wrappingWidth="12.142857551574707" />
+               </children>
+            </Pane>
+            <Label fx:id="imageTxt" layoutX="428.0" layoutY="112.0" prefHeight="74.0" prefWidth="85.0" wrapText="true" />
          </children>
       </Pane>
-      <Pane layoutX="190.0" layoutY="198.0" onMouseClicked="#addImage" prefHeight="65.0" prefWidth="85.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 1em;">
-         <children>
-            <Label layoutX="22.0" layoutY="39.0" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="upload" textFill="#13547a" />
-            <FontAwesomeIconView fill="#303c5d" glyphName="UPLOAD" layoutX="34.0" layoutY="31.0" size="20" text="" wrappingWidth="12.142857551574707" />
-         </children>
-      </Pane>
-      <Label fx:id="imageTxt" layoutX="34.0" layoutY="216.0" prefHeight="24.0" prefWidth="130.0" wrapText="true" />
    </children>
 </AnchorPane>
