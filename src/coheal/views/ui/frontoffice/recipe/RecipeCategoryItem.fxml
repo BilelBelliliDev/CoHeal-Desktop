@@ -16,7 +16,7 @@
       </ImageView>
       <Pane layoutX="-8.0" layoutY="152.0" opacity="0.8" prefHeight="93.0" prefWidth="310.0" style="-fx-background-color: white;" styleClass="button" stylesheets="@../../../../resources/css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label fx:id="recipeCatgTitle" alignment="CENTER" layoutX="7.0" layoutY="15.0" prefHeight="36.0" prefWidth="292.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Personal Growth" textAlignment="CENTER">
+            <Label fx:id="recipeCatgTitle" alignment="CENTER" layoutX="7.0" layoutY="15.0" onMouseClicked="#showRecipes" prefHeight="36.0" prefWidth="292.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Personal Growth" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>

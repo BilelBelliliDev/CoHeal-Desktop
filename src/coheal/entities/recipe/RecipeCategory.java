@@ -1,10 +1,14 @@
 package coheal.entities.recipe;
+
 import java.sql.Timestamp;
+import javafx.scene.image.ImageView;
 
 public class RecipeCategory {
+
     private int catId;
     private String name;
     private String imgUrl;
+    private ImageView img;
     private boolean isDeleted;
     private Timestamp deletedAt;
     private Timestamp created_At;
@@ -12,6 +16,14 @@ public class RecipeCategory {
 
     public int getCatId() {
         return catId;
+    }
+
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
     }
 
     public String getName() {
@@ -68,8 +80,8 @@ public class RecipeCategory {
 
     @Override
     public String toString() {
-        return "RecipeCategory{" + "catId=" + catId + ", name=" + name + ", imgUrl=" + imgUrl + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", created_At=" + created_At + ", modified_at=" + modified_at + '}';
+        return "RecipeCategory{" + "catId=" + catId + ", name=" + name + ", imgUrl=" + imgUrl + ", img=" + img + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", created_At=" + created_At + ", modified_at=" + modified_at + '}';
     }
-    
+
     
 }

@@ -118,9 +118,10 @@ public class UIService {
 
             while (rs.next()) {
                 Recipe r = new Recipe();
+                RecipeCategory rc = new RecipeCategory();
                 r.setRecipeId(rs.getInt("r.recipe_id"));
                 r.setUserId(rs.getInt("r.user_id"));
-                r.setCatId(rs.getInt("r.cat_id"));
+               // r.setCat(rs.getInt("rc.cat_id"));
                 r.setTitle(rs.getString("r.title"));
                 r.setDescription(rs.getString("r.description"));
                 ListR.add(r);
@@ -339,7 +340,7 @@ public class UIService {
                 Recipe r = new Recipe();
                 r.setRecipeId(rst.getInt("recipe_id"));
                 r.setUserId(rst.getInt("user_id"));
-                r.setCatId(rst.getInt("cat_id"));
+               // r.setCat(rst.getInt("cat_id"));
                 r.setTitle(rst.getString("title"));
                 r.setDescription(rst.getString("description"));
                 l.add(r);

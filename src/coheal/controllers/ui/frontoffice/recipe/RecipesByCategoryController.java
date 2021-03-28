@@ -8,15 +8,18 @@ package coheal.controllers.ui.frontoffice.recipe;
 import animatefx.animation.ZoomIn;
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
 import coheal.entities.recipe.Recipe;
-import coheal.entities.recipe.RecipeCategory;
+import coheal.services.recipe.RecipeCategoryService;
 import coheal.services.recipe.RecipeService;
-import coheal.services.ui.UIService;
 import coheal.services.user.UserSession;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +30,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -35,21 +38,19 @@ import javafx.stage.StageStyle;
 /**
  * FXML Controller class
  *
- * @author Admin
+ * @author HP
  */
-public class RecipePageController implements Initializable {
+public class RecipesByCategoryController implements Initializable {
 
     @FXML
-    private HBox categoriesHBox;
-    private RecipeService st = new RecipeService();
-    private UIService stc = new UIService();
+    private ScrollPane RecipePane;
     @FXML
-    private ScrollPane recipePane;
-    @FXML
-    private GridPane recipeGrid;
-    double xOffset, yOffset;
+    private GridPane RecipesGrid;
     @FXML
     private JFXButton addBtn;
+    double xOffset, yOffset;
+    private RecipeService rs = new RecipeService();
+    private RecipeCategoryService rcs = new RecipeCategoryService();
 
     /**
      * Initializes the controller class.
@@ -59,49 +60,41 @@ public class RecipePageController implements Initializable {
         if (UserSession.getRole().equals("nutritionist")) {
             addBtn.setVisible(true);
         }
-
-        new ZoomIn(recipePane).play();
-        List<RecipeCategory> catRecipes = stc.topThreeRecCatg();
-        for (int i = 0; i < catRecipes.size(); i++) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeCategoryItem.fxml"));
-            try {
-                AnchorPane pane = loader.load();
-                RecipeCategoryItemController c = loader.getController();
-                c.setData(catRecipes.get(i));
-                categoriesHBox.getChildren().add(pane);
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-        
+        new ZoomIn(RecipePane).play();
         int y = 0;
         int x = 0;
-        List<Recipe> recipes;
-        recipes = st.Afficher_Recipe();
+        RecipeCategoryHolder holder = RecipeCategoryHolder.getINSTANCE();
+        List<Recipe> recipes = rcs.AfficherRecipesByIdCatg(holder.getName());
         for (int i = 0; i < recipes.size(); i++) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeItem.fxml"));
             try {
-                AnchorPane pane = loader.load();
+                Pane pane = loader.load();
                 RecipeItemController c = loader.getController();
                 c.setData((Recipe) recipes.get(i));
                 if (x > 2) {
                     y++;
                     x = 0;
                 }
-                recipeGrid.add(pane, x, y);
+                RecipesGrid.add(pane, x, y);
                 x++;
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
-        }
+            }
     }
 
     @FXML
-    private void addRecipeAction(ActionEvent event) throws IOException {
+    private void addRecipeAction(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/recipe/AddRecipe.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
+        try {
+            root = loader.load();
+
+        } catch (IOException ex) {
+            Logger.getLogger(RecipesByCategoryController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -125,10 +118,11 @@ public class RecipePageController implements Initializable {
     }
 
     @FXML
-    private void allCategories(MouseEvent event) throws IOException {
-        AnchorPane pageHolder = (AnchorPane) addBtn.getParent().getParent().getParent().getParent().getParent();
+    private void backAction(MouseEvent event) throws IOException {
+        AnchorPane pageHolder = (AnchorPane) RecipePane.getParent();
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/recipe/AllCategories.fxml")));
 
     }
+
 }

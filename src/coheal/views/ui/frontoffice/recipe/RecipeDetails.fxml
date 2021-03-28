@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="RecipesPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.RecipeDetailsController">
+   <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="749.0" prefWidth="1085.0" style="-fx-background-color: #FFFEFB;">
+         <children>
+            <Pane layoutX="83.0" layoutY="100.0" prefHeight="629.0" prefWidth="908.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item">
+               <children>
+                  <VBox layoutX="345.0" layoutY="99.0" prefHeight="77.0" prefWidth="402.0">
+                     <children>
+                        <Label fx:id="DescLabel" prefHeight="77.0" prefWidth="402.0" textFill="#4693bf" wrapText="true">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Pane layoutX="407.0" layoutY="194.0" prefHeight="77.0" prefWidth="86.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label fx:id="CaloriesLabel" layoutX="30.0" layoutY="8.0" prefHeight="34.0" prefWidth="36.0" style="-fx-font-size: 20;">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="41.0" prefHeight="29.0" prefWidth="61.0" style="-fx-font-size: 12;" text="Calories" textAlignment="CENTER" textFill="#949292" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="524.0" layoutY="196.0" prefHeight="77.0" prefWidth="86.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label fx:id="DurationLabel" layoutX="30.0" prefHeight="49.0" prefWidth="28.0" style="-fx-font-size: 20;">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="9.0" layoutY="29.0" prefHeight="53.0" prefWidth="69.0" style="-fx-font-size: 12;" text="Duration" textAlignment="CENTER" textFill="#949292" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="636.0" layoutY="198.0" prefHeight="77.0" prefWidth="86.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label fx:id="PersonsLabel" layoutX="38.0" layoutY="8.0" style="-fx-font-size: 20;">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="7.0" layoutY="29.0" prefHeight="53.0" prefWidth="71.0" style="-fx-font-size: 12;" text="Persons" textAlignment="CENTER" textFill="#949292" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <ImageView fx:id="ImageView" fitHeight="188.0" fitWidth="279.0" layoutX="33.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../resources/images/tasks/sleep_large.jpg" />
+                     </image>
+                     <effect>
+                        <DropShadow color="#0000004d" />
+                     </effect>
+                  </ImageView>
+                  <Label fx:id="TitleLabel" alignment="CENTER" layoutX="307.0" layoutY="50.0" prefHeight="36.0" prefWidth="285.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" textFill="#13547a">
+                     <font>
+                        <Font name="Century Gothic Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="29.0" layoutY="309.0" prefHeight="36.0" prefWidth="190.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Ingredients" textFill="#303c5d">
+                     <font>
+                        <Font name="Century Gothic Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="IngredientsLabel" layoutX="248.0" layoutY="311.0" prefHeight="107.0" prefWidth="402.0" textFill="#4693bf" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="16.0" layoutY="458.0" prefHeight="36.0" prefWidth="190.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Steps" textFill="#303c5d">
+                     <font>
+                        <Font name="Century Gothic Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="StepsLabel" layoutX="243.0" layoutY="457.0" prefHeight="122.0" prefWidth="411.0" textFill="#4693bf" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fx:id="updateIcon" fill="#13547a" glyphName="EDIT" layoutX="765.0" layoutY="65.0" onMouseClicked="#updateRecipe" size="45" visible="false" />
+                  <FontAwesomeIconView fx:id="deleteIcon" fill="#13547a" glyphName="TRASH" layoutX="821.0" layoutY="61.0" onMouseClicked="#deleteRecipe" size="45" visible="false" />
+               </children>
+            </Pane>
+            <Label layoutX="52.0" layoutY="39.0" prefHeight="46.0" prefWidth="301.0" style="-fx-font-size: 30px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Recipe Details" textFill="#303c5d">
+               <font>
+                  <Font name="Century Gothic Bold" size="30.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="#13547a" glyphName="ARROW_LEFT" layoutX="12.0" layoutY="24.0" onMouseClicked="#backAction" size="20" style="-fx-cursor: hand;" wrappingWidth="16.428571701049805" />
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

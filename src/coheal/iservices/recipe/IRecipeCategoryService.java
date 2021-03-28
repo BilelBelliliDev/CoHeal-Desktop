@@ -5,6 +5,7 @@
  */
 package coheal.iservices.recipe;
 
+import coheal.entities.recipe.Recipe;
 import coheal.entities.recipe.RecipeCategory;
 import java.util.List;
 
@@ -13,12 +14,19 @@ import java.util.List;
  * @author HP
  */
 public interface IRecipeCategoryService {
-    
+
     public void Create_RecipeCategory(RecipeCategory RC);
-    
+
     public List<RecipeCategory> Afficher_RecipeCategory();
-    
-    public void Update_RecipeCategory(RecipeCategory RC,int id);
-    
+
+    public void Update_RecipeCategory(RecipeCategory RC, int id);
+
     public void Delete_RecipeCategory(int idc);
-}
+
+    public RecipeCategory RechercherRecipeCategory(String n);
+
+    public List<Recipe> AfficherRecipesByIdCatg(String n);
+
+    public RecipeCategory RechercherRecipeCategoryById(int id);
+
+    }
