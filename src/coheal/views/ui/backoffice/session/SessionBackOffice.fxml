@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1084.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.session.SessionBackOfficeController">
+    <children>
+      <Label fx:id="SessionList" layoutX="150.0" layoutY="315.0" prefHeight="59.0" prefWidth="166.0" />
+     
+      <TableView fx:id="tableId" layoutX="151.0" layoutY="349.0" prefHeight="273.0" prefWidth="923.0">
+        <columns>
+          <TableColumn fx:id="col1Id" prefWidth="115.66667175292969" text="Id" />
+          <TableColumn fx:id="col2Id" prefWidth="111.33334350585938" text="Th Id" />
+            <TableColumn fx:id="col3Id" prefWidth="159.33331298828125" text="Title" />
+            <TableColumn fx:id="col5Id" prefWidth="275.66668701171875" text="Num of days" />
+            <TableColumn fx:id="col4Id" prefWidth="203.66665649414062" text="Description" />
+        </columns>
+      </TableView>
+      <PieChart layoutX="46.0" layoutY="46.0" prefHeight="228.0" prefWidth="318.0" />
+      
+   </children>
+
+</AnchorPane>
