@@ -157,7 +157,6 @@ public class ServiceTaskCategory implements IServiceTaskCategory {
                 
                 String url = "file:///" + projectPath + "/src/coheal/resources/images/tasks/" + rst.getString("img_url");
                 img = new ImageView(url);
-                System.out.println(url);
                 task.setImg(img);
                 l.add(task);
             }
