@@ -149,8 +149,7 @@ public class LoginController implements Initializable {
                 infoBox("Please enter correct Email and Password or maybe your your account is deleted", null, "Failed");
             } else {
                 System.out.println("success");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/AdminPageHolder.fxml"));
-               // FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);

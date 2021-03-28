@@ -9,9 +9,15 @@ import coheal.controllers.report.RateAlertUIController;
 import coheal.controllers.report.RatePopupUIController;
 import coheal.controllers.report.ReportPopupUIController;
 import coheal.entities.recipe.Recipe;
+import coheal.entities.task.TaskCategory;
+import static coheal.services.recipe.Constants.projectPath;
+import coheal.services.recipe.RecipeCategoryService;
 import coheal.services.recipe.RecipeService;
 import coheal.services.report.RateService;
 import coheal.services.user.ServiceUser;
+import com.jfoenix.controls.JFXComboBox;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,6 +28,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -34,8 +43,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.apache.commons.io.FileUtils;
 
 /**
  * FXML Controller class
@@ -51,7 +63,7 @@ public class CreateRecipeUIController implements Initializable {
     private ServiceUser su = new ServiceUser();
     private RateService sr = new RateService();
     private int selectedId;
-    
+
     @FXML
     private Label label;
     @FXML
@@ -59,13 +71,23 @@ public class CreateRecipeUIController implements Initializable {
     @FXML
     private TextArea DescTF;
     @FXML
-    private TextField imgTF;
+    private Label imgTF;
     @FXML
     private TableColumn<Recipe, String> title_col;
     @FXML
     private TableColumn<Recipe, String> desc_col;
     @FXML
-    private TableColumn<Recipe, String> img_col;
+    private TableColumn<Recipe, ImageView> img_col;
+    @FXML
+    private TableColumn<Recipe, String> ingred_col;
+    @FXML
+    private TableColumn<Recipe, String> steps_col;
+    @FXML
+    private TableColumn<Recipe, String> duration_col;
+    @FXML
+    private TableColumn<Recipe, String> persons_col;
+    @FXML
+    private TableColumn<Recipe, String> calories_col;
     @FXML
     private TableView<Recipe> table;
 
@@ -80,27 +102,52 @@ public class CreateRecipeUIController implements Initializable {
     private Button BoutonModifier;
     @FXML
     private Button BoutonSupprimer;
-    @FXML
     private ComboBox ComboBox;
     @FXML
     private ComboBox<Integer> userIdBox;
 
+    File file = null;
+    @FXML
+    private Button AjouterImageBT;
+    @FXML
+    private TextField DurationTF;
+    @FXML
+    private TextField PersonsTF;
+    @FXML
+    private TextArea IngredientsTF;
+    @FXML
+    private TextArea StepsTF;
+    @FXML
+    private TextField CaloriesTF;
+    String cat = "";
+    @FXML
+    private JFXComboBox<String> catBox;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         init();
-       
+
         //Report/Rate Module (Bilel Bellili)      
         int num = su.AfficherPersonne().size();
         for (int i = 0; i < num; i++) {
             userIdBox.getItems().add(su.AfficherPersonne().get(i).getUserId());
         }
-    }
+        //comboBox
+        RecipeCategoryService rcs = new RecipeCategoryService();
+        for (int i = 0; i < rcs.Afficher_RecipeCategory().size(); i++) {
+            catBox.getItems().add(rcs.Afficher_RecipeCategory().get(i).getName());
+    }}
 
     public void init() {
         System.out.println(l);
         title_col.setCellValueFactory(new PropertyValueFactory<>("title"));
         desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
-        img_col.setCellValueFactory(new PropertyValueFactory<>("img_url"));
+        img_col.setCellValueFactory(new PropertyValueFactory<Recipe, ImageView>("img"));
+        ingred_col.setCellValueFactory(new PropertyValueFactory<>("ingredients"));
+        steps_col.setCellValueFactory(new PropertyValueFactory<>("steps"));
+        calories_col.setCellValueFactory(new PropertyValueFactory<>("calories"));
+        duration_col.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        persons_col.setCellValueFactory(new PropertyValueFactory<>("persons"));
         table.setItems(l);
         table.setRowFactory(tv -> {
             TableRow<Recipe> row = new TableRow<>();
@@ -110,56 +157,93 @@ public class CreateRecipeUIController implements Initializable {
                     TitreTF.setText(rowData.getTitle());
                     DescTF.setText(rowData.getDescription());
                     imgTF.setText(rowData.getImgUrl());
+                    IngredientsTF.setText(rowData.getIngredients());
+                    StepsTF.setText(rowData.getSteps());
+                    String c = "" + rowData.getCalories();
+                    String d = "" + rowData.getDuration();
+                    String p = "" + rowData.getPersons();
+                    CaloriesTF.setText(c);
+                    DurationTF.setText(d);
+                    PersonsTF.setText(p);
                     selectedId = table.getSelectionModel().getSelectedItem().getRecipeId();
                     isSelected = true;
                 }
             });
             return row;
         });
-        
-        //ComboBox
-        //RecipeCategory rc = new RecipeCategory();
-        //ObservableList<String> list = FXCollections.observableArrayList(rc.getName());
-        ObservableList<String> list = FXCollections.observableArrayList("Soupes","Thé","Boissons","Salades","Plats poulets");
-        ComboBox.setItems(list);
-    }
-
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
     }
 
     @FXML
-    private void Bouton_Ajouter(ActionEvent event) throws SQLException {
+    private void Bouton_Ajouter(ActionEvent event) throws SQLException, IOException {
 
-        javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
+        javafx.stage.Window owner = BoutonAjouter.getScene().getWindow();
         if (TitreTF.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
-                    "Entrer un titre pour votre recette!");
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter a title for your recipe!");
             return;
         }
         if (DescTF.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
-                    "Decrire votre recette!");
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Describe your recipe!");
             return;
         }
-        if (imgTF.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur!",
-                    "Entrer l'URL de l'image!");
+        if (IngredientsTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter the required ingredients for your recipe !");
+            return;
+        }
+        if (StepsTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter the steps of preparing of your recipe !");
+            return;
+        }
+        if (CaloriesTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter the number of calories of your recipe !");
+            return;
+        }
+        if (DurationTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter the  required ingredients for your recipe !");
+            return;
+        }
+        if (PersonsTF.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "Enter the number of persons of your recipe !");
             return;
         }
 
         RecipeService RS = new RecipeService();
         Recipe R = new Recipe();
-        R.setCatId(1);
         R.setTitle(TitreTF.getText());
         R.setDescription(DescTF.getText());
-        R.setImgUrl(imgTF.getText());
-        RS.Create_Recipe(1, "Lunch", R);
+        R.setIngredients(IngredientsTF.getText());
+        R.setSteps(StepsTF.getText());
+        float c = Float.parseFloat(CaloriesTF.getText());
+        R.setCalories(c);
+        int d = Integer.parseInt(DurationTF.getText());
+        R.setDuration(d);
+        int p = Integer.parseInt(PersonsTF.getText());
+        R.setDuration(p);
+
+        File dest = new File(projectPath + "src/coheal/images/recipe" + file.getName());
+        FileUtils.copyFile(file, dest);
+
+        RS.Create_Recipe(1, cat, R);
         table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                "Recette Ajoutée avec succés!");
+                "Recipe added successfully!");
+    }
+
+    Desktop desktop = Desktop.getDesktop();
+    FileChooser fileChooser = new FileChooser();
+
+    @FXML
+    private void Addimage(ActionEvent event) {
+        Stage stage = null;
+        file = fileChooser.showOpenDialog(stage);
+        imgTF.setText(file.getName());
     }
 
     @FXML
@@ -168,19 +252,26 @@ public class CreateRecipeUIController implements Initializable {
         if (isSelected) {
             Recipe r = table.getSelectionModel().getSelectedItem();
             RecipeService RS = new RecipeService();
+
             Recipe R = new Recipe();
-            R.setCatId(1);
             R.setTitle(TitreTF.getText());
             R.setDescription(DescTF.getText());
-            R.setImgUrl(imgTF.getText());
+            R.setIngredients(IngredientsTF.getText());
+            R.setSteps(StepsTF.getText());
+            float c = Float.parseFloat(CaloriesTF.getText());
+            R.setCalories(c);
+            int d = Integer.parseInt(DurationTF.getText());
+            R.setDuration(d);
+            int p = Integer.parseInt(PersonsTF.getText());
+            R.setDuration(p);
+
             RS.Update_Recipe(R, r.getRecipeId());
             table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
 
             showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                    "Recette Modifiée avec succés!");
+                    "Recipe modified successfully!");
         } else {
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur!", "Selectionner une recette!");
-            return;
+            showAlert(Alert.AlertType.ERROR, owner, "Error!", "Select a recipe!");
         }
 
     }
@@ -196,10 +287,9 @@ public class CreateRecipeUIController implements Initializable {
             RS.Delete_Recipe(recipe.getRecipeId());
             table.setItems((ObservableList<Recipe>) rs.Afficher_Recipe());
             showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                    "Recette Supprimée avec succés!");
+                    "Recipe deleted successfully!");
         } else {
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur!", "Selectionner une recette!");
-            return;
+            showAlert(Alert.AlertType.ERROR, owner, "Error!", "Select a recipe!");
         }
     }
 
@@ -212,10 +302,8 @@ public class CreateRecipeUIController implements Initializable {
         alert.show();
     }
 
-    @FXML
     private void SelectChoix(ActionEvent event) {
         String s = ComboBox.getSelectionModel().getSelectedItem().toString();
-
     }
 
     @FXML
@@ -249,4 +337,15 @@ public class CreateRecipeUIController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    private void Bouton_RetourCat(ActionEvent event) throws IOException {
+        Parent root = null;
+        root = FXMLLoader.load(getClass().getResource("/coheal/views/recipe/CreateRecipeCategoryUI.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+
 }

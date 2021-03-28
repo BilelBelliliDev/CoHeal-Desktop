@@ -24,7 +24,7 @@
                   <Font name="Century Gothic Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="938.0" layoutY="38.0" style="-fx-font-size: 20px; -fx-cursor: hand;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View All" textFill="#13547a">
+            <Label layoutX="938.0" layoutY="38.0" onMouseClicked="#allCategories" style="-fx-font-size: 20px; -fx-cursor: hand;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View All" textFill="#13547a">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>

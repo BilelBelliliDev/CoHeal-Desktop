@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -44,6 +45,16 @@ public class RecipeCategoryItemController implements Initializable {
         UIService stc=new UIService();
         recipeCatgTitle.setText(tc.getName());
         recipeCatgTotalEvents.setText(String.valueOf(stc.ListerRecipesByIdCatg(tc.getName()).size())+" Recipes");
+    }
+
+    @FXML
+    private void showRecipes(MouseEvent event) throws IOException {
+        RecipeCategoryHolder holder = RecipeCategoryHolder.getINSTANCE();
+        holder.setName(recipeCatgTitle.getText());
+        AnchorPane pageHolder = (AnchorPane) recipeCatgTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        pageHolder.getChildren().removeAll(pageHolder.getChildren());
+        pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipesByCategory.fxml")));
+
     }
 
 }

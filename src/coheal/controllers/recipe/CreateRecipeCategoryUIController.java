@@ -7,7 +7,10 @@ package coheal.controllers.recipe;
 
 import coheal.entities.recipe.Recipe;
 import coheal.entities.recipe.RecipeCategory;
+import static coheal.services.recipe.Constants.projectPath;
 import coheal.services.recipe.RecipeCategoryService;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -28,8 +31,10 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.apache.commons.io.FileUtils;
 
 /**
  * FXML Controller class
@@ -64,6 +69,8 @@ public class CreateRecipeCategoryUIController implements Initializable {
     private Button BoutonModifier;
     @FXML
     private Button BoutonSupprimer;
+    
+    File file = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -91,7 +98,7 @@ public class CreateRecipeCategoryUIController implements Initializable {
     }
 
     @FXML
-    private void Bouton_Ajouter(ActionEvent event) throws SQLException {
+    private void Bouton_Ajouter(ActionEvent event) throws SQLException, IOException {
 
         javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
         if (nomTF.getText().isEmpty()) {
@@ -112,11 +119,25 @@ public class CreateRecipeCategoryUIController implements Initializable {
         rcs.Create_RecipeCategory(RC);
         table.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
 
+        File dest = new File(projectPath + "src/coheal/images/recipe" + file.getName());
+        FileUtils.copyFile(file, dest);
+
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
                 "Catégorie Ajoutée avec succés!");
 
     }
 
+    Desktop desktop = Desktop.getDesktop();
+    FileChooser fileChooser = new FileChooser();
+
+    /*@FXML
+    private void Addimage(ActionEvent event) {
+        Stage stage = null;
+        file = fileChooser.showOpenDialog(stage);
+        imgTF.setText(file.getName());
+    }
+        
+    }*/
     @FXML
     private void Bouton_Modifier(ActionEvent event) {
         javafx.stage.Window owner = BoutonModifier.getScene().getWindow();
