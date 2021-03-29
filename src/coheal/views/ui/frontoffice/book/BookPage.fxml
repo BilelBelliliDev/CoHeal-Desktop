@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -29,7 +30,7 @@
                   <Font name="Century Gothic Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="938.0" layoutY="38.0" style="-fx-font-size: 20px; -fx-cursor: hand;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View All" textFill="#13547a">
+            <Label layoutX="938.0" layoutY="38.0" onMouseClicked="#allcat" style="-fx-font-size: 20px; -fx-cursor: hand;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View All" textFill="#13547a">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>
@@ -49,7 +50,7 @@
                <children>
                   <Pane fx:id="item" prefHeight="235.0" prefWidth="307.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css">
                      <children>
-                        <Label fx:id="bookTitle" alignment="CENTER" layoutX="135.0" layoutY="14.0" prefHeight="34.0" prefWidth="152.0" style="-fx-font-size: 22px;" text="Meditation" textFill="#13547a">
+                        <Label fx:id="bookTitle" alignment="CENTER" layoutX="145.0" layoutY="14.0" prefHeight="34.0" prefWidth="152.0" style="-fx-font-size: 22px;" text="Meditation" textFill="#13547a">
                            <font>
                               <Font name="Century Gothic Bold" size="24.0" />
                            </font>
@@ -70,9 +71,6 @@
                            </children>
                         </HBox>
                         <ImageView fx:id="bookimg" fitHeight="211.0" fitWidth="142.0" layoutX="-16.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../resources/images/books/517OWT+6IUL._SX331_BO1,204,203,200_.jpg" />
-                           </image>
                            <effect>
                               <DropShadow color="#0000004d" />
                            </effect>
@@ -83,6 +81,18 @@
                </children>
             </GridPane>
             <HBox fx:id="categoriesHBox" alignment="CENTER" layoutX="25.0" layoutY="107.0" prefHeight="246.0" prefWidth="1013.0" spacing="40.0" />
+            <FontAwesomeIconView fx:id="Appelbookadd" fill="#303c5d" glyphName="PLUS" layoutX="926.0" layoutY="456.0" onMouseClicked="#Appelbookadd" size="30" style="-fx-cursor: hand;" visible="false" />
+            <FontAwesomeIconView fill="#303c5d" glyphName="SEARCH" layoutX="885.0" layoutY="455.0" onMouseClicked="#searchaction" size="27" style="-fx-cursor: hand;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontAwesomeIconView>
+            <JFXTextField fx:id="recherchetf" layoutX="679.0" layoutY="427.0" promptText="enter the book title or author" />
+            <FontAwesomeIconView fill="#303c5d" glyphName="REFRESH" layoutX="967.0" layoutY="454.0" onMouseClicked="#refresh" size="27" style="-fx-cursor: hand;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontAwesomeIconView>
          </children>
       </AnchorPane>
    </content>
