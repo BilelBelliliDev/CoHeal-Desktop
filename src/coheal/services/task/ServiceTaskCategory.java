@@ -220,4 +220,30 @@ public class ServiceTaskCategory implements IServiceTaskCategory {
         }
         return l;
     }
+/*
+    @Override
+    public ObservableList<Task> ListerTasksByIdCatg(String title) {
+        ObservableList<Task> l = FXCollections.observableArrayList();
+        try {
+            Statement st = con.createStatement();
+            String selectCategoryId = "select * from task_category where name='" + title + "';";
+            ResultSet rs = st.executeQuery(selectCategoryId);
+            int id = 0;
+            while (rs.next()) {
+                id = rs.getInt("cat_id");
+            }
+
+            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task where is_deleted=0 and cat_id=" + id + ";";
+            System.out.println(query);
+            ResultSet rst = st.executeQuery(query);
+            while (rst.next()) {
+                l.add(new Task(rst.getInt("task_id"), rst.getInt("cat_id"), rst.getString("title"), rst.getString("description"), rst.getInt("num_of_days"), rst.getInt("min_users"), rst.getInt("max_users")));
+            }
+            System.out.println(l);
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de l'affichage");
+        }
+        return l;
+
+    }*/
 }
