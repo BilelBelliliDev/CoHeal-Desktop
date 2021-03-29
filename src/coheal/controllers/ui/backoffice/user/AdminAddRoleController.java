@@ -5,6 +5,7 @@ import coheal.entities.user.User;
 import coheal.services.user.ServiceAdmin;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -54,6 +56,8 @@ public class AdminAddRoleController implements Initializable {
     ServiceAdmin sa = new ServiceAdmin();
     @FXML
     private PieChart pieChart;
+    @FXML
+    private FontAwesomeIconView close;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -75,6 +79,22 @@ public class AdminAddRoleController implements Initializable {
             Tooltip.install(data.getNode(), toolTip);
         });
     }    
+    
+    //-------------------------------------------------------------------
+    @FXML
+    private void closeAction(MouseEvent event) {
+        Stage stage = new Stage();
+        stage = (Stage) TVListUser.getScene().getWindow();
+        stage.close();
+    }
+    //-------------------------------------------------------------------
+    @FXML
+    private void minAction(MouseEvent event) {
+        Stage stage = new Stage();
+        stage = (Stage) TVListUser.getScene().getWindow();
+        stage.setIconified(true);
+    }
+    
     //------------------------------------------------------------------ 
     @FXML
     private void GetUserRow_FromList_CheckRoles(MouseEvent event) {
@@ -102,8 +122,7 @@ public class AdminAddRoleController implements Initializable {
             }
             
         } 
-    }
-    
+    }    
     //------------------------------------------------------------------ 
      public void AfficherListPersonnes(){
          ObservableList <User> list=sa.GetListPersonnes();
@@ -114,10 +133,8 @@ public class AdminAddRoleController implements Initializable {
          ULNCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
          
          TVListUser.setItems(list);
-     }
-     
-     //------------------------------------------------------------------ 
-
+     }     
+    //------------------------------------------------------------------ 
     @FXML
     private void ModifyRoleAction(ActionEvent event) {
         ServiceAdmin sa= new ServiceAdmin();
