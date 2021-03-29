@@ -5,7 +5,6 @@
  */
 package coheal.controllers.ui.frontoffice.recipe;
 
-
 import coheal.entities.recipe.RecipeCategory;
 import coheal.services.ui.UIService;
 import java.io.IOException;
@@ -14,7 +13,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
- * @author BilelxOS
+ * @author HP
  */
 public class RecipeCategoryItemController implements Initializable {
 
@@ -40,11 +38,13 @@ public class RecipeCategoryItemController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    public void setData(RecipeCategory tc){
-        UIService stc=new UIService();
+    }
+
+    public void setData(RecipeCategory tc) {
+        UIService stc = new UIService();
+        recipeCatgImg.setImage(tc.getImg().getImage());
         recipeCatgTitle.setText(tc.getName());
-        recipeCatgTotalEvents.setText(String.valueOf(stc.ListerRecipesByIdCatg(tc.getName()).size())+" Recipes");
+        recipeCatgTotalEvents.setText(String.valueOf(stc.ListerRecipesByIdCatg(tc.getName()).size()) + " Recipes");
     }
 
     @FXML

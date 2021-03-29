@@ -62,9 +62,12 @@ public class RecipePageController implements Initializable {
 
         new ZoomIn(recipePane).play();
         List<RecipeCategory> catRecipes = stc.topThreeRecCatg();
+        System.out.println(catRecipes.size());
+
         for (int i = 0; i < catRecipes.size(); i++) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeCategoryItem.fxml"));
+            System.out.println(catRecipes.get(i));
             try {
                 AnchorPane pane = loader.load();
                 RecipeCategoryItemController c = loader.getController();
@@ -74,7 +77,7 @@ public class RecipePageController implements Initializable {
                 System.out.println(ex.getMessage());
             }
         }
-        
+
         int y = 0;
         int x = 0;
         List<Recipe> recipes;

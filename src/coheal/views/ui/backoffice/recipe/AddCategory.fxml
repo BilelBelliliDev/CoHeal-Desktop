@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="391.0" prefWidth="448.0" style="-fx-background-radius: 1em; -fx-background-color: linear-gradient(to right top, #13547a, #1e7292, #3891a6, #59b1b7, #80d0c7);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.AddRecipeCategoryController">
+<AnchorPane id="AnchorPane" prefHeight="391.0" prefWidth="448.0" style="-fx-background-radius: 1em; -fx-background-color: linear-gradient(to right top, #13547a, #1e7292, #3891a6, #59b1b7, #80d0c7);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.recipe.AddCategoryController">
    <children>
       <Pane blendMode="SRC_ATOP" layoutX="14.0" layoutY="10.0" prefHeight="369.0" prefWidth="421.0" style="-fx-background-color: white; -fx-background-radius: 1em;">
          <children>
@@ -29,7 +29,7 @@
                   <Font name="Century Gothic Bold" size="14.0" />
                </font></JFXTextField>
             <ImageView fitHeight="65.0" fitWidth="85.0" layoutX="112.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton layoutX="145.0" layoutY="285.0" onAction="#addRecipeCategoryAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="ADD" textFill="#fffefb">
+            <JFXButton fx:id="AddBtn" layoutX="145.0" layoutY="285.0" onAction="#addRecipeCategoryAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="ADD" textFill="#fffefb">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
