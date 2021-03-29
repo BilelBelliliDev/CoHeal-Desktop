@@ -5,12 +5,20 @@
  */
 package coheal.controllers.ui.frontoffice;
 
+import coheal.controllers.ui.frontoffice.task.OngoingTaskItemController;
+import coheal.entities.task.PaidTask;
+import coheal.entities.task.Task;
+import coheal.services.task.ServiceUserTask;
 import coheal.services.user.UserSession;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +28,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -62,6 +72,9 @@ public class HomePageHolderController implements Initializable {
     private Label userName1;
     @FXML
     private AnchorPane profileSideBar;
+    @FXML
+    private GridPane taskGrid;
+    private ServiceUserTask sut = new ServiceUserTask();
 
     /**
      * Initializes the controller class.
@@ -82,8 +95,10 @@ public class HomePageHolderController implements Initializable {
         try {
             pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/HomePage.fxml")));
         } catch (IOException ex) {
-            Logger.getLogger(HomePageHolderController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
+            sideBarTasks() ;
+
     }
 
     public void setStage(Stage stage) {
@@ -474,5 +489,55 @@ public class HomePageHolderController implements Initializable {
     }
     public void removeChildren(){
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
+    }
+    
+    public void sideBarTasks() {
+        int y = 0;
+        int x = 0;
+        List<Task> t = new ArrayList();
+        t.add(sut.ListerOneTasksByIdUser(UserSession.getUser_id()));
+        List<PaidTask> pt = new ArrayList();
+        pt.add(sut.ListerOnePaidTasksByIdUser(UserSession.getUser_id()));
+        List<?> tasks = new ArrayList();
+        tasks = Stream.concat(t.stream(), pt.stream()).collect(Collectors.toList());
+
+        for (int i = 0; i < tasks.size(); i++) {
+
+            if (tasks.get(i) instanceof PaidTask) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/OngoingTaskItem.fxml"));
+                try {
+                    Pane pane = loader.load();
+                    OngoingTaskItemController c = loader.getController();
+                    c.setPaidTaskData((PaidTask) tasks.get(i));
+                    if (x > 0) {
+                        y++;
+                        x = 0;
+                    }
+                    taskGrid.add(pane, x, y);
+                    x++;
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+
+            } else {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/OngoingTaskItem.fxml"));
+                try {
+                    Pane pane = loader.load();
+                    OngoingTaskItemController c = loader.getController();
+                    c.setData((Task) tasks.get(i));
+                    if (x > 0) {
+                        y++;
+                        x = 0;
+                    }
+                    taskGrid.add(pane, x, y);
+                    x++;
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+        }
     }
 }

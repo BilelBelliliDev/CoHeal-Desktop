@@ -82,17 +82,9 @@ public class TaskController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        List<?> tasks;
-        tasks = Stream.concat(st.ListTask().stream(), spt.listPaidTask().stream())
-                .collect(Collectors.toList());
-        ObservableList<Task> l = FXCollections.observableList((List<Task>) tasks);
-        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        DaysCol.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
-        catgCol.setCellValueFactory(new PropertyValueFactory<>("category"));
-        priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        taskTable.setItems(l);
+        
 
+        init();
         //----------------PieChart----------
         ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
                 new PieChart.Data("Free Tasks", st.ListTask().size()),
@@ -114,6 +106,18 @@ public class TaskController implements Initializable {
 
 
 
+    }
+    public void init(){
+       List<?> tasks;
+        tasks = Stream.concat(st.ListTask().stream(), spt.listPaidTask().stream())
+                .collect(Collectors.toList());
+        ObservableList<Task> l = FXCollections.observableList((List<Task>) tasks);
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        DaysCol.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
+        catgCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        taskTable.setItems(l); 
     }
 
     @FXML
@@ -139,8 +143,6 @@ public class TaskController implements Initializable {
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         scene.setFill(Color.TRANSPARENT);
-//        HomePageHolderController hpc = new HomePageHolderController();
-//        hpc.setStage(stage);
         stage.show();
         root.setOnMousePressed((MouseEvent mouseEvent) -> {
             xOffset = mouseEvent.getSceneX();
@@ -154,6 +156,14 @@ public class TaskController implements Initializable {
         root.setOnMouseReleased((MouseEvent mouseEvent) -> {
             stage.setOpacity(1.0f);
         });
+    }
+
+    @FXML
+    private void deleteTaskAction(MouseEvent event) {
+        Task task = taskTable.getSelectionModel().getSelectedItem();
+        st.deleteTask(task.getTaskId());
+        taskTable.getItems().clear();
+        init();
     }
 
 }
