@@ -43,7 +43,6 @@ public class AddTaskController implements Initializable {
     private JFXTextField Titre;
     @FXML
     private JFXTextField numOfDays;
-    private JFXTextField maxUsers;
     @FXML
     private JFXComboBox<String> comboCatg;
     Task task = null;
@@ -86,66 +85,75 @@ public class AddTaskController implements Initializable {
 
     @FXML
     private void addTaskAction(ActionEvent event) {
-        Window owner = maxUsers.getScene().getWindow();
-        if (Titre.getText().isEmpty()) {
-            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                    "Veuillez saisir le titre");
-            return;
-        } else if (Description.getText().isEmpty()) {
-            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                    "Veuillez saisir le description");
-            return;
-        } else if (numOfDays.getText().isEmpty()) {
-            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                    "Veuillez remplir les champs");
-            return;
-        } else if (comboCatg.getSelectionModel().getSelectedItem().isEmpty()) {
-            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
-                    "Veuillez choisir un categorie");
-            return;
+        //       Window owner = Description.getScene().getWindow();
+//        if (Titre.getText().isEmpty()) {
+//            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+//                    "Veuillez saisir le titre");
+//            return;
+//        } else if (Description.getText().isEmpty()) {
+//            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+//                    "Veuillez saisir le description");
+//            return;
+//        } else if (numOfDays.getText().isEmpty()) {
+//            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+//                    "Veuillez remplir les champs");
+//            return;
+//        } else if (comboCatg.getSelectionModel().getSelectedItem().isEmpty()) {
+//            AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+//                    "Veuillez choisir un categorie");
+//            return;
+//        } else {
+
+        if (paid.isSelected() && price != null) {
+            pt.setTitle(Titre.getText());
+            pt.setDescription(Description.getText());
+            pt.setNumOfDays(Integer.valueOf(numOfDays.getText()));
+            pt.setMaxUsers(1);
+            pt.setMinUsers(1);
+            pt.setPrice(Double.valueOf(price.getText()));
+            File dest = null;
+            if (f != null) {
+                dest = new File(projectPath + "/src/coheal/resources/images/tasks/" + f.getName());
+            }
+            try {
+                if (dest != null) {
+                    if (FileUtils.contentEquals(f, dest)) {
+                        System.out.println("existe");
+                    } else {
+                        FileUtils.copyFile(f, dest);
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            spt.addPaidTask(UserSession.getUser_id(), cat, pt);
         } else {
 
-            if (paid.isSelected() && price != null) {
-                pt.setTitle(Titre.getText());
-                pt.setDescription(Description.getText());
-                pt.setNumOfDays(Integer.valueOf(numOfDays.getText()));
-                pt.setMaxUsers(1);
-                pt.setMinUsers(1);
-                pt.setPrice(Double.valueOf(price.getText()));
-                File dest = null;
-                if (f != null) {
-                    dest = new File(projectPath + "/src/coheal/resources/images/tasks/" + f.getName());
-                }
-                try {
-                    if (dest != null) {
-                        if (FileUtils.contentEquals(f, dest)) {
-                            System.out.println("existe");
-                        } else {
-                            FileUtils.copyFile(f, dest);
-                        }
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                spt.addPaidTask(UserSession.getUser_id(), cat, pt);
-            } else {
-
-                t.setTitle(Titre.getText());
-                t.setDescription(Description.getText());
-                t.setNumOfDays(Integer.valueOf(numOfDays.getText()));
-                t.setMaxUsers(1);
-                t.setMinUsers(1);
-                File dest = new File(projectPath + "/src/coheal/resources/images/tasks/" + f.getName());
-                try {
-                    FileUtils.copyFile(f, dest);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                st.createTask(UserSession.getUser_id(), cat, t);
+            t.setTitle(Titre.getText());
+            t.setDescription(Description.getText());
+            t.setNumOfDays(Integer.valueOf(numOfDays.getText()));
+            t.setMaxUsers(1);
+            t.setMinUsers(1);
+            File dest = null;
+            if (f != null) {
+                dest = new File(projectPath + "/src/coheal/resources/images/tasks/" + f.getName());
             }
+            try {
+                if (dest != null) {
+                    if (FileUtils.contentEquals(f, dest)) {
+                        System.out.println("existe");
+                    } else {
+                        FileUtils.copyFile(f, dest);
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            st.createTask(UserSession.getUser_id(), cat, t);
         }
+        //}
     }
 
     private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
