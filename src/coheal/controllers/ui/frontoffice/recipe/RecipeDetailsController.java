@@ -12,13 +12,13 @@ import coheal.services.user.UserSession;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -27,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -82,8 +83,8 @@ public class RecipeDetailsController implements Initializable {
             IngredientsLabel.setText(r.getIngredients());
             StepsLabel.setText(r.getSteps());
             CaloriesLabel.setText(String.valueOf(r.getCalories()));
+            PersonsLabel.setText(String.valueOf(r.getPersons()));
             DurationLabel.setText(String.valueOf(r.getDuration()));
-            PersonsLabel.setText(String.valueOf(r.getPersons()));;
         }
     }
 
@@ -114,9 +115,13 @@ public class RecipeDetailsController implements Initializable {
     }
 
     @FXML
-    private void deleteRecipe(MouseEvent event
-    ) {
+    private void deleteRecipe(MouseEvent event) {
+        javafx.stage.Window owner = deleteIcon.getScene().getWindow();
+
         rs.Delete_Recipe(rh.getId());
+        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                "Recipe deleted successfully!");
+
     }
 
     @FXML
@@ -126,4 +131,14 @@ public class RecipeDetailsController implements Initializable {
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipePage.fxml")));
 
     }
+
+    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
 }

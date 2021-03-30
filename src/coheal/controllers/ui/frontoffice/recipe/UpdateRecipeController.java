@@ -6,10 +6,8 @@
 package coheal.controllers.ui.frontoffice.recipe;
 
 import coheal.entities.recipe.Recipe;
-import coheal.entities.recipe.RecipeCategory;
-import coheal.services.recipe.RecipeCategoryService;
 import coheal.services.recipe.RecipeService;
-import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -17,12 +15,14 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -48,27 +48,20 @@ public class UpdateRecipeController implements Initializable {
     private TextField DurationTF;
     @FXML
     private TextField PersonsTF;
-    @FXML
-    private JFXComboBox<String> CatBox;
 
     Recipe recipe;
     RecipeService rs = new RecipeService();
-    RecipeCategoryService rcs = new RecipeCategoryService();
     RecipeHolder rh = RecipeHolder.getINSTANCE();
     private static String projectPath = System.getProperty("user.dir").replace("/", "\\");
     File f = null;
-    String cat = "";
-    RecipeCategory rc;
+    @FXML
+    private JFXButton updateBtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        RecipeCategory rc = new RecipeCategory();
-        for (int i = 0; i < rcs.Afficher_RecipeCategory().size(); i++) {
-            CatBox.getItems().add(rcs.Afficher_RecipeCategory().get(i).getName());
-        }
 
         recipe = rs.getRecipe(rh.getId());
         TitleTF.setText(recipe.getTitle());
@@ -79,14 +72,13 @@ public class UpdateRecipeController implements Initializable {
         CaloriesTF.setText(String.valueOf(recipe.getCalories()));
         DurationTF.setText(String.valueOf(recipe.getDuration()));
         PersonsTF.setText(String.valueOf(recipe.getPersons()));
-        CatBox.getSelectionModel().select(recipe.getCat().getName());
 
     }
 
     @FXML
     private void closeAction(MouseEvent event) {
         Stage stage = new Stage();
-        stage = (Stage) CatBox.getScene().getWindow();
+        stage = (Stage) PersonsTF.getScene().getWindow();
         stage.close();
     }
 
@@ -100,24 +92,20 @@ public class UpdateRecipeController implements Initializable {
     }
 
     @FXML
-    private void ListCategoriesBox(ActionEvent event) {
-        cat = CatBox.getValue();
-    }
-
-    @FXML
     private void UpdateRecipeAction(ActionEvent event) {
+        javafx.stage.Window owner = updateBtn.getScene().getWindow();
         if (recipe != null) {
             recipe = rs.getRecipe(rh.getId());
-            TitleTF.setText(recipe.getTitle());
-            imgTF.setText(recipe.getImgUrl());
-            DescTF.setText(recipe.getDescription());
-            IngredientsTF.setText(recipe.getIngredients());
-            StepsTF.setText(recipe.getSteps());
-            CaloriesTF.setText(String.valueOf(recipe.getCalories()));
-            DurationTF.setText(String.valueOf(recipe.getDuration()));
-            PersonsTF.setText(String.valueOf(recipe.getPersons()));
-            //CatBox.getSelectionModel().select(recipe.getCat().getName());
-
+            Recipe r = new Recipe();
+            r.setTitle(TitleTF.getText());
+            r.setImgUrl(imgTF.getText());
+            r.setDescription(DescTF.getText());
+            r.setIngredients(IngredientsTF.getText());
+            r.setSteps(StepsTF.getText());
+            r.setCalories(Float.valueOf(CaloriesTF.getText()));
+            r.setDuration(Integer.valueOf(DurationTF.getText()));
+            r.setPersons(Integer.valueOf(PersonsTF.getText()));
+            System.out.println(r);
             File dest = null;
             if (f != null) {
                 dest = new File(projectPath + "/src/coheal/resources/images/recipes/" + recipe.getImgUrl());
@@ -137,11 +125,22 @@ public class UpdateRecipeController implements Initializable {
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-            System.out.println("click"+cat);
-            rc = rcs.RechercherRecipeCategory(cat);
-            recipe.setCat(rc);
-            rs.Update_Recipe(recipe, rh.getId());
-        }
 
+            rs.Update_Recipe(r, rh.getId());
+            System.out.println(rh.getId());
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                    "Recipe modified successfully!");
+
+        }
     }
+
+    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
 }

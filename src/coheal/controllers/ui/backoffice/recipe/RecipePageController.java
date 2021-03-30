@@ -6,45 +6,54 @@
 package coheal.controllers.ui.backoffice.recipe;
 
 import coheal.entities.recipe.Recipe;
+import coheal.entities.recipe.RecipeCategory;
+import coheal.services.recipe.RecipeCategoryService;
 import coheal.services.recipe.RecipeService;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
  *
- * @author BilelxOS
+ * @author HP
  */
 public class RecipePageController implements Initializable {
 
     @FXML
+    private AnchorPane moderationPane;
+    @FXML
     private FontAwesomeIconView close;
     @FXML
-    private AnchorPane recipePane;
+    private TableView<Recipe> RecipeTable;
     @FXML
-    private TableView<Recipe> TableView;
+    private TableColumn<Recipe, ImageView> img_col;
     @FXML
-    private TableColumn<Recipe, Integer> rID_col;
+    private TableColumn<Recipe, String> title_col;
     @FXML
-    private TableColumn<Recipe, Integer> UserID_col;
-    @FXML
-    private TableColumn<Recipe, String> titre_col;
+    private TableColumn<Recipe, String> cat_col;
     @FXML
     private TableColumn<Recipe, String> Desc_col;
     @FXML
@@ -57,56 +66,84 @@ public class RecipePageController implements Initializable {
     private TableColumn<Recipe, String> ingred_col;
     @FXML
     private TableColumn<Recipe, String> Steps_col;
+    @FXML
+    private PieChart pieChart;
+    @FXML
+    private LineChart<?, ?> lineChart;
 
     RecipeService rs = new RecipeService();
+    RecipeCategory rc = new RecipeCategory();
+    RecipeCategoryService rcs = new RecipeCategoryService();
+    double xOffset, yOffset;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //    imaglivre.setCellValueFactory(new PropertyValueFactory<Recipe, String>("imgUrl"));
-        //   imageView.setCellValueFactory(new PropertyValueFactory<book, ImageView>("img"));
-        
-        rID_col.setCellValueFactory(new PropertyValueFactory<Recipe, Integer>("recipeId"));
-        titre_col.setCellValueFactory(new PropertyValueFactory<Recipe, String>("title"));
-        Desc_col.setCellValueFactory(new PropertyValueFactory<Recipe, String>("description"));
-        cal_col.setCellValueFactory(new PropertyValueFactory<Recipe, Float>("calories"));
-        dur_col.setCellValueFactory(new PropertyValueFactory<Recipe, Integer>("duration"));
-        persons_col.setCellValueFactory(new PropertyValueFactory<Recipe, Integer>("persons"));
-        ingred_col.setCellValueFactory(new PropertyValueFactory<Recipe, String>("ingredients"));
-        Steps_col.setCellValueFactory(new PropertyValueFactory<Recipe, String>("steps"));
-        TableView.setItems(rs.Afficher_Recipe());
-    
-       // TableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            /*@Override
-            public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-                //Check whether item is selected and set value of selected item to Label
-                if (TableView.getSelectionModel().getSelectedItem() != null) {
-                    Recipe selectedRecipe = TableView.getSelectionModel().getSelectedItem();
-                    selecttitre.setText(selectedBook.getTitle());
-                    selectdescription.setText(selectedBook.getDescription());
-                    selectauteur.setText(selectedBook.getAuthor());
-                    selectimage.setText(selectedBook.getImgUrl());
-                    selectedId = selectedBook.getBookId();
-                    canModify = true;
-                }
-            }
-        });*/
+
+        List<Recipe> recipes = rs.Afficher_Recipe();
+        ObservableList<Recipe> list = FXCollections.observableList((List<Recipe>) recipes);
+
+        img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
+        title_col.setCellValueFactory(new PropertyValueFactory<>("title"));
+        Desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
+        cal_col.setCellValueFactory(new PropertyValueFactory<>("calories"));
+        dur_col.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        persons_col.setCellValueFactory(new PropertyValueFactory<>("persons"));
+        ingred_col.setCellValueFactory(new PropertyValueFactory<>("ingredients"));
+        Steps_col.setCellValueFactory(new PropertyValueFactory<>("steps"));
+        RecipeTable.setItems(list);
+
+        //----------------PieChart----------
+        ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
+                new PieChart.Data("Categories", rcs.Afficher_RecipeCategory().size()),
+                new PieChart.Data("Recipes by Category", rcs.AfficherRecipesByIdCatg(rc.getName()).size()));
+        pieChart.setTitle("Recipes");
+        pieChart.setData(valueList);
+        pieChart.getData().forEach(data -> {
+            String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
+            Tooltip toolTip = new Tooltip(percentage);
+            Tooltip.install(data.getNode(), toolTip);
+        });
     }
-                
+
     @FXML
     private void closeAction(MouseEvent event) {
         Stage stage = new Stage();
-        stage = (Stage) close.getScene().getWindow();
+        stage = (Stage) RecipeTable.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     private void minAction(MouseEvent event) {
         Stage stage = new Stage();
-        stage = (Stage) close.getScene().getWindow();
+        stage = (Stage) RecipeTable.getScene().getWindow();
         stage.setIconified(true);
+    }
+
+    @FXML
+    private void ViewCategoryAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/recipe/RecipeCategoryPage.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
+        stage.show();
+        root.setOnMousePressed((MouseEvent mouseEvent) -> {
+            xOffset = mouseEvent.getSceneX();
+            yOffset = mouseEvent.getSceneY();
+        });
+        root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+            stage.setX(mouseEvent.getScreenX() - xOffset);
+            stage.setY(mouseEvent.getScreenY() - yOffset);
+            stage.setOpacity(0.85f);
+        });
+        root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+            stage.setOpacity(1.0f);
+        });
     }
 
 }
