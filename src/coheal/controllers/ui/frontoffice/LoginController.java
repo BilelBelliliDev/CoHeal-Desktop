@@ -30,7 +30,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -143,8 +142,8 @@ public class LoginController implements Initializable {
             if (!flag) {
                 infoBox("Please enter correct Email and Password or maybe your your account is deleted", null, "Failed");
             } else {
-                //FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/AdminPageHolder.fxml"));
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/AdminPageHolder.fxml"));
 
                 Parent root = loader.load();
                 Stage stage = new Stage();

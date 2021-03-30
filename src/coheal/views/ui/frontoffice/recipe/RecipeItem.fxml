@@ -56,7 +56,7 @@
       </AnchorPane>
       <Pane layoutX="113.0" layoutY="81.0" prefHeight="134.0" prefWidth="171.0" style="-fx-background-color: #13547a; -fx-background-radius: 1em;">
          <children>
-            <ImageView fx:id="recipeImg" fitHeight="100.0" fitWidth="141.0" layoutX="15.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="recipeImg" fitHeight="106.0" fitWidth="141.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true">
                <image>
                   <Image url="@../../../../resources/images/recipes/Oregano-Teapurchased123featuredimage.jpg" />
                </image>

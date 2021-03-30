@@ -97,6 +97,30 @@ public class RecipeCategoryService implements IRecipeCategoryService {
     }
 
     @Override
+    public ObservableList<RecipeCategory> Recherche(String name) throws SQLException {
+        Statement stm = con.createStatement();
+        String query = "SELECT * FROM recipe_category WHERE is_deleted = 0 AND name ='" + name + "';";
+        ResultSet rs = stm.executeQuery(query);
+        ObservableList<RecipeCategory> data = FXCollections.observableArrayList();
+        while (rs.next()) {
+            RecipeCategory rc = new RecipeCategory();
+            rc.setCatId(rs.getInt("cat_id"));
+            rc.setName(rs.getString("name"));
+            rc.setImgUrl(rs.getString("img_url"));
+            // image
+            ImageView img = null;
+            String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
+            img = new ImageView(url);
+            img.setFitHeight(100);
+            img.setFitWidth(100);
+            rc.setImg(img);
+            data.add(rc);
+        }
+        return data;
+
+    }
+
+    @Override
     public RecipeCategory RechercherRecipeCategory(String n) {
         String query = "select * from recipe_category where name='" + n + "';";
         RecipeCategory rc = null;

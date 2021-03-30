@@ -18,7 +18,7 @@
                   <Font name="Century Gothic Bold" size="30.0" />
                </font>
             </Label>
-            <GridPane fx:id="CategoryGrid" alignment="CENTER" hgap="80.0" layoutX="55.0" layoutY="230.0" prefHeight="662.0" prefWidth="929.0" vgap="200.0">
+            <GridPane fx:id="CategoryGrid" alignment="CENTER" hgap="80.0" layoutX="55.0" layoutY="230.0" prefHeight="662.0" prefWidth="929.0" vgap="300.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
