@@ -26,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
@@ -102,7 +103,7 @@ public class RecipePageController implements Initializable {
         //----------------PieChart----------
         ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
                 new PieChart.Data("Categories", rcs.Afficher_RecipeCategory().size()),
-                new PieChart.Data("Recipes by Category", rcs.AfficherRecipesByIdCatg(rc.getName()).size()));
+                new PieChart.Data("Categories with recipes", rcs.AfficherRecipesByIdCatg(rc.getName()).size()));
         pieChart.setTitle("Recipes");
         pieChart.setData(valueList);
         pieChart.getData().forEach(data -> {
@@ -110,6 +111,14 @@ public class RecipePageController implements Initializable {
             Tooltip toolTip = new Tooltip(percentage);
             Tooltip.install(data.getNode(), toolTip);
         });
+//        //----------------LineChart----------
+//        lineChart.setTitle("Number of recipes by date");
+//        XYChart.Series dataSeries = new XYChart.Series();
+//        dataSeries.setName("test");
+//        for (int i = 0; i < rcs.getNbrParticipateByDate().size(); i++) {
+//            dataSeries.getData().add(new XYChart.Data(String.valueOf(sut.getNbrParticipateByDate().get(i).getCreatedAt()), sut.getNbrParticipateByDate().get(i).getNbr()));
+//        }
+//        lineChart.getData().add(dataSeries);
     }
 
     @FXML
@@ -162,6 +171,19 @@ public class RecipePageController implements Initializable {
         Steps_col.setCellValueFactory(new PropertyValueFactory<>("steps"));
         String n = RechercheTF.getText();
         RecipeTable.setItems(rs.Recherche(n));
+    }
+
+    @FXML
+    private void TriRecipes(MouseEvent event) throws SQLException {
+        img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
+        title_col.setCellValueFactory(new PropertyValueFactory<>("title"));
+        Desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
+        cal_col.setCellValueFactory(new PropertyValueFactory<>("calories"));
+        dur_col.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        persons_col.setCellValueFactory(new PropertyValueFactory<>("persons"));
+        ingred_col.setCellValueFactory(new PropertyValueFactory<>("ingredients"));
+        Steps_col.setCellValueFactory(new PropertyValueFactory<>("steps"));
+        RecipeTable.setItems(rs.Tri());
     }
 
 }

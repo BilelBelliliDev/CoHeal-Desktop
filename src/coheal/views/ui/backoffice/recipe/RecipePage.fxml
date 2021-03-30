@@ -34,7 +34,7 @@
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </JFXButton>
-      <PieChart fx:id="pieChart" layoutX="624.0" layoutY="39.0" prefHeight="223.0" prefWidth="355.0" />
+      <PieChart fx:id="pieChart" layoutX="597.0" layoutY="39.0" prefHeight="219.0" prefWidth="382.0" />
       <LineChart fx:id="lineChart" layoutX="66.0" layoutY="24.0" prefHeight="244.0" prefWidth="444.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
@@ -45,5 +45,6 @@
       </LineChart>
       <JFXTextField fx:id="RechercheTF" cacheShape="false" layoutX="54.0" layoutY="294.0" prefHeight="25.0" prefWidth="252.0" promptText="Enter Recipe Name" />
       <FontAwesomeIconView fill="#303c5d" glyphName="SEARCH" layoutX="312.0" layoutY="314.0" onMouseClicked="#RechercheRecipes" size="25" />
+      <FontAwesomeIconView fill="#303c5d" layoutX="358.0" layoutY="311.0" onMouseClicked="#TriRecipes" size="20" text="sort" />
    </children>
 </AnchorPane>

@@ -9,7 +9,13 @@ import coheal.controllers.ui.frontoffice.HomePageHolderController;
 import coheal.entities.recipe.Recipe;
 import coheal.services.recipe.RecipeService;
 import coheal.services.user.UserSession;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +31,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import static javafx.scene.text.Font.font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -63,6 +70,8 @@ public class RecipeDetailsController implements Initializable {
     RecipeService rs = new RecipeService();
     RecipeHolder rh = RecipeHolder.getINSTANCE();
     double xOffset, yOffset;
+    @FXML
+    private FontAwesomeIconView printBtn;
 
     /**
      * Initializes the controller class.
@@ -74,6 +83,7 @@ public class RecipeDetailsController implements Initializable {
         if (UserSession.getRole().equals("nutritionist") && r.getUser().getUserId() == UserSession.getUser_id()) {
             updateIcon.setVisible(true);
             deleteIcon.setVisible(true);
+            printBtn.setVisible(false);
         }
 
         if (r != null) {
@@ -139,6 +149,30 @@ public class RecipeDetailsController implements Initializable {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    @FXML
+    private void PdftoPrint(MouseEvent event) throws FileNotFoundException, DocumentException, IOException {
+        javafx.stage.Window owner = printBtn.getScene().getWindow();
+
+        Document document = new Document();
+        try {
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("D:/MyRecipe.pdf"));
+            document.open();
+            document.add(new Paragraph(TitleLabel.getText()));
+            document.add(new Paragraph(DescLabel.getText()));
+            document.add(new Paragraph(IngredientsLabel.getText()));
+            document.add(new Paragraph(StepsLabel.getText()));
+            //  document.add((Element) ImageView.getImage());
+
+            document.close();
+            writer.close();
+        } catch (DocumentException e) {
+            System.out.println(e.getMessage());
+        }
+        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+                "This recipe got transported to D:/ in a PDF file as MyRecipe.pdf ");
+
     }
 
 }
