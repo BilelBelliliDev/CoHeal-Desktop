@@ -142,8 +142,7 @@ public class LoginController implements Initializable {
             if (!flag) {
                 infoBox("Please enter correct Email and Password or maybe your your account is deleted", null, "Failed");
             } else {
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/AdminPageHolder.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
 
                 Parent root = loader.load();
                 Stage stage = new Stage();
@@ -199,13 +198,13 @@ public class LoginController implements Initializable {
         if (fName && lName && DPDateOfBirthSUP.getValue() != null && emailSU && password && (TFPasswordSUP.getText().equals(TFConfirmPasswordSUP.getText()))) {
             sp = new ServiceUser();
             User u = new User();
-                //sets
-                u.setFirstName(TFFirstNameSUP.getText());
-                u.setLastName(TFLastNameSUP.getText());
-                u.setDateOfBirth(java.sql.Date.valueOf(DPDateOfBirthSUP.getValue()));
-                u.setEmail(TFEmailSUP.getText());
-                u.setPassword(TFPasswordSUP.getText());
-                sp.AddUser(u);
+            //sets
+            u.setFirstName(TFFirstNameSUP.getText());
+            u.setLastName(TFLastNameSUP.getText());
+            u.setDateOfBirth(java.sql.Date.valueOf(DPDateOfBirthSUP.getValue()));
+            u.setEmail(TFEmailSUP.getText());
+            u.setPassword(TFPasswordSUP.getText());
+            sp.AddUser(u);
         }
     }
 
