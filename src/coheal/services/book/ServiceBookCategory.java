@@ -6,6 +6,7 @@
 package coheal.services.book;
 
 import coheal.entities.book.BookCategory;
+import static coheal.services.book.Constants.projectPath;
 import coheal.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -48,6 +50,12 @@ public class ServiceBookCategory {
                                 bc.setCatId(rst.getInt("cat_id"));
                                 bc.setName(rst.getString("name"));
                                 bc.setImgUrl(rst.getString("img_url"));
+                                ImageView img = null;
+                                String url = "file:///" + projectPath + "\\src\\coheal\\resources\\images\\bookCat\\" + rst.getString("img_url");
+                        img = new ImageView(url);
+                        img.setFitHeight(100);
+                        img.setFitWidth(100);
+                        bc.setImg(img);
                                 
                                 data.add(bc);
                                
@@ -77,4 +85,40 @@ public class ServiceBookCategory {
             System.out.println(ex.getMessage());
         }
      }
+       public ObservableList<BookCategory>Recherche(int t)throws SQLException {
+                Statement stm=cnx.createStatement();
+                        String query="SELECT * FROM book_category WHERE is_deleted = 0 AND cat_id =" + t + " ";
+                        ResultSet rst=stm.executeQuery(query);
+                         ObservableList<BookCategory> data = FXCollections.observableArrayList();
+                          while(rst.next()){
+                                BookCategory bc= new BookCategory();
+                                bc.setCatId(rst.getInt("cat_id"));
+                                bc.setName(rst.getString("name"));
+                                bc.setImgUrl(rst.getString("img_url"));
+                                
+                                data.add(bc);
+                               
+                                
+                        }
+                          return data;
+               
+       }
+        public ObservableList<BookCategory>RechercheCatID(String t)throws SQLException {
+                Statement stm=cnx.createStatement();
+                        String query="SELECT * FROM book_category WHERE is_deleted = 0 AND name ='" + t + "' ";
+                        ResultSet rst=stm.executeQuery(query);
+                         ObservableList<BookCategory> data = FXCollections.observableArrayList();
+                          while(rst.next()){
+                                BookCategory bc= new BookCategory();
+                                bc.setCatId(rst.getInt("cat_id"));
+                                bc.setName(rst.getString("name"));
+                                bc.setImgUrl(rst.getString("img_url"));
+                                
+                                data.add(bc);
+                               
+                                
+                        }
+                          return data;
+               
+       }
 }

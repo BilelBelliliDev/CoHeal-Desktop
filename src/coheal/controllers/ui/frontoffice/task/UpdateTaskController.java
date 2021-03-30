@@ -71,7 +71,6 @@ public class UpdateTaskController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         TaskCategory tc = new TaskCategory();
         for (int i = 0; i < stc.ListTaskCategory().size(); i++) {
             comboCatg.getItems().add(stc.ListTaskCategory().get(i).getName());
@@ -106,9 +105,6 @@ public class UpdateTaskController implements Initializable {
             comboCatg.getSelectionModel().select(task.getCategory().getName());
         }
 
-        
-
-        
     }
 
     @FXML
@@ -116,9 +112,9 @@ public class UpdateTaskController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         f = fileChooser.showOpenDialog(null);
         imageTxt.setText(f.getName());
-        if ( task != null) {
+        if (task != null) {
             task.setImgUrl(f.getName());
-        } else if ( pt != null) {
+        } else if (pt != null) {
             pt.setImgUrl(f.getName());
         }
     }
@@ -164,8 +160,10 @@ public class UpdateTaskController implements Initializable {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
+                if(cat!=""){
                 tc = stc.searchTaskCategory(cat);
                 pt.setCategory(tc);
+                }
                 st.updateTask(pt, th.getId());
                 spt.updatePaidTask(pt, th.getId());
 
@@ -194,8 +192,10 @@ public class UpdateTaskController implements Initializable {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
+                if(cat!=""){
                 tc = stc.searchTaskCategory(cat);
                 pt.setCategory(tc);
+                }
                 spt.makeFreeTask(th.getId());
                 st.updateTask((Task) pt, th.getId());
             }
@@ -226,8 +226,10 @@ public class UpdateTaskController implements Initializable {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
+                if(cat!=""){
                 tc = stc.searchTaskCategory(cat);
                 task.setCategory(tc);
+                }
                 st.updateTask(task, th.getId());
             } else if (paid.isSelected() && price.getText() != "") {
                 task.setTitle(Titre.getText());
@@ -254,9 +256,11 @@ public class UpdateTaskController implements Initializable {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
-                
+
+                if(cat!=""){
                 tc = stc.searchTaskCategory(cat);
                 task.setCategory(tc);
+                }
                 st.updateTask(task, th.getId());
                 spt.makePaidTask(th.getId(), Double.valueOf(price.getText()));
             }

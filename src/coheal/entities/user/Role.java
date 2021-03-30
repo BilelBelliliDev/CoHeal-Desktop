@@ -15,9 +15,10 @@ public class Role {
     public Role(int roleId, String roleName) {
         this.roleId = roleId;
         this.roleName = roleName;
+    }    
+
+    public Role() {
     }
-    
-    
     
 
     public ArrayList<UserRole> getListUsers() {

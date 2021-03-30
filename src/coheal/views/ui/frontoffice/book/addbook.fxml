@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="380.0" style="-fx-background-color: #FFFEFB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.book.AddbookController">
+   <children>
+      <Label layoutX="115.0" layoutY="14.0" style="-fx-font-size: 24;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Add Book" textFill="#13547a" />
+      <JFXButton layoutX="127.0" layoutY="360.0" onAction="#addBokkAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="ADD" textFill="#fffefb">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <FontAwesomeIconView fill="#13547a" glyphName="TIMES" layoutX="347.0" layoutY="31.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" wrappingWidth="18.714285850524902" />
+      <TextField fx:id="tfimgurl" layoutX="57.0" layoutY="69.0" promptText="inserer l'url  de l'image" />
+      <TextField fx:id="tffilepath" layoutX="57.0" layoutY="112.0" promptText="inserer l'url du livre" />
+      <TextField fx:id="tfauthor" layoutX="57.0" layoutY="158.0" promptText="inserer le nom de l'auteur" />
+      <TextField fx:id="tftiltle" layoutX="57.0" layoutY="197.0" promptText="inserer le titre du livre" />
+      <TextField fx:id="tfdescription" layoutX="57.0" layoutY="282.0" prefHeight="78.0" prefWidth="266.0" promptText="inserer la description du livre" />
+      <FontAwesomeIconView fill="#13547a" glyphName="FOLDER" layoutX="260.0" layoutY="95.0" onMouseClicked="#Addimage" size="30" />
+      <FontAwesomeIconView fill="#13547a" glyphName="FOLDER" layoutX="260.0" layoutY="138.0" onMouseClicked="#Addlivre" size="30" />
+      <JFXComboBox fx:id="bcat" layoutX="57.0" layoutY="238.0" onAction="#bCat" prefHeight="31.0" prefWidth="187.0" />
+   </children>
+</AnchorPane>

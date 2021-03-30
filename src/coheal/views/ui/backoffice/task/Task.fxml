@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="moderationPane" prefHeight="720.0" prefWidth="1084.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.task.TaskController">
+<AnchorPane fx:id="moderationPane" prefHeight="720.0" prefWidth="1084.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" stylesheets="@../../../../resources/css/tab.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.task.TaskController">
    <children>
       <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="1059.0" layoutY="24.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
       <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="1035.0" layoutY="25.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
@@ -22,7 +22,7 @@
             <TableColumn fx:id="descriptionCol" minWidth="0.0" prefWidth="327.0" text="Description" />
             <TableColumn fx:id="DaysCol" prefWidth="96.0" text="Days" />
             <TableColumn fx:id="catgCol" prefWidth="176.0" text="category" />
-            <TableColumn fx:id="priceCol" minWidth="0.0" prefWidth="101.0" text="price" />
+            <TableColumn fx:id="priceCol" minWidth="0.0" prefWidth="127.0" text="price" />
          </columns>
       </TableView>
       <JFXButton layoutX="802.0" layoutY="284.0" onAction="#addCategoryAction" prefHeight="35.0" prefWidth="163.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Categories" textFill="#fffefb">

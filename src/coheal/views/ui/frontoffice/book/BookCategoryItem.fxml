@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="245.0" prefWidth="293.0" style="-fx-background-color: #EFF6FA;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.book.BookCategoryItemController">
    <children>
-      <ImageView fx:id="bookCatgImg" fitHeight="302.0" fitWidth="306.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="bookCatgImg" fitHeight="302.0" fitWidth="306.0" layoutX="-6.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../../../resources/images/tasks/personal_growth_tile2x_ea5c4e6.png" />
          </image>

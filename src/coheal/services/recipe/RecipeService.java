@@ -15,7 +15,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.ImageView;
@@ -34,7 +33,7 @@ public class RecipeService implements IRecipeService {
 
     @Override
     public void Create_Recipe(int user_id, String name, Recipe R) {
-        int catId=0;
+        int catId = 0;
         try {
             Statement st = con.createStatement();
             Recipe r = new Recipe();
@@ -95,7 +94,7 @@ public class RecipeService implements IRecipeService {
     @Override
     public void Update_Recipe(Recipe r, int id) {
         try {
-            String query = "UPDATE recipe SET  cat_id=" + r.getCat().getCatId() + ", title='" + r.getTitle() + "', description='" + r.getDescription() + "', ingredients='" + r.getIngredients() + "', steps='" + r.getSteps() + "', duration=" + r.getDuration() + ", persons=" + r.getPersons() + ", calories=" + r.getCalories() + ", img_url='" + r.getImgUrl() +"' WHERE recipe_id=" + id + ";";
+            String query = "UPDATE recipe SET title='" + r.getTitle() + "', description='" + r.getDescription() + "', ingredients='" + r.getIngredients() + "', steps='" + r.getSteps() + "', duration=" + r.getDuration() + ", persons=" + r.getPersons() + ", calories=" + r.getCalories() + ", img_url='" + r.getImgUrl() + "' WHERE recipe_id=" + id + ";";
             Statement st = con.createStatement();
             st.executeUpdate(query);
             System.out.println("Recipe modified successfully!");
@@ -118,6 +117,36 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
+    public ObservableList<Recipe> Recherche(String title) throws SQLException {
+        Statement stm = con.createStatement();
+        String query = "SELECT * FROM recipe WHERE is_deleted = 0 AND title ='" + title + "';";
+        ResultSet rs = stm.executeQuery(query);
+        ObservableList<Recipe> data = FXCollections.observableArrayList();
+        while (rs.next()) {
+            Recipe r = new Recipe();
+            r.setRecipeId(rs.getInt("recipe_id"));
+            r.setTitle(rs.getString("title"));
+            r.setDescription(rs.getString("description"));
+            r.setIngredients(rs.getString("ingredients"));
+            r.setSteps(rs.getString("steps"));
+            r.setImgUrl(rs.getString("img_url"));
+            r.setCalories(rs.getFloat("calories"));
+            r.setDuration(rs.getInt("duration"));
+            r.setPersons(rs.getInt("persons"));
+            // image
+            ImageView img = null;
+            String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
+            img = new ImageView(url);
+            img.setFitHeight(100);
+            img.setFitWidth(100);
+            r.setImg(img);
+            data.add(r);
+        }
+        return data;
+
+    }
+
+    @Override
     public ObservableList<Recipe> Rechercher_Recette(int idR) throws SQLException {
         Statement st = con.createStatement();
         String query = "SELECT * FROM recipe WHERE is_deleted = 0 AND recipe_id = " + idR + "";
@@ -134,6 +163,13 @@ public class RecipeService implements IRecipeService {
             r.setCalories(rst.getFloat("calories"));
             r.setDuration(rst.getInt("duration"));
             r.setPersons(rst.getInt("persons"));
+            // image
+            ImageView img = null;
+            String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rst.getString("img_url");
+            img = new ImageView(url);
+            img.setFitHeight(100);
+            img.setFitWidth(100);
+            r.setImg(img);
             recipe.add(r);
         }
         return recipe;
@@ -156,6 +192,13 @@ public class RecipeService implements IRecipeService {
             r.setCalories(rs.getFloat("calories"));
             r.setDuration(rs.getInt("duration"));
             r.setPersons(rs.getInt("persons"));
+            // image
+            ImageView img = null;
+            String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
+            img = new ImageView(url);
+            img.setFitHeight(100);
+            img.setFitWidth(100);
+            r.setImg(img);
             ListR.add(r);
         }
         return ListR;
@@ -215,5 +258,5 @@ public class RecipeService implements IRecipeService {
         System.out.println(u);
         return u;
     }
-    
+
 }
