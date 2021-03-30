@@ -112,10 +112,7 @@ public class EventPageController implements Initializable {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
-        for (int i = 0; i < 4; i++) {
             pagination.setPageFactory((pageindex) -> grid(pageindex));
-        }
     }
 
     public GridPane grid(int pageindex) {
