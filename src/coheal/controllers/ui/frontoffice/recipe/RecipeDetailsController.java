@@ -163,7 +163,6 @@ public class RecipeDetailsController implements Initializable {
             document.add(new Paragraph(DescLabel.getText()));
             document.add(new Paragraph(IngredientsLabel.getText()));
             document.add(new Paragraph(StepsLabel.getText()));
-            //  document.add((Element) ImageView.getImage());
             
 
             document.close();
