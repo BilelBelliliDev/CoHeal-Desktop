@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.Axis;
@@ -33,6 +34,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
@@ -75,16 +77,18 @@ public class TaskController implements Initializable {
     private PieChart pieChart;
     @FXML
     private LineChart<?, ?> lineChart;
-    private ServiceUserTask sut=new ServiceUserTask();
+    private ServiceUserTask sut = new ServiceUserTask();
+    @FXML
+    private Pagination pagination;
+    private int itemsPerPage = 5;
+    private int from, to, size;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
 
-        init();
         //----------------PieChart----------
         ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
                 new PieChart.Data("Free Tasks", st.ListTask().size()),
@@ -100,24 +104,43 @@ public class TaskController implements Initializable {
         lineChart.setTitle("Number of participations by date");
         XYChart.Series dataSeries = new XYChart.Series();
         dataSeries.setName("test");
-        for(int i=0;i<sut.getNbrParticipateByDate().size();i++)
-        dataSeries.getData().add(new XYChart.Data(String.valueOf(sut.getNbrParticipateByDate().get(i).getCreatedAt()),sut.getNbrParticipateByDate().get(i).getNbr()));
+        for (int i = 0; i < sut.getNbrParticipateByDate().size(); i++) {
+            dataSeries.getData().add(new XYChart.Data(String.valueOf(sut.getNbrParticipateByDate().get(i).getCreatedAt()), sut.getNbrParticipateByDate().get(i).getNbr()));
+        }
         lineChart.getData().add(dataSeries);
-
-
+        
+        init();
 
     }
-    public void init(){
-       List<?> tasks;
+
+    public void init() {
+        List<?> tasks;
         tasks = Stream.concat(st.ListTask().stream(), spt.listPaidTask().stream())
                 .collect(Collectors.toList());
-        ObservableList<Task> l = FXCollections.observableList((List<Task>) tasks);
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         DaysCol.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
         catgCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        taskTable.setItems(l); 
+        size = (tasks.size() / itemsPerPage) + 1;
+        pagination.setPageCount(size);
+        pagination.setPageFactory((pageIndex) -> {
+            taskTable.getItems().clear();
+            from = pageIndex * itemsPerPage;
+            to = itemsPerPage;
+            int page = pageIndex * itemsPerPage;
+
+            for (int i = page; i < page + itemsPerPage; i++) {
+
+                if (i >= tasks.size()) {
+                    return taskTable;
+                }
+                taskTable.getItems().add((Task) tasks.get(i));
+
+            }
+            return taskTable;
+        });
+
     }
 
     @FXML
