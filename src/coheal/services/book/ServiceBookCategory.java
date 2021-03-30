@@ -103,4 +103,22 @@ public class ServiceBookCategory {
                           return data;
                
        }
+        public ObservableList<BookCategory>RechercheCatID(String t)throws SQLException {
+                Statement stm=cnx.createStatement();
+                        String query="SELECT * FROM book_category WHERE is_deleted = 0 AND name ='" + t + "' ";
+                        ResultSet rst=stm.executeQuery(query);
+                         ObservableList<BookCategory> data = FXCollections.observableArrayList();
+                          while(rst.next()){
+                                BookCategory bc= new BookCategory();
+                                bc.setCatId(rst.getInt("cat_id"));
+                                bc.setName(rst.getString("name"));
+                                bc.setImgUrl(rst.getString("img_url"));
+                                
+                                data.add(bc);
+                               
+                                
+                        }
+                          return data;
+               
+       }
 }

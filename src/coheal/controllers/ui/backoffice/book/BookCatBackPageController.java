@@ -195,7 +195,7 @@ public class BookCatBackPageController implements Initializable {
                
                 if (canModify) {
                         sbc.supprimerBookCat(selectedId);
-                        notif();
+                        
                         try {
                                 tabviewcat.setItems(sbc.AfficherBookCat());
                         } catch (SQLException ex) {
@@ -213,7 +213,7 @@ public class BookCatBackPageController implements Initializable {
                         ServiceBookCategory sbc = new ServiceBookCategory();
                         bc.setName(selectednomcat.getText());
                         sbc.modifierBookCat(selectedId, bc);
-                       notifUpdate();
+                     
                         try {
                                 tabviewcat.setItems(sbc.AfficherBookCat());
                         } catch (SQLException ex) {
@@ -240,31 +240,6 @@ public class BookCatBackPageController implements Initializable {
                 }
                 bars.getData().addAll(set2);
         }
-          public void notif(){
-                
-            // notif accepté 
-            Notifications notificationBuilder = Notifications.create()
-                    .title("ajout")
-                    .text("Felicitation "+UserSession.getFirst_name() +"! Votre categorie a été supprimer avec succée")
-                    .hideAfter(Duration.minutes(0.1))
-                    .position(Pos.BOTTOM_RIGHT)
-                    .darkStyle();
-                  
-            notificationBuilder.show();
-        
-        }
-            public void notifUpdate(){
-                
-            // notif accepté 
-            Notifications notificationBuilder = Notifications.create()
-                    .title("ajout")
-                    .text("Felicitation "+UserSession.getFirst_name() +"! Votre categorie a été modifié avec succée")
-                    .hideAfter(Duration.minutes(0.1))
-                    .position(Pos.BOTTOM_RIGHT)
-                    .darkStyle();
-                  
-            notificationBuilder.show();
-        
-        }
+         
 
 }

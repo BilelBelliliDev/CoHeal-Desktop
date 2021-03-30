@@ -168,7 +168,7 @@ public class BookBackPageController implements Initializable {
                 System.out.println(selectedId);
                 if (canModify) {
                         sb.supprimerBook(selectedId);
-                        notif();
+                        
                         try {
                                 tabviewsbook.setItems(sb.AfficherBook2());
                         } catch (SQLException ex) {
@@ -189,7 +189,7 @@ public class BookBackPageController implements Initializable {
                         b.setAuthor(selectauteur.getText());
                         b.setDescription(selectdescription.getText());
                         sb.modifierBook(selectedId, b);
-                        notifUpdate();
+                        
                         try {
                                 tabviewsbook.setItems(sb.AfficherBook2());
                         } catch (SQLException ex) {
@@ -297,31 +297,7 @@ public class BookBackPageController implements Initializable {
                 });
 
         }
-           public void notif(){
-                
-            // notif accepté 
-            Notifications notificationBuilder = Notifications.create()
-                    .title("ajout")
-                    .text("Felicitation "+UserSession.getFirst_name() +"! Votre livre a été supprimer avec succée")
-                    .hideAfter(Duration.minutes(0.1))
-                    .position(Pos.BOTTOM_RIGHT)
-                    .darkStyle();
-                  
-            notificationBuilder.show();
-        
-        }
-            public void notifUpdate(){
-                
-            // notif accepté 
-            Notifications notificationBuilder = Notifications.create()
-                    .title("ajout")
-                    .text("Felicitation "+UserSession.getFirst_name() +"! Votre livre a été modifié avec succée")
-                    .hideAfter(Duration.minutes(0.1))
-                    .position(Pos.BOTTOM_RIGHT)
-                    .darkStyle();
-                  
-            notificationBuilder.show();
-        
-        }
+       
+       
 
 }
