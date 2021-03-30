@@ -31,7 +31,7 @@ public class GridEventController implements Initializable {
     private GridPane eventGrid;
     public int pageCount,currentPage;
     private ServiceEvent st = new ServiceEvent();
-    private final int NUM=8;
+    private int gridSize,columnCount;
 
     /**
      * Initializes the controller class.
@@ -41,6 +41,8 @@ public class GridEventController implements Initializable {
         
     }
     public void setData(int index){
+        gridSize=eventGrid.getRowConstraints().size()*eventGrid.getColumnConstraints().size();
+        columnCount=eventGrid.getColumnConstraints().size()-1;
         currentPage=index;
         try {
             int y = 0;
@@ -48,23 +50,23 @@ public class GridEventController implements Initializable {
             List<Event> events;
             events = st.AfficherEvent();
             //pagination
-            pageCount=events.size()/NUM;
-            if(events.size()%NUM>0){
+            pageCount=events.size()/gridSize;
+            if(events.size()%gridSize>0){
                 pageCount++;
             }
             int a,b;
-            a=currentPage*NUM; 
+            a=currentPage*gridSize; 
             if(currentPage==(pageCount-1))
                 b=events.size();
             else
-                b=a+NUM;
+                b=a+gridSize;
             for (int i = a; i < b; i++) {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/event/EventItem.fxml"));
                 AnchorPane pane = loader.load();
                 EventItemController c = loader.getController();
                 c.setData(events.get(i));
-                if (x > 1) {
+                if (x > columnCount) {
                     y++;
                     x = 0;
                 }
