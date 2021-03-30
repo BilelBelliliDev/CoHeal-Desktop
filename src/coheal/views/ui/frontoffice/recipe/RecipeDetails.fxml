@@ -103,6 +103,7 @@
                   </Label>
                   <FontAwesomeIconView fx:id="updateIcon" fill="#13547a" glyphName="EDIT" layoutX="765.0" layoutY="65.0" onMouseClicked="#updateRecipe" size="45" visible="false" />
                   <FontAwesomeIconView fx:id="deleteIcon" fill="#13547a" glyphName="TRASH" layoutX="821.0" layoutY="61.0" onMouseClicked="#deleteRecipe" size="45" visible="false" />
+                  <FontAwesomeIconView fx:id="printBtn" fill="#13547a" glyphName="PRINT" layoutX="833.0" layoutY="49.0" onMouseClicked="#PdftoPrint" size="30" />
                </children>
             </Pane>
             <Label layoutX="52.0" layoutY="39.0" prefHeight="46.0" prefWidth="301.0" style="-fx-font-size: 30px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Recipe Details" textFill="#303c5d">

@@ -42,7 +42,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <HBox fx:id="categoriesHBox" alignment="CENTER" layoutX="21.0" layoutY="93.0" prefHeight="246.0" prefWidth="1013.0" spacing="40.0" />
+            <HBox fx:id="categoriesHBox" alignment="CENTER" layoutX="21.0" layoutY="93.0" prefHeight="237.0" prefWidth="1013.0" spacing="40.0" />
             <JFXButton fx:id="addBtn" layoutX="863.0" layoutY="416.0" onAction="#addRecipeAction" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #303c5d; -fx-background-radius: 1em; -fx-font-size: 18px; -fx-opacity: 1;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Add new recipe" textFill="#fffefb" visible="false">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />

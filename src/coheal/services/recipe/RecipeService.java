@@ -94,7 +94,7 @@ public class RecipeService implements IRecipeService {
     @Override
     public void Update_Recipe(Recipe r, int id) {
         try {
-            String query = "UPDATE recipe SET  cat_id=" + r.getCat().getCatId() + ", title='" + r.getTitle() + "', description='" + r.getDescription() + "', ingredients='" + r.getIngredients() + "', steps='" + r.getSteps() + "', duration=" + r.getDuration() + ", persons=" + r.getPersons() + ", calories=" + r.getCalories() + ", img_url='" + r.getImgUrl() + "' WHERE recipe_id=" + id + ";";
+            String query = "UPDATE recipe SET title='" + r.getTitle() + "', description='" + r.getDescription() + "', ingredients='" + r.getIngredients() + "', steps='" + r.getSteps() + "', duration=" + r.getDuration() + ", persons=" + r.getPersons() + ", calories=" + r.getCalories() + ", img_url='" + r.getImgUrl() + "' WHERE recipe_id=" + id + ";";
             Statement st = con.createStatement();
             st.executeUpdate(query);
             System.out.println("Recipe modified successfully!");
@@ -163,6 +163,13 @@ public class RecipeService implements IRecipeService {
             r.setCalories(rst.getFloat("calories"));
             r.setDuration(rst.getInt("duration"));
             r.setPersons(rst.getInt("persons"));
+            // image
+            ImageView img = null;
+            String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rst.getString("img_url");
+            img = new ImageView(url);
+            img.setFitHeight(100);
+            img.setFitWidth(100);
+            r.setImg(img);
             recipe.add(r);
         }
         return recipe;
@@ -185,6 +192,13 @@ public class RecipeService implements IRecipeService {
             r.setCalories(rs.getFloat("calories"));
             r.setDuration(rs.getInt("duration"));
             r.setPersons(rs.getInt("persons"));
+            // image
+            ImageView img = null;
+            String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
+            img = new ImageView(url);
+            img.setFitHeight(100);
+            img.setFitWidth(100);
+            r.setImg(img);
             ListR.add(r);
         }
         return ListR;
