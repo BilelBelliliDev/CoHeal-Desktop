@@ -40,24 +40,22 @@ public class UpdateSessoioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         //TODO
         s=ss.searchSession(tah.getId());
-         s.setTitle(titreid.getText());
-        s.setDescription(numdaysid.getText());
-      
+        titreid.setText(s.getTitle());
+        desid.setText(s.getDescription());
+        numdaysid.setText(String.valueOf(s.getNumOfDays()));
     }    
 
     @FXML
     private void updateid(ActionEvent event) {
          Session s = new Session();
-
+        System.out.println(titreid.getText());
         s.setTitle(titreid.getText());
         s.setDescription(desid.getText());
         int n = Integer.parseInt(numdaysid.getText());
         s.setNumOfDays(n);
-        s=ss.searchSession(tah.getId());
 
-        
+        System.out.println(s);
         ss.modifierSession(s, tah.getId());
     }
 

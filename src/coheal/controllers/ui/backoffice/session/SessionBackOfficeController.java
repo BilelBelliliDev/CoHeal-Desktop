@@ -7,6 +7,7 @@ package coheal.controllers.ui.backoffice.session;
 
 import coheal.entities.session.Session;
 import coheal.services.session.ServiceSession;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -18,6 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -41,6 +44,10 @@ public class SessionBackOfficeController implements Initializable {
     @FXML
     private TableView<Session> tableId;
     private ServiceSession ss = new ServiceSession();
+    @FXML
+    private TableColumn<Session, Integer> col4Id2;
+    @FXML
+    private FontAwesomeIconView close;
 
     /**
      * Initializes the controller class.
@@ -52,11 +59,27 @@ public class SessionBackOfficeController implements Initializable {
         col3Id.setCellValueFactory(new PropertyValueFactory<>("title"));
         col4Id.setCellValueFactory(new PropertyValueFactory<>("description"));
         col5Id.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
+        col4Id2.setCellValueFactory(new PropertyValueFactory<>("price") );
         tableId.setItems((ObservableList<Session>) ss.listSesion());
 
        
         
         // TODO
     }    
+
+    @FXML
+    private void closeAction(MouseEvent event) {
+         Stage stage = new Stage();
+        stage = (Stage) tableId.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void minAction(MouseEvent event) {
+         Stage stage = new Stage();
+        stage = (Stage) tableId.getScene().getWindow();
+        stage.setIconified(true);
+    }
+    
     
 }
