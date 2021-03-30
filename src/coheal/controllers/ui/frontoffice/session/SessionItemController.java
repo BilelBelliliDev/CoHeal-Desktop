@@ -6,9 +6,12 @@
 package coheal.controllers.ui.frontoffice.session;
 
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
+import coheal.controllers.ui.frontoffice.task.TaskHolder;
 import coheal.entities.session.Session;
 import coheal.services.session.ServiceSession;
 import coheal.services.ui.UIService;
+import coheal.services.user.UserSession;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -39,23 +42,32 @@ public class SessionItemController implements Initializable {
     private Label sessionTitle;
     @FXML
     private Label sessionDesc;
-    @FXML
-    private Label sessionViews;
             double xOffset, yOffset;
     public int id;
     ServiceSession ss = new ServiceSession();
+    private int sessionId,therpId;
+    int id1 = 0;
+    @FXML
+    private FontAwesomeIconView icon;
+    @FXML
+    private Label price;
 
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {   
+    public void initialize(URL url, ResourceBundle rb) {
     }    
     public void setData(Session s){
         UIService us = new UIService();
         sessionTitle.setText(s.getTitle());
         sessionDesc.setText(s.getDescription());
+                price.setText(s.getPrice()+"dt");
+
+        sessionId=s.getSessionId();
+        therpId=s.getTherpId();
+        
         try {
             therpName.setText(us.therpSession(s.getTherpId()));
         } catch (SQLException ex) {
@@ -63,7 +75,14 @@ public class SessionItemController implements Initializable {
         }
     }
 
-    @FXML
+    public FontAwesomeIconView getIcon() {
+        return icon;
+    }
+
+    public void setIcon(FontAwesomeIconView icon) {
+        this.icon = icon;
+    }
+
     private void msgEvent(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/SessionMessage.fxml"));
         Parent root = loader.load();
@@ -93,6 +112,8 @@ public class SessionItemController implements Initializable {
 
     @FXML
     private void UpdateEvent(MouseEvent event) throws IOException {
+        SessionHolder th = SessionHolder.getINSTANCE();
+        th.setId(sessionId);
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/UpdateSessoio.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
@@ -116,5 +137,17 @@ public class SessionItemController implements Initializable {
             stage.setOpacity(1.0f);
         });
   
+    }
+
+    @FXML
+    private void participate(MouseEvent event) {
+        Session s= new Session();
+        
+        s.setUserId(UserSession.getUser_id());
+        if(UserSession.getUser_id()!=therpId)
+            ss.participate(s,sessionId);
+        else{
+            System.out.println("error");
+        }
     }
 }
