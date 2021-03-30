@@ -63,14 +63,17 @@ public class BookItemController implements Initializable {
         private Pane item;
         @FXML
         private FontAwesomeIconView trash;
+        int uid= 0;
 
         /**
          * Initializes the controller class.
          */
         @Override
         public void initialize(URL url, ResourceBundle rb) {
-                 if(UserSession.getRole().equals("therapist"))
-            trash.setVisible(true);
+                
+                if(UserSession.getRole().equals("therapist") )
+                {trash.setVisible(true);
+                }
 
         }
 
@@ -88,7 +91,8 @@ public class BookItemController implements Initializable {
      
 
         @FXML
-        private void displayAction(MouseEvent event) throws IOException {
+        private void displayAction(MouseEvent event) throws IOException, SQLException {
+               
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/book/bookDetails.fxml"));
                 Parent root = loader.load();
@@ -118,6 +122,7 @@ public class BookItemController implements Initializable {
                 root.setOnMouseReleased((MouseEvent mouseEvent) -> {
                         stage.setOpacity(1.0f);
                 });
+                 System.out.println(sb.Rechercher(id).get(0).getUserId());
 
 
         }
@@ -125,20 +130,8 @@ public class BookItemController implements Initializable {
         @FXML
         private void delBo(MouseEvent event) {
                 sb.supprimerBook(id);
-                notif();
-        }
-         public void notif(){
                 
-            // notif accepté 
-            Notifications notificationBuilder = Notifications.create()
-                    .title("ajout")
-                    .text("Felicitation "+UserSession.getFirst_name() +"! Votre livre a été supprimer avec succée")
-                    .hideAfter(Duration.minutes(0.1))
-                    .position(Pos.BOTTOM_RIGHT)
-                    .darkStyle();
-                  
-            notificationBuilder.show();
-        
         }
+        
 
 }

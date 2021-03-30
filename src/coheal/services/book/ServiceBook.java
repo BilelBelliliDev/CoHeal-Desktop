@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.ImageView;
@@ -130,6 +131,7 @@ public class ServiceBook {
                 ObservableList<Book> data = FXCollections.observableArrayList();
                 while (rst.next()) {
                         Book b = new Book();
+                         b.setUserId(rst.getInt("user_id"));
                         b.setImgUrl(rst.getString("img_url"));
                         b.setFilePath(rst.getString("file_path"));
                         b.setTitle(rst.getString("title"));
@@ -194,6 +196,49 @@ public class ServiceBook {
                         Book b = new Book();
                         b.setViews(rst.getInt("views"));
                         b.setTitle(rst.getString("title"));
+                        data.add(b);
+
+                }
+                return data;
+        }
+        public int getCountBook() {
+    
+        int nbr=0;
+        try {
+
+            Statement st = cnx.createStatement();
+            String query = "select COUNT(book_id) as n from book where is_deleted=0 ";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                int t=rs.getInt("n");
+                nbr=t;
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de l'affichage");
+        }
+        return nbr;
+    }
+         public List<Book> bookById(int t) throws SQLException {
+                Statement stm = cnx.createStatement();
+                String query = "SELECT * FROM book WHERE is_deleted = 0 AND user_id = " + t + "";
+                ResultSet rst = stm.executeQuery(query);
+                ObservableList<Book> data = FXCollections.observableArrayList();
+                while (rst.next()) {
+                        Book b = new Book();
+                         b.setUserId(rst.getInt("user_id"));
+                        b.setImgUrl(rst.getString("img_url"));
+                        b.setFilePath(rst.getString("file_path"));
+                        b.setTitle(rst.getString("title"));
+                        b.setAuthor(rst.getString("author"));
+                        b.setDescription(rst.getString("description"));
+                        b.setBookId(rst.getInt("book_id"));
+                        ImageView img = null;
+                        String url = "file:///" + projectPath + "\\src\\coheal\\resources\\images\\books\\" + rst.getString("img_url");
+                        img = new ImageView(url);
+                        img.setFitHeight(100);
+                        img.setFitWidth(100);
+                        b.setImg(img);
                         data.add(b);
 
                 }
