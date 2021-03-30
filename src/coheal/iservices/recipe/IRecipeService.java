@@ -24,10 +24,12 @@ public interface IRecipeService {
 
     public void Delete_Recipe(int idR);
 
+    public ObservableList<Recipe> Recherche(String title) throws SQLException;
+    
     public ObservableList<Recipe> Rechercher_Recette(int idR) throws SQLException;
 
     public ObservableList<Recipe> Tri() throws SQLException;
 
     public Recipe getRecipe(int idR);
 
-    }
+}

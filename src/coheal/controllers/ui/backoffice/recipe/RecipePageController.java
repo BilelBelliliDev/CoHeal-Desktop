@@ -9,9 +9,11 @@ import coheal.entities.recipe.Recipe;
 import coheal.entities.recipe.RecipeCategory;
 import coheal.services.recipe.RecipeCategoryService;
 import coheal.services.recipe.RecipeService;
+import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -75,6 +77,8 @@ public class RecipePageController implements Initializable {
     RecipeCategory rc = new RecipeCategory();
     RecipeCategoryService rcs = new RecipeCategoryService();
     double xOffset, yOffset;
+    @FXML
+    private JFXTextField RechercheTF;
 
     /**
      * Initializes the controller class.
@@ -144,6 +148,20 @@ public class RecipePageController implements Initializable {
         root.setOnMouseReleased((MouseEvent mouseEvent) -> {
             stage.setOpacity(1.0f);
         });
+    }
+
+    @FXML
+    private void RechercheRecipes(MouseEvent event) throws SQLException {
+        img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
+        title_col.setCellValueFactory(new PropertyValueFactory<>("title"));
+        Desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
+        cal_col.setCellValueFactory(new PropertyValueFactory<>("calories"));
+        dur_col.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        persons_col.setCellValueFactory(new PropertyValueFactory<>("persons"));
+        ingred_col.setCellValueFactory(new PropertyValueFactory<>("ingredients"));
+        Steps_col.setCellValueFactory(new PropertyValueFactory<>("steps"));
+        String n = RechercheTF.getText();
+        RecipeTable.setItems(rs.Recherche(n));
     }
 
 }

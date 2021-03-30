@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,38 +11,40 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="moderationPane" prefHeight="369.0" prefWidth="668.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.recipe.RecipeCategoryPageController">
+<AnchorPane fx:id="moderationPane" prefHeight="446.0" prefWidth="770.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.recipe.RecipeCategoryPageController">
    <children>
-      <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="633.0" layoutY="23.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" />
-      <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="612.0" layoutY="23.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" text="" />
-      <TableView fx:id="RecipeCatTable" layoutX="287.0" layoutY="98.0" prefHeight="225.0" prefWidth="346.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="287.0" AnchorPane.rightAnchor="35.0">
+      <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="738.0" layoutY="20.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" />
+      <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="716.0" layoutY="20.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" text="" />
+      <TableView fx:id="RecipeCatTable" layoutX="292.0" layoutY="129.0" prefHeight="263.0" prefWidth="425.0" style="-fx-background-color: #FFFEFB;" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="292.0" AnchorPane.rightAnchor="85.0">
          <columns>
-            <TableColumn fx:id="img_col" prefWidth="153.66665649414062" text="Image" />
-            <TableColumn fx:id="name_col" minWidth="0.0" prefWidth="191.33334350585938" text="Name" />
+            <TableColumn fx:id="img_col" prefWidth="177.0" text="Image" />
+            <TableColumn fx:id="name_col" minWidth="0.0" prefWidth="247.0" text="Name" />
          </columns>
       </TableView>
-      <TextField fx:id="selectedName" layoutX="77.0" layoutY="198.0" prefHeight="25.0" prefWidth="167.0" />
-      <Pane layoutX="82.0" layoutY="49.0" prefHeight="126.0" prefWidth="154.0" style="-fx-border-color: blue;">
+      <TextField fx:id="selectedName" layoutX="43.0" layoutY="198.0" prefHeight="25.0" prefWidth="167.0" />
+      <Pane layoutX="49.0" layoutY="49.0" prefHeight="126.0" prefWidth="154.0" style="-fx-border-color: #13547a; -fx-border-width: 3;">
          <children>
-            <ImageView fx:id="selectedImg" fitHeight="130.0" fitWidth="167.0" layoutX="-6.0" layoutY="-1.0" pickOnBounds="true" />
+            <ImageView fx:id="selectedImg" fitHeight="130.0" fitWidth="167.0" layoutX="-6.0" layoutY="-2.0" pickOnBounds="true" />
          </children>
       </Pane>
-      <TextField fx:id="ImgUrl" layoutX="76.0" layoutY="236.0" prefHeight="25.0" prefWidth="127.0" />
-      <JFXButton layoutX="472.0" layoutY="49.0" onAction="#AddCategoryAction" prefHeight="35.0" prefWidth="161.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Add Category" textFill="#fffefb">
+      <TextField fx:id="ImgUrl" layoutX="43.0" layoutY="235.0" prefHeight="25.0" prefWidth="127.0" />
+      <JFXButton layoutX="570.0" layoutY="78.0" onAction="#AddCategoryAction" prefHeight="35.0" prefWidth="161.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Add Category" textFill="#fffefb">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="UpdateBtn" layoutX="46.0" layoutY="282.0" onAction="#UpdateCategory" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Update" textFill="#fffefb">
+      <JFXButton fx:id="UpdateBtn" layoutX="81.0" layoutY="282.0" onAction="#UpdateCategory" prefHeight="35.0" prefWidth="91.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Update" textFill="#fffefb">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="DeleteBtn" layoutX="161.0" layoutY="282.0" onAction="#DeleteCategory" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Delete" textFill="#fffefb">
+      <JFXButton fx:id="DeleteBtn" layoutX="81.0" layoutY="326.0" onAction="#DeleteCategory" prefHeight="35.0" prefWidth="91.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Delete" textFill="#fffefb">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </JFXButton>
-      <FontAwesomeIconView fill="#1c2779" glyphName="UPLOAD" layoutX="213.0" layoutY="256.0" onMouseClicked="#UpdateImage" size="25" />
+      <FontAwesomeIconView fill="#13547a" glyphName="UPLOAD" layoutX="179.0" layoutY="255.0" onMouseClicked="#UpdateImage" size="25" />
+      <JFXTextField fx:id="RechercheTF" layoutX="292.0" layoutY="83.0" prefHeight="25.0" prefWidth="157.0" unFocusColor="#303c5d" />
+      <FontAwesomeIconView fill="#13547a" glyphName="SEARCH" layoutX="462.0" layoutY="102.0" onMouseClicked="#RechercherCategories" size="20" />
    </children>
 </AnchorPane>

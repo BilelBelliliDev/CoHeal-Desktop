@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
@@ -34,7 +35,7 @@
          </font>
       </JFXButton>
       <PieChart fx:id="pieChart" layoutX="624.0" layoutY="39.0" prefHeight="223.0" prefWidth="355.0" />
-      <LineChart fx:id="lineChart" layoutX="66.0" layoutY="24.0" prefHeight="274.0" prefWidth="472.0">
+      <LineChart fx:id="lineChart" layoutX="66.0" layoutY="24.0" prefHeight="244.0" prefWidth="444.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -42,5 +43,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
+      <JFXTextField fx:id="RechercheTF" cacheShape="false" layoutX="54.0" layoutY="294.0" prefHeight="25.0" prefWidth="252.0" promptText="Enter Recipe Name" />
+      <FontAwesomeIconView fill="#303c5d" glyphName="SEARCH" layoutX="312.0" layoutY="314.0" onMouseClicked="#RechercheRecipes" size="25" />
    </children>
 </AnchorPane>

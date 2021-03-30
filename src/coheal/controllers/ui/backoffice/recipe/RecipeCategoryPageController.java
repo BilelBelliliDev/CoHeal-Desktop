@@ -9,10 +9,12 @@ import coheal.entities.recipe.RecipeCategory;
 import static coheal.services.recipe.Constants.projectPath;
 import coheal.services.recipe.RecipeCategoryService;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -73,6 +75,8 @@ public class RecipeCategoryPageController implements Initializable {
 
     RecipeCategory rc = new RecipeCategory();
     File f = null;
+    @FXML
+    private JFXTextField RechercheTF;
 
     /**
      * Initializes the controller class.
@@ -119,7 +123,7 @@ public class RecipeCategoryPageController implements Initializable {
 
     @FXML
     private void AddCategoryAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/recipe/AddRecipeCategory.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/recipe/AddCategory.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -214,4 +218,14 @@ public class RecipeCategoryPageController implements Initializable {
         rc.setImgUrl(f.getName());
 
     }
+
+    @FXML
+    private void RechercherCategories(MouseEvent event) throws SQLException {
+        RecipeCategoryService rcs = new RecipeCategoryService();
+        name_col.setCellValueFactory(new PropertyValueFactory<>("name"));
+        img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
+        String n = RechercheTF.getText();
+        RecipeCatTable.setItems(rcs.Recherche(n));
+    }
+
 }
