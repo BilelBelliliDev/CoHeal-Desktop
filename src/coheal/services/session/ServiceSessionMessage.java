@@ -5,6 +5,7 @@
  */
 package coheal.services.session;
 
+import coheal.entities.session.Session;
 import coheal.entities.session.SessionMessage;
 import coheal.iservices.session.IServiceMsgInterface;
 import coheal.utils.MyConnection;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -32,7 +35,7 @@ public class ServiceSessionMessage implements IServiceMsgInterface {
     public void createSessionMesage( SessionMessage s) {
          try{
               String query;
-               query = "INSERT into session_message(chat_id,msg)"+" VALUES('"+s.getChatId()+ "','"+s.getMsg()+"');";
+               query = "INSERT into session_message(chat_id,msg,user_id)"+" VALUES("+s.getChatId()+ ",'"+s.getMsg()+"',"+s.getUserId()+ ");";
         Statement st = con.createStatement();
             st.executeUpdate(query);
             System.out.println("Message ajouter ");
@@ -42,20 +45,22 @@ public class ServiceSessionMessage implements IServiceMsgInterface {
     }
 
     @Override
-    public List<SessionMessage> listMessage() {
-         ArrayList<SessionMessage> s=new ArrayList();
+    public ObservableList<SessionMessage> listMessage() {
+         ObservableList<SessionMessage> s =FXCollections.observableArrayList();
          try{
               Statement st = con.createStatement();
-            String res = "select * from `session_message`";
+            String res = "select msg from `session_message`";
             ResultSet rs = st.executeQuery(res);
 
             while (rs.next()) {
-                s.add(new SessionMessage(rs.getString("msg")));
+                SessionMessage sm=new SessionMessage();
+                sm.setMsg(rs.getString("msg"));
+                s.add(sm);
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'affichage");
         }
         return s;
          }
-    
+
 }
