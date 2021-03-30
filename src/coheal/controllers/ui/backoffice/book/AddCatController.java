@@ -6,8 +6,10 @@
 package coheal.controllers.ui.backoffice.book;
 
 import coheal.entities.book.BookCategory;
+import coheal.entities.task.Notification;
 import static coheal.services.book.Constants.projectPath;
 import coheal.services.book.ServiceBookCategory;
+import coheal.services.book.notifBook;
 import coheal.services.user.UserSession;
 import java.io.File;
 import java.io.IOException;
@@ -94,14 +96,11 @@ public class AddCatController implements Initializable {
           public void notif(){
                 
             // notif accepté 
-            Notifications notificationBuilder = Notifications.create()
-                    .title("ajout")
-                    .text("Felicitation "+UserSession.getFirst_name() +"! Votre Categorie a été ajouté avec succée")
-                    .hideAfter(Duration.minutes(0.1))
-                    .position(Pos.BOTTOM_RIGHT)
-                    .darkStyle();
-                  
-            notificationBuilder.show();
+                   notifBook service=new notifBook();
+        Notification n = new Notification();
+        n.setId(UserSession.getUser_id());
+        n.setMessage(UserSession.getFirst_name()+" "+UserSession.getLast_name()+" a ajouter une categorie "+tfnomcat.getText());
+        service.addNotification(n);
         
         }
 

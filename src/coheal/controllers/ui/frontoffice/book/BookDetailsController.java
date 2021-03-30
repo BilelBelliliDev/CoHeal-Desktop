@@ -63,8 +63,9 @@ public class BookDetailsController implements Initializable {
        
         public void display(String title,String auth,String desc ,String img,String f,int id ){
                 Image imageB =new Image("file:///" + projectPath + "\\src\\coheal\\resources\\images\\books\\" + img);
+                 Image img2 =new Image("file:///" + projectPath + "\\src\\coheal\\resources\\images\\QRBook\\" + title+ ".jpg");
                 imgbookv.setImage(imageB);
-//                qrv.setImage(img2);
+                qrv.setImage(img2);
                 ttt.setText(title);
                 aaa.setText(auth);
                 dess.setText(desc);

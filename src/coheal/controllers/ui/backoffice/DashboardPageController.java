@@ -6,6 +6,7 @@
 package coheal.controllers.ui.backoffice;
 
 import animatefx.animation.ZoomIn;
+import coheal.services.book.ServiceBook;
 import coheal.services.task.ServicePaidTask;
 import coheal.services.task.ServiceTask;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -33,6 +34,9 @@ public class DashboardPageController implements Initializable {
     private Label nbTasks;
     ServicePaidTask spt = new ServicePaidTask();
     ServiceTask st = new ServiceTask();
+    ServiceBook sb = new ServiceBook();
+        @FXML
+        private Label totalebooks;
 
     /**
      * Initializes the controller class.
@@ -41,6 +45,8 @@ public class DashboardPageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         new ZoomIn(dashboardPane).play();
         nbTasks.setText(String.valueOf(spt.getCountPaidTask()+st.getCountTask()));
+        totalebooks.setText(String.valueOf(sb.getCountBook()));
+        
     }    
 
     @FXML
