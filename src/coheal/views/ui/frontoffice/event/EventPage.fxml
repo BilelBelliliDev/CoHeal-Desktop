@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -12,7 +13,7 @@
 
 <ScrollPane fx:id="eventPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.event.EventPageController">
    <content>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1848.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1146.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
          <children>
             <Label layoutX="38.0" layoutY="28.0" prefHeight="46.0" prefWidth="301.0" style="-fx-font-size: 30px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Browse Categories" textFill="#303c5d">
                <font>
@@ -29,7 +30,7 @@
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>
             </Label>
-            <GridPane fx:id="eventGrid" alignment="CENTER" hgap="45.0" layoutX="22.0" layoutY="490.0" prefHeight="539.0" prefWidth="1019.0" vgap="40.0">
+            <GridPane fx:id="eventGrid" alignment="CENTER" hgap="45.0" layoutX="22.0" layoutY="490.0" prefHeight="539.0" prefWidth="1019.0" vgap="40.0" visible="false">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -47,6 +48,7 @@
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </JFXButton>
+            <Pagination fx:id="pagination" layoutX="18.0" layoutY="476.0" maxPageIndicatorCount="5" pageCount="3" prefHeight="648.0" prefWidth="1035.0" />
          </children>
       </AnchorPane>
    </content>
