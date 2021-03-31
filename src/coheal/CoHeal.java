@@ -21,6 +21,7 @@ public class CoHeal extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
       
         Parent root = FXMLLoader.load(getClass().getResource("views/ui/frontoffice/Login.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("views/ui/backoffice/AdminPageHolder.fxml"));
