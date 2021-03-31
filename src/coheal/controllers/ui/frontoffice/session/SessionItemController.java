@@ -9,6 +9,7 @@ import coheal.controllers.ui.frontoffice.HomePageHolderController;
 import coheal.controllers.ui.frontoffice.task.TaskHolder;
 import coheal.entities.session.Session;
 import coheal.services.session.ServiceSession;
+import coheal.services.session.ServiceSessionChat;
 import coheal.services.ui.UIService;
 import coheal.services.user.UserSession;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -23,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -51,6 +53,11 @@ public class SessionItemController implements Initializable {
     private FontAwesomeIconView icon;
     @FXML
     private Label price;
+    @FXML
+    private Button update;
+    @FXML
+    private FontAwesomeIconView icon1;
+    ServiceSessionChat scm=new ServiceSessionChat();
 
 
     /**
@@ -60,6 +67,7 @@ public class SessionItemController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }    
     public void setData(Session s){
+        
         UIService us = new UIService();
         sessionTitle.setText(s.getTitle());
         sessionDesc.setText(s.getDescription());
@@ -73,6 +81,10 @@ public class SessionItemController implements Initializable {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+         if (UserSession.getRole().equals("therapist") ) {
+            update.setVisible(true);
+            icon1.setVisible(false);
+        }
     }
 
     public FontAwesomeIconView getIcon() {
@@ -83,32 +95,32 @@ public class SessionItemController implements Initializable {
         this.icon = icon;
     }
 
-    private void msgEvent(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/SessionMessage.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        scene.setFill(Color.TRANSPARENT);
-        HomePageHolderController hpc = new HomePageHolderController();
-        hpc.setStage(stage);
-        stage.show();
-        root.setOnMousePressed((MouseEvent mouseEvent) -> {
-            xOffset = mouseEvent.getSceneX();
-            yOffset = mouseEvent.getSceneY();
-        });
-        root.setOnMouseDragged((MouseEvent mouseEvent) -> {
-            stage.setX(mouseEvent.getScreenX() - xOffset);
-            stage.setY(mouseEvent.getScreenY() - yOffset);
-            stage.setOpacity(0.85f);
-        });
-        root.setOnMouseReleased((MouseEvent mouseEvent) -> {
-            stage.setOpacity(1.0f);
-        });
-        ss.modifierV(id);
-        
-    }
+//    private void msgEvent(MouseEvent event) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/SessionMessage.fxml"));
+//        Parent root = loader.load();
+//        Stage stage = new Stage();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.initStyle(StageStyle.TRANSPARENT);
+//        scene.setFill(Color.TRANSPARENT);
+//        HomePageHolderController hpc = new HomePageHolderController();
+//        hpc.setStage(stage);
+//        stage.show();
+//        root.setOnMousePressed((MouseEvent mouseEvent) -> {
+//            xOffset = mouseEvent.getSceneX();
+//            yOffset = mouseEvent.getSceneY();
+//        });
+//        root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+//            stage.setX(mouseEvent.getScreenX() - xOffset);
+//            stage.setY(mouseEvent.getScreenY() - yOffset);
+//            stage.setOpacity(0.85f);
+//        });
+//        root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+//            stage.setOpacity(1.0f);
+//        });
+//        ss.modifierV(id);
+//        
+//    }
 
     @FXML
     private void UpdateEvent(MouseEvent event) throws IOException {
@@ -145,9 +157,40 @@ public class SessionItemController implements Initializable {
         
         s.setUserId(UserSession.getUser_id());
         if(UserSession.getUser_id()!=therpId)
+        {
             ss.participate(s,sessionId);
+            scm.createSessionChat(sessionId);}
         else{
             System.out.println("error");
         }
+        
+    }
+
+    @FXML
+    private void msgEvent(MouseEvent event) throws IOException {
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/SessionMessage.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
+        HomePageHolderController hpc = new HomePageHolderController();
+        hpc.setStage(stage);
+        stage.show();
+        root.setOnMousePressed((MouseEvent mouseEvent) -> {
+            xOffset = mouseEvent.getSceneX();
+            yOffset = mouseEvent.getSceneY();
+        });
+        root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+            stage.setX(mouseEvent.getScreenX() - xOffset);
+            stage.setY(mouseEvent.getScreenY() - yOffset);
+            stage.setOpacity(0.85f);
+        });
+        root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+            stage.setOpacity(1.0f);
+        });
+        
     }
 }

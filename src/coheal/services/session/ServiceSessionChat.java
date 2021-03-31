@@ -26,16 +26,21 @@ public class ServiceSessionChat implements IServiceSessionChat {
         con = MyConnection.getInstance().getConnection();
     }
 
-    @Override
-    public void createSessionChat( SessionChat s) {
+   // @Override
+    public void createSessionChat( int s) {
          try {
              Statement st = con.createStatement();
               String query;
-             query="INSERT INTO `session_chat`( `session_id`)" +"VALUES ('"+s.getSessionId()+ "');";
+             query="INSERT INTO `session_chat`( `session_id`)" +"VALUES ('"+s+ "');";
          } catch (SQLException ex) {
              Logger.getLogger(ServiceSessionChat.class.getName()).log(Level.SEVERE, null, ex);
          }
 
+    }
+
+    @Override
+    public void createSessionChat(SessionChat s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    

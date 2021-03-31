@@ -6,18 +6,21 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="473.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.session.UpdateSessoioController">
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1e7292, #3891a6, #59b1b7, #80d0c7); -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.session.UpdateSessoioController">
    <children>
-      <TextField fx:id="titreid" layoutX="79.0" layoutY="114.0" prefHeight="25.0" prefWidth="200.0" />
+      <Pane layoutX="20.0" layoutY="15.0" prefHeight="493.0" prefWidth="360.0" style="-fx-background-color: white; -fx-background-radius: 1em;" />
+      <TextField fx:id="titreid" layoutX="79.0" layoutY="114.0" prefHeight="25.0" prefWidth="200.0" promptText="titre" />
       <TextArea fx:id="desid" layoutX="81.0" layoutY="165.0" prefHeight="171.0" prefWidth="200.0" />
-      <TextField fx:id="numdaysid" layoutX="83.0" layoutY="350.0" prefHeight="25.0" prefWidth="200.0" />
-      <Button layoutX="142.0" layoutY="410.0" mnemonicParsing="false" onAction="#updateid" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="update" textFill="WHITE">
+      <TextField fx:id="numdaysid" layoutX="83.0" layoutY="350.0" prefHeight="25.0" prefWidth="200.0" promptText="nombre de jour" />
+      <Button layoutX="141.0" layoutY="456.0" mnemonicParsing="false" onAction="#updateid" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="update" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>
       <FontAwesomeIconView fill="#13547a" glyphName="TIMES" layoutX="360.0" layoutY="31.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" wrappingWidth="18.714285850524902" />
       <Label layoutX="84.0" layoutY="43.0" style="-fx-font-size: 24;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Update Session" textFill="#13547a" />
+      <TextField fx:id="price" layoutX="83.0" layoutY="402.0" prefHeight="25.0" prefWidth="200.0" promptText="prix" />
    </children>
 </AnchorPane>

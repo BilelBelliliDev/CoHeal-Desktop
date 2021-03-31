@@ -140,6 +140,62 @@ public class ServiceSession implements ISessionService {
         return ta;
     }
 
+    public ObservableList<Session> ListSessionBySessionID(int idU) {
+
+       ObservableList<Session> s = FXCollections.observableArrayList();
+        try {
+
+            Statement st = con.createStatement();
+            String query = "select * from session where is_deleted=0 and session_id=" + idU + " ";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                Session e = new Session();
+                e.setSessionId(rs.getInt("session_id"));
+                e.setTherpId(rs.getInt("therp_id"));
+                e.setUserId(rs.getInt("user_id"));
+                e.setTitle(rs.getString("title"));
+                e.setDescription(rs.getString("description"));
+                e.setNumOfDays(rs.getInt("num_of_days"));
+                e.setPrice(rs.getInt("price"));
+
+                s.add(e); 
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return s;
+    }
+    public ObservableList<Session> ListSessionBySessionIDuser(int idU) {
+
+       ObservableList<Session> s = FXCollections.observableArrayList();
+        try {
+
+            Statement st = con.createStatement();
+            String query = "select * from session where is_deleted=0 and user_id IS NOT NULL and therp_id=" + idU + " ";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                Session e = new Session();
+                e.setSessionId(rs.getInt("session_id"));
+                e.setTherpId(rs.getInt("therp_id"));
+                e.setUserId(rs.getInt("user_id"));
+                e.setTitle(rs.getString("title"));
+                e.setDescription(rs.getString("description"));
+                e.setNumOfDays(rs.getInt("num_of_days"));
+                e.setPrice(rs.getInt("price"));
+
+                s.add(e); 
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return s;
+    }
     public void modifierV(int id) {
         try {
             Statement stm = con.createStatement();

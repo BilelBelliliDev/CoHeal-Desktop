@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
@@ -21,9 +22,12 @@
             <TableColumn fx:id="col4Id2" prefWidth="171.0" text="price" />
         </columns>
       </TableView>
-      <PieChart layoutX="46.0" layoutY="46.0" prefHeight="228.0" prefWidth="318.0" />
+      <PieChart fx:id="pieChart" layoutX="46.0" layoutY="46.0" prefHeight="228.0" prefWidth="318.0" />
       <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="1046.0" layoutY="44.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
       <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="1011.0" layoutY="45.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+      <FontAwesomeIconView fill="#797777" glyphName="TRASH" layoutX="999.0" layoutY="316.0" onMouseClicked="#supprimer" size="25" wrappingWidth="24.428571701049805" />
+      <FontAwesomeIconView fill="#797777" glyphName="SEARCH" layoutX="965.0" layoutY="315.0" onMouseClicked="#search" size="23" />
+      <JFXTextField fx:id="session" layoutX="780.0" layoutY="295.0" promptText="enter the session id" />
       
    </children>
 

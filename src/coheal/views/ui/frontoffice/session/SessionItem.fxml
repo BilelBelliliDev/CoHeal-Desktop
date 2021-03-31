@@ -27,7 +27,7 @@
          </font>
       </Label>
       <FontAwesomeIconView fx:id="icon" glyphName="ANGLE_DOUBLE_RIGHT" layoutX="92.0" layoutY="185.0" onMouseClicked="#participate" size="30" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-cursor: hand;" text="" />
-      <Button layoutX="14.0" layoutY="162.0" mnemonicParsing="false" onMouseClicked="#UpdateEvent" styleClass="thumb" text="update" />
+      <Button fx:id="update" layoutX="14.0" layoutY="162.0" mnemonicParsing="false" onMouseClicked="#UpdateEvent" styleClass="thumb" text="update" />
       <Pane layoutX="247.0" layoutY="161.0" prefHeight="28.0" prefWidth="53.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 0.5em;" styleClass="text" stylesheets="@../../../../../../../../../Downloads/CoHealUi/src/coheal/css/main.css">
          <effect>
             <DropShadow color="#00000080" />
@@ -40,5 +40,6 @@
             </Label>
          </children>
       </Pane>
+      <FontAwesomeIconView fx:id="icon1" glyphName="ANGLE_DOUBLE_RIGHT" layoutX="122.0" layoutY="185.0" onMouseClicked="#msgEvent" size="30" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-cursor: hand;" text="" />
    </children>
 </AnchorPane>
