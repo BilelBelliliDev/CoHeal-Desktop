@@ -18,7 +18,7 @@
          <children>
             <AnchorPane layoutX="399.0" layoutY="308.0" prefHeight="60.0" prefWidth="247.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em;">
                <children>
-                  <JFXTextField fx:id="price" layoutX="146.0" layoutY="11.0" prefHeight="38.0" prefWidth="87.0" promptText="Price" />
+                  <JFXTextField fx:id="price" layoutX="146.0" layoutY="11.0" prefHeight="38.0" prefWidth="87.0" promptText="Price" styleClass="text" />
                   <JFXRadioButton fx:id="paid" layoutX="76.0" layoutY="21.0" onAction="#paidAction" text="Paid">
                      <toggleGroup>
                         <ToggleGroup fx:id="type1" />
@@ -29,10 +29,10 @@
             </AnchorPane>
             <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="794.0" layoutY="26.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
             <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="815.0" layoutY="25.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
-            <JFXTextField fx:id="Titre" layoutX="399.0" layoutY="58.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" />
-            <JFXTextArea fx:id="Description" layoutX="399.0" layoutY="111.0" prefHeight="183.0" prefWidth="392.0" promptText="Description" />
+            <JFXTextField fx:id="Titre" layoutX="399.0" layoutY="58.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" styleClass="text" />
+            <JFXTextArea fx:id="Description" layoutX="399.0" layoutY="111.0" prefHeight="183.0" prefWidth="392.0" promptText="Description" styleClass="text" wrapText="true" />
             <JFXComboBox fx:id="comboCatg" layoutX="71.0" layoutY="319.0" onAction="#listCategoryCombo" prefHeight="39.0" prefWidth="277.0" promptText="Category" />
-            <JFXTextField fx:id="numOfDays" layoutX="704.0" layoutY="58.0" prefHeight="38.0" prefWidth="87.0" promptText="Days" />
+            <JFXTextField fx:id="numOfDays" layoutX="704.0" layoutY="58.0" prefHeight="38.0" prefWidth="87.0" promptText="Days" styleClass="text" />
             <AnchorPane layoutX="71.0" layoutY="60.0" onMouseClicked="#addImage" prefHeight="236.0" prefWidth="277.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
                <children>
                   <Label layoutX="69.0" layoutY="134.0" style="-fx-font-size: 26px; -fx-text-fill: grey;" text="Add photo" />
