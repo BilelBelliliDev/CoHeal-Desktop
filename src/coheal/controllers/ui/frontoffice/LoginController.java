@@ -225,6 +225,7 @@ public class LoginController implements Initializable {
             btnSignUpAnim.setVisible(false);
             TFFirstNameSUP.requestFocus();
         }));
+         prevSignUp();
     }
 
     @FXML
@@ -245,6 +246,8 @@ public class LoginController implements Initializable {
             TFEmailSIN.requestFocus();
 
         }));
+        
+       
     }
 
     @FXML
