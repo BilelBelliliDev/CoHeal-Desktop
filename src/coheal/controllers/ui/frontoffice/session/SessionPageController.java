@@ -213,6 +213,7 @@ public class SessionPageController implements Initializable {
             }
         } else if (comboBox.getValue() == "On Going Sessions") {
             sessionGrid.getChildren().clear();
+
             sessions = st.ListSessionByUser(UserSession.getUser_id());
             System.out.println(st.listSesion().size());
             for (int i = 0; i < sessions.size(); i++) {
@@ -232,6 +233,7 @@ public class SessionPageController implements Initializable {
                     System.out.println(ex.getMessage());
                 }
             }
+            
         }
 
     }

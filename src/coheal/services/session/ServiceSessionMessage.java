@@ -44,12 +44,12 @@ public class ServiceSessionMessage implements IServiceMsgInterface {
         }
     }
 
-    @Override
-    public ObservableList<SessionMessage> listMessage() {
+   // @Override
+    public ObservableList<SessionMessage> listMessage(int id) {
          ObservableList<SessionMessage> s =FXCollections.observableArrayList();
          try{
               Statement st = con.createStatement();
-            String res = "select msg from `session_message`";
+            String res = "select msg from `session_message` where chat_id="+id;
             ResultSet rs = st.executeQuery(res);
 
             while (rs.next()) {
@@ -62,5 +62,10 @@ public class ServiceSessionMessage implements IServiceMsgInterface {
         }
         return s;
          }
+
+    @Override
+    public List<SessionMessage> listMessage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

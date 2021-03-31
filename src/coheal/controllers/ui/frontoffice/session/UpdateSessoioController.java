@@ -30,31 +30,37 @@ public class UpdateSessoioController implements Initializable {
     private TextArea desid;
     @FXML
     private TextField numdaysid;
- SessionHolder tah=SessionHolder.getINSTANCE();
-        Session s;
+    SessionHolder tah = SessionHolder.getINSTANCE();
+    Session s;
 
     ServiceSession ss = new ServiceSession();
     public Stage stage;
+    @FXML
+    private TextField price;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        s=ss.searchSession(tah.getId());
+        s = ss.searchSession(tah.getId());
         titreid.setText(s.getTitle());
         desid.setText(s.getDescription());
         numdaysid.setText(String.valueOf(s.getNumOfDays()));
-    }    
+        int n1 = Integer.parseInt(price.getText());
+        s.setPrice(n1);
+    }
 
     @FXML
     private void updateid(ActionEvent event) {
-         Session s = new Session();
+        Session s = new Session();
         System.out.println(titreid.getText());
         s.setTitle(titreid.getText());
         s.setDescription(desid.getText());
         int n = Integer.parseInt(numdaysid.getText());
         s.setNumOfDays(n);
-
+        int n1 = Integer.parseInt(price.getText());
+        s.setPrice(n1);
         System.out.println(s);
         ss.modifierSession(s, tah.getId());
     }
@@ -64,8 +70,7 @@ public class UpdateSessoioController implements Initializable {
         Stage stage = new Stage();
         stage = (Stage) numdaysid.getScene().getWindow();
         stage.close();
-        
+
     }
-    
-    
+
 }
