@@ -3,12 +3,19 @@ package coheal.controllers.ui.backoffice.user;
 import coheal.entities.user.Role;
 import coheal.entities.user.User;
 import coheal.services.user.ServiceAdmin;
+import coheal.utils.MyConnection;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,21 +70,48 @@ public class AdminAddRoleController implements Initializable {
     @FXML
     private FontAwesomeIconView close;
 
+    private int nbrTherapists, nbrModerator ,nbrNutritionist ,nbrActive_user;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         AfficherListPersonnes();
-        //----------------------------------
+        try {
+            piechart();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminAddRoleController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void piechart() throws SQLException{
 
         //----------------PieChart----------
-        ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
-                new PieChart.Data("Therapist", 10),
-                new PieChart.Data("Moderator", 1),
-                new PieChart.Data("Nutritionist", 2),
-                new PieChart.Data("Active user", 3));
+        for(int i=0;i<sa.UserByRole().size();i++){
+            if("therapist".equals(sa.UserByRole().get(i).getRoleName())){
+                nbrTherapists=sa.UserByRole().get(i).getRoleId();
+            } 
+            if("moderator".equals(sa.UserByRole().get(i).getRoleName())){
+                nbrModerator=sa.UserByRole().get(i).getRoleId();
+            }
+            if("nutritionist".equals(sa.UserByRole().get(i).getRoleName())){
+                nbrNutritionist=sa.UserByRole().get(i).getRoleId();
+            }
+            if("active_user".equals(sa.UserByRole().get(i).getRoleName())){
+                nbrActive_user=sa.UserByRole().get(i).getRoleId();
+            }
+            
+        }
+           ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
+                new PieChart.Data("Therapist", nbrTherapists),
+                new PieChart.Data("Moderator",nbrModerator),
+                new PieChart.Data("Nutritionist", nbrNutritionist),
+                new PieChart.Data("Active_user",nbrActive_user)
+           );
+        
         pieChart.setTitle("User par role");
         pieChart.setData(valueList);
         pieChart.getData().forEach(data -> {
-            String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
+            String percentage = String.format("%.2f%%", (data.getPieValue() *10));
             Tooltip toolTip = new Tooltip(percentage);
             Tooltip.install(data.getNode(), toolTip);
         });

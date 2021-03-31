@@ -75,14 +75,13 @@ public class TaskController implements Initializable {
     private PieChart pieChart;
     @FXML
     private LineChart<?, ?> lineChart;
-    private ServiceUserTask sut=new ServiceUserTask();
+    private ServiceUserTask sut = new ServiceUserTask();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
 
         init();
         //----------------PieChart----------
@@ -100,15 +99,15 @@ public class TaskController implements Initializable {
         lineChart.setTitle("Number of participations by date");
         XYChart.Series dataSeries = new XYChart.Series();
         dataSeries.setName("test");
-        for(int i=0;i<sut.getNbrParticipateByDate().size();i++)
-        dataSeries.getData().add(new XYChart.Data(String.valueOf(sut.getNbrParticipateByDate().get(i).getCreatedAt()),sut.getNbrParticipateByDate().get(i).getNbr()));
+        for (int i = 0; i < sut.getNbrParticipateByDate().size(); i++) {
+            dataSeries.getData().add(new XYChart.Data(String.valueOf(sut.getNbrParticipateByDate().get(i).getCreatedAt()), sut.getNbrParticipateByDate().get(i).getNbr()));
+        }
         lineChart.getData().add(dataSeries);
 
-
-
     }
-    public void init(){
-       List<?> tasks;
+
+    public void init() {
+        List<?> tasks;
         tasks = Stream.concat(st.ListTask().stream(), spt.listPaidTask().stream())
                 .collect(Collectors.toList());
         ObservableList<Task> l = FXCollections.observableList((List<Task>) tasks);
@@ -117,7 +116,7 @@ public class TaskController implements Initializable {
         DaysCol.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
         catgCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        taskTable.setItems(l); 
+        taskTable.setItems(l);
     }
 
     @FXML
