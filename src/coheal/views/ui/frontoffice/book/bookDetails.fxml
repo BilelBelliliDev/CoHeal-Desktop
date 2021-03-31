@@ -42,5 +42,15 @@
             <String fx:value="text" />
          </styleClass>
       </JFXButton>
+      <FontAwesomeIconView fx:id="trash" fill="#13547a" glyphName="TRASH" layoutX="410.0" layoutY="33.0" onMouseClicked="#supp" size="25" style="-fx-cursor: hand;" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </FontAwesomeIconView>
+      <FontAwesomeIconView fx:id="modif" fill="#13547a" glyphName="WRENCH" layoutX="372.0" layoutY="33.0" onMouseClicked="#modifier" size="25" style="-fx-cursor: hand;" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </FontAwesomeIconView>
    </children>
 </AnchorPane>
