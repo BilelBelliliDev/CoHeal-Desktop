@@ -6,6 +6,7 @@
 package coheal.entities.book;
 
 import java.sql.Timestamp;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -16,6 +17,15 @@ public class BookCategory {
           private String name,imgUrl;
           private boolean isDeleted;
           private Timestamp deletedAt,createdAt,modifiedAt;
+          private ImageView img;
+
+        public ImageView getImg() {
+                return img;
+        }
+
+        public void setImg(ImageView img) {
+                this.img = img;
+        }
           
 
         public int getCatId() {

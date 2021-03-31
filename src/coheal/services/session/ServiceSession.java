@@ -37,8 +37,8 @@ public class ServiceSession implements ISessionService {
             Statement st = con.createStatement();
 
             String query;
-            query = "INSERT into session(therp_id,title,description,num_of_days)"
-                    + " VALUES( '" + s.getTherpId() + "','" + s.getTitle() + "','" + s.getDescription() + "','" + s.getNumOfDays() + "');";
+           query = "INSERT into session(therp_id,title,description,num_of_days,price)"
+                    + " VALUES( '" + s.getTherpId() + "','" + s.getTitle() + "','" + s.getDescription() + "','" + s.getNumOfDays() + "','" + s.getPrice() + "');";
             st.executeUpdate(query);
             System.out.println("Session ajouter ");
         } catch (SQLException ex) {
@@ -78,20 +78,22 @@ public class ServiceSession implements ISessionService {
 
     @Override
     public List<Session> listSesion() {
-        ObservableList<Session> s =FXCollections.observableArrayList();
+        ObservableList<Session> s = FXCollections.observableArrayList();
         try {
             Statement st = con.createStatement();
-            String res = "select * from `session` where is_deleted=0 order by created_at desc";
+            String res = "select * from `session` where is_deleted=0 and user_id is NULL order by created_at desc";
             ResultSet rs = st.executeQuery(res);
 
             while (rs.next()) {
-                Session e = new Session() ;
+                Session e = new Session();
                 e.setSessionId(rs.getInt("session_id"));
                 e.setTherpId(rs.getInt("therp_id"));
                 e.setTitle(rs.getString("title"));
-                e.setDescription(rs.getString("description"));         
+                e.setDescription(rs.getString("description"));
                 e.setNumOfDays(rs.getInt("num_of_days"));
-       
+                e.setPrice(rs.getInt("price"));
+
+
                 s.add(e);
             }
         } catch (SQLException ex) {
@@ -99,8 +101,9 @@ public class ServiceSession implements ISessionService {
         }
         return s;
     }
+
     public ObservableList<Session> searchSessionAvoncer(String idTA) {
-        ObservableList<Session> ta = FXCollections.observableArrayList();;
+        ObservableList<Session> ta = FXCollections.observableArrayList();
         String query = "SELECT * FROM session WHERE is_deleted = 0 AND title like '" + idTA + "%'   ";
         try {
             Statement st = con.createStatement();
@@ -117,7 +120,8 @@ public class ServiceSession implements ISessionService {
         }
         return ta;
     }
-public Session searchSession(int idTA) {
+
+    public Session searchSession(int idTA) {
         Session ta = null;
         String query = "SELECT session_id, therp_id, title, description FROM session where session_id=" + idTA;
         try {
@@ -135,15 +139,145 @@ public Session searchSession(int idTA) {
         }
         return ta;
     }
-  public void modifierV(int id) {
+
+    public ObservableList<Session> ListSessionBySessionID(int idU) {
+
+       ObservableList<Session> s = FXCollections.observableArrayList();
+        try {
+
+            Statement st = con.createStatement();
+            String query = "select * from session where is_deleted=0 and session_id=" + idU + " ";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                Session e = new Session();
+                e.setSessionId(rs.getInt("session_id"));
+                e.setTherpId(rs.getInt("therp_id"));
+                e.setUserId(rs.getInt("user_id"));
+                e.setTitle(rs.getString("title"));
+                e.setDescription(rs.getString("description"));
+                e.setNumOfDays(rs.getInt("num_of_days"));
+                e.setPrice(rs.getInt("price"));
+
+                s.add(e); 
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return s;
+    }
+    public ObservableList<Session> ListSessionBySessionIDuser(int idU) {
+
+       ObservableList<Session> s = FXCollections.observableArrayList();
+        try {
+
+            Statement st = con.createStatement();
+            String query = "select * from session where is_deleted=0 and user_id IS NOT NULL and therp_id=" + idU + " ";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                Session e = new Session();
+                e.setSessionId(rs.getInt("session_id"));
+                e.setTherpId(rs.getInt("therp_id"));
+                e.setUserId(rs.getInt("user_id"));
+                e.setTitle(rs.getString("title"));
+                e.setDescription(rs.getString("description"));
+                e.setNumOfDays(rs.getInt("num_of_days"));
+                e.setPrice(rs.getInt("price"));
+
+                s.add(e); 
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return s;
+    }
+    public void modifierV(int id) {
         try {
             Statement stm = con.createStatement();
             String query;
             query = "update session set views=views+1 where session_id = " + id + "";
             stm.executeUpdate(query);
+            System.out.println("suppression avec succes");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
+    }
+
+    public ObservableList<Session> ListSessionByTherp(int idU) {
+
+       ObservableList<Session> s = FXCollections.observableArrayList();
+        try {
+
+            Statement st = con.createStatement();
+            String query = "select * from session where is_deleted=0 and therp_id=" + idU + " ";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                Session e = new Session();
+                e.setSessionId(rs.getInt("session_id"));
+                e.setTherpId(rs.getInt("therp_id"));
+                e.setUserId(rs.getInt("user_id"));
+                e.setTitle(rs.getString("title"));
+                e.setDescription(rs.getString("description"));
+                e.setNumOfDays(rs.getInt("num_of_days"));
+                e.setPrice(rs.getInt("price"));
+
+                s.add(e); 
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return s;
+    }
+    public List<Session> ListSessionByUser(int idU) {
+
+        ArrayList<Session> s = new ArrayList();
+        try {
+
+            Statement st = con.createStatement();
+            String query = "select * from session  where is_deleted=0 and user_id=" + idU + " ";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                 Session e = new Session();
+                e.setSessionId(rs.getInt("session_id"));
+                e.setTherpId(rs.getInt("therp_id"));
+                e.setUserId(rs.getInt("user_id"));
+                e.setTitle(rs.getString("title"));
+                e.setDescription(rs.getString("description"));
+                e.setNumOfDays(rs.getInt("num_of_days"));
+                e.setPrice(rs.getInt("price"));
+
+                s.add(e); 
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return s;
+    }
+    public void participate(Session s,int id)
+    {
+        try {
+
+            String query = "UPDATE  session set user_id=" + s.getUserId()+" where session_id=" + id+"";
+            System.out.println(query);
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            System.out.println("particiaption avec succes");
+            query ="INSERT INTO `session_chat`(`session_id`)" +"VALUES ("+id+");";
+            Statement st1 = con.createStatement();
+            st1.executeUpdate(query);
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+        }
     }
 }

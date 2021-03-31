@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <ScrollPane fx:id="recipePane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.RecipePageController">
    <content>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2032.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2116.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
          <children>
             <Label layoutX="38.0" layoutY="28.0" prefHeight="46.0" prefWidth="301.0" style="-fx-font-size: 30px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Browse Categories" textFill="#303c5d">
                <font>
                   <Font name="Century Gothic Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="38.0" layoutY="412.0" prefHeight="46.0" prefWidth="230.0" style="-fx-font-size: 30px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="All Recipes" textFill="#303c5d">
+            <Label layoutX="44.0" layoutY="463.0" prefHeight="54.0" prefWidth="230.0" style="-fx-font-size: 30px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="All Recipes" textFill="#303c5d">
                <font>
                   <Font name="Century Gothic Bold" size="30.0" />
                </font>
@@ -29,25 +29,15 @@
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>
             </Label>
-            <GridPane fx:id="recipeGrid" alignment="CENTER" hgap="45.0" layoutX="46.0" layoutY="492.0" prefHeight="1469.0" prefWidth="988.0" vgap="40.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <HBox fx:id="categoriesHBox" alignment="CENTER" layoutX="25.0" layoutY="107.0" prefHeight="246.0" prefWidth="1013.0" spacing="40.0" />
-            <JFXButton fx:id="addBtn" layoutX="863.0" layoutY="416.0" onAction="#addRecipeAction" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #303c5d; -fx-background-radius: 1em; -fx-font-size: 18px; -fx-opacity: 1;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Add new recipe" textFill="#fffefb" visible="false">
+            <HBox fx:id="categoriesHBox" alignment="CENTER" layoutX="21.0" layoutY="93.0" prefHeight="237.0" prefWidth="1013.0" spacing="40.0" />
+            <JFXButton fx:id="addBtn" layoutX="861.0" layoutY="426.0" onAction="#addRecipeAction" prefHeight="25.0" prefWidth="171.0" style="-fx-background-color: #303c5d; -fx-background-radius: 1em; -fx-font-size: 18px; -fx-opacity: 1;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Add new recipe" textFill="#fffefb" visible="false">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </JFXButton>
+            <Pagination fx:id="pagination" layoutX="35.0" layoutY="535.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="1572.0" prefWidth="1028.0" />
+            <JFXComboBox fx:id="ComboBox" layoutX="223.0" layoutY="474.0" onAction="#ComboBoxRole" prefHeight="29.0" prefWidth="96.0" visible="false" />
+            <JFXTextField fx:id="searchRecipe" layoutX="364.0" layoutY="482.0" onKeyPressed="#rechercheRecipe" prefHeight="31.0" prefWidth="171.0" promptText="search recipe" />
          </children>
       </AnchorPane>
    </content>

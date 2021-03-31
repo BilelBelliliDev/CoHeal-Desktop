@@ -26,8 +26,12 @@ public interface IRecipeService {
 
     public ObservableList<Recipe> Rechercher_Recette(int idR) throws SQLException;
 
+    public ObservableList<Recipe> RechercheRecipeAvance(String t) throws SQLException;
+
+    public List<Recipe> RecipesByUserId(int id) throws SQLException;
+
     public ObservableList<Recipe> Tri() throws SQLException;
 
     public Recipe getRecipe(int idR);
 
-    }
+}

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="335.0" prefWidth="305.0" style="-fx-background-color: transparent;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.RecipeItemController">
+<AnchorPane fx:id="recipeItem" prefHeight="335.0" prefWidth="305.0" style="-fx-background-color: transparent;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.RecipeItemController">
    <children>
       <AnchorPane layoutY="-3.0" prefHeight="321.0" prefWidth="217.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -36,7 +36,7 @@
                </font>
             </Label>
             <FontAwesomeIconView glyphName="USER" layoutX="15.0" layoutY="121.0" size="18" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
-            <Label fx:id="persons" layoutX="36.0" layoutY="98.0" prefHeight="34.0" prefWidth="91.0" style="-fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Persons">
+            <Label fx:id="Persons" layoutX="36.0" layoutY="98.0" prefHeight="34.0" prefWidth="91.0" style="-fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Persons">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
@@ -56,7 +56,7 @@
       </AnchorPane>
       <Pane layoutX="113.0" layoutY="81.0" prefHeight="134.0" prefWidth="171.0" style="-fx-background-color: #13547a; -fx-background-radius: 1em;">
          <children>
-            <ImageView fx:id="recipeImg" fitHeight="100.0" fitWidth="141.0" layoutX="15.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="recipeImg" fitHeight="106.0" fitWidth="141.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true">
                <image>
                   <Image url="@../../../../resources/images/recipes/Oregano-Teapurchased123featuredimage.jpg" />
                </image>

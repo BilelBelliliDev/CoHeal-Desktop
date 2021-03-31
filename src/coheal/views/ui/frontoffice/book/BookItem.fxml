@@ -4,7 +4,6 @@
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -17,7 +16,7 @@
             <Font name="Century Gothic Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="bookAuthor" alignment="CENTER" layoutX="132.0" layoutY="48.0" prefHeight="34.0" prefWidth="159.0" text="By Flen" textFill="#13547a">
+      <Label fx:id="bookAuthor" alignment="CENTER" layoutX="132.0" layoutY="48.0" prefHeight="34.0" prefWidth="159.0" style="-fx-cursor: hand;" text="By Flen" textFill="#13547a">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
@@ -32,14 +31,11 @@
             </Label>
          </children>
       </HBox>
-      <ImageView fx:id="bookimg" fitHeight="211.0" fitWidth="142.0" layoutX="-16.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../resources/images/books/517OWT+6IUL._SX331_BO1,204,203,200_.jpg" />
-         </image>
+      <ImageView fx:id="bookimg" fitHeight="211.0" fitWidth="142.0" layoutX="-16.0" layoutY="-16.0" pickOnBounds="true">
          <effect>
             <DropShadow color="#0000004d" />
          </effect>
       </ImageView>
-      <OctIconView glyphName="BOOK" layoutX="191.0" layoutY="135.0" onMouseClicked="#displayAction" size="40" style="-fx-cursor: hand; -fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+      <OctIconView glyphName="BOOK" layoutX="196.0" layoutY="129.0" onMouseClicked="#displayAction" size="40" style="-fx-cursor: hand; -fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" text="" />
    </children>
 </Pane>

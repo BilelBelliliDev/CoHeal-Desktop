@@ -30,34 +30,38 @@ public class UpdateSessoioController implements Initializable {
     private TextArea desid;
     @FXML
     private TextField numdaysid;
- SessionHolder tah=SessionHolder.getINSTANCE();
-        Session s;
+    SessionHolder tah = SessionHolder.getINSTANCE();
+    Session s;
 
     ServiceSession ss = new ServiceSession();
     public Stage stage;
+    @FXML
+    private TextField price;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         //TODO
-        s=ss.searchSession(tah.getId());
-         s.setTitle(titreid.getText());
-        s.setDescription(numdaysid.getText());
-      
-    }    
+        s = ss.searchSession(tah.getId());
+        titreid.setText(s.getTitle());
+        desid.setText(s.getDescription());
+        numdaysid.setText(String.valueOf(s.getNumOfDays()));
+        price.setText(String.valueOf(s.getPrice()));
+        
+           }
 
     @FXML
     private void updateid(ActionEvent event) {
-         Session s = new Session();
-
+        Session s = new Session();
+        System.out.println(titreid.getText());
         s.setTitle(titreid.getText());
         s.setDescription(desid.getText());
         int n = Integer.parseInt(numdaysid.getText());
         s.setNumOfDays(n);
-        s=ss.searchSession(tah.getId());
-
-        
+        int n1 = Integer.parseInt(price.getText());
+        s.setPrice(n1);
+        System.out.println(s);
         ss.modifierSession(s, tah.getId());
     }
 
@@ -66,8 +70,7 @@ public class UpdateSessoioController implements Initializable {
         Stage stage = new Stage();
         stage = (Stage) numdaysid.getScene().getWindow();
         stage.close();
-        
+
     }
-    
-    
+
 }

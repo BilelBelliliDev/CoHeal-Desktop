@@ -33,6 +33,8 @@ public class AddSessionController implements Initializable {
     @FXML
     private TextField numDays;
     private ServiceSession ss = new ServiceSession();
+    @FXML
+    private TextField price;
 
     /**
      * Initializes the controller class.
@@ -52,6 +54,8 @@ public class AddSessionController implements Initializable {
         s.setDescription(descriptionId.getText());
         int n = Integer.parseInt(numDays.getText());
         s.setNumOfDays(n);
+        int n1 = Integer.parseInt(price.getText());
+        s.setPrice(n1);
         s.setTherpId(UserSession.getUser_id());
         ss.createSession(s);
     }

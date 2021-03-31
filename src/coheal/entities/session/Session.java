@@ -22,6 +22,8 @@ public class Session {
     private Timestamp deletedAt;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
+    private int price;
+
 
      public Session(String title, String description) {
         this.title = title;
@@ -114,6 +116,15 @@ public class Session {
     public void setModifiedAt(Timestamp modifiedAt) {
         this.modifiedAt = modifiedAt;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    
 
     @Override
     public String toString() {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
@@ -30,25 +29,24 @@
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font></JFXTextField>
-            <JFXTextArea fx:id="DescTF" layoutX="65.0" layoutY="206.0" prefHeight="90.0" prefWidth="292.0" promptText="Description" unFocusColor="#0b89db" wrapText="true">
+            <JFXTextArea fx:id="DescTF" layoutX="65.0" layoutY="171.0" prefHeight="90.0" prefWidth="292.0" promptText="Description" unFocusColor="#0b89db" wrapText="true">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font></JFXTextArea>
             <ImageView fitHeight="65.0" fitWidth="85.0" layoutX="99.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXComboBox fx:id="CatBox" layoutX="65.0" layoutY="158.0" onAction="#ListCategoriesBox" prefHeight="35.0" prefWidth="292.0" promptText="select cateory" stylesheets="@../../../../resources/css/main.css" unFocusColor="#0b89db" />
-            <JFXButton layoutX="157.0" layoutY="668.0" onAction="#UpdateRecipeAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="UPDATE" textFill="#fffefb">
+            <JFXButton fx:id="updateBtn" layoutX="157.0" layoutY="668.0" onAction="#UpdateRecipeAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="UPDATE" textFill="#fffefb">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </JFXButton>
             <FontAwesomeIconView fill="#13547a" glyphName="TIMES" layoutX="388.0" layoutY="29.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" />
             <Label fx:id="imgTF" layoutX="76.0" layoutY="634.0" prefHeight="24.0" prefWidth="130.0" wrapText="true" />
-            <JFXTextArea fx:id="IngredientsTF" layoutX="65.0" layoutY="306.0" prefHeight="90.0" prefWidth="292.0" promptText="Ingredients" unFocusColor="#0b89db" wrapText="true">
+            <JFXTextArea fx:id="IngredientsTF" layoutX="65.0" layoutY="286.0" prefHeight="90.0" prefWidth="292.0" promptText="Ingredients" unFocusColor="#0b89db" wrapText="true">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
             </JFXTextArea>
-            <JFXTextArea fx:id="StepsTF" layoutX="65.0" layoutY="408.0" prefHeight="90.0" prefWidth="292.0" promptText="How to prepare your recipe ?" unFocusColor="#0b89db" wrapText="true">
+            <JFXTextArea fx:id="StepsTF" layoutX="65.0" layoutY="397.0" prefHeight="90.0" prefWidth="292.0" promptText="How to prepare your recipe ?" unFocusColor="#0b89db" wrapText="true">
                <font>
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>

@@ -119,7 +119,7 @@
                </textFill>
             </Label>
             <FontAwesomeIconView fill="#fffefb" glyphName="BOOK" layoutX="230.0" layoutY="49.0" size="30" text="" />
-            <Label layoutX="34.0" layoutY="65.0" style="-fx-text-fill: #FFFEFB; -fx-font-size: 32px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="35">
+            <Label fx:id="totalebooks" layoutX="34.0" layoutY="65.0" style="-fx-text-fill: #FFFEFB; -fx-font-size: 32px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="35">
                <font>
                   <Font name="Century Gothic Bold" size="68.0" />
                </font>

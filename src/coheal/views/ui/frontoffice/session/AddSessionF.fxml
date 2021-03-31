@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="425.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.session.AddSessionFController">
+   <children>
+      <Pane layoutX="27.0" layoutY="36.0" prefHeight="420.0" prefWidth="372.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;" stylesheets="@../../../../resources/css/textfields.css">
+         <children>
+            <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="321.0" layoutY="32.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+            <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="342.0" layoutY="31.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
+            <JFXTextField fx:id="titleId" layoutX="42.0" layoutY="49.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" styleClass="text" />
+            <JFXTextArea fx:id="descriptionId" layoutX="42.0" layoutY="107.0" prefHeight="210.0" prefWidth="288.0" promptText="Description" styleClass="text" wrapText="true" />
+            <JFXTextField fx:id="numDays" layoutX="190.0" layoutY="334.0" prefHeight="38.0" prefWidth="140.0" promptText="Days" styleClass="text" />
+            <Circle fill="DODGERBLUE" layoutX="361.0" layoutY="414.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="350.0" layoutY="426.0" onMouseClicked="#addSessionAction" size="30" style="-fx-cursor: hand;" />
+            <Pane layoutX="36.0" layoutY="-21.0" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="11.0" layoutY="6.0" style="-fx-font-size: 18px;" text="New Session" textFill="WHITE" />
+               </children>
+            </Pane>
+            <JFXTextField fx:id="price" layoutX="42.0" layoutY="334.0" prefHeight="38.0" prefWidth="140.0" promptText="Price" styleClass="text" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

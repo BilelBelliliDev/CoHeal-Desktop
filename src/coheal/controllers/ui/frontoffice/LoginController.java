@@ -142,6 +142,8 @@ public class LoginController implements Initializable {
                 //---------------------------------------------------------------------
             } else {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
+//             FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/AdminPageHolder.fxml"));
+
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);

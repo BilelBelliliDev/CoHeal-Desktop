@@ -114,8 +114,6 @@ public class AddRecipeController implements Initializable {
             return;
         }
 
-       
-        
         r.setTitle(TitleTF.getText());
         r.setDescription(DescTF.getText());
         r.setIngredients(IngredientsTF.getText());
@@ -125,7 +123,7 @@ public class AddRecipeController implements Initializable {
         int d = Integer.parseInt(DurationTF.getText());
         r.setDuration(d);
         int p = Integer.parseInt(PersonsTF.getText());
-        r.setDuration(p);
+        r.setPersons(p);
 
        File dest = new File(projectPath + "/src/coheal/resources/images/recipes/" + f.getName());
         try {

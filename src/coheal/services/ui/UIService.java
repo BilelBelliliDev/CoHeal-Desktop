@@ -14,6 +14,7 @@ import coheal.entities.recipe.RecipeCategory;
 import coheal.entities.session.Session;
 import coheal.entities.task.Task;
 import coheal.entities.task.TaskCategory;
+import static coheal.services.recipe.Constants.projectPath;
 import coheal.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -134,7 +135,7 @@ public class UIService {
                 RecipeCategory rc = new RecipeCategory();
                 r.setRecipeId(rs.getInt("r.recipe_id"));
                 r.setUserId(rs.getInt("r.user_id"));
-               // r.setCat(rs.getInt("rc.cat_id"));
+                // r.setCat(rs.getInt("rc.cat_id"));
                 r.setTitle(rs.getString("r.title"));
                 r.setDescription(rs.getString("r.description"));
                 String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
@@ -260,7 +261,7 @@ public class UIService {
         return l;
 
     }
-    
+
     public ObservableList<Event> ListerEventsByIdCatg(String title) {
         ObservableList<Event> l = FXCollections.observableArrayList();
         try {
@@ -274,7 +275,7 @@ public class UIService {
             String query = "select * from event where is_deleted=0 and cat_id=" + id + ";";
             ResultSet rst = st.executeQuery(query);
             while (rst.next()) {
-                Event e = new Event() ;
+                Event e = new Event();
                 e.setEventId(rst.getInt("event_id"));
                 e.setTitle(rst.getString("title"));
                 e.setDescription(rst.getString("description"));
@@ -291,7 +292,7 @@ public class UIService {
         return l;
 
     }
-    
+
     public ObservableList<EventCategory> topThreeEventCatg() {
         ObservableList<EventCategory> data = FXCollections.observableArrayList();
         try {
@@ -315,7 +316,9 @@ public class UIService {
         }
         return data;
     }
+
     public ObservableList<RecipeCategory> topThreeRecCatg() {
+        ImageView img = null;
         ObservableList<RecipeCategory> data = FXCollections.observableArrayList();
         try {
 
@@ -330,6 +333,9 @@ public class UIService {
                 bc.setCatId(rs.getInt("cat_id"));
                 bc.setName(rs.getString("name"));
                 bc.setImgUrl(rs.getString("img_url"));
+                String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
+                img = new ImageView(url);
+                bc.setImg(img);
 
                 data.add(bc);
             }
@@ -338,7 +344,7 @@ public class UIService {
         }
         return data;
     }
-    
+
     public ObservableList<Recipe> ListerRecipesByIdCatg(String title) {
         ObservableList<Recipe> l = FXCollections.observableArrayList();
         try {
@@ -356,7 +362,7 @@ public class UIService {
                 Recipe r = new Recipe();
                 r.setRecipeId(rst.getInt("recipe_id"));
                 r.setUserId(rst.getInt("user_id"));
-               // r.setCat(rst.getInt("cat_id"));
+                // r.setCat(rst.getInt("cat_id"));
                 r.setTitle(rst.getString("title"));
                 r.setDescription(rst.getString("description"));
                 l.add(r);

@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="276.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.task.TaskItemController">
    <children>
-      <ImageView fx:id="taskImg" fitHeight="152.0" fitWidth="251.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="taskImg" fitHeight="152.0" fitWidth="251.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true">
          <image>
             <Image url="@../../../../resources/images/tasks/anger_medium.jpg" />
          </image>
