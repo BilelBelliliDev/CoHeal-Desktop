@@ -5,44 +5,28 @@
  */
 package coheal.controllers.ui.frontoffice.session;
 
-import coheal.controllers.ui.frontoffice.recipe.*;
 import animatefx.animation.ZoomIn;
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
-import coheal.controllers.ui.frontoffice.task.TaskItemController;
-import coheal.entities.recipe.Recipe;
-import coheal.entities.recipe.RecipeCategory;
 import coheal.entities.session.Session;
-import coheal.entities.task.PaidTask;
-import coheal.entities.task.Task;
-import coheal.services.event.ServiceEvent;
-import coheal.services.recipe.RecipeService;
 import coheal.services.session.ServiceSession;
-import coheal.services.ui.UIService;
 import coheal.services.user.UserSession;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -108,7 +92,7 @@ public class SessionPageController implements Initializable {
 
     @FXML
     private void addSessionAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/AddSession.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/AddSessionF.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
