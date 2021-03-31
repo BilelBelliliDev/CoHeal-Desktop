@@ -16,11 +16,11 @@
          <children>
             <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="794.0" layoutY="26.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
             <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="815.0" layoutY="25.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
-            <JFXTextField fx:id="tftiltle" layoutX="410.0" layoutY="49.0" prefHeight="38.0" prefWidth="384.0" promptText="Title" styleClass="text" />
-            <JFXTextArea fx:id="tfdescription" layoutX="283.0" layoutY="169.0" prefHeight="210.0" prefWidth="511.0" promptText="Description" styleClass="text" wrapText="true" />
-            <JFXComboBox fx:id="bcat" layoutX="71.0" layoutY="340.0" onAction="#bCat" prefHeight="39.0" prefWidth="180.0" promptText="Category" />
-            <JFXTextField fx:id="tfauthor" layoutX="410.0" layoutY="104.0" prefHeight="41.0" prefWidth="384.0" promptText="Author" styleClass="text" />
-            <AnchorPane layoutX="71.0" layoutY="44.0" onMouseClicked="#Addimage" prefHeight="278.0" prefWidth="180.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
+            <JFXTextField fx:id="tftiltle" layoutX="401.0" layoutY="49.0" prefHeight="38.0" prefWidth="384.0" promptText="Title" styleClass="text" />
+            <JFXTextArea fx:id="tfdescription" layoutX="274.0" layoutY="169.0" prefHeight="210.0" prefWidth="511.0" promptText="Description" styleClass="text" wrapText="true" />
+            <JFXComboBox fx:id="bcat" layoutX="62.0" layoutY="340.0" onAction="#bCat" prefHeight="39.0" prefWidth="180.0" promptText="Category" />
+            <JFXTextField fx:id="tfauthor" layoutX="401.0" layoutY="104.0" prefHeight="41.0" prefWidth="384.0" promptText="Author" styleClass="text" />
+            <AnchorPane layoutX="62.0" layoutY="44.0" onMouseClicked="#Addimage" prefHeight="278.0" prefWidth="180.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
                <children>
                   <Label layoutX="37.0" layoutY="145.0" style="-fx-font-size: 20px; -fx-text-fill: grey;" text="Add photo" />
                   <FontAwesomeIconView glyphName="CLOUD_UPLOAD" layoutX="69.0" layoutY="139.0" size="40" style="-fx-fill: grey;" />
@@ -34,7 +34,7 @@
                   <Label layoutX="18.0" layoutY="5.0" style="-fx-font-size: 20px;" text="New Book" textFill="WHITE" />
                </children>
             </Pane>
-            <AnchorPane layoutX="282.0" layoutY="47.0" onMouseClicked="#Addlivre" prefHeight="100.0" prefWidth="108.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
+            <AnchorPane layoutX="273.0" layoutY="47.0" onMouseClicked="#Addlivre" prefHeight="100.0" prefWidth="108.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
                <children>
                   <Label fx:id="labelBook" layoutX="15.0" layoutY="53.0" style="-fx-font-size: 16px; -fx-text-fill: grey;" text="Add book" />
                   <FontAwesomeIconView glyphName="CLOUD_UPLOAD" layoutX="38.0" layoutY="48.0" size="30" style="-fx-fill: grey;" />
