@@ -103,7 +103,8 @@ public class BookPageController implements Initializable {
         public void initialize(URL url, ResourceBundle rb) {
                   if(UserSession.getRole().equals("therapist"))
             Appelbookadd.setVisible(true);
-                new ZoomIn(bookPane).play();
+               
+                  new ZoomIn(bookPane).play();
                  notifBook service = new notifBook();
             for (int i = 0; i < service.listNotification(UserSession.getUser_id()).size(); i++) {
                 Image notification = new Image("file:///" + projectPath + "/src/coheal/resources/images/tasks/alert.png");

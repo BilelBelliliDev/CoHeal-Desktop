@@ -5,6 +5,7 @@
  */
 package coheal.controllers.ui.frontoffice.event;
 
+
 import animatefx.animation.ZoomIn;
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
 import coheal.entities.event.EventCategory;
