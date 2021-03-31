@@ -21,6 +21,10 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -151,12 +155,32 @@ public class AdminAddRoleController implements Initializable {
         if (therapist) {
             if (sa.SearchUser_Role(UserSelected, 1) == false) {
                 sa.AddRole(UserSelected, 1);
+                //-------------notification--------------------------------------------
+                TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+
+                tray.setAnimationType(type);
+                tray.setTitle("Role Therapist Added");
+                tray.setMessage("Role added successfully");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(3000));
+                //---------------------------------------------------------------------
                 //Notification.Notifier.INSTANCE.notifySuccess("Role Therapist Added", "Role added successfully");
             }
 
         } else {
             if (sa.SearchUser_Role(UserSelected, 1) == true) {
                 sa.DeleteRole(UserSelected, 1);
+                //-------------notification--------------------------------------------
+                TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+
+                tray.setAnimationType(type);
+                tray.setTitle("Role Therapist Deleted");
+                tray.setMessage("Role Deleted successfully");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(3000));
+                //---------------------------------------------------------------------
                 //Notification.Notifier.INSTANCE.notifySuccess("Role Therapist Deleted", "Role Deleted successfully");
             }
         }
@@ -164,12 +188,32 @@ public class AdminAddRoleController implements Initializable {
         if (moderator) {
             if (sa.SearchUser_Role(UserSelected, 2) == false) {
                 sa.AddRole(UserSelected, 2);
+                //-------------notification--------------------------------------------
+                TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+
+                tray.setAnimationType(type);
+                tray.setTitle("Role Moderator Added");
+                tray.setMessage("Role added successfully");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(3000));
+                //---------------------------------------------------------------------
                 // Notification.Notifier.INSTANCE.notifySuccess("Role Moderator Added", "Role added successfully");
             }
 
         } else {
             if (sa.SearchUser_Role(UserSelected, 2) == true) {
                 sa.DeleteRole(UserSelected, 2);
+                //-------------notification--------------------------------------------
+                TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+
+                tray.setAnimationType(type);
+                tray.setTitle("Role Moderator Deleted");
+                tray.setMessage("Role Deleted successfully");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(3000));
+                //---------------------------------------------------------------------
                 //Notification.Notifier.INSTANCE.notifySuccess("Role Moderator Deleted", "Role Deleted successfully");
             }
         }
@@ -177,12 +221,32 @@ public class AdminAddRoleController implements Initializable {
         if (nutritionist) {
             if (sa.SearchUser_Role(UserSelected, 3) == false) {
                 sa.AddRole(UserSelected, 3);
+                //-------------notification--------------------------------------------
+                TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+
+                tray.setAnimationType(type);
+                tray.setTitle("Role Nutritionist Added");
+                tray.setMessage("Role added successfully");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(3000));
+                //---------------------------------------------------------------------
                 // Notification.Notifier.INSTANCE.notifySuccess("Role Nutritionist Added", "Role added successfully");
             }
 
         } else {
             if (sa.SearchUser_Role(UserSelected, 3) == true) {
                 sa.DeleteRole(UserSelected, 3);
+                //-------------notification--------------------------------------------
+                TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+
+                tray.setAnimationType(type);
+                tray.setTitle("Role Nutritionist Deleted");
+                tray.setMessage("Role Deleted successfully");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(3000));
+                //---------------------------------------------------------------------
                 // Notification.Notifier.INSTANCE.notifySuccess("Role Nutritionist Deleted", "Role Deleted successfully");
             }
         }
@@ -190,12 +254,32 @@ public class AdminAddRoleController implements Initializable {
         if (active_user) {
             if (sa.SearchUser_Role(UserSelected, 5) == false) {
                 sa.AddRole(UserSelected, 5);
+                //-------------notification--------------------------------------------
+                TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+
+                tray.setAnimationType(type);
+                tray.setTitle("Role Active User Added");
+                tray.setMessage("Role added successfully");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(3000));
+                //---------------------------------------------------------------------
                 //Notification.Notifier.INSTANCE.notifySuccess("Role Active User Added", "Role added successfully");
             }
 
         } else {
             if (sa.SearchUser_Role(UserSelected, 5) == true) {
                 sa.DeleteRole(UserSelected, 5);
+                //-------------notification--------------------------------------------
+                TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+
+                tray.setAnimationType(type);
+                tray.setTitle("Role Active User Deleted");
+                tray.setMessage("Role Deleted successfully");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(3000));
+                //---------------------------------------------------------------------
                 //Notification.Notifier.INSTANCE.notifySuccess("Role Active User Deleted", "Role Deleted successfully");
             }
         }
