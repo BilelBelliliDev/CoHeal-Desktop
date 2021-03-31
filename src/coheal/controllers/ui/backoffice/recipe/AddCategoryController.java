@@ -10,15 +10,24 @@ import static coheal.services.recipe.Constants.projectPath;
 import coheal.services.recipe.RecipeCategoryService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RegexValidator;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -40,6 +49,8 @@ public class AddCategoryController implements Initializable {
     RecipeCategory rc = new RecipeCategory();
     @FXML
     private JFXButton AddBtn;
+    
+    boolean name = false;
 
     /**
      * Initializes the controller class.
@@ -67,7 +78,7 @@ public class AddCategoryController implements Initializable {
                     "Enter a title for your category!");
             return;
         }
-        
+
         RecipeCategoryService rcs = new RecipeCategoryService();
         rc.setName(Title.getText());
         File dest = new File(projectPath + "/src/coheal/resources/images/recipes/" + f.getName());
@@ -84,21 +95,48 @@ public class AddCategoryController implements Initializable {
 
     }
 
-
-@FXML
-        private void closeAction(MouseEvent event) {
-         Stage stage = new Stage();
+    @FXML
+    private void closeAction(MouseEvent event) {
+        Stage stage = new Stage();
         stage = (Stage) AddBtn.getScene().getWindow();
         stage.close();
     }
 
-   private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    //contrôle saisie 
+    
+    public void nameValidatorSI() { //name Empty string
+        RegexValidator valid = new RegexValidator();
+        valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
+        Title.setValidators(valid);
+        valid.setMessage("Enter the title");
+        Title.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    Title.validate();
+                    if (Title.validate()) {
+                        name = true;
+                    } else {
+                        name = false;
+                    }
+                }
+            }
+        });
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+            valid.setIcon(new ImageView(errorIcon));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AddCategoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

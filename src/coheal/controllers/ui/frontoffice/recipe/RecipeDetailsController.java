@@ -100,7 +100,7 @@ public class RecipeDetailsController implements Initializable {
 
     @FXML
     private void updateRecipe(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/recipe/UpdateRecipe.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/recipe/UpdateRecipeF.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);

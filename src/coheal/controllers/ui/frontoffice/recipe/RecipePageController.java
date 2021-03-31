@@ -47,7 +47,7 @@ import javafx.stage.StageStyle;
  */
 public class RecipePageController implements Initializable {
 
-    private String searchWord = "";
+    private String searchWord = "", comboValue = "All";
     @FXML
     private HBox categoriesHBox;
     private RecipeService st = new RecipeService();
@@ -72,9 +72,14 @@ public class RecipePageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 //        if (UserSession.getRole().equals("nutritionist")) {
 //            addBtn.setVisible(true);
-//            ComboBox.setVisible(true);
 //        } 
+
+        if (UserSession.getRole().equals("nutritionist")) {
+            ComboBox.setVisible(true);
+        }
+
         addBtn.setVisible(true);
+
         new ZoomIn(recipePane).play();
 
         ComboBox.getItems().add("All");
@@ -98,17 +103,17 @@ public class RecipePageController implements Initializable {
             }
         }
 
-        pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord));
+        pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord, comboValue));
     }
 
-    public GridPane grid(int pageindex, String searchWord) {
+    public GridPane grid(int pageindex, String searchWord, String comboValue) {
         GridPane pane = null;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/GridRecipe.fxml"));
         try {
             pane = loader.load();
             GridRecipeController c = loader.getController();
-            c.setData(pageindex, searchWord);
+            c.setData(pageindex, searchWord, comboValue);
             pagination.setPageCount(c.pageCount);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -152,36 +157,15 @@ public class RecipePageController implements Initializable {
 
     @FXML
     private void ComboBoxRole(ActionEvent event) throws SQLException {
-        recipeGrid.getChildren().clear();
-        int y = 0;
-        int x = 0;
-        List<Recipe> recipes = null;
+
         if ("Yours".equals(ComboBox.getValue())) {
-            if (UserSession.getRole().equals("nutritionist")) {
-                recipes = (st.RecipesByUserId(UserSession.getUser_id()).stream())
-                        .collect(Collectors.toList());
-            }
+            comboValue = "Yours";
+            pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord, comboValue));
 
         } else if ("All".equals(ComboBox.getValue())) {
-            recipes = (st.Afficher_Recipe().stream())
-                    .collect(Collectors.toList());
-        }
-        for (int i = 0; i < recipes.size(); i++) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeItem.fxml"));
-            try {
-                Pane pane = loader.load();
-                RecipeItemController c = loader.getController();
-                c.setData(recipes.get(i));
-                if (x > 2) {
-                    y++;
-                    x = 0;
-                }
-                recipeGrid.add(pane, x, y);
-                x++;
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
+            comboValue = "All";
+            pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord, comboValue));
+
         }
 
     }
@@ -191,7 +175,7 @@ public class RecipePageController implements Initializable {
         List<Recipe> recipes = new ArrayList();
         if (!"".equals(searchRecipe.getText())) {
             searchWord = searchRecipe.getText();
-            pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord));
+            pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord, comboValue));
         }
 
     }

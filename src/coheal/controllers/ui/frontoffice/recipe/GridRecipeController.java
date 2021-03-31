@@ -7,6 +7,7 @@ package coheal.controllers.ui.frontoffice.recipe;
 
 import coheal.entities.recipe.Recipe;
 import coheal.services.recipe.RecipeService;
+import coheal.services.user.UserSession;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,7 +42,7 @@ public class GridRecipeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    public void setData(int index, String searchWord) {
+    public void setData(int index, String searchWord, String comboValue) {
         gridSize = recipeGrid.getRowConstraints().size() * recipeGrid.getColumnConstraints().size();
         columnCount = recipeGrid.getColumnConstraints().size() - 1;
         currentPage = index;
@@ -48,6 +50,27 @@ public class GridRecipeController implements Initializable {
             int y = 0;
             int x = 0;
             List<Recipe> recipes = null;
+
+            if ("Yours".equals(comboValue)) {
+                if (UserSession.getRole().equals("nutritionist")) {
+                    try {
+                        recipeGrid.getChildren().clear();
+                        recipes = (rs.RecipesByUserId(UserSession.getUser_id()).stream())
+                                .collect(Collectors.toList());
+                        System.out.println(recipes.size());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(GridRecipeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            } else if ("All".equals(comboValue)) {
+                recipeGrid.getChildren().clear();
+                recipes = (rs.Afficher_Recipe().stream())
+                        .collect(Collectors.toList());
+                System.out.println(recipes.size());
+
+            }
+
             if (!"".equals(searchWord)) {
                 recipeGrid.getChildren().clear();
                 try {
@@ -55,9 +78,7 @@ public class GridRecipeController implements Initializable {
                 } catch (SQLException ex) {
                     Logger.getLogger(GridRecipeController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else {
-                recipes = rs.Afficher_Recipe();
-            }
+            } 
             //pagination
             if (recipes != null) {
                 pageCount = recipes.size() / gridSize;
