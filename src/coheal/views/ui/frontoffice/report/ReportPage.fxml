@@ -1,10 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="reportPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.ReportPageController">
-   <content>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1280.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;" />
-   </content>
-</ScrollPane>
+<AnchorPane fx:id="reportPane" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em 0 1em 0;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.ReportPageController">
+   <children>
+      <VBox layoutX="23.0" layoutY="22.0" prefHeight="269.0" prefWidth="381.0" spacing="25.0">
+         <children>
+            <AnchorPane prefHeight="58.0" prefWidth="379.0" style="-fx-background-color: rgba(197, 38, 58, 0.1); -fx-background-radius: 1em;">
+               <children>
+                  <Pane layoutX="8.0" layoutY="8.0" prefHeight="39.0" prefWidth="6.0" style="-fx-background-color: C5263A; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label layoutX="28.0" layoutY="8.0" style="-fx-text-fill: C5263A; -fx-font-size: 28px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Urgent reports">
+                     <font>
+                        <Font name="Century Gothic Bold" size="68.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="0.0714285714285714" startY="1.0">
+                           <stops>
+                              <Stop color="#13547a" />
+                              <Stop color="#13547a" offset="0.007662835249042145" />
+                              <Stop color="#13547a" offset="0.019157088122605363" />
+                              <Stop color="#7fcbc3" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="43.0" prefWidth="381.0" style="-fx-background-color: rgba(197, 38, 58, 0.1); -fx-background-radius: 1em;">
+               <children>
+                  <FontAwesomeIconView fill="#c5263a" glyphName="USER_MD" layoutX="14.0" layoutY="28.0" size="20" />
+                  <Label layoutX="50.0" layoutY="11.0" prefHeight="20.0" prefWidth="322.0" style="-fx-text-fill: C5263A; -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="&quot;Test Session&quot; reported 28 times" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic Bold" size="68.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="0.0714285714285714" startY="1.0">
+                           <stops>
+                              <Stop color="#13547a" />
+                              <Stop color="#13547a" offset="0.007662835249042145" />
+                              <Stop color="#13547a" offset="0.019157088122605363" />
+                              <Stop color="#7fcbc3" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="43.0" prefWidth="381.0" style="-fx-background-color: rgba(197, 38, 58, 0.1); -fx-background-radius: 1em;">
+               <children>
+                  <FontAwesomeIconView fill="#c5263a" glyphName="BOOK" layoutX="14.0" layoutY="28.0" size="20" />
+                  <Label layoutX="50.0" layoutY="11.0" prefHeight="20.0" prefWidth="322.0" style="-fx-text-fill: C5263A; -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="&quot;Test Book&quot; reported 15 times" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic Bold" size="68.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="0.0714285714285714" startY="1.0">
+                           <stops>
+                              <Stop color="#13547a" />
+                              <Stop color="#13547a" offset="0.007662835249042145" />
+                              <Stop color="#13547a" offset="0.019157088122605363" />
+                              <Stop color="#7fcbc3" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="43.0" prefWidth="381.0" style="-fx-background-color: rgba(197, 38, 58, 0.1); -fx-background-radius: 1em;">
+               <children>
+                  <FontAwesomeIconView fill="#c5263a" glyphName="USER_MD" layoutX="14.0" layoutY="28.0" size="20" />
+                  <Label layoutX="50.0" layoutY="11.0" prefHeight="20.0" prefWidth="322.0" style="-fx-text-fill: C5263A; -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="&quot;Test Session&quot; reported 53 times" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic Bold" size="68.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="0.0714285714285714" startY="1.0">
+                           <stops>
+                              <Stop color="#13547a" />
+                              <Stop color="#13547a" offset="0.007662835249042145" />
+                              <Stop color="#13547a" offset="0.019157088122605363" />
+                              <Stop color="#7fcbc3" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox layoutX="23.0" layoutY="312.0" prefHeight="257.0" prefWidth="381.0" spacing="30.0">
+         <children>
+            <AnchorPane prefHeight="58.0" prefWidth="379.0" style="-fx-background-color: rgba(19, 84, 122, 0.1); -fx-background-radius: 1em;">
+               <children>
+                  <Pane layoutX="8.0" layoutY="8.0" prefHeight="39.0" prefWidth="6.0" style="-fx-background-color: #13547a; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label layoutX="28.0" layoutY="8.0" style="-fx-text-fill: #13547a; -fx-font-size: 28px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="New Reports">
+                     <font>
+                        <Font name="Century Gothic Bold" size="68.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="0.0714285714285714" startY="1.0">
+                           <stops>
+                              <Stop color="#13547a" />
+                              <Stop color="#13547a" offset="0.007662835249042145" />
+                              <Stop color="#13547a" offset="0.019157088122605363" />
+                              <Stop color="#7fcbc3" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="66.0" prefWidth="379.0" style="-fx-background-color: rgba(19, 84, 122, 0.1); -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="49.0" layoutY="10.0" prefHeight="43.0" prefWidth="322.0" style="-fx-text-fill: #13547a; -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Bilel Bellili reported &quot;Test Book&quot;: hghjgjh gjhgjhgjhfdsfdsv" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic Bold" size="68.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="0.0714285714285714" startY="1.0">
+                           <stops>
+                              <Stop color="#13547a" />
+                              <Stop color="#13547a" offset="0.007662835249042145" />
+                              <Stop color="#13547a" offset="0.019157088122605363" />
+                              <Stop color="#7fcbc3" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <FontAwesomeIconView fill="#13547a" glyphName="BOOK" layoutX="16.0" layoutY="39.0" size="20" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="66.0" prefWidth="321.0" style="-fx-background-color: rgba(19, 84, 122, 0.1); -fx-background-radius: 1em;">
+               <children>
+                  <FontAwesomeIconView fill="#13547a" glyphName="USER_MD" layoutX="17.0" layoutY="40.0" size="20" />
+                  <Label layoutX="50.0" layoutY="11.0" prefHeight="43.0" prefWidth="322.0" style="-fx-text-fill: #13547a; -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Bilel Bellili reported &quot;Test Session&quot;: hghjgjh gjhgjhgjh" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic Bold" size="68.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="0.0714285714285714" startY="1.0">
+                           <stops>
+                              <Stop color="#13547a" />
+                              <Stop color="#13547a" offset="0.007662835249042145" />
+                              <Stop color="#13547a" offset="0.019157088122605363" />
+                              <Stop color="#7fcbc3" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Label fx:id="noUrgReportsLabel" layoutX="49.0" layoutY="177.0" prefHeight="13.0" prefWidth="362.0" style="-fx-font-size: 15px; -fx-text-fill: grey;" styleClass="text" text="No urgent reports, chill and drink a cup of tea" textAlignment="CENTER" visible="false" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="noNewReportsLabel" layoutX="55.0" layoutY="463.0" prefHeight="24.0" prefWidth="344.0" style="-fx-font-size: 15px; -fx-text-fill: grey;" styleClass="text" text="No new reports, chill and drink a cup of tea" textAlignment="CENTER" visible="false" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Pagination layoutX="431.0" layoutY="115.0" maxPageIndicatorCount="3" pageCount="5" prefHeight="468.0" prefWidth="616.0" />
+      <JFXCheckBox layoutX="874.0" layoutY="39.0" />
+      <Label layoutX="721.0" layoutY="33.0" style="-fx-font-size: 20px;" styleClass="text" text="All reports" />
+   </children>
+</AnchorPane>

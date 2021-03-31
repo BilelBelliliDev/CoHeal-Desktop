@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -19,7 +20,7 @@ import javafx.scene.control.ScrollPane;
 public class ReportPageController implements Initializable {
 
     @FXML
-    private ScrollPane reportPane;
+    private AnchorPane reportPane;
 
     /**
      * Initializes the controller class.
