@@ -47,9 +47,9 @@ public class UpdateSessoioController implements Initializable {
         titreid.setText(s.getTitle());
         desid.setText(s.getDescription());
         numdaysid.setText(String.valueOf(s.getNumOfDays()));
-        int n1 = Integer.parseInt(price.getText());
-        s.setPrice(n1);
-    }
+        price.setText(String.valueOf(s.getPrice()));
+        
+           }
 
     @FXML
     private void updateid(ActionEvent event) {
