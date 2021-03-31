@@ -9,6 +9,7 @@ import coheal.entities.recipe.Recipe;
 import coheal.services.recipe.RecipeService;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -39,15 +40,24 @@ public class GridRecipeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    public void setData(int index) {
+    public void setData(int index, String searchWord) {
         gridSize = recipeGrid.getRowConstraints().size() * recipeGrid.getColumnConstraints().size();
         columnCount = recipeGrid.getColumnConstraints().size() - 1;
         currentPage = index;
         try {
             int y = 0;
             int x = 0;
-            List<Recipe> recipes;
-            recipes = rs.Afficher_Recipe();
+            List<Recipe> recipes=null;
+            if (!"".equals(searchWord)) {
+                recipeGrid.getChildren().clear();
+                try {
+                    recipes = rs.RechercheRecipeAvance(searchWord);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GridRecipeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                recipes = rs.Afficher_Recipe();
+            }      
             //pagination
             pageCount = recipes.size() / gridSize;
             if (recipes.size() % gridSize > 0) {
@@ -76,6 +86,6 @@ public class GridRecipeController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(GridRecipeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } 
-       
+    }
+
 }

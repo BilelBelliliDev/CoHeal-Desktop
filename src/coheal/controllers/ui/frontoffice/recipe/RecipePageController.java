@@ -47,6 +47,7 @@ import javafx.stage.StageStyle;
  */
 public class RecipePageController implements Initializable {
 
+    private String searchWord = "";
     @FXML
     private HBox categoriesHBox;
     private RecipeService st = new RecipeService();
@@ -73,7 +74,7 @@ public class RecipePageController implements Initializable {
 //            addBtn.setVisible(true);
 //            ComboBox.setVisible(true);
 //        } 
-addBtn.setVisible(true);
+        addBtn.setVisible(true);
         new ZoomIn(recipePane).play();
 
         ComboBox.getItems().add("All");
@@ -97,18 +98,17 @@ addBtn.setVisible(true);
             }
         }
 
-     
-        pagination.setPageFactory((pageindex) -> grid(pageindex));
+        pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord));
     }
 
-    public GridPane grid(int pageindex) {
+    public GridPane grid(int pageindex, String searchWord) {
         GridPane pane = null;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/GridRecipe.fxml"));
         try {
             pane = loader.load();
             GridRecipeController c = loader.getController();
-            c.setData(pageindex);
+            c.setData(pageindex, searchWord);
             pagination.setPageCount(c.pageCount);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -190,28 +190,9 @@ addBtn.setVisible(true);
     private void rechercheRecipe(KeyEvent event) throws SQLException {
         List<Recipe> recipes = new ArrayList();
         if (!"".equals(searchRecipe.getText())) {
-            recipeGrid.getChildren().clear();
-            recipes = st.RechercheRecipeAvance(searchRecipe.getText());
+            searchWord = searchRecipe.getText();
+            pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord));
         }
-        int y = 0;
-        int x = 0;
 
-        for (int i = 0; i < recipes.size(); i++) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeItem.fxml"));
-            try {
-                Pane pane = loader.load();
-                RecipeItemController c = loader.getController();
-                c.setData(recipes.get(i));
-                if (x > 2) {
-                    y++;
-                    x = 0;
-                }
-                recipeGrid.add(pane, x, y);
-                x++;
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
     }
 }
