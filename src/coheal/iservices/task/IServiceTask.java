@@ -19,4 +19,5 @@ public interface IServiceTask {
     public void deleteTask(int idt);
     public Task getTask(int idT);
     public int getCountTask();
+    public List<Task> searchTaskByName(String title);
 }
