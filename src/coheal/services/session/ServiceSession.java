@@ -99,5 +99,51 @@ public class ServiceSession implements ISessionService {
         }
         return s;
     }
-    
+    public ObservableList<Session> searchSessionAvoncer(String idTA) {
+        ObservableList<Session> ta = FXCollections.observableArrayList();;
+        String query = "SELECT * FROM session WHERE is_deleted = 0 AND title like '" + idTA + "%'   ";
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Session session = new Session();
+                session.setSessionId(rs.getInt("session_id"));
+                session.setTitle(rs.getString("title"));
+                session.setDescription(rs.getString("description"));
+                ta.add(session);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return ta;
+    }
+public Session searchSession(int idTA) {
+        Session ta = null;
+        String query = "SELECT session_id, therp_id, title, description FROM session where session_id=" + idTA;
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Session session = new Session();
+                session.setSessionId(rs.getInt("session_id"));
+                session.setTitle(rs.getString("title"));
+                session.setDescription(rs.getString("description"));
+                ta = session;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return ta;
+    }
+  public void modifierV(int id) {
+        try {
+            Statement stm = con.createStatement();
+            String query;
+            query = "update session set views=views+1 where session_id = " + id + "";
+            stm.executeUpdate(query);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
 }
