@@ -12,6 +12,7 @@ import coheal.entities.task.PaidTask;
 import coheal.entities.task.Task;
 import coheal.entities.task.TaskActions;
 import coheal.entities.task.UserTask;
+import coheal.entities.user.User;
 import coheal.services.task.ServiceNotification;
 import coheal.services.task.ServicePaidTask;
 import coheal.services.task.ServiceTask;
@@ -98,6 +99,7 @@ public class TaskDetailsController implements Initializable {
             addActionBtn.setVisible(true);
             updateIcon.setVisible(true);
             deleteIcon.setVisible(true);
+            participateButton.setVisible(false);
         }
 
         int y = 0;
@@ -141,7 +143,15 @@ public class TaskDetailsController implements Initializable {
                     y++;
                     x = 0;
                 }
-                ActionGrid.add(pane, x, y);
+                if (u.getUser() != null) {
+                    System.out.println(u.getUser().getUserId());
+                    if (UserSession.getUser_id() == u.getUser().getUserId()) {
+                        ActionGrid.add(pane, x, y);
+                    }
+                } else if (UserSession.getRole().equals("therapist") && task.getUser().getUserId() == UserSession.getUser_id()) {
+                    ActionGrid.add(pane, x, y);
+                }
+
                 x++;
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
@@ -151,12 +161,20 @@ public class TaskDetailsController implements Initializable {
 
     @FXML
     private void participateAction(ActionEvent event) {
-        sut.participer(UserSession.getUser_id(), th.getId());
-        ServiceNotification service=new ServiceNotification();
-        Notification n = new Notification();
-        n.setId(task.getUser().getUserId());
-        n.setMessage(UserSession.getFirst_name()+" "+UserSession.getLast_name()+" a participer a votre tache "+task.getTitle());
-        service.addNotification(n);
+        User user = st.getUserById(UserSession.getUser_id());
+        if (pt != null) {
+            if (user.getBalance() >= pt.getPrice()) {
+                sut.participer(UserSession.getUser_id(), th.getId());
+                ServiceNotification service = new ServiceNotification();
+                Notification n = new Notification();
+                n.setId(task.getUser().getUserId());
+                n.setMessage(UserSession.getFirst_name() + " " + UserSession.getLast_name() + " a participer a votre tache " + task.getTitle());
+                service.addNotification(n);
+            } else {
+                System.out.println("solde insuffisant");
+            }
+        }
+
     }
 
     @FXML
