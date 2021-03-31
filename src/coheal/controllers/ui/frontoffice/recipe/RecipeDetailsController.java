@@ -11,6 +11,7 @@ import coheal.services.recipe.RecipeService;
 import coheal.services.user.UserSession;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -31,7 +32,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import static javafx.scene.text.Font.font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -159,11 +159,26 @@ public class RecipeDetailsController implements Initializable {
         try {
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("D:/MyRecipe.pdf"));
             document.open();
-            document.add(new Paragraph(TitleLabel.getText()));
-            document.add(new Paragraph(DescLabel.getText()));
-            document.add(new Paragraph(IngredientsLabel.getText()));
-            document.add(new Paragraph(StepsLabel.getText()));
-            
+
+            Paragraph p1 = new Paragraph();
+            p1.add("\n" + TitleLabel.getText() + "\n\n");
+            p1.setAlignment(Element.ALIGN_CENTER);
+            document.add(p1);
+
+            Paragraph p2 = new Paragraph();
+            p2.add(DescLabel.getText() + "\n\n\n\n");
+            p2.setAlignment(Element.ALIGN_CENTER);
+            document.add(p2);
+
+            Paragraph p3 = new Paragraph();
+            p3.add("Ingredients: \n\n" + IngredientsLabel.getText() + "\n\n\n\n");
+            p3.setAlignment(Element.ALIGN_LEFT);
+            document.add(p3);
+
+            Paragraph p4 = new Paragraph();
+            p4.add("Steps: \n\n" + StepsLabel.getText() + "\n\n\n\n");
+            p4.setAlignment(Element.ALIGN_LEFT);
+            document.add(p4);
 
             document.close();
             writer.close();

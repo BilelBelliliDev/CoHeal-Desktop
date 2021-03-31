@@ -5,11 +5,9 @@
  */
 package coheal.controllers.ui.frontoffice.event;
 
-import coheal.controllers.ui.frontoffice.book.*;
-import coheal.controllers.ui.frontoffice.task.*;
+
 import animatefx.animation.ZoomIn;
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
-
 import coheal.entities.event.Event;
 import coheal.entities.event.EventCategory;
 import coheal.services.event.ServiceEvent;

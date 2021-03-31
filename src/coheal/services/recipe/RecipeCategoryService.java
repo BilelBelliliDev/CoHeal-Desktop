@@ -97,9 +97,9 @@ public class RecipeCategoryService implements IRecipeCategoryService {
     }
 
     @Override
-    public ObservableList<RecipeCategory> Recherche(String name) throws SQLException {
+    public ObservableList<RecipeCategory> RechercheCatAvance(String n) throws SQLException {
         Statement stm = con.createStatement();
-        String query = "SELECT * FROM recipe_category WHERE is_deleted = 0 AND name ='" + name + "';";
+        String query = "SELECT * FROM recipe_category WHERE is_deleted = 0 AND (name like '" + n + "%')";
         ResultSet rs = stm.executeQuery(query);
         ObservableList<RecipeCategory> data = FXCollections.observableArrayList();
         while (rs.next()) {
@@ -117,7 +117,6 @@ public class RecipeCategoryService implements IRecipeCategoryService {
             data.add(rc);
         }
         return data;
-
     }
 
     @Override
