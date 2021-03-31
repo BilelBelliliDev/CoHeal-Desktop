@@ -280,7 +280,7 @@ public class AddRecipeFController implements Initializable {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
         StepsTF.setValidators(valid);
-        valid.setMessage("Enter the ingredients");
+        valid.setMessage("Enter the steps");
         StepsTF.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
@@ -306,7 +306,7 @@ public class AddRecipeFController implements Initializable {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^(0|[1-9][0-9]*)$");
         CaloriesTF.setValidators(valid);
-        valid.setMessage("Calories not valid");
+        valid.setMessage("not valid");
         CaloriesTF.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
@@ -332,7 +332,7 @@ public class AddRecipeFController implements Initializable {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^(0|[1-9][0-9]*)$");
         DurationTF.setValidators(valid);
-        valid.setMessage("Duration not valid");
+        valid.setMessage("not valid");
         DurationTF.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
@@ -358,7 +358,7 @@ public class AddRecipeFController implements Initializable {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^(0|[1-9][0-9]*)$");
         PersonsTF.setValidators(valid);
-        valid.setMessage("Number not valid");
+        valid.setMessage("not valid");
         PersonsTF.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {

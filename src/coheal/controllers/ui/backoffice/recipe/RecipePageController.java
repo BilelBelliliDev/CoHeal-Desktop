@@ -31,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -159,7 +160,7 @@ public class RecipePageController implements Initializable {
     }
 
     @FXML
-    private void RechercheRecipes(MouseEvent event) throws SQLException {
+    private void RechercheRecipes(KeyEvent event) throws SQLException {
         img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
         title_col.setCellValueFactory(new PropertyValueFactory<>("title"));
         Desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -171,6 +172,5 @@ public class RecipePageController implements Initializable {
         String n = RechercheTF.getText();
         RecipeTable.setItems(rs.RechercheRecipeAvance(n));
     }
-    
 
 }

@@ -16,11 +16,11 @@
          <children>
             <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="794.0" layoutY="26.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
             <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="815.0" layoutY="25.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
-            <JFXTextField fx:id="TitleTF" layoutX="399.0" layoutY="58.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" styleClass="text" />
-            <JFXTextArea fx:id="DescTF" layoutX="399.0" layoutY="111.0" prefHeight="90.0" prefWidth="392.0" promptText="Description" styleClass="text" wrapText="true" />
+            <JFXTextField fx:id="TitleTF" layoutX="396.0" layoutY="37.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" styleClass="text" />
+            <JFXTextArea fx:id="DescTF" layoutX="393.0" layoutY="107.0" prefHeight="90.0" prefWidth="392.0" promptText="Description" styleClass="text" wrapText="true" />
             <JFXComboBox fx:id="CatBox" layoutX="71.0" layoutY="378.0" onAction="#ListCategoriesBox" prefHeight="39.0" prefWidth="277.0" promptText="Category" />
-            <JFXTextField fx:id="PersonsTF" layoutX="704.0" layoutY="58.0" prefHeight="38.0" prefWidth="87.0" promptText="Persons" styleClass="text" />
-            <AnchorPane layoutX="71.0" layoutY="60.0" onMouseClicked="#addImage" prefHeight="236.0" prefWidth="277.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
+            <JFXTextField fx:id="PersonsTF" layoutX="697.0" layoutY="38.0" prefHeight="38.0" prefWidth="87.0" promptText="Persons" styleClass="text" />
+            <AnchorPane layoutX="65.0" layoutY="42.0" onMouseClicked="#addImage" prefHeight="236.0" prefWidth="277.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
                <children>
                   <Label layoutX="69.0" layoutY="134.0" style="-fx-font-size: 26px; -fx-text-fill: grey;" text="Add photo" />
                   <FontAwesomeIconView glyphName="CLOUD_UPLOAD" layoutX="112.0" layoutY="125.0" size="50" style="-fx-fill: grey;" />
@@ -34,10 +34,10 @@
                   <Label layoutX="16.0" layoutY="6.0" style="-fx-font-size: 18px;" text="New Recipe" textFill="WHITE" />
                </children>
             </Pane>
-            <JFXTextArea fx:id="IngredientsTF" layoutX="399.0" layoutY="217.0" prefHeight="202.0" prefWidth="128.0" promptText="Ingredients      -                      -                      -                      -                      -                      -                      -                      -                      -" styleClass="text" wrapText="true" />
-            <JFXTextArea fx:id="StepsTF" layoutX="544.0" layoutY="217.0" prefHeight="202.0" prefWidth="247.0" promptText="Steps:                                          1)                                                                                                2)                                                                                                   3)                                                                                                   4)                                                                                                   5)" styleClass="text" wrapText="true" />
-            <JFXTextField fx:id="CaloriesTF" layoutX="71.0" layoutY="319.0" prefHeight="38.0" prefWidth="128.0" promptText="Calories" styleClass="text" />
-            <JFXTextField fx:id="DurationTF" layoutX="220.0" layoutY="319.0" prefHeight="38.0" prefWidth="128.0" promptText="Duration" styleClass="text" />
+            <JFXTextArea fx:id="IngredientsTF" layoutX="397.0" layoutY="231.0" prefHeight="202.0" prefWidth="128.0" promptText="Ingredients      -                      -                      -                      -                      -                      -                      -                      -                      -" styleClass="text" wrapText="true" />
+            <JFXTextArea fx:id="StepsTF" layoutX="546.0" layoutY="228.0" prefHeight="202.0" prefWidth="247.0" promptText="Steps:                                          1)                                                                                                2)                                                                                                   3)                                                                                                   4)                                                                                                   5)" styleClass="text" wrapText="true" />
+            <JFXTextField fx:id="CaloriesTF" layoutX="68.0" layoutY="303.0" prefHeight="38.0" prefWidth="128.0" promptText="Calories" styleClass="text" />
+            <JFXTextField fx:id="DurationTF" layoutX="220.0" layoutY="301.0" prefHeight="38.0" prefWidth="128.0" promptText="Duration" styleClass="text" />
          </children>
       </Pane>
    </children>
