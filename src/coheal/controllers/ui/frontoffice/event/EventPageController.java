@@ -5,12 +5,9 @@
  */
 package coheal.controllers.ui.frontoffice.event;
 
-import coheal.controllers.ui.frontoffice.book.*;
-import coheal.controllers.ui.frontoffice.task.*;
+
 import animatefx.animation.ZoomIn;
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
-
-import coheal.entities.event.Event;
 import coheal.entities.event.EventCategory;
 import coheal.services.event.ServiceEvent;
 import coheal.services.ui.UIService;
@@ -18,7 +15,6 @@ import coheal.services.user.UserSession;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -33,7 +29,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -49,14 +44,9 @@ public class EventPageController implements Initializable {
     @FXML
     private HBox categoriesHBox;
     private UIService stc = new UIService();
-
     private ServiceEvent st = new ServiceEvent();
-    private GridPane taskGrid;
-    private GridPane bookGrid;
     @FXML
     private ScrollPane eventPane;
-    @FXML
-    private GridPane eventGrid;
     double xOffset, yOffset;
     @FXML
     private JFXButton addBtn;
@@ -86,31 +76,6 @@ public class EventPageController implements Initializable {
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
-        }
-        int y = 0;
-        int x = 0;
-        List<Event> events;
-        try {
-            events = st.AfficherEvent();
-            for (int i = 0; i < events.size(); i++) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/event/EventItem.fxml"));
-                try {
-                    AnchorPane pane = loader.load();
-                    EventItemController c = loader.getController();
-                    c.setData(events.get(i));
-                    if (x > 1) {
-                        y++;
-                        x = 0;
-                    }
-                    eventGrid.add(pane, x, y);
-                    x++;
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
         }
             pagination.setPageFactory((pageindex) -> grid(pageindex));
     }

@@ -101,9 +101,10 @@ public class BookPageController implements Initializable {
          */
         @Override
         public void initialize(URL url, ResourceBundle rb) {
-                  if(UserSession.getRole().equals("therapist"))
+                 // if(UserSession.getRole().equals("therapist"))
             Appelbookadd.setVisible(true);
-                new ZoomIn(bookPane).play();
+               
+                  new ZoomIn(bookPane).play();
                  notifBook service = new notifBook();
             for (int i = 0; i < service.listNotification(UserSession.getUser_id()).size(); i++) {
                 Image notification = new Image("file:///" + projectPath + "/src/coheal/resources/images/tasks/alert.png");
@@ -162,7 +163,7 @@ public class BookPageController implements Initializable {
 
         @FXML
         private void Appelbookadd(MouseEvent event) throws IOException {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/book/addbook.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/book/AddBookF.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);

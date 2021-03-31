@@ -34,6 +34,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -60,8 +61,6 @@ public class TaskPageController implements Initializable {
     private UIService stc = new UIService();
     private ServiceTask st = new ServiceTask();
     @FXML
-    private GridPane taskGrid;
-    @FXML
     private ScrollPane taskPane;
 
     double xOffset, yOffset;
@@ -74,6 +73,8 @@ public class TaskPageController implements Initializable {
     String select = "";
     private ServiceUserTask sut = new ServiceUserTask();
     private static String projectPath = System.getProperty("user.dir").replace("\\", "/");
+    @FXML
+    private Pagination pagination;
 
     /**
      * Initializes the controller class.
@@ -96,9 +97,9 @@ public class TaskPageController implements Initializable {
                 tray.setRectangleFill(Paint.valueOf("#2A9A84"));
 //                tray.showAndWait();
                 tray.showAndDismiss(Duration.seconds(5));
-                service.deleteNotification(service.listNotification(UserSession.getUser_id()).get(i));             
+                service.deleteNotification(service.listNotification(UserSession.getUser_id()).get(i));
             }
-           
+
         }
         List<TaskCategory> catTasks = stc.topThreeCatg();
         for (int i = 0; i < catTasks.size(); i++) {
@@ -115,55 +116,13 @@ public class TaskPageController implements Initializable {
             }
         }
 
-        int y = 0;
-        int x = 0;
-        List<?> tasks;
+        pagination.setPageFactory((pageindex) -> grid(pageindex));
 
-        tasks = Stream.concat(st.ListTask().stream(), spt.listPaidTask().stream())
-                .collect(Collectors.toList());
-
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i) instanceof PaidTask) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/TaskItem.fxml"));
-                try {
-                    Pane pane = loader.load();
-                    TaskItemController c = loader.getController();
-                    c.setPaidTaskData((PaidTask) tasks.get(i));
-                    if (x > 2) {
-                        y++;
-                        x = 0;
-                    }
-                    taskGrid.add(pane, x, y);
-                    x++;
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-
-            } else {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/TaskItem.fxml"));
-                try {
-                    Pane pane = loader.load();
-                    TaskItemController c = loader.getController();
-                    c.setData((Task) tasks.get(i));
-                    if (x > 2) {
-                        y++;
-                        x = 0;
-                    }
-                    taskGrid.add(pane, x, y);
-                    x++;
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-
-        }
     }
 
     @FXML
     private void addTaskAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/AddTask.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/AddTaskF.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -198,9 +157,29 @@ public class TaskPageController implements Initializable {
 
     @FXML
     private void comboBoxAction(ActionEvent event) {
-        taskGrid.getChildren().clear();
-        int y = 0;
-        int x = 0;
+        pagination.setPageFactory((pageindex) -> comboGrid(pageindex));
+    }
+
+    public GridPane grid(int pageindex) {
+        List<?> tasks;
+        tasks = Stream.concat(st.ListTask().stream(), spt.listPaidTask().stream())
+                .collect(Collectors.toList());
+        GridPane pane = null;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/GridTask.fxml"));
+        try {
+            pane = loader.load();
+            GridTaskController c = loader.getController();
+            c.setData(pageindex, tasks);
+            pagination.setPageCount(c.pageCount);
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return pane;
+    }
+
+    public GridPane comboGrid(int pageindex) {
         List<?> tasks = null;
         if (comboBox.getValue() == "Yours") {
             if (UserSession.getRole().equals("therapist")) {
@@ -216,44 +195,18 @@ public class TaskPageController implements Initializable {
                     .collect(Collectors.toList());
 
         }
-        for (int i = 0; i < tasks.size(); i++) {
+        GridPane pane = null;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/GridTask.fxml"));
+        try {
+            pane = loader.load();
+            GridTaskController c = loader.getController();
+            c.setData(pageindex, tasks);
+            pagination.setPageCount(c.pageCount);
 
-            if (tasks.get(i) instanceof PaidTask) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/TaskItem.fxml"));
-                try {
-                    Pane pane = loader.load();
-                    TaskItemController c = loader.getController();
-                    c.setPaidTaskData((PaidTask) tasks.get(i));
-                    if (x > 2) {
-                        y++;
-                        x = 0;
-                    }
-                    taskGrid.add(pane, x, y);
-                    x++;
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-
-            } else {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/TaskItem.fxml"));
-                try {
-                    Pane pane = loader.load();
-                    TaskItemController c = loader.getController();
-                    c.setData((Task) tasks.get(i));
-                    if (x > 2) {
-                        y++;
-                        x = 0;
-                    }
-                    taskGrid.add(pane, x, y);
-                    x++;
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
-
+        return pane;
     }
 }

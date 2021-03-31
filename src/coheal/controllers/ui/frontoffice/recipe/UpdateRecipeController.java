@@ -105,7 +105,6 @@ public class UpdateRecipeController implements Initializable {
             r.setCalories(Float.valueOf(CaloriesTF.getText()));
             r.setDuration(Integer.valueOf(DurationTF.getText()));
             r.setPersons(Integer.valueOf(PersonsTF.getText()));
-            System.out.println(r);
             File dest = null;
             if (f != null) {
                 dest = new File(projectPath + "/src/coheal/resources/images/recipes/" + recipe.getImgUrl());
@@ -127,7 +126,7 @@ public class UpdateRecipeController implements Initializable {
             }
 
             rs.Update_Recipe(r, rh.getId());
-            System.out.println(rh.getId());
+
             showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
                     "Recipe modified successfully!");
 

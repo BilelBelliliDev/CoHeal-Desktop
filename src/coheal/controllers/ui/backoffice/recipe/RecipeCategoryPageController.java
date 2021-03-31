@@ -225,7 +225,7 @@ public class RecipeCategoryPageController implements Initializable {
         name_col.setCellValueFactory(new PropertyValueFactory<>("name"));
         img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
         String n = RechercheTF.getText();
-        RecipeCatTable.setItems(rcs.Recherche(n));
+        RecipeCatTable.setItems(rcs.RechercheCatAvance(n));
     }
 
 }

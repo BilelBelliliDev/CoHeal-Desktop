@@ -72,7 +72,7 @@ public class TaskItemController implements Initializable {
         TaskHolder th = TaskHolder.getINSTANCE();
         th.setId(id);
 
-        AnchorPane pageHolder = (AnchorPane) taskTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        AnchorPane pageHolder = (AnchorPane) taskTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/task/TaskDetails.fxml")));
     }

@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 31, 2021, 1:49:07 PM
+    Author     : BilelxOS
+*/
+@font-face {
+    font-family: 'RocknRoll One';
+    src: url('RocknRollOne-Regular.ttf');
+}
+.text{
+    -fx-font-family: 'RocknRoll One', sans-serif;
+}
+.jfx-text-field,
+.jfx-text-area,.jfx-combo-box  {
+    -fx-border-radius: 0.75em;
+    -fx-border-color: #CCCCCC;
+    -fx-background-color: white;
+    -fx-prompt-text-fill: grey
+}
+
+.jfx-combo-box {
+    -fx-padding: 0em 1em 0em 1em;
+}
+
+
+.jfx-text-field,
+.jfx-text-area   {
+    -fx-padding: 0.5em 1em 0.5em 1em;
+}
+
+.jfx-text-field:focused,
+.jfx-text-area:focused {
+    -fx-border-color: #13547a;
+}
+
+.jfx-combo-box {
+    -fx-padding: 0em 1em 0em 1em;
+}
+
+.jfx-text-field > .input-line,
+.jfx-text-area > .input-line,
+.jfx-combo-box > .input-line{
+    -fx-background-color: transparent;
+    -fx-pref-height: 0px;
+}
+
+.jfx-text-field > .input-focused-line,
+.jfx-text-area > .input-focused-line,
+.jfx-combo-box > .input-focused-line {
+    -fx-background-color: #13547a;
+    -fx-pref-height: 0px;
+}

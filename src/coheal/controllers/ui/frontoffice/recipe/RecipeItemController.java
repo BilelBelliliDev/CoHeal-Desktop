@@ -42,6 +42,8 @@ public class RecipeItemController implements Initializable {
     
     int id = 0;
     RecipeCategory rc = new RecipeCategory();
+    @FXML
+    private AnchorPane recipeItem;
    
 
     /**
@@ -68,7 +70,7 @@ public class RecipeItemController implements Initializable {
     private void showRecipeDetails(MouseEvent event) throws IOException {
         RecipeHolder rh = RecipeHolder.getINSTANCE();
         rh.setId(id);
-        AnchorPane pageHolder = (AnchorPane) durat.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        AnchorPane pageHolder = (AnchorPane) recipeItem.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeDetails.fxml")));
     }
