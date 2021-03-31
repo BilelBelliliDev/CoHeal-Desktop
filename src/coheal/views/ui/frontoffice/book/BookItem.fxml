@@ -2,7 +2,6 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
@@ -38,10 +37,5 @@
          </effect>
       </ImageView>
       <OctIconView glyphName="BOOK" layoutX="196.0" layoutY="129.0" onMouseClicked="#displayAction" size="40" style="-fx-cursor: hand; -fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" text="" />
-      <FontAwesomeIconView fx:id="trash" fill="#13547a" glyphName="TRASH" layoutX="286.0" layoutY="20.0" onMouseClicked="#delBo" size="20" style="-fx-cursor: hand;" visible="false">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </FontAwesomeIconView>
    </children>
 </Pane>

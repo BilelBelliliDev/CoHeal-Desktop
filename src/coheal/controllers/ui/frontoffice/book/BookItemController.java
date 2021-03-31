@@ -61,8 +61,7 @@ public class BookItemController implements Initializable {
         private Label bookViews;
         @FXML
         private Pane item;
-        @FXML
-        private FontAwesomeIconView trash;
+      
         int uid= 0;
 
         /**
@@ -71,9 +70,7 @@ public class BookItemController implements Initializable {
         @Override
         public void initialize(URL url, ResourceBundle rb) {
                 
-                if(UserSession.getRole().equals("therapist") )
-                {trash.setVisible(true);
-                }
+                
 
         }
 
@@ -99,6 +96,7 @@ public class BookItemController implements Initializable {
                 BookDetailsController bdc=loader.getController();
                 try {
                         bdc.display(sb.Rechercher(id).get(0).getTitle(),sb.Rechercher(id).get(0).getAuthor(),sb.Rechercher(id).get(0).getDescription(),sb.Rechercher(id).get(0).getImgUrl(),sb.Rechercher(id).get(0).getFilePath(),id);
+                      
                 } catch (SQLException ex) {
                         Logger.getLogger(BookItemController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -127,11 +125,7 @@ public class BookItemController implements Initializable {
 
         }
 
-        @FXML
-        private void delBo(MouseEvent event) {
-                sb.supprimerBook(id);
-                
-        }
+       
         
 
 }
