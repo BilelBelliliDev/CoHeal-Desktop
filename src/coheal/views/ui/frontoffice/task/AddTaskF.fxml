@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="1016.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.task.AddTaskFController">
+   <children>
+      <Pane layoutX="87.0" layoutY="36.0" prefHeight="420.0" prefWidth="843.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;" stylesheets="@../../../../resources/css/textfields.css">
+         <children>
+            <AnchorPane layoutX="399.0" layoutY="308.0" prefHeight="60.0" prefWidth="247.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em;">
+               <children>
+                  <JFXTextField fx:id="price" layoutX="146.0" layoutY="11.0" prefHeight="38.0" prefWidth="87.0" promptText="Price" />
+                  <JFXRadioButton fx:id="paid" layoutX="76.0" layoutY="21.0" onAction="#paidAction" text="Paid">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="type1" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton fx:id="free" layoutX="14.0" layoutY="21.0" selected="true" text="Free" toggleGroup="$type1" />
+               </children>
+            </AnchorPane>
+            <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="794.0" layoutY="26.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+            <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="815.0" layoutY="25.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
+            <JFXTextField fx:id="Titre" layoutX="399.0" layoutY="58.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" />
+            <JFXTextArea fx:id="Description" layoutX="399.0" layoutY="111.0" prefHeight="183.0" prefWidth="392.0" promptText="Description" />
+            <JFXComboBox fx:id="comboCatg" layoutX="71.0" layoutY="319.0" onAction="#listCategoryCombo" prefHeight="39.0" prefWidth="277.0" promptText="Category" />
+            <JFXTextField fx:id="numOfDays" layoutX="704.0" layoutY="58.0" prefHeight="38.0" prefWidth="87.0" promptText="Days" />
+            <AnchorPane layoutX="71.0" layoutY="60.0" onMouseClicked="#addImage" prefHeight="236.0" prefWidth="277.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
+               <children>
+                  <Label layoutX="69.0" layoutY="134.0" style="-fx-font-size: 26px; -fx-text-fill: grey;" text="Add photo" />
+                  <FontAwesomeIconView glyphName="CLOUD_UPLOAD" layoutX="112.0" layoutY="125.0" size="50" style="-fx-fill: grey;" />
+                  <ImageView fx:id="image" fitHeight="211.0" fitWidth="255.0" layoutX="12.0" layoutY="13.0" pickOnBounds="true" />
+               </children>
+            </AnchorPane>
+            <Circle fill="DODGERBLUE" layoutX="836.0" layoutY="414.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="825.0" layoutY="426.0" onMouseClicked="#addTaskAction" size="30" style="-fx-cursor: hand;" />
+            <Pane layoutX="36.0" layoutY="-21.0" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="21.0" layoutY="5.0" style="-fx-font-size: 20px;" text="New Task" textFill="WHITE" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

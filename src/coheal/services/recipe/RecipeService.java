@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.ImageView;
@@ -117,36 +118,6 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
-    public ObservableList<Recipe> Recherche(String title) throws SQLException {
-        Statement stm = con.createStatement();
-        String query = "SELECT * FROM recipe WHERE is_deleted = 0 AND title ='" + title + "';";
-        ResultSet rs = stm.executeQuery(query);
-        ObservableList<Recipe> data = FXCollections.observableArrayList();
-        while (rs.next()) {
-            Recipe r = new Recipe();
-            r.setRecipeId(rs.getInt("recipe_id"));
-            r.setTitle(rs.getString("title"));
-            r.setDescription(rs.getString("description"));
-            r.setIngredients(rs.getString("ingredients"));
-            r.setSteps(rs.getString("steps"));
-            r.setImgUrl(rs.getString("img_url"));
-            r.setCalories(rs.getFloat("calories"));
-            r.setDuration(rs.getInt("duration"));
-            r.setPersons(rs.getInt("persons"));
-            // image
-            ImageView img = null;
-            String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
-            img = new ImageView(url);
-            img.setFitHeight(100);
-            img.setFitWidth(100);
-            r.setImg(img);
-            data.add(r);
-        }
-        return data;
-
-    }
-
-    @Override
     public ObservableList<Recipe> Rechercher_Recette(int idR) throws SQLException {
         Statement st = con.createStatement();
         String query = "SELECT * FROM recipe WHERE is_deleted = 0 AND recipe_id = " + idR + "";
@@ -176,9 +147,68 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
+    public List<Recipe> RecipesByUserId(int id) throws SQLException {
+        Statement stm = con.createStatement();
+        String query = "SELECT * FROM recipe WHERE is_deleted = 0 AND user_id = " + id + "";
+        ResultSet rs = stm.executeQuery(query);
+        ObservableList<Recipe> data = FXCollections.observableArrayList();
+        while (rs.next()) {
+            Recipe r = new Recipe();
+            r.setUserId(rs.getInt("user_id"));
+            r.setRecipeId(rs.getInt("recipe_id"));
+            r.setTitle(rs.getString("title"));
+            r.setDescription(rs.getString("description"));
+            r.setIngredients(rs.getString("ingredients"));
+            r.setSteps(rs.getString("steps"));
+            r.setImgUrl(rs.getString("img_url"));
+            r.setCalories(rs.getFloat("calories"));
+            r.setDuration(rs.getInt("duration"));
+            r.setPersons(rs.getInt("persons"));
+            // image
+            ImageView img = null;
+            String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
+            img = new ImageView(url);
+            img.setFitHeight(100);
+            img.setFitWidth(100);
+            r.setImg(img);
+            data.add(r);
+        }
+        return data;
+    }
+
+    @Override
     public ObservableList<Recipe> Tri() throws SQLException {
         Statement stm = con.createStatement();
         String query = "SELECT * FROM recipe WHERE is_deleted = 0 ORDER BY title DESC  ";
+        ResultSet rs = stm.executeQuery(query);
+        ObservableList<Recipe> ListR = FXCollections.observableArrayList();
+        while (rs.next()) {
+            Recipe r = new Recipe();
+            r.setRecipeId(rs.getInt("recipe_id"));
+            r.setTitle(rs.getString("title"));
+            r.setDescription(rs.getString("description"));
+            r.setIngredients(rs.getString("ingredients"));
+            r.setSteps(rs.getString("steps"));
+            r.setImgUrl(rs.getString("img_url"));
+            r.setCalories(rs.getFloat("calories"));
+            r.setDuration(rs.getInt("duration"));
+            r.setPersons(rs.getInt("persons"));
+            // image
+            ImageView img = null;
+            String url = "file:///" + projectPath + "/src/coheal/resources/images/recipes/" + rs.getString("img_url");
+            img = new ImageView(url);
+            img.setFitHeight(100);
+            img.setFitWidth(100);
+            r.setImg(img);
+            ListR.add(r);
+        }
+        return ListR;
+    }
+
+    @Override
+    public ObservableList<Recipe> RechercheRecipeAvance(String t) throws SQLException {
+        Statement stm = con.createStatement();
+        String query = "SELECT * FROM recipe WHERE is_deleted = 0 AND (title like '" + t + "%')";
         ResultSet rs = stm.executeQuery(query);
         ObservableList<Recipe> ListR = FXCollections.observableArrayList();
         while (rs.next()) {

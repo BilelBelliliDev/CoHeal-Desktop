@@ -170,20 +170,8 @@ public class RecipePageController implements Initializable {
         ingred_col.setCellValueFactory(new PropertyValueFactory<>("ingredients"));
         Steps_col.setCellValueFactory(new PropertyValueFactory<>("steps"));
         String n = RechercheTF.getText();
-        RecipeTable.setItems(rs.Recherche(n));
+        RecipeTable.setItems(rs.RechercheRecipeAvance(n));
     }
-
-    @FXML
-    private void TriRecipes(MouseEvent event) throws SQLException {
-        img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
-        title_col.setCellValueFactory(new PropertyValueFactory<>("title"));
-        Desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
-        cal_col.setCellValueFactory(new PropertyValueFactory<>("calories"));
-        dur_col.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        persons_col.setCellValueFactory(new PropertyValueFactory<>("persons"));
-        ingred_col.setCellValueFactory(new PropertyValueFactory<>("ingredients"));
-        Steps_col.setCellValueFactory(new PropertyValueFactory<>("steps"));
-        RecipeTable.setItems(rs.Tri());
-    }
+    
 
 }

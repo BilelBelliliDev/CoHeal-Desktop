@@ -58,7 +58,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <ImageView fx:id="taskImg" fitHeight="162.0" fitWidth="277.0" layoutX="30.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="taskImg" fitHeight="162.0" fitWidth="277.0" layoutX="30.0" layoutY="111.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../../../resources/images/tasks/sleep_large.jpg" />
                      </image>

@@ -25,7 +25,7 @@ public interface IRecipeCategoryService {
 
     public void Delete_RecipeCategory(int idc);
 
-    public ObservableList<RecipeCategory> Recherche(String name) throws SQLException;
+    public ObservableList<RecipeCategory> RechercheCatAvance(String n) throws SQLException;
 
     public RecipeCategory RechercherRecipeCategory(String n);
 
