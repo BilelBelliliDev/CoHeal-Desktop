@@ -7,8 +7,6 @@ package coheal.controllers.ui.frontoffice.recipe;
 
 import animatefx.animation.ZoomIn;
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
-import coheal.controllers.ui.frontoffice.book.BookItemController;
-import coheal.entities.book.Book;
 import coheal.entities.recipe.Recipe;
 import coheal.entities.recipe.RecipeCategory;
 import coheal.services.recipe.RecipeService;
