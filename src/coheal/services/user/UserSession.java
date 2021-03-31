@@ -1,6 +1,8 @@
 package coheal.services.user;
 
+import coheal.entities.user.Role;
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
@@ -14,23 +16,24 @@ public final class UserSession {
     private static String email;
     private static String password;
     private static String first_name;
-    private static String last_name;    
+    private static String last_name;
     private static Date date_of_birth;
     private static String role;
-    
-    private UserSession(int user_id ,String email ,String password ,String first_name ,String last_name,Date date_of_birth,String role) {
+    private static List<Role> ListRole;
+
+    private UserSession(int user_id, String email, String password, String first_name, String last_name, Date date_of_birth, String role) {
         this.user_id = user_id;
         this.email = email;
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.date_of_birth=date_of_birth;
-        this.role=role;
+        this.date_of_birth = date_of_birth;
+        this.role = role;
     }
 
-    public static UserSession getInstace(int user_id ,String email,String password,String first_name,String last_name,Date date_of_birth,String role) {
-        if(instance == null) {
-            instance = new UserSession(user_id,email, password, first_name,last_name,date_of_birth,role);
+    public static UserSession getInstace(int user_id, String email, String password, String first_name, String last_name, Date date_of_birth, String role) {
+        if (instance == null) {
+            instance = new UserSession(user_id, email, password, first_name, last_name, date_of_birth, role);
         }
         return instance;
     }
@@ -62,9 +65,13 @@ public final class UserSession {
     public static String getRole() {
         return role;
     }
-    
+
+    public static List<Role> getListRole() {
+        return ListRole;
+    }
+
     
     public static void cleanUserSession() {
-        instance = null;       
+        instance = null;
     }
 }
