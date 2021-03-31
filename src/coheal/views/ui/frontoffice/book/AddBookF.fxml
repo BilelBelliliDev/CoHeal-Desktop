@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="1016.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.book.AddBookFController">
+   <children>
+      <Pane layoutX="87.0" layoutY="36.0" prefHeight="420.0" prefWidth="843.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;" stylesheets="@../../../../resources/css/textfields.css">
+         <children>
+            <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="794.0" layoutY="26.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+            <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="815.0" layoutY="25.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
+            <JFXTextField fx:id="tftiltle" layoutX="410.0" layoutY="49.0" prefHeight="38.0" prefWidth="384.0" promptText="Title" styleClass="text" />
+            <JFXTextArea fx:id="tfdescription" layoutX="283.0" layoutY="169.0" prefHeight="210.0" prefWidth="511.0" promptText="Description" styleClass="text" wrapText="true" />
+            <JFXComboBox fx:id="bcat" layoutX="71.0" layoutY="340.0" onAction="#bCat" prefHeight="39.0" prefWidth="180.0" promptText="Category" />
+            <JFXTextField fx:id="tfauthor" layoutX="410.0" layoutY="104.0" prefHeight="41.0" prefWidth="384.0" promptText="Author" styleClass="text" />
+            <AnchorPane layoutX="71.0" layoutY="44.0" onMouseClicked="#Addimage" prefHeight="278.0" prefWidth="180.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
+               <children>
+                  <Label layoutX="37.0" layoutY="145.0" style="-fx-font-size: 20px; -fx-text-fill: grey;" text="Add photo" />
+                  <FontAwesomeIconView glyphName="CLOUD_UPLOAD" layoutX="69.0" layoutY="139.0" size="40" style="-fx-fill: grey;" />
+                  <ImageView fx:id="image" fitHeight="253.0" fitWidth="155.0" layoutX="13.0" layoutY="13.0" pickOnBounds="true" />
+               </children>
+            </AnchorPane>
+            <Circle fill="DODGERBLUE" layoutX="836.0" layoutY="414.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="825.0" layoutY="426.0" onMouseClicked="#addBokkAction" size="30" style="-fx-cursor: hand;" />
+            <Pane layoutX="36.0" layoutY="-21.0" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="18.0" layoutY="5.0" style="-fx-font-size: 20px;" text="New Book" textFill="WHITE" />
+               </children>
+            </Pane>
+            <AnchorPane layoutX="282.0" layoutY="47.0" onMouseClicked="#Addlivre" prefHeight="100.0" prefWidth="108.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
+               <children>
+                  <Label fx:id="labelBook" layoutX="15.0" layoutY="53.0" style="-fx-font-size: 16px; -fx-text-fill: grey;" text="Add book" />
+                  <FontAwesomeIconView glyphName="CLOUD_UPLOAD" layoutX="38.0" layoutY="48.0" size="30" style="-fx-fill: grey;" />
+                  <ImageView fx:id="image1" fitHeight="81.0" fitWidth="91.0" layoutX="9.0" layoutY="6.0" pickOnBounds="true" />
+               </children>
+            </AnchorPane>
+            <Label fx:id="tffilepath" layoutX="237.0" layoutY="11.0" textFill="TRANSPARENT" />
+            <Label fx:id="tfimgurl" layoutX="268.0" layoutY="12.0" textFill="TRANSPARENT" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

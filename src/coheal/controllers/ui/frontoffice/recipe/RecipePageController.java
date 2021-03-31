@@ -69,11 +69,11 @@ public class RecipePageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (UserSession.getRole().equals("nutritionist")) {
-            addBtn.setVisible(true);
-            ComboBox.setVisible(true);
-        } 
-
+//        if (UserSession.getRole().equals("nutritionist")) {
+//            addBtn.setVisible(true);
+//            ComboBox.setVisible(true);
+//        } 
+addBtn.setVisible(true);
         new ZoomIn(recipePane).play();
 
         ComboBox.getItems().add("All");
@@ -118,7 +118,7 @@ public class RecipePageController implements Initializable {
 
     @FXML
     private void addRecipeAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/recipe/AddRecipe.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/recipe/AddRecipeF.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
