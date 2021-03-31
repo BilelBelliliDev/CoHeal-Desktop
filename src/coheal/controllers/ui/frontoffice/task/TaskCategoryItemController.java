@@ -57,7 +57,10 @@ public class TaskCategoryItemController implements Initializable {
     private void showTasksAction(MouseEvent event) throws IOException {
         TaskCategoryHolder holder = TaskCategoryHolder.getINSTANCE();
         holder.setName(taskCatgTitle.getText());
-        AnchorPane pageHolder = (AnchorPane) taskCatgTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        AnchorPane pageHolder = (AnchorPane) taskCatgTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        if(pageHolder==null){
+             pageHolder = (AnchorPane) taskCatgTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        }
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/task/TasksByCategory.fxml")));
 
