@@ -47,7 +47,7 @@ public class GridRecipeController implements Initializable {
         try {
             int y = 0;
             int x = 0;
-            List<Recipe> recipes=null;
+            List<Recipe> recipes = null;
             if (!"".equals(searchWord)) {
                 recipeGrid.getChildren().clear();
                 try {
@@ -55,37 +55,40 @@ public class GridRecipeController implements Initializable {
                 } catch (SQLException ex) {
                     Logger.getLogger(GridRecipeController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else{
-                recipes = rs.Afficher_Recipe();
-            }      
-            //pagination
-            pageCount = recipes.size() / gridSize;
-            if (recipes.size() % gridSize > 0) {
-                pageCount++;
-            }
-            int a, b;
-            a = currentPage * gridSize;
-            if (currentPage == (pageCount - 1)) {
-                b = recipes.size();
             } else {
-                b = a + gridSize;
+                recipes = rs.Afficher_Recipe();
             }
-            for (int i = a; i < b; i++) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeItem.fxml"));
-                AnchorPane pane = loader.load();
-                RecipeItemController c = loader.getController();
-                c.setData(recipes.get(i));
-                if (x > columnCount) {
-                    y++;
-                    x = 0;
+            //pagination
+            if (recipes != null) {
+                pageCount = recipes.size() / gridSize;
+                if (recipes.size() % gridSize > 0) {
+                    pageCount++;
                 }
-                recipeGrid.add(pane, x, y);
-                x++;
+                int a, b;
+                a = currentPage * gridSize;
+                if (currentPage == (pageCount - 1)) {
+                    b = recipes.size();
+                } else {
+                    b = a + gridSize;
+                }
+                for (int i = a; i < b; i++) {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeItem.fxml"));
+                    AnchorPane pane = loader.load();
+                    RecipeItemController c = loader.getController();
+                    c.setData(recipes.get(i));
+                    if (x > columnCount) {
+                        y++;
+                        x = 0;
+                    }
+                    recipeGrid.add(pane, x, y);
+                    x++;
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(GridRecipeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
 }
