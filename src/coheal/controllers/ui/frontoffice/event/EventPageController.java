@@ -27,11 +27,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -47,17 +49,19 @@ public class EventPageController implements Initializable {
     @FXML
     private HBox categoriesHBox;
     private UIService stc = new UIService();
-    
-    private ServiceEvent st=new ServiceEvent();
+
+    private ServiceEvent st = new ServiceEvent();
     private GridPane taskGrid;
     private GridPane bookGrid;
     @FXML
     private ScrollPane eventPane;
     @FXML
     private GridPane eventGrid;
-     double xOffset, yOffset;
+    double xOffset, yOffset;
     @FXML
     private JFXButton addBtn;
+    @FXML
+    private Pagination pagination;
 
     /**
      * Initializes the controller class.
@@ -65,8 +69,9 @@ public class EventPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        if(UserSession.getRole().equals("therapist") || UserSession.getRole().equals("moderator"))
+        if (UserSession.getRole().equals("therapist") || UserSession.getRole().equals("moderator")) {
             addBtn.setVisible(true);
+        }
         new ZoomIn(eventPane).play();
         List<EventCategory> catBooks = stc.topThreeEventCatg();
         for (int i = 0; i < catBooks.size(); i++) {
@@ -88,27 +93,44 @@ public class EventPageController implements Initializable {
         try {
             events = st.AfficherEvent();
             for (int i = 0; i < events.size(); i++) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/event/EventItem.fxml"));
-            try {
-                AnchorPane pane = loader.load();
-                EventItemController c = loader.getController();
-                c.setData(events.get(i));
-                if (x > 1) {
-                    y++;
-                    x = 0;
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/event/EventItem.fxml"));
+                try {
+                    AnchorPane pane = loader.load();
+                    EventItemController c = loader.getController();
+                    c.setData(events.get(i));
+                    if (x > 1) {
+                        y++;
+                        x = 0;
+                    }
+                    eventGrid.add(pane, x, y);
+                    x++;
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
                 }
-                eventGrid.add(pane, x, y);
-                x++;
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
             }
-        }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         
+        for (int i = 0; i < 4; i++) {
+            pagination.setPageFactory((pageindex) -> grid(pageindex));
+        }
+    }
 
+    public GridPane grid(int pageindex) {
+        GridPane pane = null;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/event/GridEvent.fxml"));
+        try {
+            pane = loader.load();
+            GridEventController c = loader.getController();           
+            c.setData(pageindex);
+            pagination.setPageCount(c.pageCount);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return pane;
     }
 
     @FXML
