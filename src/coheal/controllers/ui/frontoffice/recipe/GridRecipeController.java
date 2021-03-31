@@ -31,7 +31,6 @@ public class GridRecipeController implements Initializable {
     public int pageCount, currentPage;
     private RecipeService rs = new RecipeService();
     private int gridSize, columnCount;
-    private final int NUM = 12;
 
     /**
      * Initializes the controller class.

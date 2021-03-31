@@ -53,7 +53,6 @@ public class RecipePageController implements Initializable {
     private UIService stc = new UIService();
     @FXML
     private ScrollPane recipePane;
-    @FXML
     private GridPane recipeGrid;
     double xOffset, yOffset;
     @FXML
@@ -98,27 +97,7 @@ public class RecipePageController implements Initializable {
             }
         }
 
-        int y = 0;
-        int x = 0;
-        List<Recipe> recipes;
-        recipes = st.Afficher_Recipe();
-        for (int i = 0; i < recipes.size(); i++) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeItem.fxml"));
-            try {
-                AnchorPane pane = loader.load();
-                RecipeItemController c = loader.getController();
-                c.setData(recipes.get(i));
-                if (x > 2) {
-                    y++;
-                    x = 0;
-                }
-                recipeGrid.add(pane, x, y);
-                x++;
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+     
         pagination.setPageFactory((pageindex) -> grid(pageindex));
     }
 
