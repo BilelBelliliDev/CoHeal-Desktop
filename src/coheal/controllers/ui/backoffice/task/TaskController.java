@@ -111,7 +111,6 @@ public class TaskController implements Initializable {
         
         init();
 
-
     }
 
     public void init() {
@@ -123,7 +122,6 @@ public class TaskController implements Initializable {
         DaysCol.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
         catgCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        taskTable.setItems(l);
         size = (tasks.size() / itemsPerPage) + 1;
         pagination.setPageCount(size);
         pagination.setPageFactory((pageIndex) -> {
@@ -142,6 +140,7 @@ public class TaskController implements Initializable {
             }
             return taskTable;
         });
+
     }
 
     @FXML

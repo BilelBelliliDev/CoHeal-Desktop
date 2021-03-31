@@ -160,18 +160,5 @@ public class ServiceUser implements IServiceUser{
         }
     }
   //---------------------------------------------
-    
-    public void UpdateBalance(double newbalance,User u){
-        try {
-            //to modify
-            String query = "UPDATE  user set  balance=" + newbalance +" where user_id=" + u.getUserId() +" ";
-            Statement st = cnx.createStatement();
-            st.executeUpdate(query);
-            System.out.println("User's balance updated succesfully");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    //--------------------------------------------
 
 }

@@ -9,11 +9,9 @@ import java.util.ArrayList;
 public class Role {
     //Role var
     private ArrayList<UserRole> listUsers = new ArrayList<>();
-    
     private int roleId;
     private String roleName;
-    
-    
+
     public Role(int roleId, String roleName) {
         this.roleId = roleId;
         this.roleName = roleName;

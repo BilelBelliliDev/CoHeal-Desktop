@@ -13,5 +13,4 @@ public interface IServiceUser {
     public List<User> AfficherPersonne();
     public void ModifierUser(User u ,int id);
     public void DeleteUser(int idU);
-    public void UpdateBalance(double balance,User u);
 }
