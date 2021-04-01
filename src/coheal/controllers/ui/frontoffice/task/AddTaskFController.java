@@ -16,11 +16,16 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RegexValidator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -70,6 +75,7 @@ public class AddTaskFController implements Initializable {
     private JFXRadioButton paid;
     @FXML
     private ImageView image;
+    private boolean titleSI = false,descriptionSI = false,daysSI = false,priceSI = false ;
 
     /**
      * Initializes the controller class.
@@ -84,6 +90,10 @@ public class AddTaskFController implements Initializable {
         free.setToggleGroup(group);
         free.setSelected(true);
         price.disableProperty().bind(free.selectedProperty());
+        titleValidatorSI();
+        priceValidatorSI();
+        daysValidatorSI();
+        descriptionValidatorSI();
     }    
 
     @FXML
@@ -181,4 +191,108 @@ public class AddTaskFController implements Initializable {
         alert.show();
     }
     
+    
+    public void titleValidatorSI() {
+        RegexValidator valid = new RegexValidator();
+        valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
+        Titre.setValidators(valid);
+        valid.setMessage("Title is not valid");
+        Titre.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    Titre.validate();
+                    if (Titre.validate()) {
+                        titleSI = true;
+                    } else {
+                        titleSI = false;
+                    }
+                }
+            }
+        });
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+            valid.setIcon(new ImageView(errorIcon));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void descriptionValidatorSI() {
+        RegexValidator valid = new RegexValidator();
+        valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
+        Description.setValidators(valid);
+        valid.setMessage("Description is not valid");
+        Description.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    Description.validate();
+                    if (Description.validate()) {
+                        descriptionSI = true;
+                    } else {
+                        descriptionSI = false;
+                    }
+                }
+            }
+        });
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+            valid.setIcon(new ImageView(errorIcon));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void priceValidatorSI() {
+        RegexValidator valid = new RegexValidator();
+        valid.setRegexPattern("^(0|[1-9][0-9]*)$");
+        price.setValidators(valid);
+        valid.setMessage("price is not valid");
+        price.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    price.validate();
+                    if (price.validate()) {
+                        priceSI = true;
+                    } else {
+                        priceSI = false;
+                    }
+                }
+            }
+        });
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+            valid.setIcon(new ImageView(errorIcon));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void daysValidatorSI() {
+        RegexValidator valid = new RegexValidator();
+        valid.setRegexPattern("^(0|[1-9][0-9]*)$");
+        numOfDays.setValidators(valid);
+        valid.setMessage("Number of days is not valid");
+        numOfDays.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    numOfDays.validate();
+                    if (numOfDays.validate()) {
+                        daysSI = true;
+                    } else {
+                        daysSI = false;
+                    }
+                }
+            }
+        });
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+            valid.setIcon(new ImageView(errorIcon));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

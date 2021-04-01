@@ -64,7 +64,7 @@ public class TaskActionItemController implements Initializable {
     private void updateTaskAction(MouseEvent event) throws IOException {
         TaskActionHolder tah=TaskActionHolder.getINSTANCE();
         tah.setId(id);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/UpdateTaskAction.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/UpdateTaskActionF.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);

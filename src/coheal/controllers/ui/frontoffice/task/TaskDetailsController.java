@@ -18,6 +18,7 @@ import coheal.services.task.ServicePaidTask;
 import coheal.services.task.ServiceTask;
 import coheal.services.task.ServiceTaskActions;
 import coheal.services.task.ServiceUserTask;
+import coheal.services.user.ServiceUser;
 import coheal.services.user.UserSession;
 import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -82,6 +83,7 @@ public class TaskDetailsController implements Initializable {
     private JFXButton participateButton;
     @FXML
     private Label price;
+    private ServiceUser su=new ServiceUser();
 
     /**
      * Initializes the controller class.
@@ -163,8 +165,10 @@ public class TaskDetailsController implements Initializable {
     private void participateAction(ActionEvent event) {
         User user = st.getUserById(UserSession.getUser_id());
         if (pt != null) {
-            if (user.getBalance() >= pt.getPrice()) {
+            Double balance=user.getBalance()-pt.getPrice();
+            if (balance>=0) {
                 sut.participer(UserSession.getUser_id(), th.getId());
+                su.UpdateBalance(balance, user);
                 ServiceNotification service = new ServiceNotification();
                 Notification n = new Notification();
                 n.setId(task.getUser().getUserId());
@@ -179,7 +183,7 @@ public class TaskDetailsController implements Initializable {
 
     @FXML
     private void addTaskAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/AddTaskAction.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/AddTaskActions.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -205,7 +209,7 @@ public class TaskDetailsController implements Initializable {
 
     @FXML
     private void updateTask(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/UpdateTask.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/UpdateTaskF.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);

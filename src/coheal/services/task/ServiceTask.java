@@ -71,7 +71,7 @@ public class ServiceTask implements IServiceTask {
         try {
 
             Statement st = con.createStatement();
-            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task  where is_deleted=0 and task_id not in(select t.task_id from paid_task t natural join task );";
+            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task  where is_deleted=0 and task_id not in(select t.task_id from paid_task t natural join task ) order by created_at DESC;";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
@@ -171,6 +171,7 @@ public class ServiceTask implements IServiceTask {
                 user.setUserId(rs.getInt("user_id"));
                 user.setFirstName(rs.getString("first_name"));
                 user.setLastName(rs.getString("last_name"));
+                user.setBalance(rs.getDouble("balance"));
                 u=user;
             }
         } catch (SQLException ex) {
@@ -186,7 +187,7 @@ public class ServiceTask implements IServiceTask {
         try {
 
             Statement st = con.createStatement();
-            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task  where is_deleted=0 and user_id="+idU+" and task_id not in(select t.task_id from paid_task t natural join task );";
+            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task  where is_deleted=0 and user_id="+idU+" and task_id not in(select t.task_id from paid_task t natural join task ) order by created_at DESC;";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
@@ -251,4 +252,36 @@ public class ServiceTask implements IServiceTask {
         }
         return task;
     }
+
+    @Override
+    public List<Task> searchTaskByName(String title) {
+    
+          ArrayList<Task> t = new ArrayList();
+        ImageView img = null;
+        try {
+
+            Statement st = con.createStatement();
+            String query = "select * from task  where is_deleted=0 and title like '"+title+"%' and task_id not in(select t.task_id from paid_task t natural join task ) order by created_at DESC;";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                Task task = new Task();
+                task.setTaskId(rs.getInt("task_id"));
+                task.setDescription(rs.getString("description"));
+                task.setTitle(rs.getString("title"));
+                task.setNumOfDays(rs.getInt("num_of_days"));
+                task.setMinUsers(rs.getInt("min_users"));
+                task.setMaxUsers(rs.getInt("max_users"));
+                task.setCategory(stc.searchTaskCategoryById(rs.getInt("cat_id")));
+                String url = "file:///" + projectPath + "/src/coheal/resources/images/tasks/" + rs.getString("img_url");
+                img = new ImageView(url);
+                task.setImg(img);
+                t.add(task);
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de l'affichage");
+        }
+        return t;
+    }
+
 }

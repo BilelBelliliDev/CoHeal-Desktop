@@ -30,4 +30,5 @@ public interface IServicePaidTask {
     public void makePaidTask(int idPT, double price);
 
     public int getCountPaidTask();
+     public List<PaidTask> searchPaidTaskByName(String title);
 }

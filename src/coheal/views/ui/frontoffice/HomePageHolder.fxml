@@ -137,7 +137,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Label alignment="CENTER_RIGHT" layoutX="229.0" layoutY="278.0" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: hand; -fx-font-size: 16px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="View All" textFill="#13547a">
+            <Label alignment="CENTER_RIGHT" layoutX="229.0" layoutY="278.0" onMouseClicked="#ShowOngoingTasksAction" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: hand; -fx-font-size: 16px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="View All" textFill="#13547a">
                <font>
                   <Font name="Century Gothic Bold" size="16.0" />
                </font>

@@ -59,7 +59,7 @@ public class ServicePaidTask implements IServicePaidTask {
         List<PaidTask> pt = new ArrayList<PaidTask>();
         ImageView img = null;
         try {
-            String query = "SELECT * FROM `paid_task` p join task t on p.task_id=t.task_id where t.is_deleted=0";
+            String query = "SELECT * FROM `paid_task` p join task t on p.task_id=t.task_id where t.is_deleted=0 order by t.created_at DESC";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
@@ -172,7 +172,7 @@ public class ServicePaidTask implements IServicePaidTask {
         List<PaidTask> pt = new ArrayList<PaidTask>();
         ImageView img = null;
         try {
-            String query = "SELECT * FROM `paid_task` p join task t on p.task_id=t.task_id where t.user_id="+idU +" and  t.is_deleted=0";
+            String query = "SELECT * FROM `paid_task` p join task t on p.task_id=t.task_id where t.user_id="+idU +" and  t.is_deleted=0  order by t.created_at DESC";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
@@ -214,5 +214,36 @@ public class ServicePaidTask implements IServicePaidTask {
             System.out.println("erreur lors de l'affichage " + ex);
         }
         return nbr;   
+    }
+
+    @Override
+    public List<PaidTask> searchPaidTaskByName(String title) {
+        List<PaidTask> pt = new ArrayList<PaidTask>();
+        ImageView img = null;
+        try {
+            String query = "SELECT * FROM `paid_task` p join task t on p.task_id=t.task_id where t.is_deleted=0 and t.title like '"+title+"%'  order by t.created_at DESC";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                PaidTask p = new PaidTask();
+                p.setPrice(rs.getDouble("price"));
+                p.setTaskId(rs.getInt("task_id"));
+                p.setTitle(rs.getString("title"));
+                p.setMaxUsers(rs.getInt("max_users"));
+                p.setDescription(rs.getString("description"));
+                p.setMinUsers(rs.getInt("min_users"));
+                p.setNumOfDays(rs.getInt("num_of_days"));
+                p.setCategory(stc.searchTaskCategoryById(rs.getInt("cat_id")));
+                String url = "file:///" + projectPath + "/src/coheal/resources/images/tasks/" + rs.getString("img_url");
+                img = new ImageView(url);
+                p.setImg(img);
+
+                pt.add(p);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de l'affichage " + ex);
+        }
+        return pt;
     }
 }

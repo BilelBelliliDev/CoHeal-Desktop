@@ -69,7 +69,7 @@ public class TasksByCategoryController implements Initializable {
 
     @FXML
     private void addTaskAction(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/AddTask.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/AddTaskF.fxml"));
         Parent root = null;
         try {
             root = loader.load();
@@ -102,7 +102,7 @@ public class TasksByCategoryController implements Initializable {
     private void backAction(MouseEvent event) throws IOException {
         AnchorPane pageHolder = (AnchorPane) tasksPane.getParent();
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
-        pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/task/AllCategories.fxml")));
+        pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/task/TaskPage.fxml")));
 
     }
 
