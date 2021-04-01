@@ -20,11 +20,9 @@ public class CoHeal extends Application {
     double xOffset,yOffset;
 
     @Override
-    public void start(Stage stage) throws Exception {
-
-      
+    public void start(Stage stage) throws Exception {    
         Parent root = FXMLLoader.load(getClass().getResource("views/ui/frontoffice/Login.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("views/ui/backoffice/AdminPageHolder.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("views/ui/backoffice/AdminPageHolder.fxml"));
         Scene scene = new Scene(root);
         stage.initStyle(StageStyle.TRANSPARENT);
         scene.setFill(Color.TRANSPARENT);
