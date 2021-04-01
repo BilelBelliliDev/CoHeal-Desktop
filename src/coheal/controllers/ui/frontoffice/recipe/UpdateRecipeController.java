@@ -102,7 +102,7 @@ public class UpdateRecipeController implements Initializable {
             r.setDescription(DescTF.getText());
             r.setIngredients(IngredientsTF.getText());
             r.setSteps(StepsTF.getText());
-            r.setCalories(Float.valueOf(CaloriesTF.getText()));
+            r.setCalories(Integer.valueOf(CaloriesTF.getText()));
             r.setDuration(Integer.valueOf(DurationTF.getText()));
             r.setPersons(Integer.valueOf(PersonsTF.getText()));
             File dest = null;

@@ -83,7 +83,7 @@ public class AddRecipeFController implements Initializable {
         for (int i = 0; i < rcs.Afficher_RecipeCategory().size(); i++) {
             CatBox.getItems().add(rcs.Afficher_RecipeCategory().get(i).getName());
         }
-        
+
         //appel contrôle saisie
         titleValidator();
         descValidator();
@@ -168,7 +168,7 @@ public class AddRecipeFController implements Initializable {
         r.setDescription(DescTF.getText());
         r.setIngredients(IngredientsTF.getText());
         r.setSteps(StepsTF.getText());
-        float c = Float.parseFloat(CaloriesTF.getText());
+        int c = Integer.parseInt(CaloriesTF.getText());
         r.setCalories(c);
         int d = Integer.parseInt(DurationTF.getText());
         r.setDuration(d);

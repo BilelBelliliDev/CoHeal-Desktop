@@ -30,7 +30,7 @@ public class RecipeCategoryItemController implements Initializable {
     @FXML
     private Label recipeCatgTitle;
     @FXML
-    private Label recipeCatgTotalEvents;
+    private Label recipeCatgTotalRecipes;
 
     /**
      * Initializes the controller class.
@@ -44,7 +44,7 @@ public class RecipeCategoryItemController implements Initializable {
         UIService stc = new UIService();
         recipeCatgImg.setImage(tc.getImg().getImage());
         recipeCatgTitle.setText(tc.getName());
-        recipeCatgTotalEvents.setText(String.valueOf(stc.ListerRecipesByIdCatg(tc.getName()).size()) + " Recipes");
+        recipeCatgTotalRecipes.setText(String.valueOf(stc.ListerRecipesByIdCatg(tc.getName()).size()) + " Recipes");
     }
 
     @FXML

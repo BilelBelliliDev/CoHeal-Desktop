@@ -7,7 +7,6 @@ package coheal.controllers.ui.frontoffice.recipe;
 
 import coheal.entities.recipe.Recipe;
 import coheal.services.recipe.RecipeService;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -15,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -112,7 +110,7 @@ public class UpdateRecipeFController implements Initializable {
             r.setDescription(DescTF.getText());
             r.setIngredients(IngredientsTF.getText());
             r.setSteps(StepsTF.getText());
-            r.setCalories(Float.valueOf(CaloriesTF.getText()));
+            r.setCalories(Integer.valueOf(CaloriesTF.getText()));
             r.setDuration(Integer.valueOf(DurationTF.getText()));
             r.setPersons(Integer.valueOf(PersonsTF.getText()));
             File dest = null;

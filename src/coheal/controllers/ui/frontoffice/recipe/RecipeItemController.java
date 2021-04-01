@@ -63,7 +63,6 @@ public class RecipeItemController implements Initializable {
         Persons.setText(String.valueOf(r.getPersons()));
         cat.setText(rc.getName());
         id = r.getRecipeId();
-
     }
 
     @FXML

@@ -161,7 +161,7 @@ public class RecipeCategoryService implements IRecipeCategoryService {
                 r.setDescription(rst.getString("description"));
                 r.setIngredients(rst.getString("ingredients"));
                 r.setSteps(rst.getString("steps"));
-                r.setCalories(rst.getFloat("calories"));
+                r.setCalories(rst.getInt("calories"));
                 r.setDuration(rst.getInt("duration"));
                 r.setPersons(rst.getInt("persons"));
 

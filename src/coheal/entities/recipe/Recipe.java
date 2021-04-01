@@ -15,7 +15,7 @@ public class Recipe {
     private String steps;
     private int persons;
     private int duration;
-    private float calories;
+    private int calories;
     private String imgUrl;
     private ImageView img;
     private User user;
@@ -153,13 +153,14 @@ public class Recipe {
         this.duration = duration;
     }
 
-    public float getCalories() {
+    public int getCalories() {
         return calories;
     }
 
-    public void setCalories(float calories) {
+    public void setCalories(int calories) {
         this.calories = calories;
     }
+    
 
     @Override
     public String toString() {
