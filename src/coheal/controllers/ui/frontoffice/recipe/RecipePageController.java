@@ -70,9 +70,9 @@ public class RecipePageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        if (UserSession.getRole().equals("nutritionist")) {
-//            addBtn.setVisible(true);
-//        } 
+        if (UserSession.getRole().equals("nutritionist")) {
+            addBtn.setVisible(true);
+        } 
 
         if (UserSession.getRole().equals("nutritionist")) {
             ComboBox.setVisible(true);
