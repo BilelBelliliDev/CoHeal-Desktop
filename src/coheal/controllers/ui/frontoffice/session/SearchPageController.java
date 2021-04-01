@@ -63,7 +63,7 @@ public class SearchPageController implements Initializable {
                                 Pane pane = loader.load();
                                 SessionItemController c = loader.getController();
 
-                                c.setData(books.get(i));
+                                c.setData(books.get(i),true);
 
                                 if (x > 3) {
                                         y++;

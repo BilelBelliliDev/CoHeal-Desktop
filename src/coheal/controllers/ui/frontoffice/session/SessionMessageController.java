@@ -43,6 +43,7 @@ public class SessionMessageController implements Initializable {
     @FXML
     private JFXListView<String> chatArea;
     ObservableList<String> s;
+    int Sessionid;
 
     /**
      * Initializes the controller class.
@@ -50,24 +51,31 @@ public class SessionMessageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         s = FXCollections.observableArrayList();
-        for (int i = 0; i < smg.listMessage().size(); i++) {
-            s.add(smg.listMessage().get(i).getMsg());
+        for (int i = 0; i < smg.listMessage(Sessionid).size(); i++) {
+            s.add(smg.listMessage(Sessionid).get(i).getMsg());
         }
         chatArea.setItems(s);
     }
+    public void setdata(int i)
+            
+    {
+        Sessionid=i;
+        System.out.println(i);
+    }
+            
 
     @FXML
     private void envoyerMessageAction(ActionEvent event) {
         ServiceSessionMessage sem = new ServiceSessionMessage();
 
         SessionMessage sm = new SessionMessage();
-
+sm.setChatId(sem.getChatid(Sessionid));
         sm.setMsg(msgId.getText());
         sm.setUserId(UserSession.getUser_id());
         sem.createSessionMesage(sm);
         s = FXCollections.observableArrayList();
-        for (int i = 0; i < smg.listMessage().size(); i++) {
-            s.add(smg.listMessage().get(i).getMsg());
+        for (int i = 0; i < smg.listMessage(Sessionid).size(); i++) {
+            s.add(smg.listMessage(Sessionid).get(i).getMsg());
 
         }
         chatArea.setItems(s);

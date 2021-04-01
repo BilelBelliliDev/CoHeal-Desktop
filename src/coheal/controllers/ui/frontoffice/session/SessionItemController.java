@@ -12,6 +12,8 @@ import coheal.services.session.ServiceSession;
 import coheal.services.session.ServiceSessionChat;
 import coheal.services.ui.UIService;
 import coheal.services.user.UserSession;
+import static com.google.zxing.client.result.ParsedResultType.SMS;
+import com.teknikindustries.bulksms.SMS;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +26,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -44,12 +48,11 @@ public class SessionItemController implements Initializable {
     private Label sessionTitle;
     @FXML
     private Label sessionDesc;
-            double xOffset, yOffset;
+    double xOffset, yOffset;
     public int id;
     ServiceSession ss = new ServiceSession();
-    private int sessionId,therpId;
+    private int sessionId, therpId;
     int id1 = 0;
-    @FXML
     private FontAwesomeIconView icon;
     @FXML
     private Label price;
@@ -57,34 +60,57 @@ public class SessionItemController implements Initializable {
     private Button update;
     @FXML
     private FontAwesomeIconView icon1;
-    ServiceSessionChat scm=new ServiceSessionChat();
+    ServiceSessionChat scm = new ServiceSessionChat();
+    @FXML
+    private Button participer;
 
+    Session session;
+    SessionHolder tah = SessionHolder.getINSTANCE();
+    @FXML
+    private FontAwesomeIconView suprimer;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
-    public void setData(Session s){
-        
+        //session = ss.searchSession(tah.getId());
+//        Session s = new Session();
+//s.setUserId(UserSession.getUser_id());
+
+        if (UserSession.getRole().equals("therapist") && UserSession.getUser_id() != therpId) {
+            update.setVisible(true);
+            icon1.setVisible(true);
+            participer.setVisible(true);
+            suprimer.setVisible(true);
+
+        }
+
+    }
+
+    public void setData(Session s,boolean icon) {
+
+
+    icon1.setVisible(icon);
+
         UIService us = new UIService();
         sessionTitle.setText(s.getTitle());
         sessionDesc.setText(s.getDescription());
-                price.setText(s.getPrice()+"dt");
+        price.setText(s.getPrice() + "dt");
 
-        sessionId=s.getSessionId();
-        therpId=s.getTherpId();
-        
+        sessionId = s.getSessionId();
+        therpId = s.getTherpId();
+
         try {
             therpName.setText(us.therpSession(s.getTherpId()));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-         if (UserSession.getRole().equals("therapist") ) {
-            update.setVisible(true);
-            icon1.setVisible(false);
-        }
+//         if (UserSession.getRole().equals("therapist") ) {
+//            update.setVisible(true);
+//            icon1.setVisible(false);
+
+        // }
     }
 
     public FontAwesomeIconView getIcon() {
@@ -121,12 +147,24 @@ public class SessionItemController implements Initializable {
 //        ss.modifierV(id);
 //        
 //    }
-
     @FXML
     private void UpdateEvent(MouseEvent event) throws IOException {
+       Session s = new Session();
+
+        s.setUserId(UserSession.getUser_id());
+        if (UserSession.getUser_id() != therpId) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Suppression");
+            alert.setHeaderText(null);
+            alert.setContentText("vous ne pouvez pas modifier cette session");
+
+            alert.showAndWait();
+            System.out.println("error");
+        }
+        else{
         SessionHolder th = SessionHolder.getINSTANCE();
         th.setId(sessionId);
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/UpdateSessoio.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/UpdateSessoio.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -147,30 +185,39 @@ public class SessionItemController implements Initializable {
         });
         root.setOnMouseReleased((MouseEvent mouseEvent) -> {
             stage.setOpacity(1.0f);
-        });
-  
+        });}
+
     }
 
     @FXML
     private void participate(MouseEvent event) {
-        Session s= new Session();
-        
+
+        Session s = new Session();
+
         s.setUserId(UserSession.getUser_id());
-        if(UserSession.getUser_id()!=therpId)
-        {
-            ss.participate(s,sessionId);
-            scm.createSessionChat(sessionId);}
-        else{
+        if (UserSession.getUser_id() != therpId) {
+            ss.participate(s, sessionId);
+            scm.createSessionChat(sessionId);
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Suppression");
+            alert.setHeaderText(null);
+            alert.setContentText("vous ne pouvez pas participer cette session");
+
+            alert.showAndWait();
             System.out.println("error");
         }
-        
+//        SMS sms=new SMS();
+//        sms.SendSMS("haitham124", "othmani@123", "ss", "21653731850", "https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
     }
 
     @FXML
     private void msgEvent(MouseEvent event) throws IOException {
-        
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/session/SessionMessage.fxml"));
         Parent root = loader.load();
+        SessionMessageController msg=loader.getController();
+        msg.setdata(sessionId);
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -191,6 +238,30 @@ public class SessionItemController implements Initializable {
         root.setOnMouseReleased((MouseEvent mouseEvent) -> {
             stage.setOpacity(1.0f);
         });
-        
+
     }
+//     @FXML
+//    private void SupprierSession(MouseEvent event) {
+//       s.SupprimerSession(id);
+//    }
+
+    @FXML
+    private void SupprierSession(MouseEvent event) {
+        Session s = new Session();
+
+        s.setUserId(UserSession.getUser_id());
+        if (UserSession.getUser_id() == therpId) {
+            ss.SupprimerSession(sessionId);
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Suppression");
+            alert.setHeaderText(null);
+            alert.setContentText("vous ne pouvez pas supprimer cette session");
+
+            alert.showAndWait();
+            System.out.println("error");
+        }
+
+    }
+
 }

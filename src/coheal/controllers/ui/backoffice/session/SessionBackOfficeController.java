@@ -75,7 +75,7 @@ public class SessionBackOfficeController implements Initializable {
         col4Id.setCellValueFactory(new PropertyValueFactory<>("description"));
         col5Id.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
         col4Id2.setCellValueFactory(new PropertyValueFactory<>("price") );
-        tableId.setItems((ObservableList<Session>) se.listSesion());
+        tableId.setItems((ObservableList<Session>) se.listTousSesion());
       tableId.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
@@ -90,8 +90,8 @@ public class SessionBackOfficeController implements Initializable {
         });
       //----------------PieChart----------
         ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
-                new PieChart.Data("Session", se.ListSessionByTherp(UserSession.getUser_id()).size()),
-                new PieChart.Data("session participer", se.ListSessionBySessionID(UserSession.getUser_id()).size()));
+                new PieChart.Data("Session non participer", se.listSesion().size()),
+                new PieChart.Data("session participer", se.listSesionuser().size()));
         pieChart.setTitle("Session");
         pieChart.setData(valueList);
         pieChart.getData().forEach(data -> {

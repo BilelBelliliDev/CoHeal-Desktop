@@ -154,7 +154,7 @@ public class HomePageController implements Initializable {
             try {
                 AnchorPane pane=loader.load();
                 SessionItemController c=loader.getController();
-                c.setData(sessions.get(i));
+                c.setData(sessions.get(i),false);
                 sessionHBox.getChildren().add(pane);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
