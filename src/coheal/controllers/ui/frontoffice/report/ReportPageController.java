@@ -11,26 +11,24 @@ import coheal.entities.report.Report;
 import coheal.services.report.ReportService;
 import com.jfoenix.controls.JFXCheckBox;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
@@ -68,6 +66,8 @@ public class ReportPageController implements Initializable {
     private JFXCheckBox openCheckBox;
     @FXML
     private JFXCheckBox closedCheckBox;
+    @FXML
+    private Pagination pagination;
 
     /**
      * Initializes the controller class.
@@ -81,6 +81,23 @@ public class ReportPageController implements Initializable {
         checkBoxListeners();
         reportsList = reportService.allReportsList();
 
+        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
+
+    }
+
+    public GridPane grid(int pageindex, List<Report> reportsList) {
+        GridPane pane = null;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/report/ReportGrid.fxml"));
+        try {
+            pane = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(ReportPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ReportGridController c = loader.getController();
+        c.setData(pageindex, reportsList);
+        pagination.setPageCount(c.pageCount);
+        return pane;
     }
 
     @FXML
@@ -106,6 +123,9 @@ public class ReportPageController implements Initializable {
         closedCheckBox.setSelected(false);
         filteredReportsList = new ArrayList();
         fList = new ArrayList();
+        reportsList = reportService.allReportsList();
+        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
+        
     }
 
     public void checkBoxListeners() {
@@ -131,14 +151,14 @@ public class ReportPageController implements Initializable {
                                 .filter(r -> r.getType().contains("task")).filter(r -> r.isIsClosed())
                                 .collect(Collectors.toList());
                         fList.addAll(reportsList);
-                        System.out.println(fList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                     } else if (openCheckBox.isSelected()) {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> r.getType().contains("task")).filter(r -> !r.isIsClosed())
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     } else {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
@@ -146,19 +166,20 @@ public class ReportPageController implements Initializable {
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
                         fList.addAll(filteredReportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     }
                 } else {
                     filtersPane.getChildren().remove(taskItem);
                     if (!isChecked()) {
                         filteredReportsList = new ArrayList();
                         reportsList = reportService.allReportsList();
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     } else {
                         if (closedCheckBox.isSelected()) {
                             fList = fList.stream()
                                     .filter(r -> !r.getType().contains("task")).filter(r -> r.isIsClosed())
                                     .collect(Collectors.toList());
-                            System.out.println(fList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("task"))
                                     .collect(Collectors.toList());
@@ -166,7 +187,7 @@ public class ReportPageController implements Initializable {
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("task"))
                                     .collect(Collectors.toList());
-                            System.out.println(filteredReportsList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                         }
                     }
                 }
@@ -192,21 +213,21 @@ public class ReportPageController implements Initializable {
                                 .filter(r -> r.getType().contains("book")).filter(r -> r.isIsClosed())
                                 .collect(Collectors.toList());
                         fList.addAll(reportsList);
-                        System.out.println(fList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                     } else if (openCheckBox.isSelected()) {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> r.getType().contains("book")).filter(r -> !r.isIsClosed())
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     } else {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> r.getType().contains("book"))
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                         fList.addAll(filteredReportsList);
                     }
                 } else {
@@ -214,12 +235,13 @@ public class ReportPageController implements Initializable {
                     if (!isChecked()) {
                         filteredReportsList = new ArrayList();
                         reportsList = reportService.allReportsList();
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     } else {
                         if (closedCheckBox.isSelected()) {
                             fList = fList.stream()
                                     .filter(r -> !r.getType().contains("book")).filter(r -> r.isIsClosed())
                                     .collect(Collectors.toList());
-                            System.out.println(fList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("book"))
                                     .collect(Collectors.toList());
@@ -227,7 +249,7 @@ public class ReportPageController implements Initializable {
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("book"))
                                     .collect(Collectors.toList());
-                            System.out.println(filteredReportsList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                         }
                     }
                 }
@@ -254,14 +276,14 @@ public class ReportPageController implements Initializable {
                                 .filter(r -> r.getType().contains("event")).filter(r -> r.isIsClosed())
                                 .collect(Collectors.toList());
                         fList.addAll(reportsList);
-                        System.out.println(fList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                     } else if (openCheckBox.isSelected()) {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> r.getType().contains("event")).filter(r -> !r.isIsClosed())
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     } else {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
@@ -269,19 +291,20 @@ public class ReportPageController implements Initializable {
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
                         fList.addAll(filteredReportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     }
                 } else {
                     filtersPane.getChildren().remove(eventItem);
                     if (!isChecked()) {
                         filteredReportsList = new ArrayList();
                         reportsList = reportService.allReportsList();
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     } else {
                         if (closedCheckBox.isSelected()) {
                             fList = fList.stream()
                                     .filter(r -> !r.getType().contains("event")).filter(r -> r.isIsClosed())
                                     .collect(Collectors.toList());
-                            System.out.println(fList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("event"))
                                     .collect(Collectors.toList());
@@ -289,7 +312,7 @@ public class ReportPageController implements Initializable {
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("event"))
                                     .collect(Collectors.toList());
-                            System.out.println(filteredReportsList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                         }
                     }
                 }
@@ -316,14 +339,14 @@ public class ReportPageController implements Initializable {
                                 .filter(r -> r.getType().contains("session")).filter(r -> r.isIsClosed())
                                 .collect(Collectors.toList());
                         fList.addAll(reportsList);
-                        System.out.println(fList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                     } else if (openCheckBox.isSelected()) {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> r.getType().contains("session")).filter(r -> !r.isIsClosed())
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     } else {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
@@ -331,19 +354,20 @@ public class ReportPageController implements Initializable {
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
                         fList.addAll(filteredReportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     }
                 } else {
                     filtersPane.getChildren().remove(sessionItem);
                     if (!isChecked()) {
                         filteredReportsList = new ArrayList();
                         reportsList = reportService.allReportsList();
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     } else {
                         if (closedCheckBox.isSelected()) {
                             fList = fList.stream()
                                     .filter(r -> !r.getType().contains("session")).filter(r -> r.isIsClosed())
                                     .collect(Collectors.toList());
-                            System.out.println(fList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("session"))
                                     .collect(Collectors.toList());
@@ -351,7 +375,7 @@ public class ReportPageController implements Initializable {
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("session"))
                                     .collect(Collectors.toList());
-                            System.out.println(filteredReportsList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                         }
                     }
                 }
@@ -378,14 +402,14 @@ public class ReportPageController implements Initializable {
                                 .filter(r -> r.getType().contains("recipe")).filter(r -> r.isIsClosed())
                                 .collect(Collectors.toList());
                         fList.addAll(reportsList);
-                        System.out.println(fList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                     } else if (openCheckBox.isSelected()) {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> r.getType().contains("recipe")).filter(r -> !r.isIsClosed())
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     } else {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
@@ -393,19 +417,20 @@ public class ReportPageController implements Initializable {
                                 .collect(Collectors.toList());
                         filteredReportsList.addAll(reportsList);
                         fList.addAll(filteredReportsList);
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     }
                 } else {
                     filtersPane.getChildren().remove(recipeItem);
                     if (!isChecked()) {
                         filteredReportsList = new ArrayList();
                         reportsList = reportService.allReportsList();
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     } else {
                         if (closedCheckBox.isSelected()) {
                             fList = fList.stream()
                                     .filter(r -> !r.getType().contains("recipe")).filter(r -> r.isIsClosed())
                                     .collect(Collectors.toList());
-                            System.out.println(fList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, fList));
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("recipe"))
                                     .collect(Collectors.toList());
@@ -413,7 +438,7 @@ public class ReportPageController implements Initializable {
                             filteredReportsList = filteredReportsList.stream()
                                     .filter(r -> !r.getType().contains("recipe"))
                                     .collect(Collectors.toList());
-                            System.out.println(filteredReportsList.size());
+                            pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                         }
                     }
                 }
@@ -439,24 +464,24 @@ public class ReportPageController implements Initializable {
                         reportsList = filteredReportsList.stream()
                                 .filter(r -> !r.isIsClosed())
                                 .collect(Collectors.toList());
-                        System.out.println(reportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     } else {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> !r.isIsClosed())
                                 .collect(Collectors.toList());
-                        System.out.println(reportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     }
                 } else {
                     filtersPane.getChildren().remove(openItem);
                     if (typeIsChecked()) {
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     } else {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> !r.isIsClosed())
                                 .collect(Collectors.toList());
-                        System.out.println(reportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     }
                 }
             }
@@ -481,24 +506,24 @@ public class ReportPageController implements Initializable {
                         reportsList = filteredReportsList.stream()
                                 .filter(r -> r.isIsClosed())
                                 .collect(Collectors.toList());
-                        System.out.println(reportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     } else {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> r.isIsClosed())
                                 .collect(Collectors.toList());
-                        System.out.println(reportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     }
                 } else {
                     filtersPane.getChildren().remove(closedItem);
                     if (typeIsChecked()) {
-                        System.out.println(filteredReportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList));
                     } else {
                         reportsList = reportService.allReportsList();
                         reportsList = reportsList.stream()
                                 .filter(r -> r.isIsClosed())
                                 .collect(Collectors.toList());
-                        System.out.println(reportsList.size());
+                        pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
                     }
                 }
             }
@@ -513,4 +538,5 @@ public class ReportPageController implements Initializable {
     public boolean typeIsChecked() {
         return tasksCheckBox.isSelected() || eventsCheckBox.isSelected() || booksCheckBox.isSelected() || sessionsCheckBox.isSelected() || recipesCheckBox.isSelected();
     }
+
 }

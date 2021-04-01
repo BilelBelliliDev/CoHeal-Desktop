@@ -196,8 +196,8 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Pagination layoutX="431.0" layoutY="250.0" maxPageIndicatorCount="3" pageCount="5" prefHeight="333.0" prefWidth="616.0" />
-      <AnchorPane fx:id="filterDialogPane" layoutX="628.0" layoutY="157.0" prefHeight="197.0" prefWidth="399.0" style="-fx-background-color: #EFF6FA; -fx-background-radius: 1em;">
+      <Pagination fx:id="pagination" layoutX="431.0" layoutY="141.0" maxPageIndicatorCount="3" pageCount="5" prefHeight="436.0" prefWidth="634.0" />
+      <AnchorPane fx:id="filterDialogPane" layoutX="32.0" layoutY="266.0" prefHeight="197.0" prefWidth="399.0" style="-fx-background-color: #EFF6FA; -fx-background-radius: 1em;">
          <children>
             <Label layoutX="15.0" layoutY="14.0" style="-fx-font-size: 16px;" styleClass="text" text="Type:" />
             <JFXCheckBox fx:id="tasksCheckBox" layoutX="16.0" layoutY="52.0" text="Tasks" />
