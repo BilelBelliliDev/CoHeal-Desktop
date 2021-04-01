@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="reportPane" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em 0 1em 0;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.ReportPageController">
    <children>
+      <AnchorPane layoutX="459.0" layoutY="20.0" prefHeight="66.0" prefWidth="560.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 0.75em;">
+         <children>
+            <FontAwesomeIconView glyphName="FILTER" layoutX="526.0" layoutY="40.0" onMouseClicked="#filtreAction" size="25" style="-fx-cursor: hand; -fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+            <HBox alignment="CENTER" layoutX="13.0" layoutY="11.0" prefHeight="43.0" prefWidth="508.0" spacing="15.0">
+               <children>
+                  <JFXTextField prefHeight="31.0" prefWidth="188.0" promptText="Search by title" stylesheets="@../../../../resources/css/textfields.css" />
+                  <JFXTextField prefHeight="31.0" prefWidth="290.0" promptText="Search by note" stylesheets="@../../../../resources/css/textfields.css" />
+               </children>
+            </HBox>
+            <FlowPane fx:id="filtersPane" hgap="10.0" layoutX="20.0" layoutY="50.0" prefHeight="1.0" prefWidth="495.0" vgap="8.0">
+               <opaqueInsets>
+                  <Insets top="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="8.0" top="5.0" />
+               </padding>
+            </FlowPane>
+         </children>
+      </AnchorPane>
       <VBox layoutX="23.0" layoutY="22.0" prefHeight="269.0" prefWidth="381.0" spacing="25.0">
          <children>
             <AnchorPane prefHeight="58.0" prefWidth="379.0" style="-fx-background-color: rgba(197, 38, 58, 0.1); -fx-background-radius: 1em;">
@@ -171,8 +196,35 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Pagination layoutX="431.0" layoutY="115.0" maxPageIndicatorCount="3" pageCount="5" prefHeight="468.0" prefWidth="616.0" />
-      <JFXCheckBox layoutX="874.0" layoutY="39.0" />
-      <Label layoutX="721.0" layoutY="33.0" style="-fx-font-size: 20px;" styleClass="text" text="All reports" />
+      <Pagination layoutX="431.0" layoutY="250.0" maxPageIndicatorCount="3" pageCount="5" prefHeight="333.0" prefWidth="616.0" />
+      <AnchorPane fx:id="filterDialogPane" layoutX="628.0" layoutY="157.0" prefHeight="197.0" prefWidth="399.0" style="-fx-background-color: #EFF6FA; -fx-background-radius: 1em;">
+         <children>
+            <Label layoutX="15.0" layoutY="14.0" style="-fx-font-size: 16px;" styleClass="text" text="Type:" />
+            <JFXCheckBox fx:id="tasksCheckBox" layoutX="16.0" layoutY="52.0" text="Tasks" />
+            <JFXCheckBox fx:id="booksCheckBox" layoutX="81.0" layoutY="52.0" text="Books" />
+            <JFXCheckBox fx:id="eventsCheckBox" layoutX="153.0" layoutY="52.0" text="Events" />
+            <JFXCheckBox fx:id="sessionsCheckBox" layoutX="15.0" layoutY="80.0" text="Sessions" />
+            <JFXCheckBox fx:id="recipesCheckBox" layoutX="101.0" layoutY="80.0" text="Recipes" />
+            <Label layoutX="14.0" layoutY="118.0" style="-fx-font-size: 16px;" styleClass="text" text="Status:" />
+            <Line endX="263.0" layoutX="118.0" layoutY="110.0" startX="-100.0" />
+            <JFXCheckBox fx:id="openCheckBox" layoutX="15.0" layoutY="156.0" text="Open" />
+            <JFXCheckBox fx:id="closedCheckBox" layoutX="80.0" layoutY="156.0" text="Closed" />
+            <JFXCheckBox fx:id="allCheckBox" layoutX="186.0" layoutY="80.0" text="All" />
+            <Pane layoutX="302.0" layoutY="15.0" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="31.0" layoutY="3.0" text="Clear" textFill="WHITE" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" layoutX="10.0" layoutY="17.0" onMouseClicked="#clearFiltersAction" size="15" style="-fx-cursor: hand;" />
+               </children>
+            </Pane>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Pane layoutX="477.0" layoutY="4.0" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #FFFEFB;">
+         <children>
+            <Label alignment="CENTER" layoutX="1.0" layoutY="2.0" style="-fx-font-size: 18px; -fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" styleClass="text" text="Search" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
