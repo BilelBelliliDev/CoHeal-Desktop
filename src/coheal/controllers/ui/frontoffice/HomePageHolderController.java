@@ -97,7 +97,7 @@ public class HomePageHolderController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-            sideBarTasks() ;
+        sideBarTasks();
 
     }
 
@@ -284,7 +284,7 @@ public class HomePageHolderController implements Initializable {
         homeSideBar.getStyleClass().removeAll(homeSideBar.getStyleClass());
         homeSideBar.getStyleClass().add("menu");
         homeSideBar.getStyleClass().add("unselectedMenu");
-        
+
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/event/EventPage.fxml")));
     }
@@ -317,7 +317,7 @@ public class HomePageHolderController implements Initializable {
         homeSideBar.getStyleClass().removeAll(homeSideBar.getStyleClass());
         homeSideBar.getStyleClass().add("menu");
         homeSideBar.getStyleClass().add("unselectedMenu");
-        
+
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/session/SessionPage.fxml")));
     }
@@ -350,7 +350,7 @@ public class HomePageHolderController implements Initializable {
         homeSideBar.getStyleClass().removeAll(homeSideBar.getStyleClass());
         homeSideBar.getStyleClass().add("menu");
         homeSideBar.getStyleClass().add("unselectedMenu");
-        
+
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipePage.fxml")));
     }
@@ -487,10 +487,11 @@ public class HomePageHolderController implements Initializable {
             stage.setOpacity(1.0f);
         });
     }
-    public void removeChildren(){
+
+    public void removeChildren() {
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
     }
-    
+
     public void sideBarTasks() {
         int y = 0;
         int x = 0;
@@ -501,43 +502,102 @@ public class HomePageHolderController implements Initializable {
         List<?> tasks = new ArrayList();
         tasks = Stream.concat(t.stream(), pt.stream()).collect(Collectors.toList());
 
-        for (int i = 0; i < tasks.size(); i++) {
+        if (tasks != null) {
+            for (int i = 0; i < tasks.size(); i++) {
 
-            if (tasks.get(i) instanceof PaidTask) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/OngoingTaskItem.fxml"));
-                try {
-                    Pane pane = loader.load();
-                    OngoingTaskItemController c = loader.getController();
-                    c.setPaidTaskData((PaidTask) tasks.get(i));
-                    if (x > 0) {
-                        y++;
-                        x = 0;
+                if (tasks.get(i) instanceof PaidTask) {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/OngoingTaskItem.fxml"));
+                    try {
+                        Pane pane = loader.load();
+                        OngoingTaskItemController c = loader.getController();
+                        c.setPaidTaskData((PaidTask) tasks.get(i));
+                        if (x > 0) {
+                            y++;
+                            x = 0;
+                        }
+                        taskGrid.add(pane, x, y);
+                        x++;
+                    } catch (IOException ex) {
+                        System.out.println(ex.getMessage());
                     }
-                    taskGrid.add(pane, x, y);
-                    x++;
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
+
+                } else {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/OngoingTaskItem.fxml"));
+                    try {
+                        Pane pane = loader.load();
+                        OngoingTaskItemController c = loader.getController();
+                        c.setData((Task) tasks.get(i));
+                        if (x > 0) {
+                            y++;
+                            x = 0;
+                        }
+                        taskGrid.add(pane, x, y);
+                        x++;
+                    } catch (IOException ex) {
+                        System.out.println(ex.getMessage());
+                    }
                 }
 
-            } else {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/OngoingTaskItem.fxml"));
-                try {
-                    Pane pane = loader.load();
-                    OngoingTaskItemController c = loader.getController();
-                    c.setData((Task) tasks.get(i));
-                    if (x > 0) {
-                        y++;
-                        x = 0;
-                    }
-                    taskGrid.add(pane, x, y);
-                    x++;
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
             }
-
         }
     }
+
+    @FXML
+    private void ShowOngoingTasksAction(MouseEvent event) throws IOException {
+        ongoingTaskMenu();
+        TranslateTransition slide2 = new TranslateTransition();
+        slide2.setDuration(Duration.seconds(0.4));
+        slide2.setNode(taskSideBar);
+        slide2.setToX(0);
+        slide2.play();
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(slider);
+        slide.setToY(94);
+        slide.play();
+        ongoingTaskMenu();
+        TranslateTransition slide5 = new TranslateTransition();
+        slide5.setDuration(Duration.seconds(0.4));
+        slide5.setNode(profileSlider);
+        slide5.setToX(0);
+        slide5.play();
+
+    }
+
+    public void ongoingTaskMenu() throws IOException {
+        taskSideBar.getStyleClass().removeAll(taskSideBar.getStyleClass());
+        taskSideBar.getStyleClass().add("menu");
+        taskSideBar.getStyleClass().add("selectedMenu");
+
+        profileSideBar.getStyleClass().removeAll(profileSideBar.getStyleClass());
+        profileSideBar.getStyleClass().add("menu");
+        profileSideBar.getStyleClass().add("unselectedMenu");
+
+        eventSideBar.getStyleClass().removeAll(eventSideBar.getStyleClass());
+        eventSideBar.getStyleClass().add("menu");
+        eventSideBar.getStyleClass().add("unselectedMenu");
+
+        sessionSideBar.getStyleClass().removeAll(sessionSideBar.getStyleClass());
+        sessionSideBar.getStyleClass().add("menu");
+        sessionSideBar.getStyleClass().add("unselectedMenu");
+
+        recipeSideBar.getStyleClass().removeAll(recipeSideBar.getStyleClass());
+        recipeSideBar.getStyleClass().add("menu");
+        recipeSideBar.getStyleClass().add("unselectedMenu");
+
+        bookSideBar.getStyleClass().removeAll(bookSideBar.getStyleClass());
+        bookSideBar.getStyleClass().add("menu");
+        bookSideBar.getStyleClass().add("unselectedMenu");
+
+        homeSideBar.getStyleClass().removeAll(homeSideBar.getStyleClass());
+        homeSideBar.getStyleClass().add("menu");
+        homeSideBar.getStyleClass().add("unselectedMenu");
+
+        pageHolder.getChildren().removeAll(pageHolder.getChildren());
+        pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/task/OngoingTasks.fxml")));
+
+    }
+
 }

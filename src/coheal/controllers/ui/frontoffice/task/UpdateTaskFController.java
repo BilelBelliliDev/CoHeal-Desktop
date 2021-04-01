@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -22,8 +23,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -34,37 +36,39 @@ import org.apache.commons.io.FileUtils;
  *
  * @author Admin
  */
-public class UpdateTaskController implements Initializable {
+public class UpdateTaskFController implements Initializable {
 
+    @FXML
+    private JFXTextField price;
+    @FXML
+    private JFXRadioButton paid;
+    @FXML
+    private ToggleGroup type1;
+    @FXML
+    private JFXRadioButton free;
+    @FXML
+    private FontAwesomeIconView close1;
     @FXML
     private JFXTextField Titre;
     @FXML
-    private JFXTextField numOfDays;
-    @FXML
     private JFXTextArea Description;
-    @FXML
-    private ToggleGroup type;
     @FXML
     private JFXComboBox<String> comboCatg;
     @FXML
-    private Label imageTxt;
-    Task task;
-    TaskHolder th = TaskHolder.getINSTANCE();
-    private ServiceTask st = new ServiceTask();
+    private JFXTextField numOfDays;
+    @FXML
+    private ImageView image;
+    private ToggleGroup group = new ToggleGroup();
+    ServicePaidTask spt = new ServicePaidTask();
+    PaidTask pt;
     File f = null;
     ServiceTaskCategory stc = new ServiceTaskCategory();
     String cat = "";
     TaskCategory tc;
     private static String projectPath = System.getProperty("user.dir").replace("/", "\\");
-    @FXML
-    private JFXTextField price;
-    @FXML
-    private JFXRadioButton free;
-    @FXML
-    private JFXRadioButton paid;
-    private ToggleGroup group = new ToggleGroup();
-    ServicePaidTask spt = new ServicePaidTask();
-    PaidTask pt;
+    Task task;
+    TaskHolder th = TaskHolder.getINSTANCE();
+    private ServiceTask st = new ServiceTask();
 
     /**
      * Initializes the controller class.
@@ -80,11 +84,9 @@ public class UpdateTaskController implements Initializable {
         if (spt.getPaidTask(th.getId()) != null) {
             pt = spt.getPaidTask(th.getId());
             Titre.setText(pt.getTitle());
-            imageTxt.setText(pt.getImgUrl());
             Description.setText(pt.getDescription());
             numOfDays.setText(String.valueOf(pt.getNumOfDays()));
-//            minUsers.setText(String.valueOf(pt.getMinUsers()));
-//            maxUsers.setText(String.valueOf(pt.getMaxUsers()));
+            image.setImage(pt.getImg().getImage());
             paid.setSelected(true);
             price.setDisable(false);
             price.setText(String.valueOf(pt.getPrice()));
@@ -95,11 +97,9 @@ public class UpdateTaskController implements Initializable {
         } else {
             task = st.getTask(th.getId());
             Titre.setText(task.getTitle());
-            imageTxt.setText(task.getImgUrl());
+            image.setImage(task.getImg().getImage());
             Description.setText(task.getDescription());
             numOfDays.setText(String.valueOf(task.getNumOfDays()));
-//            minUsers.setText(String.valueOf(task.getMinUsers()));
-//            maxUsers.setText(String.valueOf(task.getMaxUsers()));
             free.setSelected(true);
             price.disableProperty().bind(free.selectedProperty());
             comboCatg.getSelectionModel().select(task.getCategory().getName());
@@ -108,15 +108,21 @@ public class UpdateTaskController implements Initializable {
     }
 
     @FXML
-    private void addImage(MouseEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        f = fileChooser.showOpenDialog(null);
-        imageTxt.setText(f.getName());
-        if (task != null) {
-            task.setImgUrl(f.getName());
-        } else if (pt != null) {
-            pt.setImgUrl(f.getName());
-        }
+    private void paidAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void minAction(MouseEvent event) {
+        Stage stage = new Stage();
+        stage = (Stage) close1.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void closeAction(MouseEvent event) {
+        Stage stage = new Stage();
+        stage = (Stage) close1.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -125,14 +131,20 @@ public class UpdateTaskController implements Initializable {
     }
 
     @FXML
-    private void closeAction(MouseEvent event) {
-        Stage stage = new Stage();
-        stage = (Stage) comboCatg.getScene().getWindow();
-        stage.close();
+    private void addImage(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        f = fileChooser.showOpenDialog(null);
+        Image img = new Image("file:///" + f);
+        image.setImage(img);
+        if (task != null) {
+            task.setImgUrl(f.getName());
+        } else if (pt != null) {
+            pt.setImgUrl(f.getName());
+        }
     }
 
     @FXML
-    private void updateTaskAction(ActionEvent event) {
+    private void updateTaskAction(MouseEvent event) {
         if (pt != null) {
             if (paid.isSelected() && price.getText() != "") {
                 pt.setTitle(Titre.getText());
@@ -160,9 +172,9 @@ public class UpdateTaskController implements Initializable {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
-                if(cat!=""){
-                tc = stc.searchTaskCategory(cat);
-                pt.setCategory(tc);
+                if (cat != "") {
+                    tc = stc.searchTaskCategory(cat);
+                    pt.setCategory(tc);
                 }
                 st.updateTask(pt, th.getId());
                 spt.updatePaidTask(pt, th.getId());
@@ -192,9 +204,9 @@ public class UpdateTaskController implements Initializable {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
-                if(cat!=""){
-                tc = stc.searchTaskCategory(cat);
-                pt.setCategory(tc);
+                if (cat != "") {
+                    tc = stc.searchTaskCategory(cat);
+                    pt.setCategory(tc);
                 }
                 spt.makeFreeTask(th.getId());
                 st.updateTask((Task) pt, th.getId());
@@ -226,9 +238,9 @@ public class UpdateTaskController implements Initializable {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
-                if(cat!=""){
-                tc = stc.searchTaskCategory(cat);
-                task.setCategory(tc);
+                if (cat != "") {
+                    tc = stc.searchTaskCategory(cat);
+                    task.setCategory(tc);
                 }
                 st.updateTask(task, th.getId());
             } else if (paid.isSelected() && price.getText() != "") {
@@ -257,9 +269,9 @@ public class UpdateTaskController implements Initializable {
                     System.out.println(e.getMessage());
                 }
 
-                if(cat!=""){
-                tc = stc.searchTaskCategory(cat);
-                task.setCategory(tc);
+                if (cat != "") {
+                    tc = stc.searchTaskCategory(cat);
+                    task.setCategory(tc);
                 }
                 st.updateTask(task, th.getId());
                 spt.makePaidTask(th.getId(), Double.valueOf(price.getText()));

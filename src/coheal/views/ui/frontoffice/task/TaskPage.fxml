@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="taskPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" vvalue="0.38" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.task.TaskPageController">
+<ScrollPane fx:id="taskPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" vvalue="0.21" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.task.TaskPageController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1848.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
          <children>
@@ -35,7 +36,8 @@
                </font>
             </JFXButton>
             <JFXComboBox fx:id="comboBox" layoutX="72.0" layoutY="469.0" onAction="#comboBoxAction" prefHeight="0.0" prefWidth="145.0" promptText="Select" />
-            <Pagination fx:id="pagination" layoutX="15.0" layoutY="509.0" prefHeight="1337.0" prefWidth="1034.0" />
+            <Pagination fx:id="pagination" layoutX="15.0" layoutY="526.0" prefHeight="1321.0" prefWidth="1034.0" />
+            <JFXTextField fx:id="rechercheText" layoutX="262.0" layoutY="472.0" onKeyPressed="#rechercheAction" promptText="Search Task" />
          </children>
       </AnchorPane>
    </content>

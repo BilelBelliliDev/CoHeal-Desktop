@@ -19,6 +19,7 @@ import coheal.services.ui.UIService;
 import coheal.services.user.UserSession;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -75,6 +77,8 @@ public class TaskPageController implements Initializable {
     private static String projectPath = System.getProperty("user.dir").replace("\\", "/");
     @FXML
     private Pagination pagination;
+    @FXML
+    private JFXTextField rechercheText;
 
     /**
      * Initializes the controller class.
@@ -208,5 +212,43 @@ public class TaskPageController implements Initializable {
             System.out.println(ex.getMessage());
         }
         return pane;
+    }
+
+    @FXML
+    private void rechercheAction(KeyEvent event) {
+        pagination.setPageFactory((pageindex) -> {
+            if(searchGrid(pageindex)!=null){
+            return searchGrid((pageindex));}
+            return null;
+                });
+
+    }
+
+    public GridPane searchGrid(int pageindex) {
+        List<?> tasks = null;
+        if (!"".equals(rechercheText.getText())) {
+            tasks = Stream.concat(st.searchTaskByName(rechercheText.getText()).stream(), spt.searchPaidTaskByName(rechercheText.getText()).stream())
+                    .collect(Collectors.toList());
+        }else{
+          tasks = Stream.concat(st.ListTask().stream(), spt.listPaidTask().stream())
+                    .collect(Collectors.toList());  
+        }
+        
+        if(tasks!=null){
+        GridPane pane = null;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/task/GridTask.fxml"));
+        try {
+            pane = loader.load();
+            GridTaskController c = loader.getController();
+            c.setData(pageindex, tasks);
+            pagination.setPageCount(c.pageCount);
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return pane;
+    }
+        return null;
     }
 }
