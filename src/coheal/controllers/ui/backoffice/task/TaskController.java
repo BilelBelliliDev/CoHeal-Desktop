@@ -159,7 +159,7 @@ public class TaskController implements Initializable {
 
     @FXML
     private void addCategoryAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/task/TaskCategory.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/task/TaskCategoryF.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
