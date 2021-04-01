@@ -110,17 +110,13 @@ public class AjoutEventFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            col1Id.setCellValueFactory(new PropertyValueFactory<>("eventId"));
-            col2Id.setCellValueFactory(new PropertyValueFactory<>("title"));
-            col3Id.setCellValueFactory(new PropertyValueFactory<>("description"));
-            col4Id.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-            col5Id.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-            col6Id.setCellValueFactory(new PropertyValueFactory<>("location"));
-            tableId.setItems(se.AfficherEvent());
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        col1Id.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+        col2Id.setCellValueFactory(new PropertyValueFactory<>("title"));
+        col3Id.setCellValueFactory(new PropertyValueFactory<>("description"));
+        col4Id.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        col5Id.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        col6Id.setCellValueFactory(new PropertyValueFactory<>("location"));
+        tableId.setItems(se.AfficherEvent());
 
         tableId.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -167,11 +163,7 @@ public class AjoutEventFXMLController implements Initializable {
 
         //e.setLocation(tflocation.getText());
         se.AddEvent(e);
-        try {
-            tableId.setItems(se.AfficherEvent());
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        tableId.setItems(se.AfficherEvent());
     }
 
 // 
@@ -204,11 +196,7 @@ public class AjoutEventFXMLController implements Initializable {
             e.setLocation(tfloca.getText());
             e.setType(((RadioButton)type.getSelectedToggle()).getText());
             se.updateEvent(selectedId, e);
-            try {
-                tableId.setItems(se.AfficherEvent());
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
+            tableId.setItems(se.AfficherEvent());
         }
         else
             System.out.println("can't modify please select an item form the table");
@@ -218,11 +206,7 @@ public class AjoutEventFXMLController implements Initializable {
     private void deleteAction(ActionEvent event) {
         if (canModify) {
         se.deleteEvent(selectedId);
-        try {
-                tableId.setItems(se.AfficherEvent());
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
+        tableId.setItems(se.AfficherEvent());
         }
         else
             System.out.println("can't delete please select an item form the table");

@@ -7,6 +7,8 @@ package coheal.controllers.ui.backoffice;
 
 import animatefx.animation.ZoomIn;
 import coheal.services.book.ServiceBook;
+import coheal.services.event.ServiceEvent;
+import coheal.services.recipe.RecipeService;
 import coheal.services.task.ServicePaidTask;
 import coheal.services.task.ServiceTask;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -35,8 +37,16 @@ public class DashboardPageController implements Initializable {
     ServicePaidTask spt = new ServicePaidTask();
     ServiceTask st = new ServiceTask();
     ServiceBook sb = new ServiceBook();
+    ServiceEvent se =new ServiceEvent();
         @FXML
         private Label totalebooks;
+    @FXML
+    private Label events;
+    @FXML
+    private Label totalebooks;
+    @FXML
+    private Label totalRecipes;
+    RecipeService rs = new RecipeService();
 
     /**
      * Initializes the controller class.
@@ -44,10 +54,11 @@ public class DashboardPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         new ZoomIn(dashboardPane).play();
-        nbTasks.setText(String.valueOf(spt.getCountPaidTask()+st.getCountTask()));
+        nbTasks.setText(String.valueOf(spt.getCountPaidTask() + st.getCountTask()));
         totalebooks.setText(String.valueOf(sb.getCountBook()));
-        
-    }    
+        events.setText(String.valueOf(se.AfficherEvent().size())); 
+        totalRecipes.setText(String.valueOf(rs.CountTotalRecipes()));
+    }
 
     @FXML
     private void closeAction(MouseEvent event) {
@@ -62,5 +73,5 @@ public class DashboardPageController implements Initializable {
         stage = (Stage) close.getScene().getWindow();
         stage.setIconified(true);
     }
-    
+
 }

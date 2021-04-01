@@ -271,6 +271,25 @@ public class RecipeService implements IRecipeService {
         return r;
     }
 
+    public int CountTotalRecipes() {
+
+        int nb = 0;
+        try {
+
+            Statement st = con.createStatement();
+            String query = "select COUNT(recipe_id) as n from recipe where is_deleted=0 ";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                int t = rs.getInt("n");
+                nb = t;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error!");
+        }
+        return nb;
+    }
+
     public User getUserById(int idU) {
         User u = null;
         String query = "select user_id from user where user_id=" + idU;

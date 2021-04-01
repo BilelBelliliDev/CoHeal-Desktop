@@ -76,7 +76,7 @@
                         <DropShadow color="#0000004d" />
                      </effect>
                   </ImageView>
-                  <Label fx:id="TitleLabel" alignment="CENTER" layoutX="335.0" layoutY="50.0" prefHeight="36.0" prefWidth="427.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" textFill="#13547a">
+                  <Label fx:id="TitleLabel" alignment="CENTER" layoutX="335.0" layoutY="50.0" prefHeight="36.0" prefWidth="394.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" textFill="#13547a">
                      <font>
                         <Font name="Century Gothic Bold" size="24.0" />
                      </font>

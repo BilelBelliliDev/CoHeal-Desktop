@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -49,6 +50,17 @@ public class EventCategoryItemController implements Initializable {
         UIService stc=new UIService();
         eventCatgTitle.setText(tc.getName());
         eventCatgTotalEvents.setText(String.valueOf(stc.ListerEventsByIdCatg(tc.getName()).size())+" Events");
+        eventCatgImg.setImage(tc.getImg().getImage());
+    }
+
+    @FXML
+    private void showTasksAction(MouseEvent event) throws IOException {
+        EventCategoryHolder holder = EventCategoryHolder.getINSTANCE();
+        holder.setName(eventCatgTitle.getText());
+        AnchorPane pageHolder = (AnchorPane) eventCatgTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        pageHolder.getChildren().removeAll(pageHolder.getChildren());
+        pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/event/EventsByCategory.fxml")));
+
     }
 
 }

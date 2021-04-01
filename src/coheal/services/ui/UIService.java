@@ -65,6 +65,7 @@ public class UIService {
 
     public ObservableList<Event> upcomingEvent() throws SQLException {
 
+        ImageView img = null;
         Statement stm = cnx.createStatement();
         String query = "select * from `event` where is_deleted=0 order by created_at desc limit 2";
 
@@ -84,6 +85,9 @@ public class UIService {
             e.setEndDate(rst.getDate("end_date"));
             e.setLocation(rst.getString("location"));
             e.setType(rst.getString("type"));
+            String url = "file:///" + projectPath + "/src/coheal/resources/images/events/" + rst.getString("img_url");
+            img = new ImageView(url);
+            e.setImg(img);
             Events.add(e);
         }
 
@@ -264,6 +268,7 @@ public class UIService {
 
     public ObservableList<Event> ListerEventsByIdCatg(String title) {
         ObservableList<Event> l = FXCollections.observableArrayList();
+        ImageView img = null;
         try {
             Statement st = cnx.createStatement();
             String selectCategoryId = "select * from event_category where name='" + title + "';";
@@ -272,7 +277,7 @@ public class UIService {
             while (rs.next()) {
                 id = rs.getInt("cat_id");
             }
-            String query = "select * from event where is_deleted=0 and cat_id=" + id + ";";
+            String query = "select * from event where is_deleted=0 and start_date> sysdate() and cat_id=" + id + ";";
             ResultSet rst = st.executeQuery(query);
             while (rst.next()) {
                 Event e = new Event();
@@ -284,6 +289,10 @@ public class UIService {
                 e.setLocation(rst.getString("location"));
                 e.setType(rst.getString("type"));
                 e.setCatId(rst.getInt("cat_id"));
+                e.setPrice(rst.getDouble("price"));
+                String url = "file:///" + projectPath + "/src/coheal/resources/images/events/" + rst.getString("img_url");
+                img = new ImageView(url);
+                e.setImg(img);
                 l.add(e);
             }
         } catch (SQLException ex) {
@@ -294,6 +303,7 @@ public class UIService {
     }
 
     public ObservableList<EventCategory> topThreeEventCatg() {
+        ImageView img = null;
         ObservableList<EventCategory> data = FXCollections.observableArrayList();
         try {
 
@@ -308,6 +318,9 @@ public class UIService {
                 bc.setCatId(rs.getInt("cat_id"));
                 bc.setName(rs.getString("name"));
                 bc.setImgUrl(rs.getString("img_url"));
+                String url = "file:///" + projectPath + "/src/coheal/resources/images/events/" + rs.getString("img_url");
+                img = new ImageView(url);
+                bc.setImg(img);
 
                 data.add(bc);
             }

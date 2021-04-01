@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
@@ -8,9 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="eventPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.event.EventPageController">
+<ScrollPane fx:id="eventPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" vvalue="0.68" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.event.EventPageController">
    <content>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1146.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1848.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
          <children>
             <Label layoutX="38.0" layoutY="28.0" prefHeight="46.0" prefWidth="301.0" style="-fx-font-size: 30px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Browse Categories" textFill="#303c5d">
                <font>
@@ -22,7 +23,7 @@
                   <Font name="Century Gothic Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="938.0" layoutY="38.0" style="-fx-font-size: 20px; -fx-cursor: hand;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View All" textFill="#13547a">
+            <Label layoutX="938.0" layoutY="38.0" onMouseClicked="#showAllCategoriesAction" style="-fx-font-size: 20px; -fx-cursor: hand;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View All" textFill="#13547a">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>
@@ -33,7 +34,8 @@
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </JFXButton>
-            <Pagination fx:id="pagination" layoutX="18.0" layoutY="476.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="648.0" prefWidth="1035.0" />
+            <JFXComboBox fx:id="comboBox" layoutX="44.0" layoutY="472.0" onAction="#comboBoxAction" prefHeight="34.0" prefWidth="146.0" promptText="Select" />
+            <Pagination fx:id="pagination" layoutX="11.0" layoutY="538.0" maxPageIndicatorCount="5" pageCount="3" prefHeight="627.0" prefWidth="1038.0" />
          </children>
       </AnchorPane>
    </content>

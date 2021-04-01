@@ -154,7 +154,7 @@
                </textFill>
             </Label>
             <FontAwesomeIconView fill="#fffefb" glyphName="STICKY_NOTE" layoutX="230.0" layoutY="49.0" size="30" />
-            <Label layoutX="35.0" layoutY="65.0" style="-fx-text-fill: #FFFEFB; -fx-font-size: 32px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="31">
+            <Label fx:id="totalRecipes" layoutX="35.0" layoutY="65.0" style="-fx-text-fill: #FFFEFB; -fx-font-size: 32px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="31">
                <font>
                   <Font name="Century Gothic Bold" size="68.0" />
                </font>
@@ -224,7 +224,7 @@
                </textFill>
             </Label>
             <FontAwesomeIconView fill="#fffefb" glyphName="CALENDAR" layoutX="230.0" layoutY="49.0" size="30" />
-            <Label layoutX="34.0" layoutY="65.0" style="-fx-text-fill: #FFFEFB; -fx-font-size: 32px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="12">
+            <Label fx:id="events" layoutX="34.0" layoutY="65.0" style="-fx-text-fill: #FFFEFB; -fx-font-size: 32px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="12">
                <font>
                   <Font name="Century Gothic Bold" size="68.0" />
                </font>
