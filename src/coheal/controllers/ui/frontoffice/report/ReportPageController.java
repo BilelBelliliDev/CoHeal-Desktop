@@ -10,6 +10,7 @@ import animatefx.animation.ZoomOut;
 import coheal.entities.report.Report;
 import coheal.services.report.ReportService;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -68,6 +71,8 @@ public class ReportPageController implements Initializable {
     private JFXCheckBox closedCheckBox;
     @FXML
     private Pagination pagination;
+    @FXML
+    private JFXTextField searchBytitle;
 
     /**
      * Initializes the controller class.
@@ -125,7 +130,7 @@ public class ReportPageController implements Initializable {
         fList = new ArrayList();
         reportsList = reportService.allReportsList();
         pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
-        
+
     }
 
     public void checkBoxListeners() {
@@ -539,4 +544,24 @@ public class ReportPageController implements Initializable {
         return tasksCheckBox.isSelected() || eventsCheckBox.isSelected() || booksCheckBox.isSelected() || sessionsCheckBox.isSelected() || recipesCheckBox.isSelected();
     }
 
+    @FXML
+    private void isTyping(KeyEvent event) {
+        if (isChecked()) {
+            if (closedCheckBox.isSelected() || openCheckBox.isSelected()) {
+                System.out.println(fList.size());
+                pagination.setPageFactory((pageindex) -> grid(pageindex, fList.stream()
+                        .filter(r -> r.getTitle().toLowerCase().contains(searchBytitle.getText().toLowerCase()))
+                        .collect(Collectors.toList())));
+            } else {
+                System.out.println(filteredReportsList.size());
+                pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList.stream()
+                        .filter(r -> r.getTitle().toLowerCase().contains(searchBytitle.getText().toLowerCase()))
+                        .collect(Collectors.toList())));
+            }
+        } else {
+            pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList.stream()
+                    .filter(r -> r.getTitle().toLowerCase().contains(searchBytitle.getText().toLowerCase()))
+                    .collect(Collectors.toList())));
+        }
+    }
 }
