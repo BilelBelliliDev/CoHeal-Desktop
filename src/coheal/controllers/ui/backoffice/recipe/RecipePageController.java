@@ -9,6 +9,7 @@ import coheal.entities.recipe.Recipe;
 import coheal.entities.recipe.RecipeCategory;
 import coheal.services.recipe.RecipeCategoryService;
 import coheal.services.recipe.RecipeService;
+import coheal.services.ui.UIService;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
@@ -24,8 +25,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
@@ -56,8 +59,6 @@ public class RecipePageController implements Initializable {
     @FXML
     private TableColumn<Recipe, String> title_col;
     @FXML
-    private TableColumn<Recipe, String> cat_col;
-    @FXML
     private TableColumn<Recipe, String> Desc_col;
     @FXML
     private TableColumn<Recipe, Float> cal_col;
@@ -71,8 +72,6 @@ public class RecipePageController implements Initializable {
     private TableColumn<Recipe, String> Steps_col;
     @FXML
     private PieChart pieChart;
-    @FXML
-    private LineChart<?, ?> lineChart;
 
     RecipeService rs = new RecipeService();
     RecipeCategory rc = new RecipeCategory();
@@ -80,6 +79,8 @@ public class RecipePageController implements Initializable {
     double xOffset, yOffset;
     @FXML
     private JFXTextField RechercheTF;
+    @FXML
+    private BarChart<?, ?> BarChart;
 
     /**
      * Initializes the controller class.
@@ -88,6 +89,7 @@ public class RecipePageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         List<Recipe> recipes = rs.Afficher_Recipe();
+        RecipeCategory rc = new RecipeCategory();
         ObservableList<Recipe> list = FXCollections.observableList((List<Recipe>) recipes);
 
         img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
@@ -98,9 +100,10 @@ public class RecipePageController implements Initializable {
         persons_col.setCellValueFactory(new PropertyValueFactory<>("persons"));
         ingred_col.setCellValueFactory(new PropertyValueFactory<>("ingredients"));
         Steps_col.setCellValueFactory(new PropertyValueFactory<>("steps"));
+
         RecipeTable.setItems(list);
 
-        //----------------PieChart----------
+        //PieChart
         ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
                 new PieChart.Data("Categories", rcs.Afficher_RecipeCategory().size()),
                 new PieChart.Data("Categories with recipes", rcs.AfficherRecipesByIdCatg(rc.getName()).size()));
@@ -111,14 +114,15 @@ public class RecipePageController implements Initializable {
             Tooltip toolTip = new Tooltip(percentage);
             Tooltip.install(data.getNode(), toolTip);
         });
-//        //----------------LineChart----------
-//        lineChart.setTitle("Number of recipes by date");
-//        XYChart.Series dataSeries = new XYChart.Series();
-//        dataSeries.setName("test");
-//        for (int i = 0; i < rcs.getNbrParticipateByDate().size(); i++) {
-//            dataSeries.getData().add(new XYChart.Data(String.valueOf(sut.getNbrParticipateByDate().get(i).getCreatedAt()), sut.getNbrParticipateByDate().get(i).getNbr()));
-//        }
-//        lineChart.getData().add(dataSeries);
+        //BarChart
+        UIService stc = new UIService();
+        RecipeCategoryService rcs = new RecipeCategoryService();
+
+        XYChart.Series Set = new XYChart.Series<>();
+        for (int i = 0; i < 3; i++) {
+            Set.getData().add(new XYChart.Data(rcs.Afficher_RecipeCategory().get(i).getName(), stc.ListerRecipesByIdCatg(rcs.Afficher_RecipeCategory().get(i).getName()).size()));
+        }
+        BarChart.getData().addAll(Set);
     }
 
     @FXML

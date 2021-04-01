@@ -27,15 +27,16 @@
             </AnchorPane>
             <Circle fill="DODGERBLUE" layoutX="832.0" layoutY="460.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
             <FontAwesomeIconView fx:id="updateRecipeBT" fill="WHITE" glyphName="EDIT" layoutX="821.0" layoutY="472.0" onMouseClicked="#updateRecipeAction" size="30" style="-fx-cursor: hand;" />
-            <Pane layoutX="36.0" layoutY="-21.0" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
+            <Pane layoutX="36.0" layoutY="-21.0" prefHeight="39.0" prefWidth="161.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
                <children>
-                  <Label layoutX="16.0" layoutY="6.0" style="-fx-font-size: 18px;" text="New Recipe" textFill="WHITE" />
+                  <Label layoutX="16.0" layoutY="6.0" style="-fx-font-size: 18px;" text="Update Recipe" textFill="WHITE" />
                </children>
             </Pane>
             <JFXTextArea fx:id="IngredientsTF" layoutX="399.0" layoutY="217.0" prefHeight="202.0" prefWidth="128.0" promptText="Ingredients      -                      -                      -                      -                      -                      -                      -                      -                      -" styleClass="text" wrapText="true" />
             <JFXTextArea fx:id="StepsTF" layoutX="544.0" layoutY="217.0" prefHeight="202.0" prefWidth="247.0" promptText="Steps:                                          1)                                                                                                2)                                                                                                   3)                                                                                                   4)                                                                                                   5)" styleClass="text" wrapText="true" />
             <JFXTextField fx:id="CaloriesTF" layoutX="71.0" layoutY="349.0" prefHeight="38.0" prefWidth="128.0" promptText="Calories" styleClass="text" />
             <JFXTextField fx:id="DurationTF" layoutX="220.0" layoutY="349.0" prefHeight="38.0" prefWidth="128.0" promptText="Duration" styleClass="text" />
+            <Label fx:id="imgUrl" layoutX="196.0" layoutY="50.0" visible="false" />
          </children>
       </Pane>
    </children>

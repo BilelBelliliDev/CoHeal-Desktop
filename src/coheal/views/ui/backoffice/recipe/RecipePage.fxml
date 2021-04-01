@@ -3,10 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,14 +20,13 @@
       <TableView fx:id="RecipeTable" layoutX="76.0" layoutY="312.0" prefHeight="341.0" prefWidth="1010.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="24.0">
          <columns>
             <TableColumn fx:id="img_col" prefWidth="111.0" text="Image" />
-            <TableColumn fx:id="title_col" minWidth="0.0" prefWidth="112.0" text="Title" />
-            <TableColumn fx:id="cat_col" prefWidth="88.0" text="Category" />
-            <TableColumn fx:id="Desc_col" prefWidth="122.0" text="Description" />
-            <TableColumn fx:id="cal_col" prefWidth="59.0" text="Calories" />
-            <TableColumn fx:id="dur_col" minWidth="0.0" prefWidth="62.0" text="Duration" />
-            <TableColumn fx:id="persons_col" minWidth="0.0" prefWidth="64.0" text="Persons" />
-            <TableColumn fx:id="ingred_col" minWidth="0.0" prefWidth="199.0" text="Ingredients" />
-            <TableColumn fx:id="Steps_col" minWidth="0.0" prefWidth="192.0" text="Steps" />
+            <TableColumn fx:id="title_col" minWidth="0.0" prefWidth="141.0" text="Title" />
+            <TableColumn fx:id="Desc_col" prefWidth="151.0" text="Description" />
+            <TableColumn fx:id="cal_col" prefWidth="55.0" text="Calories" />
+            <TableColumn fx:id="dur_col" minWidth="0.0" prefWidth="59.0" text="Duration" />
+            <TableColumn fx:id="persons_col" minWidth="0.0" prefWidth="56.0" text="Persons" />
+            <TableColumn fx:id="ingred_col" minWidth="0.0" prefWidth="223.0" text="Ingredients" />
+            <TableColumn fx:id="Steps_col" minWidth="0.0" prefWidth="213.0" text="Steps" />
          </columns>
       </TableView>
       <JFXButton layoutX="837.0" layoutY="284.0" onAction="#ViewCategoryAction" prefHeight="35.0" prefWidth="186.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="View Categories" textFill="#fffefb">
@@ -35,15 +35,16 @@
          </font>
       </JFXButton>
       <PieChart fx:id="pieChart" layoutX="597.0" layoutY="39.0" prefHeight="219.0" prefWidth="382.0" />
-      <LineChart fx:id="lineChart" layoutX="66.0" layoutY="24.0" prefHeight="244.0" prefWidth="444.0">
+      <JFXTextField fx:id="RechercheTF" cacheShape="false" layoutX="54.0" layoutY="294.0" onKeyPressed="#RechercheRecipes" prefHeight="25.0" prefWidth="252.0" promptText="Enter Recipe Name" />
+      <FontAwesomeIconView fill="#303c5d" glyphName="SEARCH" layoutX="312.0" layoutY="314.0" size="25" />
+      <BarChart fx:id="BarChart" layoutX="90.0" layoutY="39.0" prefHeight="235.0" prefWidth="467.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />
         </yAxis>
-      </LineChart>
-      <JFXTextField fx:id="RechercheTF" cacheShape="false" layoutX="54.0" layoutY="294.0" onKeyPressed="#RechercheRecipes" prefHeight="25.0" prefWidth="252.0" promptText="Enter Recipe Name" />
-      <FontAwesomeIconView fill="#303c5d" glyphName="SEARCH" layoutX="312.0" layoutY="314.0" size="25" />
+      </BarChart>
+      <Label layoutX="247.0" layoutY="19.0" text="Categories with most recipes" />
    </children>
 </AnchorPane>

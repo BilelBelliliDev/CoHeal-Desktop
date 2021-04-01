@@ -68,18 +68,15 @@ public class RecipePageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         if (UserSession.getRole().equals("nutritionist")) {
             addBtn.setVisible(true);
-        } 
-
-        if (UserSession.getRole().equals("nutritionist")) {
             ComboBox.setVisible(true);
         }
 
-        addBtn.setVisible(true);
-
         new ZoomIn(recipePane).play();
 
+        //ComboBox
         ComboBox.getItems().add("All");
         ComboBox.getItems().add("Yours");
         ComboBox.getSelectionModel().select("All");
@@ -104,6 +101,7 @@ public class RecipePageController implements Initializable {
         pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord, comboValue));
     }
 
+    //to open GridRecipe.fxml + parameters: pageindex=current page & what we need else in the current page 
     public GridPane grid(int pageindex, String searchWord, String comboValue) {
         GridPane pane = null;
         FXMLLoader loader = new FXMLLoader();
@@ -165,7 +163,7 @@ public class RecipePageController implements Initializable {
             pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord, comboValue));
 
         }
-
+        //Role of ComboBox in GridRecipeController
     }
 
     @FXML

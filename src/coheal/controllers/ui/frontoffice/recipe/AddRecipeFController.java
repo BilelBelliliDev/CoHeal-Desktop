@@ -34,7 +34,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import org.apache.commons.io.FileUtils;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -71,6 +75,7 @@ public class AddRecipeFController implements Initializable {
     @FXML
     private JFXTextField DurationTF;
 
+    //test textfield 
     private boolean title = false, cal = false, dur = false, per = false, desc = false, ingred = false, steps = false;
 
     /**
@@ -132,6 +137,7 @@ public class AddRecipeFController implements Initializable {
             showAlert(Alert.AlertType.ERROR, owner, "Error!",
                     "Enter a title for your recipe!");
             return;
+
         }
         if (DescTF.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Error!",
@@ -184,8 +190,17 @@ public class AddRecipeFController implements Initializable {
 
         rs.Create_Recipe(UserSession.getUser_id(), cat, r);
 
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                "Recipe added successfully!");
+//        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+//                "Recipe added successfully!");
+        
+        //Notification
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setAnimationType(type);
+        tray.setTitle("Success");
+        tray.setMessage("Recipe added successfully!");
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
     }
 
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

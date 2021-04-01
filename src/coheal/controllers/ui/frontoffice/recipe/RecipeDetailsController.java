@@ -19,11 +19,6 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.FileNotFoundException;
@@ -46,6 +41,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -91,8 +90,10 @@ public class RecipeDetailsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         RecipeHolder rh = RecipeHolder.getINSTANCE();
         Recipe r = rs.getRecipe(rh.getId());
+        
         if (UserSession.getRole().equals("nutritionist") && r.getUser().getUserId() == UserSession.getUser_id()) {
             updateIcon.setVisible(true);
             deleteIcon.setVisible(true);
@@ -100,6 +101,7 @@ public class RecipeDetailsController implements Initializable {
         }
 
         if (r != null) {
+            //sets
             TitleLabel.setText(r.getTitle());
             ImageView.setImage(r.getImg().getImage());
             DescLabel.setText(r.getDescription());
@@ -144,8 +146,18 @@ public class RecipeDetailsController implements Initializable {
         javafx.stage.Window owner = deleteIcon.getScene().getWindow();
 
         rs.Delete_Recipe(rh.getId());
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                "Recipe deleted successfully!");
+
+//        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+//                "Recipe deleted successfully!");
+
+        //Notification
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setAnimationType(type);
+        tray.setTitle("Success");
+        tray.setMessage("Recipe deleted successfully!");
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
 
     }
 
@@ -166,6 +178,7 @@ public class RecipeDetailsController implements Initializable {
         alert.show();
     }
 
+    //My API with itextpdf
     @FXML
     private void PdftoPrint(MouseEvent event) throws FileNotFoundException, DocumentException, IOException {
         javafx.stage.Window owner = printBtn.getScene().getWindow();
@@ -177,6 +190,7 @@ public class RecipeDetailsController implements Initializable {
 
             //title
             Font orange = new Font(FontFamily.HELVETICA, 30, Font.BOLDITALIC, BaseColor.ORANGE);
+                      //use chunk to set the font
             Chunk ch1 = new Chunk("\n" + TitleLabel.getText() + "\n\n", orange);
             Paragraph p1 = new Paragraph(ch1);
             p1.setAlignment(Element.ALIGN_CENTER);
@@ -195,9 +209,9 @@ public class RecipeDetailsController implements Initializable {
             calImg.scaleAbsolute(471, 78);
             calImg.setAlignment(Element.ALIGN_CENTER);
             document.add(calImg);
-            
+
             Paragraph c = new Paragraph();
-            c.add("                                         "+CaloriesLabel.getText()+"                                 " +DurationLabel.getText()+"                                      " +PersonsLabel.getText()+ "\n\n\n\n");
+            c.add("                                         " + CaloriesLabel.getText() + "                                 " + DurationLabel.getText() + "                                      " + PersonsLabel.getText() + "\n\n\n\n");
             c.setAlignment(Element.ALIGN_LEFT);
             document.add(c);
 
@@ -246,7 +260,7 @@ public class RecipeDetailsController implements Initializable {
             System.out.println(e.getMessage());
         }
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                "This recipe got transported to D:/ in a PDF file as       « "+TitleLabel.getText()+" »");
+                "This recipe got transported to D:/ in a PDF file as       « " + TitleLabel.getText() + " »");
 
     }
 
