@@ -45,16 +45,16 @@ import org.apache.commons.io.FileUtils;
  * @author BilelxOS
  */
 public class AddTaskFController implements Initializable {
-    Task task = null;
-    ServiceTask st = new ServiceTask();
-    Task t = new Task();
-    ServiceTaskCategory stc = new ServiceTaskCategory();
-    String cat = "";
-    File f = null;
+    private Task task = null;
+    private ServiceTask st = new ServiceTask();
+    private Task t = new Task();
+    private ServiceTaskCategory stc = new ServiceTaskCategory();
+    private String cat = "";
+    private File f = null;
     private static String projectPath = System.getProperty("user.dir").replace("/", "\\");
     private ToggleGroup group = new ToggleGroup();
-    ServicePaidTask spt = new ServicePaidTask();
-    PaidTask pt = new PaidTask();
+    private ServicePaidTask spt = new ServicePaidTask();
+    private PaidTask pt = new PaidTask();
     @FXML
     private ToggleGroup type1;
     @FXML
@@ -75,7 +75,7 @@ public class AddTaskFController implements Initializable {
     private JFXRadioButton paid;
     @FXML
     private ImageView image;
-    private boolean titleSI = false,descriptionSI = false,daysSI = false,priceSI = false ;
+    private boolean titleV = false,descriptionV = false,daysV = false,priceV = false ;
 
     /**
      * Initializes the controller class.
@@ -90,10 +90,10 @@ public class AddTaskFController implements Initializable {
         free.setToggleGroup(group);
         free.setSelected(true);
         price.disableProperty().bind(free.selectedProperty());
-        titleValidatorSI();
-        priceValidatorSI();
-        daysValidatorSI();
-        descriptionValidatorSI();
+        titleValidator();
+        priceValidator();
+        daysValidator();
+        descriptionValidator();
     }    
 
     @FXML
@@ -192,7 +192,7 @@ public class AddTaskFController implements Initializable {
     }
     
     
-    public void titleValidatorSI() {
+    public void titleValidator() {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
         Titre.setValidators(valid);
@@ -203,9 +203,9 @@ public class AddTaskFController implements Initializable {
                 if (!newPropertyValue) {
                     Titre.validate();
                     if (Titre.validate()) {
-                        titleSI = true;
+                        titleV = true;
                     } else {
-                        titleSI = false;
+                        titleV = false;
                     }
                 }
             }
@@ -218,7 +218,7 @@ public class AddTaskFController implements Initializable {
         }
     }
     
-    public void descriptionValidatorSI() {
+    public void descriptionValidator() {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
         Description.setValidators(valid);
@@ -229,9 +229,9 @@ public class AddTaskFController implements Initializable {
                 if (!newPropertyValue) {
                     Description.validate();
                     if (Description.validate()) {
-                        descriptionSI = true;
+                        descriptionV = true;
                     } else {
-                        descriptionSI = false;
+                        descriptionV = false;
                     }
                 }
             }
@@ -244,20 +244,20 @@ public class AddTaskFController implements Initializable {
         }
     }
     
-    public void priceValidatorSI() {
+    public void priceValidator() {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^(0|[1-9][0-9]*)$");
         price.setValidators(valid);
-        valid.setMessage("price is not valid");
+        valid.setMessage("Not valid");
         price.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
                 if (!newPropertyValue) {
                     price.validate();
                     if (price.validate()) {
-                        priceSI = true;
+                        priceV = true;
                     } else {
-                        priceSI = false;
+                        priceV = false;
                     }
                 }
             }
@@ -270,20 +270,20 @@ public class AddTaskFController implements Initializable {
         }
     }
     
-    public void daysValidatorSI() {
+    public void daysValidator() {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^(0|[1-9][0-9]*)$");
         numOfDays.setValidators(valid);
-        valid.setMessage("Number of days is not valid");
+        valid.setMessage("Not valid");
         numOfDays.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
                 if (!newPropertyValue) {
                     numOfDays.validate();
                     if (numOfDays.validate()) {
-                        daysSI = true;
+                        daysV = true;
                     } else {
-                        daysSI = false;
+                        daysV = false;
                     }
                 }
             }
