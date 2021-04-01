@@ -39,22 +39,27 @@ public class ClosedReportItemController implements Initializable {
             case "task":
                 icon.setGlyphName("TASKS");
                 note.setText(r.getNote());
+                title.setText(r.getTitle());
                 break;
             case "book":
                 icon.setGlyphName("BOOK");
                 note.setText(r.getNote());
+                title.setText(r.getTitle());
                 break;
             case "event":
                 icon.setGlyphName("CALENDAR");
                 note.setText(r.getNote());
+                title.setText(r.getTitle());
                 break;
             case "session":
                 icon.setGlyphName("USER_MD");
                 note.setText(r.getNote());
+                title.setText(r.getTitle());
                 break;
             case "recipe":
                 icon.setGlyphName("STICKY_NOTE");
                 note.setText(r.getNote());
+                title.setText(r.getTitle());
                 break;
         }
     }

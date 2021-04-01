@@ -24,7 +24,7 @@
             <FontAwesomeIconView glyphName="FILTER" layoutX="526.0" layoutY="40.0" onMouseClicked="#filtreAction" size="25" style="-fx-cursor: hand; -fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
             <HBox alignment="CENTER" layoutX="13.0" layoutY="11.0" prefHeight="43.0" prefWidth="508.0" spacing="15.0">
                <children>
-                  <JFXTextField prefHeight="31.0" prefWidth="188.0" promptText="Search by title" stylesheets="@../../../../resources/css/textfields.css" />
+                  <JFXTextField fx:id="searchBytitle" onKeyPressed="#isTyping" prefHeight="31.0" prefWidth="188.0" promptText="Search by title" stylesheets="@../../../../resources/css/textfields.css" />
                   <JFXTextField prefHeight="31.0" prefWidth="290.0" promptText="Search by note" stylesheets="@../../../../resources/css/textfields.css" />
                </children>
             </HBox>

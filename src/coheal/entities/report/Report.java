@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 public abstract class Report {
     protected int reportId;
     protected int reporterId;
+    protected String title;
     protected String type;
     protected String note;
     protected boolean isClosed;
@@ -34,6 +35,14 @@ public abstract class Report {
 
     public void setReporterId(int reporterId) {
         this.reporterId = reporterId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getType() {

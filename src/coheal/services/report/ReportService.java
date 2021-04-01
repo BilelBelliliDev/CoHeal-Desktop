@@ -44,7 +44,7 @@ public class ReportService implements IReportService {
         if (r instanceof BookReport) {
             try {
                 Statement stm = cnx.createStatement();
-                query = "INSERT INTO report(reporter_id,type,note) VALUES (" + r.getReporterId() + ",'book', '" + r.getNote() + "')";
+                query = "INSERT INTO report(reporter_id,title,type,note) VALUES (" + r.getReporterId() + ", '" + r.getTitle() + "','book', '" + r.getNote() + "')";
                 stm.executeUpdate(query);
                 query = "INSERT INTO book_report(report_id,book_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -54,7 +54,7 @@ public class ReportService implements IReportService {
         } else if (r instanceof EventReport) {
             try {
                 Statement stm = cnx.createStatement();
-                query = "INSERT INTO report(reporter_id,type,note) VALUES (" + r.getReporterId() + ",'event', '" + r.getNote() + "')";
+                query = "INSERT INTO report(reporter_id,title,type,note) VALUES (" + r.getReporterId() + ",'" + r.getTitle() + "','event', '" + r.getNote() + "')";
                 stm.executeUpdate(query);
                 query = "INSERT INTO event_report(report_id,event_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -64,7 +64,7 @@ public class ReportService implements IReportService {
         } else if (r instanceof UserReport) {
             try {
                 Statement stm = cnx.createStatement();
-                query = "INSERT INTO report(reporter_id,type,note) VALUES (" + r.getReporterId() + ",'user', '" + r.getNote() + "')";
+                query = "INSERT INTO report(reporter_id,title,type,note) VALUES (" + r.getReporterId() + ",'" + r.getTitle() + "','user', '" + r.getNote() + "')";
                 stm.executeUpdate(query);
                 query = "INSERT INTO user_report(report_id,user_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -74,7 +74,7 @@ public class ReportService implements IReportService {
         } else if (r instanceof TaskReport) {
             try {
                 Statement stm = cnx.createStatement();
-                query = "INSERT INTO report(reporter_id,type,note) VALUES (" + r.getReporterId() + ",'task', '" + r.getNote() + "')";
+                query = "INSERT INTO report(reporter_id,title,type,note) VALUES (" + r.getReporterId() + ",'" + r.getTitle() + "','task', '" + r.getNote() + "')";
                 stm.executeUpdate(query);
                 query = "INSERT INTO task_report(report_id,task_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -84,7 +84,7 @@ public class ReportService implements IReportService {
         } else if (r instanceof SessionReport) {
             try {
                 Statement stm = cnx.createStatement();
-                query = "INSERT INTO report(reporter_id,type,note) VALUES (" + r.getReporterId() + ",'session', '" + r.getNote() + "')";
+                query = "INSERT INTO report(reporter_id,title,type,note) VALUES (" + r.getReporterId() + ",'" + r.getTitle() + "','session', '" + r.getNote() + "')";
                 stm.executeUpdate(query);
                 query = "INSERT INTO session_report(report_id,session_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -94,7 +94,7 @@ public class ReportService implements IReportService {
         } else if (r instanceof RecipeReport) {
             try {
                 Statement stm = cnx.createStatement();
-                query = "INSERT INTO report(reporter_id,type,note) VALUES (" + r.getReporterId() + ",'recipe', '" + r.getNote() + "')";
+                query = "INSERT INTO report(reporter_id,title,type,note) VALUES (" + r.getReporterId() + ",'" + r.getTitle() + "','recipe', '" + r.getNote() + "')";
                 stm.executeUpdate(query);
                 query = "INSERT INTO recipe_report(report_id,recipe_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
@@ -148,6 +148,7 @@ public class ReportService implements IReportService {
                 Report r = new BookReport();
                 r.setReportId(rst.getInt("report_id"));
                 r.setReporterId(rst.getInt("reporter_id"));
+                r.setTitle(rst.getString("title"));
                 r.setType(rst.getString("type"));
                 r.setNote(rst.getString("note"));
                 r.setIsClosed(rst.getBoolean("is_closed"));

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
@@ -19,15 +18,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-radius: 1em; -fx-background-color: #EFF6FA;" stylesheets="@../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.HomePageHolderController">
    <children>
-      <JFXTextField focusTraversable="false" layoutX="771.0" layoutY="48.0" prefHeight="61.0" prefWidth="273.0" promptText="Search" stylesheets="@../../../resources/css/main.css" unFocusColor="#13547a">
-         <font>
-            <Font name="Century Gothic" size="18.0" />
-         </font>
-         <styleClass>
-            <String fx:value="jfx-text-field" />
-            <String fx:value="text" />
-         </styleClass>
-      </JFXTextField>
       <AnchorPane fx:id="slider" cache="true" cacheHint="SPEED" layoutX="66.0" layoutY="143.0" prefHeight="98.0" prefWidth="194.0">
          <children>
             <AnchorPane layoutX="-57.0" layoutY="4.0" prefHeight="58.0" prefWidth="203.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em 0 0 1em;" />

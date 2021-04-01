@@ -37,13 +37,11 @@ public class DashboardPageController implements Initializable {
     ServicePaidTask spt = new ServicePaidTask();
     ServiceTask st = new ServiceTask();
     ServiceBook sb = new ServiceBook();
-    ServiceEvent se =new ServiceEvent();
-        @FXML
-        private Label totalebooks;
-    @FXML
-    private Label events;
+    ServiceEvent se = new ServiceEvent();
     @FXML
     private Label totalebooks;
+    @FXML
+    private Label events;
     @FXML
     private Label totalRecipes;
     RecipeService rs = new RecipeService();
@@ -56,7 +54,7 @@ public class DashboardPageController implements Initializable {
         new ZoomIn(dashboardPane).play();
         nbTasks.setText(String.valueOf(spt.getCountPaidTask() + st.getCountTask()));
         totalebooks.setText(String.valueOf(sb.getCountBook()));
-        events.setText(String.valueOf(se.AfficherEvent().size())); 
+        events.setText(String.valueOf(se.AfficherEvent().size()));
         totalRecipes.setText(String.valueOf(rs.CountTotalRecipes()));
     }
 
