@@ -15,11 +15,16 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RegexValidator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,16 +64,17 @@ public class UpdateTaskFController implements Initializable {
     @FXML
     private ImageView image;
     private ToggleGroup group = new ToggleGroup();
-    ServicePaidTask spt = new ServicePaidTask();
-    PaidTask pt;
-    File f = null;
-    ServiceTaskCategory stc = new ServiceTaskCategory();
-    String cat = "";
-    TaskCategory tc;
+    private ServicePaidTask spt = new ServicePaidTask();
+    private PaidTask pt;
+    private File f = null;
+    private ServiceTaskCategory stc = new ServiceTaskCategory();
+    private String cat = "";
+    private TaskCategory tc;
     private static String projectPath = System.getProperty("user.dir").replace("/", "\\");
-    Task task;
+    private Task task;
     TaskHolder th = TaskHolder.getINSTANCE();
     private ServiceTask st = new ServiceTask();
+    private boolean titleV = false, descriptionV = false, daysV = false, priceV = false;
 
     /**
      * Initializes the controller class.
@@ -105,6 +111,10 @@ public class UpdateTaskFController implements Initializable {
             comboCatg.getSelectionModel().select(task.getCategory().getName());
         }
 
+        titleValidator();
+        priceValidator();
+        daysValidator();
+        descriptionValidator();
     }
 
     @FXML
@@ -280,4 +290,107 @@ public class UpdateTaskFController implements Initializable {
         }
     }
 
+    public void titleValidator() {
+        RegexValidator valid = new RegexValidator();
+        valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
+        Titre.setValidators(valid);
+        valid.setMessage("Title is not valid");
+        Titre.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    Titre.validate();
+                    if (Titre.validate()) {
+                        titleV = true;
+                    } else {
+                        titleV = false;
+                    }
+                }
+            }
+        });
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+            valid.setIcon(new ImageView(errorIcon));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void descriptionValidator() {
+        RegexValidator valid = new RegexValidator();
+        valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
+        Description.setValidators(valid);
+        valid.setMessage("Description is not valid");
+        Description.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    Description.validate();
+                    if (Description.validate()) {
+                        descriptionV = true;
+                    } else {
+                        descriptionV = false;
+                    }
+                }
+            }
+        });
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+            valid.setIcon(new ImageView(errorIcon));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void priceValidator() {
+        RegexValidator valid = new RegexValidator();
+        valid.setRegexPattern("^(0|[1-9][0-9]*)$");
+        price.setValidators(valid);
+        valid.setMessage("Not valid");
+        price.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    price.validate();
+                    if (price.validate()) {
+                        priceV = true;
+                    } else {
+                        priceV = false;
+                    }
+                }
+            }
+        });
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+            valid.setIcon(new ImageView(errorIcon));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void daysValidator() {
+        RegexValidator valid = new RegexValidator();
+        valid.setRegexPattern("^(0|[1-9][0-9]*)$");
+        numOfDays.setValidators(valid);
+        valid.setMessage("Not valid");
+        numOfDays.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    numOfDays.validate();
+                    if (numOfDays.validate()) {
+                        daysV = true;
+                    } else {
+                        daysV = false;
+                    }
+                }
+            }
+        });
+        try {
+            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+            valid.setIcon(new ImageView(errorIcon));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

@@ -14,9 +14,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="1016.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.task.UpdateTaskFController">
    <children>
-      <Pane layoutX="87.0" layoutY="36.0" prefHeight="420.0" prefWidth="843.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;" stylesheets="@../../../../resources/css/textfields.css">
+      <Pane layoutX="87.0" layoutY="36.0" prefHeight="431.0" prefWidth="860.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;" stylesheets="@../../../../resources/css/textfields.css">
          <children>
-            <AnchorPane layoutX="399.0" layoutY="308.0" prefHeight="60.0" prefWidth="247.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em;">
+            <AnchorPane layoutX="399.0" layoutY="339.0" prefHeight="60.0" prefWidth="247.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em;">
                <children>
                   <JFXTextField fx:id="price" layoutX="146.0" layoutY="11.0" prefHeight="38.0" prefWidth="87.0" promptText="Price" styleClass="text" />
                   <JFXRadioButton fx:id="paid" layoutX="76.0" layoutY="21.0" onAction="#paidAction" text="Paid">
@@ -30,8 +30,8 @@
             <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="794.0" layoutY="26.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
             <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="815.0" layoutY="25.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
             <JFXTextField fx:id="Titre" layoutX="399.0" layoutY="58.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" styleClass="text" />
-            <JFXTextArea fx:id="Description" layoutX="399.0" layoutY="111.0" prefHeight="183.0" prefWidth="392.0" promptText="Description" styleClass="text" wrapText="true" />
-            <JFXComboBox fx:id="comboCatg" layoutX="71.0" layoutY="319.0" onAction="#listCategoryCombo" prefHeight="39.0" prefWidth="277.0" promptText="Category" />
+            <JFXTextArea fx:id="Description" layoutX="399.0" layoutY="128.0" prefHeight="183.0" prefWidth="392.0" promptText="Description" styleClass="text" wrapText="true" />
+            <JFXComboBox fx:id="comboCatg" layoutX="71.0" layoutY="338.0" onAction="#listCategoryCombo" prefHeight="39.0" prefWidth="277.0" promptText="Category" />
             <JFXTextField fx:id="numOfDays" layoutX="704.0" layoutY="58.0" prefHeight="38.0" prefWidth="87.0" promptText="Days" styleClass="text" />
             <AnchorPane layoutX="71.0" layoutY="60.0" onMouseClicked="#addImage" prefHeight="236.0" prefWidth="277.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
                <children>
@@ -40,7 +40,7 @@
                   <ImageView fx:id="image" fitHeight="211.0" fitWidth="255.0" layoutX="12.0" layoutY="13.0" pickOnBounds="true" />
                </children>
             </AnchorPane>
-            <Circle fill="DODGERBLUE" layoutX="836.0" layoutY="414.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+            <Circle fill="DODGERBLUE" layoutX="858.0" layoutY="423.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
             <Pane layoutX="36.0" layoutY="-21.0" prefHeight="38.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
                <children>
                   <Label layoutX="21.0" layoutY="5.0" prefHeight="30.0" prefWidth="124.0" style="-fx-font-size: 20px;" text="Update Task" textFill="WHITE" />
@@ -48,6 +48,6 @@
             </Pane>
          </children>
       </Pane>
-      <FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="911.0" layoutY="461.0" onMouseClicked="#updateTaskAction" size="30" />
+      <FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="931.0" layoutY="471.0" onMouseClicked="#updateTaskAction" size="30" />
    </children>
 </AnchorPane>

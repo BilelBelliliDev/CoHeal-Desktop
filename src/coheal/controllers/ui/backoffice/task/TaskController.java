@@ -34,6 +34,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,6 +45,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -159,7 +161,7 @@ public class TaskController implements Initializable {
 
     @FXML
     private void addCategoryAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/task/TaskCategory.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/task/TaskCategoryF.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -183,10 +185,21 @@ public class TaskController implements Initializable {
 
     @FXML
     private void deleteTaskAction(MouseEvent event) {
+        Window owner = pagination.getScene().getWindow();
         Task task = taskTable.getSelectionModel().getSelectedItem();
         st.deleteTask(task.getTaskId());
+        AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation", "Task deleted successfully!");
         taskTable.getItems().clear();
         init();
+    }
+    
+    private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 
 }

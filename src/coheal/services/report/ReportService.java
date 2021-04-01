@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -138,7 +139,7 @@ public class ReportService implements IReportService {
 
     @Override
     public List<Report> allReportsList() {
-        ObservableList<Report> reports = FXCollections.observableArrayList();
+        List<Report> reports = new ArrayList();
         try {
             Statement stm = cnx.createStatement();
             String query = "select * from report ";

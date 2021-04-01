@@ -209,7 +209,6 @@
             <Line endX="263.0" layoutX="118.0" layoutY="110.0" startX="-100.0" />
             <JFXCheckBox fx:id="openCheckBox" layoutX="15.0" layoutY="156.0" text="Open" />
             <JFXCheckBox fx:id="closedCheckBox" layoutX="80.0" layoutY="156.0" text="Closed" />
-            <JFXCheckBox fx:id="allCheckBox" layoutX="186.0" layoutY="80.0" text="All" />
             <Pane layoutX="302.0" layoutY="15.0" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
                <children>
                   <Label layoutX="31.0" layoutY="3.0" text="Clear" textFill="WHITE" />
