@@ -13,7 +13,7 @@
       <Pane layoutX="35.0" layoutY="36.0" prefHeight="420.0" prefWidth="537.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;" stylesheets="@../../../../resources/css/textfields.css">
          <children>
             <JFXTextField fx:id="Titre" layoutX="93.0" layoutY="92.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" styleClass="text" />
-            <JFXTextArea fx:id="Description" layoutX="84.0" layoutY="145.0" prefHeight="183.0" prefWidth="392.0" promptText="Description" styleClass="text" wrapText="true" />
+            <JFXTextArea fx:id="Description" layoutX="84.0" layoutY="165.0" prefHeight="183.0" prefWidth="392.0" promptText="Description" styleClass="text" wrapText="true" />
             <Pane layoutX="36.0" layoutY="-21.0" prefHeight="39.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
                <children>
                   <Label layoutX="21.0" layoutY="5.0" prefHeight="30.0" prefWidth="209.0" style="-fx-font-size: 20px;" text="Update Task Action" textFill="WHITE" />
