@@ -149,9 +149,9 @@ public class BookCatBackPageController implements Initializable {
                        
                         nomcol.setCellValueFactory(new PropertyValueFactory<BookCategory, String>("name"));
                         imagecol.setCellValueFactory(new PropertyValueFactory<BookCategory, ImageView>("img"));
-                        int t = Integer.valueOf(recherchetf.getText());
+                        String t = recherchetf.getText();
 
-                        tabviewcat.setItems(sbc.Recherche(t));
+                        tabviewcat.setItems(sbc.RechercheCatS(t));
                 } catch (SQLException ex) {
                         Logger.getLogger(BookCatBackPageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
