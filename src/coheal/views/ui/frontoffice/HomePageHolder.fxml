@@ -164,7 +164,7 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <VBox alignment="CENTER" layoutX="12.0" layoutY="249.0" prefHeight="283.0" prefWidth="181.0" spacing="23.0">
+      <VBox alignment="CENTER" layoutX="17.0" layoutY="234.0" prefHeight="283.0" prefWidth="181.0" spacing="15.0">
          <children>
             <AnchorPane fx:id="taskSideBar" onMouseClicked="#taskPageAction" prefHeight="46.0" prefWidth="152.0" stylesheets="@../../../resources/css/main.css">
                <styleClass>
@@ -215,7 +215,7 @@
                         <Font name="Century Gothic Bold" size="24.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIconView fill="#13547a" glyphName="USER_MD" layoutX="18.0" layoutY="32.0" size="27" />
+                  <FontAwesomeIconView fill="#13547a" glyphName="USER_MD" layoutX="15.0" layoutY="32.0" size="27" />
                </children>
                <styleClass>
                   <String fx:value="menu" />
@@ -229,7 +229,21 @@
                         <Font name="Century Gothic Bold" size="24.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIconView fill="#13547a" glyphName="STICKY_NOTE" layoutX="19.0" layoutY="33.0" size="25" />
+                  <FontAwesomeIconView fill="#13547a" glyphName="STICKY_NOTE" layoutX="16.0" layoutY="33.0" size="25" />
+               </children>
+               <styleClass>
+                  <String fx:value="menu" />
+                  <String fx:value="button" />
+               </styleClass>
+            </AnchorPane>
+            <AnchorPane fx:id="reportsSideBar" onMouseClicked="#reportPageAction" prefHeight="46.0" prefWidth="152.0" stylesheets="@../../../resources/css/main.css">
+               <children>
+                  <Label layoutX="56.0" layoutY="6.0" style="-fx-font-size: 24px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="Reports" textFill="#13547a">
+                     <font>
+                        <Font name="Century Gothic Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#13547a" glyphName="WRENCH" layoutX="16.0" layoutY="33.0" size="25" />
                </children>
                <styleClass>
                   <String fx:value="menu" />
