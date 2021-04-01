@@ -9,15 +9,25 @@ import coheal.entities.session.Session;
 import coheal.services.session.ServiceSession;
 import coheal.services.session.ServiceSessionChat;
 import coheal.services.user.UserSession;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RegexValidator;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -26,8 +36,7 @@ import javafx.stage.Stage;
  */
 public class AddSessionController implements Initializable {
 
-    @FXML
-    private TextField titleId;
+    
     @FXML
     private TextArea descriptionId;
     @FXML
@@ -35,6 +44,9 @@ public class AddSessionController implements Initializable {
     private ServiceSession ss = new ServiceSession();
     @FXML
     private TextField price;
+    @FXML
+    private TextField titleId;
+
 
     /**
      * Initializes the controller class.
@@ -42,6 +54,8 @@ public class AddSessionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+                //titleValidatorSI();
+
     }    
 
     @FXML
@@ -66,5 +80,15 @@ public class AddSessionController implements Initializable {
         stage = (Stage) numDays.getScene().getWindow();
         stage.close();
     }
+     private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
     
+    
+   //    
 }

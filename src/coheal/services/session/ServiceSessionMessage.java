@@ -37,19 +37,23 @@ public class ServiceSessionMessage implements IServiceMsgInterface {
               String query;
                query = "INSERT into session_message(chat_id,msg,user_id)"+" VALUES("+s.getChatId()+ ",'"+s.getMsg()+"',"+s.getUserId()+ ");";
         Statement st = con.createStatement();
+             System.out.println(query);
             st.executeUpdate(query);
+            
             System.out.println("Message ajouter ");
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'ajout "+ex);
         }
     }
 
-   // @Override
-    public ObservableList<SessionMessage> listMessage(int id) {
-         ObservableList<SessionMessage> s =FXCollections.observableArrayList();
+   
+
+    @Override
+    public ObservableList<SessionMessage> listMessage(int id ) {
+  ObservableList<SessionMessage> s =FXCollections.observableArrayList();
          try{
               Statement st = con.createStatement();
-            String res = "select msg from `session_message` where chat_id="+id;
+            String res = "select sm.msg from session_message sm ,session_chat sc where sm.chat_id=sc.chat_id and sc.session_id="+id+"  ";
             ResultSet rs = st.executeQuery(res);
 
             while (rs.next()) {
@@ -61,11 +65,25 @@ public class ServiceSessionMessage implements IServiceMsgInterface {
             System.out.println("erreur lors de l'affichage");
         }
         return s;
-         }
+         }   
+    public int getChatid(int id)
+    {int t=0;
+        try {
 
-    @Override
-    public List<SessionMessage> listMessage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            Statement st = con.createStatement();
+            String query = "select chat_id from session_chat where session_id="+id+"";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                 t=rs.getInt("chat_id");
+               
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return t;
     }
-
+    
 }
+
+

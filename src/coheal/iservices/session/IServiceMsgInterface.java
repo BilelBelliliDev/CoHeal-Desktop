@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IServiceMsgInterface {
             public void createSessionMesage(SessionMessage s);
-            public List<SessionMessage> listMessage();
+            public List<SessionMessage> listMessage(int i);
            
 
 }

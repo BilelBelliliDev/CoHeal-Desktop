@@ -47,11 +47,5 @@ public class SessionMessageFXMLController implements Initializable {
         
     }
 
-    @FXML
-    private void afficherMessageAction(ActionEvent event) {
-        ServiceSessionMessage sm = new ServiceSessionMessage();
-        msgEnvoyer.setText(sm.listMessage().toString());
-                
-    }
-    
+   
 }

@@ -75,7 +75,7 @@ public class SessionPageController implements Initializable {
             try {
                 AnchorPane pane = loader.load();
                 SessionItemController c = loader.getController();
-                c.setData(sessions.get(i));
+                c.setData(sessions.get(i),false);
 
                 if (x > 2) {
                     y++;
@@ -160,7 +160,7 @@ public class SessionPageController implements Initializable {
                 try {
                     AnchorPane pane = loader.load();
                     SessionItemController c = loader.getController();
-                    c.setData(sessions.get(i));
+                    c.setData(sessions.get(i),false);
                     System.out.println(sessions.get(i));
                     if (x > 2) {
                         y++;
@@ -184,7 +184,8 @@ public class SessionPageController implements Initializable {
                 try {
                     AnchorPane pane = loader.load();
                     SessionItemController c = loader.getController();
-                    c.setData(sessions.get(i));
+                    c.setData(sessions.get(i),false);
+                    
                     if (x > 2) {
                         y++;
                         x = 0;
@@ -206,7 +207,7 @@ public class SessionPageController implements Initializable {
                 try {
                     AnchorPane pane = loader.load();
                     SessionItemController c = loader.getController();
-                    c.setData(sessions.get(i));
+                    c.setData(sessions.get(i),true);
                     if (x > 2) {
                         y++;
                         x = 0;
