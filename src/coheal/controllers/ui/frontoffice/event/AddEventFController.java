@@ -243,7 +243,7 @@ public class AddEventFController implements Initializable {
     
     public void locationValidator() {
         RegexValidator valid = new RegexValidator();
-        valid.setRegexPattern("^(0|[1-9][0-9]*)$");
+        valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
         location.setValidators(valid);
         valid.setMessage("Not valid");
         location.focusedProperty().addListener(new ChangeListener<Boolean>() {
