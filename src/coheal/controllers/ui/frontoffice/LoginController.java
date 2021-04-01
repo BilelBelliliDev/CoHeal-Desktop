@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package coheal.controllers.ui.frontoffice;
 
 import animatefx.animation.ZoomIn;
@@ -31,7 +26,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,14 +37,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Duration;
-import org.controlsfx.validation.ValidationSupport;
-import org.controlsfx.validation.Validator;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
-/**
- * FXML Controller class
- *
- * @author BilelxOS
- */
 public class LoginController implements Initializable {
 
     private boolean emailSI = false, emailSU = false, fName = false, lName = false, date = false, password = false;
@@ -108,8 +98,9 @@ public class LoginController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    ValidationSupport ValidationEmailSIN = new ValidationSupport();
-    ValidationSupport ValidationPasswordSIN = new ValidationSupport();
+    
+    //ValidationSupport ValidationEmailSIN = new ValidationSupport();
+    //ValidationSupport ValidationPasswordSIN = new ValidationSupport();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -120,7 +111,7 @@ public class LoginController implements Initializable {
         passwordValidator();
         nameValidator();
         lNameValidator();
-//ValidationEmailSIN.registerValidator(TFEmailSIN, Validator.createEmptyValidator("Email field is empty"));
+        //ValidationEmailSIN.registerValidator(TFEmailSIN, Validator.createEmptyValidator("Email field is empty"));
         //ValidationPasswordSIN.registerValidator(TFPasswordSIN, Validator.createEmptyValidator("Password field is empty"));
     }
 
@@ -139,7 +130,16 @@ public class LoginController implements Initializable {
             ServiceUser su = new ServiceUser();
             boolean flag = su.Validate_Login(email, password);
             if (!flag) {
-                infoBox("Please enter correct Email and Password or maybe your your account is deleted", null, "Failed");
+                //-------------notification--------------------------------------------
+                TrayNotification tray=new TrayNotification();
+                AnimationType type =AnimationType.POPUP;
+                
+                tray.setAnimationType(type);
+                tray.setTitle("Sign In Failed");
+                tray.setMessage("Rong Email and/or Password or account is deleted");
+                tray.setNotificationType(NotificationType.ERROR);
+                tray.showAndDismiss(Duration.millis(3000));
+                //---------------------------------------------------------------------
             } else {
 //                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/AdminPageHolder.fxml"));
@@ -172,23 +172,6 @@ public class LoginController implements Initializable {
         }
     }
 
-    static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.show();
-    }
-
-    public static void infoBox(String infoMessage, String headerText, String title) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText(infoMessage);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.showAndWait();
-    }
-
     @FXML
     private void signUpAction(ActionEvent event) {
 
@@ -205,11 +188,49 @@ public class LoginController implements Initializable {
                 u.setEmail(TFEmailSUP.getText());
                 u.setPassword(TFPasswordSUP.getText());
                 sp.AddUser(u);
+                
+                //set the sign up email to sign in field
+                String EM =TFEmailSUP.getText();
+                TFEmailSIN.setText(EM);
+                
+                //clear the sign up fields
+                TFFirstNameSUP.clear();
+                TFLastNameSUP.clear();
+                TFEmailSUP.clear();
+                TFPasswordSUP.clear();
+                TFConfirmPasswordSUP.clear();
+                DPDateOfBirthSUP.setValue(null);
+                
+                signInAnimAction();
+                prevSignUp();
+                
+                //----------notification---------------------
+                TrayNotification tray=new TrayNotification();
+                AnimationType type =AnimationType.POPUP;
+                
+                tray.setAnimationType(type);
+                tray.setTitle("Sign Up");
+                tray.setMessage(EM+" Sign Up successfully");
+                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.showAndDismiss(Duration.millis(3000));
+                //-------------------------------------------
         }
+        else {
+            //notification
+                TrayNotification tray=new TrayNotification();
+                AnimationType type =AnimationType.POPUP;
+                
+                tray.setAnimationType(type);
+                tray.setTitle("Sign Up");
+                tray.setMessage(" Sign Up faild check your fields");
+                tray.setNotificationType(NotificationType.ERROR);
+                tray.showAndDismiss(Duration.millis(3000));
+        }
+        
     }
 
     @FXML
-    private void signUpAnimAction(ActionEvent event) {
+    private void signUpAnimAction() {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(animatedLayer);
@@ -224,10 +245,11 @@ public class LoginController implements Initializable {
             btnSignUpAnim.setVisible(false);
             TFFirstNameSUP.requestFocus();
         }));
+         prevSignUp();
     }
 
     @FXML
-    private void signInAnimAction(ActionEvent event) {
+    private void signInAnimAction() {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(animatedLayer);
@@ -244,6 +266,8 @@ public class LoginController implements Initializable {
             TFEmailSIN.requestFocus();
 
         }));
+        
+       
     }
 
     @FXML
@@ -269,7 +293,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void prevSignUp(MouseEvent event) {
+    private void prevSignUp() {
         new ZoomOut(signUpPane2).play();
         new ZoomIn(signUpPane).play();
     }
