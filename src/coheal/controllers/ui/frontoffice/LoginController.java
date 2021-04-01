@@ -98,10 +98,8 @@ public class LoginController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     //ValidationSupport ValidationEmailSIN = new ValidationSupport();
     //ValidationSupport ValidationPasswordSIN = new ValidationSupport();
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         TFEmailSIN.requestFocus();
@@ -131,9 +129,9 @@ public class LoginController implements Initializable {
             boolean flag = su.Validate_Login(email, password);
             if (!flag) {
                 //-------------notification--------------------------------------------
-                TrayNotification tray=new TrayNotification();
-                AnimationType type =AnimationType.POPUP;
-                
+                TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+
                 tray.setAnimationType(type);
                 tray.setTitle("Sign In Failed");
                 tray.setMessage("Rong Email and/or Password or account is deleted");
@@ -141,9 +139,7 @@ public class LoginController implements Initializable {
                 tray.showAndDismiss(Duration.millis(3000));
                 //---------------------------------------------------------------------
             } else {
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/AdminPageHolder.fxml"));
-
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/HomePageHolder.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -181,52 +177,51 @@ public class LoginController implements Initializable {
         if (fName && lName && DPDateOfBirthSUP.getValue() != null && emailSU && password && (TFPasswordSUP.getText().equals(TFConfirmPasswordSUP.getText()))) {
             sp = new ServiceUser();
             User u = new User();
-                //sets
-                u.setFirstName(TFFirstNameSUP.getText());
-                u.setLastName(TFLastNameSUP.getText());
-                u.setDateOfBirth(java.sql.Date.valueOf(DPDateOfBirthSUP.getValue()));
-                u.setEmail(TFEmailSUP.getText());
-                u.setPassword(TFPasswordSUP.getText());
-                sp.AddUser(u);
-                
-                //set the sign up email to sign in field
-                String EM =TFEmailSUP.getText();
-                TFEmailSIN.setText(EM);
-                
-                //clear the sign up fields
-                TFFirstNameSUP.clear();
-                TFLastNameSUP.clear();
-                TFEmailSUP.clear();
-                TFPasswordSUP.clear();
-                TFConfirmPasswordSUP.clear();
-                DPDateOfBirthSUP.setValue(null);
-                
-                signInAnimAction();
-                prevSignUp();
-                
-                //----------notification---------------------
-                TrayNotification tray=new TrayNotification();
-                AnimationType type =AnimationType.POPUP;
-                
-                tray.setAnimationType(type);
-                tray.setTitle("Sign Up");
-                tray.setMessage(EM+" Sign Up successfully");
-                tray.setNotificationType(NotificationType.SUCCESS);
-                tray.showAndDismiss(Duration.millis(3000));
-                //-------------------------------------------
-        }
-        else {
+            //sets
+            u.setFirstName(TFFirstNameSUP.getText());
+            u.setLastName(TFLastNameSUP.getText());
+            u.setDateOfBirth(java.sql.Date.valueOf(DPDateOfBirthSUP.getValue()));
+            u.setEmail(TFEmailSUP.getText());
+            u.setPassword(TFPasswordSUP.getText());
+            sp.AddUser(u);
+
+            //set the sign up email to sign in field
+            String EM = TFEmailSUP.getText();
+            TFEmailSIN.setText(EM);
+
+            //clear the sign up fields
+            TFFirstNameSUP.clear();
+            TFLastNameSUP.clear();
+            TFEmailSUP.clear();
+            TFPasswordSUP.clear();
+            TFConfirmPasswordSUP.clear();
+            DPDateOfBirthSUP.setValue(null);
+
+            signInAnimAction();
+            prevSignUp();
+
+            //----------notification---------------------
+            TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+
+            tray.setAnimationType(type);
+            tray.setTitle("Sign Up");
+            tray.setMessage(EM + " Sign Up successfully");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(3000));
+            //-------------------------------------------
+        } else {
             //notification
-                TrayNotification tray=new TrayNotification();
-                AnimationType type =AnimationType.POPUP;
-                
-                tray.setAnimationType(type);
-                tray.setTitle("Sign Up");
-                tray.setMessage(" Sign Up faild check your fields");
-                tray.setNotificationType(NotificationType.ERROR);
-                tray.showAndDismiss(Duration.millis(3000));
+            TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+
+            tray.setAnimationType(type);
+            tray.setTitle("Sign Up");
+            tray.setMessage(" Sign Up faild check your fields");
+            tray.setNotificationType(NotificationType.ERROR);
+            tray.showAndDismiss(Duration.millis(3000));
         }
-        
+
     }
 
     @FXML
@@ -245,7 +240,7 @@ public class LoginController implements Initializable {
             btnSignUpAnim.setVisible(false);
             TFFirstNameSUP.requestFocus();
         }));
-         prevSignUp();
+        prevSignUp();
     }
 
     @FXML
@@ -266,8 +261,7 @@ public class LoginController implements Initializable {
             TFEmailSIN.requestFocus();
 
         }));
-        
-       
+
     }
 
     @FXML
