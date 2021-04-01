@@ -54,7 +54,7 @@ public class AddRecipeController implements Initializable {
     @FXML
     private Button addRecipeBT;
     File f = null;
-    Recipe r=new Recipe();
+    Recipe r = new Recipe();
     private static String projectPath = System.getProperty("user.dir").replace("/", "\\");
     RecipeService rs = new RecipeService();
     String cat = "";
@@ -116,14 +116,14 @@ public class AddRecipeController implements Initializable {
         r.setDescription(DescTF.getText());
         r.setIngredients(IngredientsTF.getText());
         r.setSteps(StepsTF.getText());
-        float c = Float.parseFloat(CaloriesTF.getText());
+        int c = Integer.parseInt(CaloriesTF.getText());
         r.setCalories(c);
         int d = Integer.parseInt(DurationTF.getText());
         r.setDuration(d);
         int p = Integer.parseInt(PersonsTF.getText());
         r.setPersons(p);
 
-       File dest = new File(projectPath + "/src/coheal/resources/images/recipes/" + f.getName());
+        File dest = new File(projectPath + "/src/coheal/resources/images/recipes/" + f.getName());
         try {
             FileUtils.copyFile(f, dest);
         } catch (IOException e) {
@@ -155,7 +155,6 @@ public class AddRecipeController implements Initializable {
 
 //    Desktop desktop = Desktop.getDesktop();
 //    FileChooser fileChooser = new FileChooser();
-
     @FXML
     private void ListCategoriesBox(ActionEvent event) {
         cat = CatBox.getValue();

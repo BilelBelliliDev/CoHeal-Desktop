@@ -9,7 +9,6 @@ import coheal.controllers.report.RateAlertUIController;
 import coheal.controllers.report.RatePopupUIController;
 import coheal.controllers.report.ReportPopupUIController;
 import coheal.entities.recipe.Recipe;
-import coheal.entities.task.TaskCategory;
 import static coheal.services.recipe.Constants.projectPath;
 import coheal.services.recipe.RecipeCategoryService;
 import coheal.services.recipe.RecipeService;
@@ -29,8 +28,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -136,7 +133,8 @@ public class CreateRecipeUIController implements Initializable {
         RecipeCategoryService rcs = new RecipeCategoryService();
         for (int i = 0; i < rcs.Afficher_RecipeCategory().size(); i++) {
             catBox.getItems().add(rcs.Afficher_RecipeCategory().get(i).getName());
-    }}
+        }
+    }
 
     public void init() {
         System.out.println(l);
@@ -219,7 +217,7 @@ public class CreateRecipeUIController implements Initializable {
         R.setDescription(DescTF.getText());
         R.setIngredients(IngredientsTF.getText());
         R.setSteps(StepsTF.getText());
-        float c = Float.parseFloat(CaloriesTF.getText());
+        int c = Integer.parseInt(CaloriesTF.getText());
         R.setCalories(c);
         int d = Integer.parseInt(DurationTF.getText());
         R.setDuration(d);
@@ -258,7 +256,7 @@ public class CreateRecipeUIController implements Initializable {
             R.setDescription(DescTF.getText());
             R.setIngredients(IngredientsTF.getText());
             R.setSteps(StepsTF.getText());
-            float c = Float.parseFloat(CaloriesTF.getText());
+            int c = Integer.parseInt(CaloriesTF.getText());
             R.setCalories(c);
             int d = Integer.parseInt(DurationTF.getText());
             R.setDuration(d);

@@ -7,12 +7,23 @@ package coheal.controllers.ui.frontoffice.recipe;
 
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
 import coheal.entities.recipe.Recipe;
+import static coheal.services.recipe.Constants.projectPath;
 import coheal.services.recipe.RecipeService;
 import coheal.services.user.UserSession;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.FileNotFoundException;
@@ -72,6 +83,8 @@ public class RecipeDetailsController implements Initializable {
     double xOffset, yOffset;
     @FXML
     private FontAwesomeIconView printBtn;
+    @FXML
+    private Label Imgurl;
 
     /**
      * Initializes the controller class.
@@ -95,6 +108,8 @@ public class RecipeDetailsController implements Initializable {
             CaloriesLabel.setText(String.valueOf(r.getCalories()));
             PersonsLabel.setText(String.valueOf(r.getPersons()));
             DurationLabel.setText(String.valueOf(r.getDuration()));
+            Imgurl.setText(r.getImgUrl());
+
         }
     }
 
@@ -157,28 +172,73 @@ public class RecipeDetailsController implements Initializable {
 
         Document document = new Document();
         try {
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("D:/MyRecipe.pdf"));
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("D:/" + TitleLabel.getText() + ".pdf"));
             document.open();
 
-            Paragraph p1 = new Paragraph();
-            p1.add("\n" + TitleLabel.getText() + "\n\n");
+            //title
+            Font orange = new Font(FontFamily.HELVETICA, 30, Font.BOLDITALIC, BaseColor.ORANGE);
+            Chunk ch1 = new Chunk("\n" + TitleLabel.getText() + "\n\n", orange);
+            Paragraph p1 = new Paragraph(ch1);
             p1.setAlignment(Element.ALIGN_CENTER);
             document.add(p1);
 
-            Paragraph p2 = new Paragraph();
-            p2.add(DescLabel.getText() + "\n\n\n\n");
+            //Description  
+            Font desc = new Font(FontFamily.HELVETICA, 20, Font.NORMAL, BaseColor.BLACK);
+            Chunk ch2 = new Chunk(DescLabel.getText() + "\n\n", desc);
+            Paragraph p2 = new Paragraph(ch2);
             p2.setAlignment(Element.ALIGN_CENTER);
             document.add(p2);
 
-            Paragraph p3 = new Paragraph();
-            p3.add("Ingredients: \n\n" + IngredientsLabel.getText() + "\n\n\n\n");
+            //Details
+            String pathc = projectPath + "/src/coheal/resources/images/recipes/details.png";
+            Image calImg = Image.getInstance(pathc);
+            calImg.scaleAbsolute(471, 78);
+            calImg.setAlignment(Element.ALIGN_CENTER);
+            document.add(calImg);
+            
+            Paragraph c = new Paragraph();
+            c.add("                                         "+CaloriesLabel.getText()+"                                 " +DurationLabel.getText()+"                                      " +PersonsLabel.getText()+ "\n\n\n\n");
+            c.setAlignment(Element.ALIGN_LEFT);
+            document.add(c);
+
+            //image
+            String path = projectPath + "/src/coheal/resources/images/recipes/" + Imgurl.getText();
+            Image image = Image.getInstance(path);
+            image.scaleAbsolute(300, 188);
+            image.setAlignment(Element.ALIGN_CENTER);
+            image.setBorderWidth(3);
+            image.setBorderWidthBottom(3);
+            image.setBorderWidthRight(3);
+            image.setBorderWidthTop(3);
+            image.setBorderWidthLeft(3);
+            image.setBorderColor(BaseColor.BLACK);
+            document.add(image);
+
+            //labels Font
+            Font titre = new Font(FontFamily.HELVETICA, 25, Font.BOLDITALIC, BaseColor.RED);
+
+            Chunk ch3 = new Chunk("\n\n Ingredients: \n\n", titre);
+            Paragraph p3 = new Paragraph(ch3);
             p3.setAlignment(Element.ALIGN_LEFT);
             document.add(p3);
 
-            Paragraph p4 = new Paragraph();
-            p4.add("Steps: \n\n" + StepsLabel.getText() + "\n\n\n\n");
+            //text Font
+            Font text = new Font(FontFamily.HELVETICA, 18, Font.NORMAL, BaseColor.BLACK);
+
+            Chunk ch4 = new Chunk(IngredientsLabel.getText() + "\n\n\n", text);
+            Paragraph p4 = new Paragraph(ch4);
             p4.setAlignment(Element.ALIGN_LEFT);
             document.add(p4);
+
+            Chunk ch5 = new Chunk("Steps: \n\n", titre);
+            Paragraph p5 = new Paragraph(ch5);
+            p3.setAlignment(Element.ALIGN_LEFT);
+            document.add(p5);
+
+            Chunk ch6 = new Chunk(StepsLabel.getText() + "\n\n\n\n", text);
+            Paragraph p6 = new Paragraph(ch6);
+            p6.setAlignment(Element.ALIGN_LEFT);
+            document.add(p6);
 
             document.close();
             writer.close();
@@ -186,7 +246,7 @@ public class RecipeDetailsController implements Initializable {
             System.out.println(e.getMessage());
         }
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                "This recipe got transported to D:/ in a PDF file as MyRecipe.pdf ");
+                "This recipe got transported to D:/ in a PDF file as       « "+TitleLabel.getText()+" »");
 
     }
 

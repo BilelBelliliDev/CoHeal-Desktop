@@ -104,7 +104,7 @@ public class RecipePageController implements Initializable {
         ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
                 new PieChart.Data("Categories", rcs.Afficher_RecipeCategory().size()),
                 new PieChart.Data("Categories with recipes", rcs.AfficherRecipesByIdCatg(rc.getName()).size()));
-        pieChart.setTitle("Recipes");
+        pieChart.setTitle("Categories");
         pieChart.setData(valueList);
         pieChart.getData().forEach(data -> {
             String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
