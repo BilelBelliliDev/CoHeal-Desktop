@@ -6,6 +6,7 @@
 package coheal.iservices.recipe;
 
 import coheal.entities.recipe.Recipe;
+import coheal.entities.user.User;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.ObservableList;
@@ -33,5 +34,9 @@ public interface IRecipeService {
     public ObservableList<Recipe> Tri() throws SQLException;
 
     public Recipe getRecipe(int idR);
+
+    public int CountTotalRecipes();
+
+    public User getUserById(int idU);
 
 }
