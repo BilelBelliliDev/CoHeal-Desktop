@@ -43,12 +43,8 @@ public class FilterItemController implements Initializable {
         JFXCheckBox recipesCheckBox = (JFXCheckBox) p.getChildren().get(5);
         JFXCheckBox openCheckBox = (JFXCheckBox) p.getChildren().get(8);
         JFXCheckBox closedCheckBox = (JFXCheckBox) p.getChildren().get(9);
-        JFXCheckBox allCheckBox = (JFXCheckBox) p.getChildren().get(10);
         
         switch (filterName.getText()) {
-            case "All":
-                allCheckBox.setSelected(false);
-                break;
             case "Tasks":
                 tasksCheckBox.setSelected(false);
                 break;
