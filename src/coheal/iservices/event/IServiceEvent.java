@@ -20,4 +20,7 @@ public interface IServiceEvent  {
     public List<Event>AfficherEvent()throws SQLException;
     public void updateEvent(int id, Event e);
     public void deleteEvent(int id);
+    public Event getEvent(int id);
+    public List<Event> ListEventByIdUser(int idU);
+   
 }

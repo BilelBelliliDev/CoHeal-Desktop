@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="1063.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.event.AddEventFController">
+   <children>
+      <Pane layoutX="87.0" layoutY="36.0" prefHeight="503.0" prefWidth="859.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;" stylesheets="@../../../../resources/css/textfields.css">
+         <children>
+            <AnchorPane layoutX="71.0" layoutY="400.0" prefHeight="60.0" prefWidth="247.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em;">
+               <children>
+                  <JFXTextField fx:id="price" layoutX="146.0" layoutY="11.0" prefHeight="38.0" prefWidth="87.0" promptText="Price" styleClass="text" />
+                  <JFXRadioButton fx:id="paid" layoutX="76.0" layoutY="21.0" text="Paid">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="type1" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton fx:id="free" layoutX="14.0" layoutY="21.0" selected="true" text="Free" toggleGroup="$type1" />
+               </children>
+            </AnchorPane>
+            <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="794.0" layoutY="26.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+            <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="815.0" layoutY="25.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
+            <JFXTextField fx:id="Titre" layoutX="399.0" layoutY="46.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" styleClass="text" />
+            <JFXTextArea fx:id="Description" layoutX="399.0" layoutY="124.0" prefHeight="183.0" prefWidth="392.0" promptText="Description" styleClass="text" wrapText="true" />
+            <JFXComboBox fx:id="comboEventCatg" layoutX="71.0" layoutY="319.0" onAction="#listCategoryCombo" prefHeight="39.0" prefWidth="277.0" promptText="Category" />
+            <AnchorPane layoutX="71.0" layoutY="49.0" onMouseClicked="#addImage" prefHeight="236.0" prefWidth="277.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
+               <children>
+                  <Label layoutX="69.0" layoutY="134.0" style="-fx-font-size: 26px; -fx-text-fill: grey;" text="Add photo" />
+                  <FontAwesomeIconView glyphName="CLOUD_UPLOAD" layoutX="112.0" layoutY="125.0" size="50" style="-fx-fill: grey;" />
+                  <ImageView fx:id="image" fitHeight="211.0" fitWidth="255.0" layoutX="12.0" layoutY="13.0" pickOnBounds="true" />
+               </children>
+            </AnchorPane>
+            <Circle fill="DODGERBLUE" layoutX="854.0" layoutY="500.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="843.0" layoutY="512.0" onMouseClicked="#addEventAction" size="30" style="-fx-cursor: hand;" />
+            <Pane layoutX="36.0" layoutY="-21.0" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="21.0" layoutY="5.0" style="-fx-font-size: 20px;" text="New Event" textFill="WHITE" />
+               </children>
+            </Pane>
+            <JFXDatePicker fx:id="startDate" defaultColor="#0b89db" layoutX="409.0" layoutY="345.0" prefHeight="39.0" prefWidth="168.0" promptText="Start Date" />
+            <JFXDatePicker fx:id="endDate" defaultColor="#0b89db" layoutX="626.0" layoutY="345.0" prefHeight="39.0" prefWidth="168.0" promptText="End Date" />
+            <JFXTextField fx:id="location" layoutX="399.0" layoutY="415.0" prefHeight="38.0" prefWidth="288.0" promptText="Location" styleClass="text" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

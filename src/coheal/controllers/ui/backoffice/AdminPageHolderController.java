@@ -114,11 +114,11 @@ public class AdminPageHolderController implements Initializable {
         slide.setToY(276);
         slide.play();
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
-//        try {
-//            pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/book/BookPage.fxml")));
-//        } catch (IOException ex) {
-//            Logger.getLogger(AdminPageHolderController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/backoffice/event/Event.fxml")));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML

@@ -7,6 +7,7 @@ package coheal.controllers.ui.backoffice;
 
 import animatefx.animation.ZoomIn;
 import coheal.services.book.ServiceBook;
+import coheal.services.event.ServiceEvent;
 import coheal.services.recipe.RecipeService;
 import coheal.services.task.ServicePaidTask;
 import coheal.services.task.ServiceTask;
@@ -36,6 +37,11 @@ public class DashboardPageController implements Initializable {
     ServicePaidTask spt = new ServicePaidTask();
     ServiceTask st = new ServiceTask();
     ServiceBook sb = new ServiceBook();
+    ServiceEvent se =new ServiceEvent();
+        @FXML
+        private Label totalebooks;
+    @FXML
+    private Label events;
     @FXML
     private Label totalebooks;
     @FXML
@@ -50,6 +56,7 @@ public class DashboardPageController implements Initializable {
         new ZoomIn(dashboardPane).play();
         nbTasks.setText(String.valueOf(spt.getCountPaidTask() + st.getCountTask()));
         totalebooks.setText(String.valueOf(sb.getCountBook()));
+        events.setText(String.valueOf(se.AfficherEvent().size())); 
         totalRecipes.setText(String.valueOf(rs.CountTotalRecipes()));
     }
 

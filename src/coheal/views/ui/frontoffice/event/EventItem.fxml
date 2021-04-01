@@ -29,7 +29,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <ImageView fx:id="eventImg" fitHeight="112.0" fitWidth="105.0" layoutX="108.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="eventImg" fitHeight="105.0" fitWidth="105.0" layoutX="108.0" pickOnBounds="true" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../../../resources/images/events/hiking-activities.jpg" />
          </image>
@@ -59,7 +59,7 @@
             <Insets left="20.0" top="5.0" />
          </padding>
       </VBox>
-      <JFXButton alignment="CENTER" layoutX="411.0" layoutY="53.0" prefHeight="36.0" prefWidth="58.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em; -fx-font-size: 14;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View" textFill="#fffefb" AnchorPane.rightAnchor="14.0">
+      <JFXButton alignment="CENTER" layoutX="411.0" layoutY="53.0" onAction="#showTaskDetailsAction" prefHeight="36.0" prefWidth="58.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em; -fx-font-size: 14;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View" textFill="#fffefb" AnchorPane.rightAnchor="14.0">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>

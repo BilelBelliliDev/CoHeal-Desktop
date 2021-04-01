@@ -6,6 +6,7 @@
 package coheal.entities.event;
 
 import java.sql.Timestamp;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -19,6 +20,7 @@ public class EventCategory {
     private Timestamp deletedAt;
     private Timestamp created_At;
     private Timestamp modified_at;
+    private ImageView img;
 
     public int getCatId() {
         return catId;
@@ -74,6 +76,19 @@ public class EventCategory {
 
     public void setModified_at(Timestamp modified_at) {
         this.modified_at = modified_at;
+    }
+
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
     
     
