@@ -15,8 +15,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javafx.animation.TranslateTransition;
@@ -75,6 +73,8 @@ public class HomePageHolderController implements Initializable {
     @FXML
     private GridPane taskGrid;
     private ServiceUserTask sut = new ServiceUserTask();
+    @FXML
+    private AnchorPane reportsSideBar;
 
     /**
      * Initializes the controller class.
@@ -88,6 +88,7 @@ public class HomePageHolderController implements Initializable {
         recipeSideBar.getStyleClass().add("unselectedMenu");
         bookSideBar.getStyleClass().add("unselectedMenu");
         profileSideBar.getStyleClass().add("unselectedMenu");
+        reportsSideBar.getStyleClass().add("unselectedMenu");
         userName.setText(UserSession.getFirst_name() + " " + UserSession.getLast_name());
         userName1.setText(UserSession.getFirst_name() + " " + UserSession.getLast_name());
         userEmail.setText(UserSession.getEmail());
@@ -134,7 +135,7 @@ public class HomePageHolderController implements Initializable {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(slider);
-        slide.setToY(94);
+        slide.setToY(80);
         slide.play();
         taskMenu();
     }
@@ -144,7 +145,7 @@ public class HomePageHolderController implements Initializable {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(slider);
-        slide.setToY(167);
+        slide.setToY(144);
         slide.play();
         bookMenu();
     }
@@ -154,7 +155,7 @@ public class HomePageHolderController implements Initializable {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(slider);
-        slide.setToY(241);
+        slide.setToY(209);
         slide.play();
         eventMenu();
     }
@@ -164,7 +165,7 @@ public class HomePageHolderController implements Initializable {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(slider);
-        slide.setToY(314);
+        slide.setToY(273);
         slide.play();
         sessionMenu();
     }
@@ -174,9 +175,19 @@ public class HomePageHolderController implements Initializable {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(slider);
-        slide.setToY(386);
+        slide.setToY(337);
         slide.play();
         recipeMenu();
+    }
+    
+    @FXML
+    private void reportPageAction(MouseEvent event) throws IOException {
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(slider);
+        slide.setToY(403);
+        slide.play();
+        reportMenu();
     }
 
     @FXML
@@ -190,6 +201,10 @@ public class HomePageHolderController implements Initializable {
     }
 
     public void bookMenu() throws IOException {
+        reportsSideBar.getStyleClass().removeAll(reportsSideBar.getStyleClass());
+        reportsSideBar.getStyleClass().add("menu");
+        reportsSideBar.getStyleClass().add("unselectedMenu");
+        
         taskSideBar.getStyleClass().removeAll(taskSideBar.getStyleClass());
         taskSideBar.getStyleClass().add("menu");
         taskSideBar.getStyleClass().add("unselectedMenu");
@@ -223,6 +238,10 @@ public class HomePageHolderController implements Initializable {
     }
 
     public void taskMenu() throws IOException {
+        reportsSideBar.getStyleClass().removeAll(reportsSideBar.getStyleClass());
+        reportsSideBar.getStyleClass().add("menu");
+        reportsSideBar.getStyleClass().add("unselectedMenu");
+        
         taskSideBar.getStyleClass().removeAll(taskSideBar.getStyleClass());
         taskSideBar.getStyleClass().add("menu");
         taskSideBar.getStyleClass().add("selectedMenu");
@@ -257,6 +276,10 @@ public class HomePageHolderController implements Initializable {
     }
 
     public void eventMenu() throws IOException {
+        reportsSideBar.getStyleClass().removeAll(reportsSideBar.getStyleClass());
+        reportsSideBar.getStyleClass().add("menu");
+        reportsSideBar.getStyleClass().add("unselectedMenu");
+        
         taskSideBar.getStyleClass().removeAll(taskSideBar.getStyleClass());
         taskSideBar.getStyleClass().add("menu");
         taskSideBar.getStyleClass().add("unselectedMenu");
@@ -290,6 +313,10 @@ public class HomePageHolderController implements Initializable {
     }
 
     public void sessionMenu() throws IOException {
+        reportsSideBar.getStyleClass().removeAll(reportsSideBar.getStyleClass());
+        reportsSideBar.getStyleClass().add("menu");
+        reportsSideBar.getStyleClass().add("unselectedMenu");
+        
         taskSideBar.getStyleClass().removeAll(taskSideBar.getStyleClass());
         taskSideBar.getStyleClass().add("menu");
         taskSideBar.getStyleClass().add("unselectedMenu");
@@ -323,6 +350,10 @@ public class HomePageHolderController implements Initializable {
     }
 
     public void recipeMenu() throws IOException {
+        reportsSideBar.getStyleClass().removeAll(reportsSideBar.getStyleClass());
+        reportsSideBar.getStyleClass().add("menu");
+        reportsSideBar.getStyleClass().add("unselectedMenu");
+        
         taskSideBar.getStyleClass().removeAll(taskSideBar.getStyleClass());
         taskSideBar.getStyleClass().add("menu");
         taskSideBar.getStyleClass().add("unselectedMenu");
@@ -355,7 +386,11 @@ public class HomePageHolderController implements Initializable {
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipePage.fxml")));
     }
 
-    public void profileMenu() throws IOException {
+    public void profileMenu() throws IOException {       
+        reportsSideBar.getStyleClass().removeAll(reportsSideBar.getStyleClass());
+        reportsSideBar.getStyleClass().add("menu");
+        reportsSideBar.getStyleClass().add("unselectedMenu");
+        
         taskSideBar.getStyleClass().removeAll(taskSideBar.getStyleClass());
         taskSideBar.getStyleClass().add("menu");
         taskSideBar.getStyleClass().add("unselectedMenu");
@@ -416,9 +451,50 @@ public class HomePageHolderController implements Initializable {
         homeSideBar.getStyleClass().removeAll(homeSideBar.getStyleClass());
         homeSideBar.getStyleClass().add("menu");
         homeSideBar.getStyleClass().add("selectedMenu");
+        
+        reportsSideBar.getStyleClass().removeAll(reportsSideBar.getStyleClass());
+        reportsSideBar.getStyleClass().add("menu");
+        reportsSideBar.getStyleClass().add("unselectedMenu");
 
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/HomePage.fxml")));
+    }
+    
+    public void reportMenu() throws IOException {
+        taskSideBar.getStyleClass().removeAll(taskSideBar.getStyleClass());
+        taskSideBar.getStyleClass().add("menu");
+        taskSideBar.getStyleClass().add("unselectedMenu");
+
+        profileSideBar.getStyleClass().removeAll(profileSideBar.getStyleClass());
+        profileSideBar.getStyleClass().add("menu");
+        profileSideBar.getStyleClass().add("unselectedMenu");
+
+        eventSideBar.getStyleClass().removeAll(eventSideBar.getStyleClass());
+        eventSideBar.getStyleClass().add("menu");
+        eventSideBar.getStyleClass().add("unselectedMenu");
+
+        sessionSideBar.getStyleClass().removeAll(sessionSideBar.getStyleClass());
+        sessionSideBar.getStyleClass().add("menu");
+        sessionSideBar.getStyleClass().add("unselectedMenu");
+
+        recipeSideBar.getStyleClass().removeAll(recipeSideBar.getStyleClass());
+        recipeSideBar.getStyleClass().add("menu");
+        recipeSideBar.getStyleClass().add("unselectedMenu");
+
+        bookSideBar.getStyleClass().removeAll(bookSideBar.getStyleClass());
+        bookSideBar.getStyleClass().add("menu");
+        bookSideBar.getStyleClass().add("unselectedMenu");
+
+        homeSideBar.getStyleClass().removeAll(homeSideBar.getStyleClass());
+        homeSideBar.getStyleClass().add("menu");
+        homeSideBar.getStyleClass().add("unselectedMenu");
+        
+        reportsSideBar.getStyleClass().removeAll(reportsSideBar.getStyleClass());
+        reportsSideBar.getStyleClass().add("menu");
+        reportsSideBar.getStyleClass().add("selectedMenu");
+
+        pageHolder.getChildren().removeAll(pageHolder.getChildren());
+        pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/report/ReportPage.fxml")));
     }
 
     @FXML
@@ -599,5 +675,7 @@ public class HomePageHolderController implements Initializable {
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/task/OngoingTasks.fxml")));
 
     }
+
+    
 
 }

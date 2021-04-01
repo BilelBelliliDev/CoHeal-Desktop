@@ -9,7 +9,7 @@
    <children>
       <AnchorPane layoutX="21.0" layoutY="-20.0" prefHeight="45.0" prefWidth="51.0" style="-fx-background-color: #B55650; -fx-background-radius: 1em;">
          <children>
-            <FontAwesomeIconView fx:id="icon" fill="WHITE" glyphName="BOOK" layoutX="16.0" layoutY="29.0" size="20" />
+            <FontAwesomeIconView fx:id="icon" fill="WHITE" glyphName="BOOK" layoutX="15.0" layoutY="30.0" size="23" />
          </children>
       </AnchorPane>
       <Label fx:id="title" alignment="CENTER" layoutX="71.0" layoutY="4.0" prefHeight="29.0" prefWidth="199.0" style="-fx-font-size: 18px;" text="&quot;Test Book&quot;" textFill="#b55650" wrapText="true" />
