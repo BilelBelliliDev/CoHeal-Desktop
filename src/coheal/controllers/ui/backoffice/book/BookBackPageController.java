@@ -65,18 +65,10 @@ public class BookBackPageController implements Initializable {
         private TableColumn<Book, String> auteurlivre;
         @FXML
         private TableColumn<Book, String> desclivre;
-        @FXML
-        private TableColumn<Book, Integer> livId;
+       
         @FXML
         private TableColumn<Book, ImageView> imageView;
-        @FXML
-        private TextField selectimage;
-        @FXML
-        private TextField selecttitre;
-        @FXML
-        private TextField selectauteur;
-        @FXML
-        private TextField selectdescription;
+        
         @FXML
         private PieChart stattt;
         @FXML
@@ -94,7 +86,7 @@ public class BookBackPageController implements Initializable {
                         titrelivre.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
                         auteurlivre.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
                         desclivre.setCellValueFactory(new PropertyValueFactory<Book, String>("description"));
-                        livId.setCellValueFactory(new PropertyValueFactory<Book, Integer>("bookId"));
+                       
 
                         tabviewsbook.setItems(sb.AfficherBook2());
                 } catch (SQLException ex) {
@@ -105,12 +97,7 @@ public class BookBackPageController implements Initializable {
                         public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
                                 //Check whether item is selected and set value of selected item to Label
                                 if (tabviewsbook.getSelectionModel().getSelectedItem() != null) {
-                                        Book selectedBook = tabviewsbook.getSelectionModel().getSelectedItem();
-                                        selecttitre.setText(selectedBook.getTitle());
-                                        selectdescription.setText(selectedBook.getDescription());
-                                        selectauteur.setText(selectedBook.getAuthor());
-                                        selectimage.setText(selectedBook.getImgUrl());
-
+                                        Book selectedBook = tabviewsbook.getSelectionModel().getSelectedItem();                                       
                                         selectedId = selectedBook.getBookId();
                                         canModify = true;
 
@@ -153,52 +140,18 @@ public class BookBackPageController implements Initializable {
                         titrelivre.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
                         auteurlivre.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
                         desclivre.setCellValueFactory(new PropertyValueFactory<Book, String>("description"));
-                        livId.setCellValueFactory(new PropertyValueFactory<Book, Integer>("bookId"));
-                        int t = Integer.valueOf(recherchetf.getText());
-                        tabviewsbook.setItems(sb.Rechercher(t));
+                       
+                        String t = recherchetf.getText();
+                        tabviewsbook.setItems(sb.RechercherS2(t));
                 } catch (SQLException ex) {
                         Logger.getLogger(BookBackPageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
         }
 
-        @FXML
-        private void supprimeract(ActionEvent event) {
-                ServiceBook sb = new ServiceBook();
-                System.out.println(selectedId);
-                if (canModify) {
-                        sb.supprimerBook(selectedId);
-                        
-                        try {
-                                tabviewsbook.setItems(sb.AfficherBook2());
-                        } catch (SQLException ex) {
-                                Logger.getLogger(BookBackPageController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                } else {
-                        System.out.println("can't delete please select an item form the table");
-                }
-        }
+       
 
-        @FXML
-        private void modifieract(ActionEvent event) {
-                if (canModify) {
-                        Book b = new Book();
-                        ServiceBook sb = new ServiceBook();
-                        b.setImgUrl(selectimage.getText());
-                        b.setTitle(selecttitre.getText());
-                        b.setAuthor(selectauteur.getText());
-                        b.setDescription(selectdescription.getText());
-                        sb.modifierBook(selectedId, b);
-                        
-                        try {
-                                tabviewsbook.setItems(sb.AfficherBook2());
-                        } catch (SQLException ex) {
-                                Logger.getLogger(BookBackPageController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                } else {
-                        System.out.println("can't modify please select an item form the table");
-                }
-        }
+     
 
         private void stat() {
                 ServiceBook sb = new ServiceBook();
@@ -247,7 +200,7 @@ public class BookBackPageController implements Initializable {
                         titrelivre.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
                         auteurlivre.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
                         desclivre.setCellValueFactory(new PropertyValueFactory<Book, String>("description"));
-                        livId.setCellValueFactory(new PropertyValueFactory<Book, Integer>("bookId"));
+                        
                         tabviewsbook.setItems(sb.AfficherBook2());
                 } catch (SQLException ex) {
                         Logger.getLogger(BookBackPageController.class.getName()).log(Level.SEVERE, null, ex);
@@ -258,10 +211,7 @@ public class BookBackPageController implements Initializable {
                                 //Check whether item is selected and set value of selected item to Label
                                 if (tabviewsbook.getSelectionModel().getSelectedItem() != null) {
                                         Book selectedBook = tabviewsbook.getSelectionModel().getSelectedItem();
-                                        selecttitre.setText(selectedBook.getTitle());
-                                        selectdescription.setText(selectedBook.getDescription());
-                                        selectauteur.setText(selectedBook.getAuthor());
-                                        selectimage.setText(selectedBook.getImgUrl());
+                                        
 
                                         selectedId = selectedBook.getBookId();
                                         canModify = true;
@@ -296,6 +246,25 @@ public class BookBackPageController implements Initializable {
                         stage.setOpacity(1.0f);
                 });
 
+        }
+
+        
+
+        @FXML
+        private void SUPP(MouseEvent event) {
+                 ServiceBook sb = new ServiceBook();
+                System.out.println(selectedId);
+                if (canModify) {
+                        sb.supprimerBook(selectedId);
+                        
+                        try {
+                                tabviewsbook.setItems(sb.AfficherBook2());
+                        } catch (SQLException ex) {
+                                Logger.getLogger(BookBackPageController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                } else {
+                        System.out.println("can't delete please select an item form the table");
+                }
         }
        
        
