@@ -271,6 +271,7 @@ public class RecipeService implements IRecipeService {
         return r;
     }
 
+    @Override
     public int CountTotalRecipes() {
 
         int nb = 0;

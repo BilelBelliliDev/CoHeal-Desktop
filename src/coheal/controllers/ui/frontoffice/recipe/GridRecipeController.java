@@ -43,15 +43,18 @@ public class GridRecipeController implements Initializable {
     }
 
     public void setData(int index, String searchWord, String comboValue) {
+       
         gridSize = recipeGrid.getRowConstraints().size() * recipeGrid.getColumnConstraints().size();
         columnCount = recipeGrid.getColumnConstraints().size() - 1;
         currentPage = index;
+        
         try {
             int y = 0;
             int x = 0;
             List<Recipe> recipes = null;
 
             if ("Yours".equals(comboValue)) {
+               
                 if (UserSession.getRole().equals("nutritionist")) {
                     try {
                         recipeGrid.getChildren().clear();
@@ -79,6 +82,7 @@ public class GridRecipeController implements Initializable {
                     Logger.getLogger(GridRecipeController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } 
+            
             //pagination
             if (recipes != null) {
                 pageCount = recipes.size() / gridSize;
