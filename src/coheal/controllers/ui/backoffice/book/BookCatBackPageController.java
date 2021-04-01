@@ -62,14 +62,12 @@ public class BookCatBackPageController implements Initializable {
         private JFXTextField recherchetf;
         @FXML
         private TableView<BookCategory> tabviewcat;
-        @FXML
-        private TableColumn<BookCategory, Integer> colid;
+        
         @FXML
         private TableColumn<BookCategory, String> nomcol;
         @FXML
         private TableColumn<BookCategory, ImageView> imagecol;
-        @FXML
-        private TextField selectednomcat;
+       
 
         private int selectedId;
         private boolean canModify;
@@ -92,7 +90,7 @@ public class BookCatBackPageController implements Initializable {
                 }
                 try {
                         ServiceBookCategory sbc = new ServiceBookCategory();
-                        colid.setCellValueFactory(new PropertyValueFactory<BookCategory, Integer>("catId"));
+                        
                         nomcol.setCellValueFactory(new PropertyValueFactory<BookCategory, String>("name"));
                         imagecol.setCellValueFactory(new PropertyValueFactory<BookCategory, ImageView>("img"));
 
@@ -106,7 +104,7 @@ public class BookCatBackPageController implements Initializable {
                                 //Check whether item is selected and set value of selected item to Label
                                 if (tabviewcat.getSelectionModel().getSelectedItem() != null) {
                                         BookCategory selectedBook = tabviewcat.getSelectionModel().getSelectedItem();
-                                        selectednomcat.setText(selectedBook.getName());
+                                        
 
                                         selectedId = selectedBook.getCatId();
                                         canModify = true;
@@ -148,7 +146,7 @@ public class BookCatBackPageController implements Initializable {
         private void searchaction(MouseEvent event) {
                 try {
                         ServiceBookCategory sbc = new ServiceBookCategory();
-                        colid.setCellValueFactory(new PropertyValueFactory<BookCategory, Integer>("catId"));
+                       
                         nomcol.setCellValueFactory(new PropertyValueFactory<BookCategory, String>("name"));
                         imagecol.setCellValueFactory(new PropertyValueFactory<BookCategory, ImageView>("img"));
                         int t = Integer.valueOf(recherchetf.getText());
@@ -163,7 +161,7 @@ public class BookCatBackPageController implements Initializable {
         private void refreshact(MouseEvent event) {
                 try {
                         ServiceBookCategory sbc = new ServiceBookCategory();
-                        colid.setCellValueFactory(new PropertyValueFactory<BookCategory, Integer>("catId"));
+                        
                         nomcol.setCellValueFactory(new PropertyValueFactory<BookCategory, String>("name"));
                         imagecol.setCellValueFactory(new PropertyValueFactory<BookCategory, ImageView>("img"));
 
@@ -177,7 +175,7 @@ public class BookCatBackPageController implements Initializable {
                                 //Check whether item is selected and set value of selected item to Label
                                 if (tabviewcat.getSelectionModel().getSelectedItem() != null) {
                                         BookCategory selectedBook = tabviewcat.getSelectionModel().getSelectedItem();
-                                        selectednomcat.setText(selectedBook.getName());
+                                        
                                         selectedId = selectedBook.getCatId();
                                         canModify = true;
                                         System.out.println(selectedId);
@@ -189,7 +187,24 @@ public class BookCatBackPageController implements Initializable {
         }
 
         @FXML
-        private void suppcat(ActionEvent event) {
+        private void closeaction(MouseEvent event) {
+                Stage stage = new Stage();
+                stage = (Stage) bars.getScene().getWindow();
+                stage.close();
+        }
+        public void statbar() throws SQLException{
+                 UIService stc=new UIService();
+                 
+                 ServiceBookCategory sbc = new ServiceBookCategory();
+                XYChart.Series set2 = new XYChart.Series<>();
+                for(int i=0;i<3;i++){
+                set2.getData().add(new XYChart.Data(sbc.AfficherBookCat().get(i).getName(),stc.ListerBooksByIdCatg(sbc.AfficherBookCat().get(i).getName()).size()));
+                }
+                bars.getData().addAll(set2);
+        }
+
+        @FXML
+        private void supp(MouseEvent event) {
                 ServiceBookCategory sbc = new ServiceBookCategory();
                 System.out.println(selectedId);
                
@@ -204,41 +219,6 @@ public class BookCatBackPageController implements Initializable {
                 } else {
                         System.out.println("can't delete please select an item form the table");
                 }
-        }
-
-        @FXML
-        private void modifiercat(ActionEvent event) {
-                if (canModify) {
-                        BookCategory bc = new BookCategory();
-                        ServiceBookCategory sbc = new ServiceBookCategory();
-                        bc.setName(selectednomcat.getText());
-                        sbc.modifierBookCat(selectedId, bc);
-                     
-                        try {
-                                tabviewcat.setItems(sbc.AfficherBookCat());
-                        } catch (SQLException ex) {
-                                Logger.getLogger(BookCatBackPageController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                } else {
-                        System.out.println("can't modify please select an item form the table");
-                }
-        }
-
-        @FXML
-        private void closeaction(MouseEvent event) {
-                Stage stage = new Stage();
-                stage = (Stage) selectednomcat.getScene().getWindow();
-                stage.close();
-        }
-        public void statbar() throws SQLException{
-                 UIService stc=new UIService();
-                 
-                 ServiceBookCategory sbc = new ServiceBookCategory();
-                XYChart.Series set2 = new XYChart.Series<>();
-                for(int i=0;i<3;i++){
-                set2.getData().add(new XYChart.Data(sbc.AfficherBookCat().get(i).getName(),stc.ListerBooksByIdCatg(sbc.AfficherBookCat().get(i).getName()).size()));
-                }
-                bars.getData().addAll(set2);
         }
          
 
