@@ -15,7 +15,9 @@ import java.util.List;
  */
 public interface IServiceCategory {
         public void AddEventCategory(EventCategory c);
-    public List<EventCategory>AfficherCategoryEvent();
+    public List<EventCategory> AfficherCategoryEvent();
     public void updateCategoryEvent(int id, EventCategory c);
     public void deleteCategoryEvent(int id);
+    public EventCategory getEventByName(String name);
+    public List<EventCategory> searchCategory(String name);
 }

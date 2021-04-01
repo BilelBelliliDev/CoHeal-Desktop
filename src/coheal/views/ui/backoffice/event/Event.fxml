@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="moderationPane" prefHeight="720.0" prefWidth="1084.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.event.EventController">
+   <children>
+      <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="1059.0" layoutY="24.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
+      <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="1035.0" layoutY="25.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+      <TableView fx:id="eventTable" layoutX="76.0" layoutY="312.0" prefHeight="341.0" prefWidth="974.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="60.0">
+         <columns>
+            <TableColumn fx:id="titleCol" prefWidth="116.33332824707031" text="Title" />
+            <TableColumn fx:id="descriptionCol" minWidth="0.0" prefWidth="202.0" text="Description" />
+            <TableColumn fx:id="startDayCol" prefWidth="85.33334350585938" text="start date" />
+            <TableColumn fx:id="endDateCol" prefWidth="100.33331298828125" text="end date" />
+            <TableColumn fx:id="locationCol" minWidth="0.0" prefWidth="102.66668701171875" text="location" />
+            <TableColumn fx:id="priceCol" minWidth="0.0" prefWidth="102.66668701171875" text="price" />
+            <TableColumn fx:id="categoryCol" minWidth="0.0" prefWidth="102.66668701171875" text="category" />
+         </columns>
+      </TableView>
+      <JFXButton layoutX="860.0" layoutY="284.0" onAction="#CategoryAction" prefHeight="35.0" prefWidth="163.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Categories" textFill="#fffefb">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <PieChart fx:id="pieChart" layoutX="624.0" layoutY="39.0" prefHeight="223.0" prefWidth="355.0" />
+      <LineChart fx:id="lineChart" layoutX="66.0" layoutY="24.0" prefHeight="274.0" prefWidth="472.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <FontAwesomeIconView fill="#797777" glyphName="TRASH" layoutX="784.0" layoutY="314.0" onMouseClicked="#deleteEventAction" size="30" wrappingWidth="31.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </FontAwesomeIconView>
+      <Button layoutX="568.0" layoutY="286.0" mnemonicParsing="false" onAction="#generatePDF" prefHeight="41.0" prefWidth="122.0" text="Generate PDF" />
+   </children>
+</AnchorPane>
