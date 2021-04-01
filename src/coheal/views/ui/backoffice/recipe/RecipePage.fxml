@@ -43,8 +43,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <JFXTextField fx:id="RechercheTF" cacheShape="false" layoutX="54.0" layoutY="294.0" prefHeight="25.0" prefWidth="252.0" promptText="Enter Recipe Name" />
-      <FontAwesomeIconView fill="#303c5d" glyphName="SEARCH" layoutX="312.0" layoutY="314.0" onMouseClicked="#RechercheRecipes" size="25" />
-      <FontAwesomeIconView fill="#303c5d" layoutX="358.0" layoutY="311.0" onMouseClicked="#TriRecipes" size="20" text="sort" />
+      <JFXTextField fx:id="RechercheTF" cacheShape="false" layoutX="54.0" layoutY="294.0" onKeyPressed="#RechercheRecipes" prefHeight="25.0" prefWidth="252.0" promptText="Enter Recipe Name" />
+      <FontAwesomeIconView fill="#303c5d" glyphName="SEARCH" layoutX="312.0" layoutY="314.0" size="25" />
    </children>
 </AnchorPane>

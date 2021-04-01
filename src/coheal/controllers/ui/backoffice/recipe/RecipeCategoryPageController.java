@@ -32,6 +32,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -123,7 +124,7 @@ public class RecipeCategoryPageController implements Initializable {
 
     @FXML
     private void AddCategoryAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/recipe/AddCategory.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/backoffice/recipe/AddCategoryF.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -220,7 +221,7 @@ public class RecipeCategoryPageController implements Initializable {
     }
 
     @FXML
-    private void RechercherCategories(MouseEvent event) throws SQLException {
+    private void RechercherCategories(KeyEvent event) throws SQLException {
         RecipeCategoryService rcs = new RecipeCategoryService();
         name_col.setCellValueFactory(new PropertyValueFactory<>("name"));
         img_col.setCellValueFactory(new PropertyValueFactory<>("img"));

@@ -6,12 +6,10 @@
 package coheal.controllers.ui.frontoffice.recipe;
 
 import coheal.entities.recipe.Recipe;
-import static coheal.services.recipe.Constants.projectPath;
 import coheal.services.recipe.RecipeCategoryService;
 import coheal.services.recipe.RecipeService;
 import coheal.services.user.UserSession;
 import com.jfoenix.controls.JFXComboBox;
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;

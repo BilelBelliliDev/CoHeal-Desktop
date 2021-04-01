@@ -44,7 +44,7 @@
          </font>
       </JFXButton>
       <FontAwesomeIconView fill="#13547a" glyphName="UPLOAD" layoutX="179.0" layoutY="255.0" onMouseClicked="#UpdateImage" size="25" />
-      <JFXTextField fx:id="RechercheTF" layoutX="292.0" layoutY="83.0" prefHeight="25.0" prefWidth="157.0" unFocusColor="#303c5d" />
-      <FontAwesomeIconView fill="#13547a" glyphName="SEARCH" layoutX="462.0" layoutY="102.0" onMouseClicked="#RechercherCategories" size="20" />
+      <JFXTextField fx:id="RechercheTF" layoutX="292.0" layoutY="83.0" onKeyPressed="#RechercherCategories" prefHeight="25.0" prefWidth="157.0" unFocusColor="#303c5d" />
+      <FontAwesomeIconView fill="#13547a" glyphName="SEARCH" layoutX="462.0" layoutY="102.0" size="20" />
    </children>
 </AnchorPane>

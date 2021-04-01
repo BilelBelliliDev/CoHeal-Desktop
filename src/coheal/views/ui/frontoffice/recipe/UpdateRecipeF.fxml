@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="1016.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.UpdateRecipeFController">
+   <children>
+      <Pane layoutX="87.0" layoutY="36.0" prefHeight="468.0" prefWidth="843.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;" stylesheets="@../../../../resources/css/textfields.css">
+         <children>
+            <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="794.0" layoutY="26.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+            <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="815.0" layoutY="25.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
+            <JFXTextField fx:id="TitleTF" layoutX="399.0" layoutY="58.0" prefHeight="38.0" prefWidth="288.0" promptText="Title" styleClass="text" />
+            <JFXTextArea fx:id="DescTF" layoutX="399.0" layoutY="111.0" prefHeight="90.0" prefWidth="392.0" promptText="Description" styleClass="text" wrapText="true" />
+            <JFXTextField fx:id="PersonsTF" layoutX="704.0" layoutY="58.0" prefHeight="38.0" prefWidth="87.0" promptText="Persons" styleClass="text" />
+            <AnchorPane layoutX="71.0" layoutY="83.0" onMouseClicked="#addImage" prefHeight="236.0" prefWidth="277.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: #CCCCCC; -fx-border-radius: 0.75em; -fx-background-color: white; -fx-cursor: hand;">
+               <children>
+                  <Label layoutX="69.0" layoutY="134.0" style="-fx-font-size: 26px; -fx-text-fill: grey;" text="Add photo" />
+                  <FontAwesomeIconView glyphName="CLOUD_UPLOAD" layoutX="112.0" layoutY="125.0" size="50" style="-fx-fill: grey;" />
+                  <ImageView fx:id="image" fitHeight="211.0" fitWidth="255.0" layoutX="12.0" layoutY="13.0" pickOnBounds="true" />
+               </children>
+            </AnchorPane>
+            <Circle fill="DODGERBLUE" layoutX="832.0" layoutY="460.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+            <FontAwesomeIconView fx:id="updateRecipeBT" fill="WHITE" glyphName="EDIT" layoutX="821.0" layoutY="472.0" onMouseClicked="#updateRecipeAction" size="30" style="-fx-cursor: hand;" />
+            <Pane layoutX="36.0" layoutY="-21.0" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="16.0" layoutY="6.0" style="-fx-font-size: 18px;" text="New Recipe" textFill="WHITE" />
+               </children>
+            </Pane>
+            <JFXTextArea fx:id="IngredientsTF" layoutX="399.0" layoutY="217.0" prefHeight="202.0" prefWidth="128.0" promptText="Ingredients      -                      -                      -                      -                      -                      -                      -                      -                      -" styleClass="text" wrapText="true" />
+            <JFXTextArea fx:id="StepsTF" layoutX="544.0" layoutY="217.0" prefHeight="202.0" prefWidth="247.0" promptText="Steps:                                          1)                                                                                                2)                                                                                                   3)                                                                                                   4)                                                                                                   5)" styleClass="text" wrapText="true" />
+            <JFXTextField fx:id="CaloriesTF" layoutX="71.0" layoutY="349.0" prefHeight="38.0" prefWidth="128.0" promptText="Calories" styleClass="text" />
+            <JFXTextField fx:id="DurationTF" layoutX="220.0" layoutY="349.0" prefHeight="38.0" prefWidth="128.0" promptText="Duration" styleClass="text" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
