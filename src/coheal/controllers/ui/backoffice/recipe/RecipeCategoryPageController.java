@@ -10,13 +10,20 @@ import static coheal.services.recipe.Constants.projectPath;
 import coheal.services.recipe.RecipeCategoryService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RegexValidator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,6 +38,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -40,7 +48,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import org.apache.commons.io.FileUtils;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -58,26 +70,28 @@ public class RecipeCategoryPageController implements Initializable {
     @FXML
     private TableColumn<RecipeCategory, String> name_col;
     @FXML
-    private TextField selectedName;
-    @FXML
     private ImageView selectedImg;
     @FXML
     private TableView<RecipeCategory> RecipeCatTable;
-
-    RecipeCategoryService rcs = new RecipeCategoryService();
-    boolean isSelected = false;
-    @FXML
-    private TextField ImgUrl;
-    double xOffset, yOffset;
     @FXML
     private JFXButton UpdateBtn;
     @FXML
     private JFXButton DeleteBtn;
-
-    RecipeCategory rc = new RecipeCategory();
-    File f = null;
     @FXML
     private JFXTextField RechercheTF;
+    @FXML
+    private JFXTextField NameTF;
+    @FXML
+    private JFXTextField ImgUrlTF;
+
+    RecipeCategoryService rcs = new RecipeCategoryService();
+    boolean isSelected = false;
+    RecipeCategory rc = new RecipeCategory();
+    File f = null;
+    double xOffset, yOffset;
+
+//    //test textfield
+//    boolean name = false;
 
     /**
      * Initializes the controller class.
@@ -97,8 +111,8 @@ public class RecipeCategoryPageController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && (!row.isEmpty())) {
                     RecipeCategory rowData = row.getItem();
-                    selectedName.setText(rowData.getName());
-                    ImgUrl.setText(rowData.getImgUrl());
+                    NameTF.setText(rowData.getName());
+                    ImgUrlTF.setText(rowData.getImgUrl());
                     selectedImg.setImage(rowData.getImg().getImage());
                     isSelected = true;
                 }
@@ -106,6 +120,8 @@ public class RecipeCategoryPageController implements Initializable {
             return row;
         });
 
+//        //appel contrôle saisie
+//        nameValidatorUp();
     }
 
     @FXML
@@ -151,7 +167,8 @@ public class RecipeCategoryPageController implements Initializable {
         javafx.stage.Window owner = UpdateBtn.getScene().getWindow();
         if (isSelected) {
             RecipeCategory rc = RecipeCatTable.getSelectionModel().getSelectedItem();
-            rc.setName(selectedName.getText());
+            rc.setName(NameTF.getText());
+            //image
             File dest = null;
             if (f != null) {
                 dest = new File(projectPath + "/src/coheal/resources/images/recipes/" + rc.getImgUrl());
@@ -175,8 +192,17 @@ public class RecipeCategoryPageController implements Initializable {
             rcs.Update_RecipeCategory(rc, rc.getCatId());
             RecipeCatTable.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
 
-            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                    "Category modified successfully!");
+//            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+//                    "Category modified successfully!");
+            
+            //Notification
+            TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Success");
+            tray.setMessage("Category updated successfully!");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(3000));
 
         } else {
             showAlert(Alert.AlertType.ERROR, owner, "Error!", "Select a category!");
@@ -184,9 +210,36 @@ public class RecipeCategoryPageController implements Initializable {
         }
     }
 
+//    public void nameValidatorUp() { //name Empty string
+//        RegexValidator valid = new RegexValidator();
+//        valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
+//        NameTF.setValidators(valid);
+//        valid.setMessage("Enter the name");
+//        NameTF.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//            @Override
+//            public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+//                if (!newPropertyValue) {
+//                    NameTF.validate();
+//                    if (NameTF.validate()) {
+//                        name = true;
+//                    } else {
+//                        name = false;
+//                    }
+//                }
+//            }
+//        });
+//        try {
+//            Image errorIcon = new Image(new FileInputStream("src/coheal/resources/images/cancel.png"));
+//            valid.setIcon(new ImageView(errorIcon));
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(AddCategoryController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+
     @FXML
     private void DeleteCategory(ActionEvent event) {
         javafx.stage.Window owner = DeleteBtn.getScene().getWindow();
+        
         if (isSelected) {
             RecipeCategory rc = new RecipeCategory();
             rc = RecipeCatTable.getSelectionModel().getSelectedItem();
@@ -194,8 +247,17 @@ public class RecipeCategoryPageController implements Initializable {
             rcs.Delete_RecipeCategory(rc.getCatId());
             RecipeCatTable.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
 
-            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                    "Category deleted successfully!");
+//            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+//                    "Category deleted successfully!");
+            //Notification
+            TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Success");
+            tray.setMessage("Category deleted successfully!");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(3000));
+
         } else {
             showAlert(Alert.AlertType.ERROR, owner, "Error!", "Select a category!");
             return;

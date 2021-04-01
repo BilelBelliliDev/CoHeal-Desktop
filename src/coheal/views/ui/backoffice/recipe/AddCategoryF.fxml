@@ -27,9 +27,9 @@
                   <Label layoutX="16.0" layoutY="6.0" style="-fx-font-size: 18px;" text="New Category" textFill="WHITE" />
                </children>
             </Pane>
+            <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="337.0" layoutY="28.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
+            <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="362.0" layoutY="24.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" wrappingWidth="15.714285850524902" />
          </children>
       </Pane>
-      <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="454.0" layoutY="29.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
-      <FontAwesomeIconView fx:id="close1" fill="#13547a" glyphName="CLOSE" layoutX="475.0" layoutY="27.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" wrappingWidth="15.714285850524902" />
    </children>
 </AnchorPane>

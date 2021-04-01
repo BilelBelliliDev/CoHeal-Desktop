@@ -30,7 +30,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import org.apache.commons.io.FileUtils;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -140,8 +144,17 @@ public class AddCategoryFController implements Initializable {
 
         rcs.Create_RecipeCategory(rc);
 
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
-                "Category added successfully!");
+//        showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
+//                "Category added successfully!");
+
+        //Notification
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setAnimationType(type);
+        tray.setTitle("Success");
+        tray.setMessage("Category added successfully!");
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
 
     }
 
