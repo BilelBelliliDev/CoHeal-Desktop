@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="43.0" prefWidth="381.0" style="-fx-background-color: rgba(197, 38, 58, 0.1); -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.UrgentReportItemController">
+   <children>
+      <FontAwesomeIconView fx:id="icon" fill="#c5263a" glyphName="USER_MD" layoutX="14.0" layoutY="28.0" size="20" />
+      <Label fx:id="text" layoutX="50.0" layoutY="11.0" prefHeight="20.0" prefWidth="322.0" style="-fx-text-fill: C5263A; -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="&quot;Test Session&quot; reported 28 times" wrapText="true">
+         <font>
+            <Font name="Century Gothic Bold" size="68.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.0714285714285714" startY="1.0">
+               <stops>
+                  <Stop color="#13547a" />
+                  <Stop color="#13547a" offset="0.007662835249042145" />
+                  <Stop color="#13547a" offset="0.019157088122605363" />
+                  <Stop color="#7fcbc3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+   </children>
+</AnchorPane>

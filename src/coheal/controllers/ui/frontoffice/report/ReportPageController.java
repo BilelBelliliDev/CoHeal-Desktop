@@ -33,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -74,21 +75,73 @@ public class ReportPageController implements Initializable {
     private Pagination pagination;
     @FXML
     private JFXTextField searchBytitle;
+    @FXML
+    private VBox urgentReportsVBox;
+    @FXML
+    private VBox recentReportsVBox;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        urgentReports();
+        recentReports();
         new ZoomOut(filterDialogPane).play();
         filteredReportsList = new ArrayList();
         fList = new ArrayList();
         checkBoxListeners();
         reportsList = reportService.allReportsList();
-
         pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList));
+    }
 
+    public void urgentReports() {
+        List<Report> reportsL = reportService.reportsCount();
+        if (reportsL.isEmpty()) {
+            noUrgReportsLabel.setVisible(true);
+        } else {
+            noUrgReportsLabel.setVisible(false);
+            for (int i = 0; i < reportsL.size(); i++) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/report/UrgentReportItem.fxml"));
+                try {
+                    AnchorPane pane = loader.load();
+                    UrgentReportItemController c = loader.getController();
+                    c.setData(reportsL.get(i));
+                    urgentReportsVBox.getChildren().add(pane);
+
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
+    }
+    
+    public void recentReports() {
+        List<Report> reportsL = reportService.allReportsList();
+        reportsL = reportsL.stream().filter(r -> !r.isIsClosed()).collect(Collectors.toList());
+        System.out.println();
+        if (reportsL.isEmpty()) {
+            noNewReportsLabel.setVisible(true);
+        } else {
+            int x = 0;
+            if(reportsL.size()==1) x=1;
+            else x=2;
+            noNewReportsLabel.setVisible(false);
+            for (int i = 0; i < x; i++) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/report/RecentReportItem.fxml"));
+                try {
+                    AnchorPane pane = loader.load();
+                    RecentReportItemController c = loader.getController();
+                    c.setData(reportsL.get(i));
+                    recentReportsVBox.getChildren().add(pane);
+
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
     }
 
     public GridPane grid(int pageindex, List<Report> reportsList) {
@@ -108,7 +161,7 @@ public class ReportPageController implements Initializable {
 
     @FXML
     private void filtreAction(MouseEvent event) throws InterruptedException {
-        if (filterIsDisplayed) {           
+        if (filterIsDisplayed) {
             filterIsDisplayed = false;
             new ZoomOut(filterDialogPane).play();
             filterDialogPane.setDisable(true);

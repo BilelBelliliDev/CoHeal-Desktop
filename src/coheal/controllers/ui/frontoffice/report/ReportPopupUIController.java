@@ -5,7 +5,7 @@
  */
 package coheal.controllers.ui.frontoffice.report;
 
-import coheal.controllers.report.*;
+import animatefx.animation.ZoomIn;
 import coheal.entities.report.BookReport;
 import coheal.entities.report.EventReport;
 import coheal.entities.report.RecipeReport;
@@ -15,13 +15,11 @@ import coheal.entities.report.TaskReport;
 import coheal.services.report.ReportService;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -36,13 +34,15 @@ public class ReportPopupUIController implements Initializable {
 
     @FXML
     private TextArea noteId;
+    @FXML
+    private AnchorPane anchor;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        new ZoomIn(anchor).play();
     }
     public int getId() {
         return id;

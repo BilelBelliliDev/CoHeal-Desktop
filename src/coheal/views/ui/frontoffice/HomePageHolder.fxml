@@ -30,7 +30,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Label fx:id="label" layoutX="25.0" layoutY="5.0" style="-fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-font-size: 68px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="CoHeal" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="5.0">
+      <Label fx:id="label" layoutX="19.0" layoutY="9.0" style="-fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-font-size: 68px;" styleClass="text" stylesheets="@../../../resources/css/main.css" text="CoHeal" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="9.0">
          <font>
             <Font name="Century Gothic Bold" size="68.0" />
          </font>
