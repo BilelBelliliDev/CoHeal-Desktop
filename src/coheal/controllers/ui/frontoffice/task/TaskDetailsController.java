@@ -90,6 +90,7 @@ public class TaskDetailsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        taskActionsPane.setVvalue(0);
         new ZoomIn(taskActionsPane).play();
         task = st.getTask(th.getId());
         pt = spt.getPaidTask(th.getId());

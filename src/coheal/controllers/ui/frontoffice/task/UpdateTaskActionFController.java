@@ -19,10 +19,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -70,10 +72,23 @@ public class UpdateTaskActionFController implements Initializable {
 
     @FXML
     private void updateTaskAction(MouseEvent event) {
+        Window owner = Titre.getScene().getWindow();
         TaskActions t = new TaskActions();
         t.setTitle(Titre.getText());
         t.setDescription(Description.getText());
         sta.updateTaskActions(tah.getId(), t);
+        AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation",
+                    "Task updated successfully!");
+
+    }
+    
+    private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 
     public void titleValidator() {

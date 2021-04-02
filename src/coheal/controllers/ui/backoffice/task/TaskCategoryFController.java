@@ -97,7 +97,10 @@ public class TaskCategoryFController implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         imgCol.setCellValueFactory(new PropertyValueFactory<>("img"));
         //categoryTable.getItems().addAll(l);
-        size = (l.size() / itemsPerPage) + 1;
+        size = (l.size() / itemsPerPage) ;
+        if(l.size()%itemsPerPage !=0){
+            size++;
+        }
         pagination.setPageCount(size);
         pagination.setPageFactory((pageIndex) -> {
             categoryTable.getItems().clear();

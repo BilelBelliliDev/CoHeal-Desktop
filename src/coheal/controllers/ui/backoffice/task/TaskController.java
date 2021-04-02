@@ -46,6 +46,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import org.controlsfx.control.table.TableFilter;
 
 /**
  * FXML Controller class
@@ -80,7 +81,6 @@ public class TaskController implements Initializable {
     @FXML
     private LineChart<?, ?> lineChart;
     private ServiceUserTask sut = new ServiceUserTask();
-    @FXML
     private Pagination pagination;
     private int itemsPerPage = 5;
     private int from, to, size;
@@ -119,30 +119,33 @@ public class TaskController implements Initializable {
         List<?> tasks;
         tasks = Stream.concat(st.ListTask().stream(), spt.listPaidTask().stream())
                 .collect(Collectors.toList());
+        ObservableList<?> l = FXCollections.observableList(tasks);
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         DaysCol.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
         catgCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        //taskTable.setItems(l);
-        size = (tasks.size() / itemsPerPage) + 1;
-        pagination.setPageCount(size);
-        pagination.setPageFactory((pageIndex) -> {
-            taskTable.getItems().clear();
-            from = pageIndex * itemsPerPage;
-            to = itemsPerPage;
-            int page = pageIndex * itemsPerPage;
-
-            for (int i = page; i < page + itemsPerPage; i++) {
-
-                if (i >= tasks.size()) {
-                    return taskTable;
-                }
-                taskTable.getItems().add((Task) tasks.get(i));
-
-            }
-            return taskTable;
-        });
+        taskTable.setItems((ObservableList<Task>) l);
+        TableFilter filter = new TableFilter(taskTable);
+//        size = (tasks.size() / itemsPerPage) + 1;
+//        pagination.setPageCount(size);
+//        pagination.setPageFactory((pageIndex) -> {
+//            taskTable.getItems().clear();
+//            from = pageIndex * itemsPerPage;
+//            to = itemsPerPage;
+//            int page = pageIndex * itemsPerPage;
+//
+//            for (int i = page; i < page + itemsPerPage; i++) {
+//
+//                if (i >= tasks.size()) {
+//                    return taskTable;
+//                }
+//                taskTable.getItems().add((Task) tasks.get(i));
+//
+//            }
+//            //TableFilter filter = new TableFilter(taskTable);
+//            return taskTable;
+//        });
     }
 
     @FXML
@@ -185,7 +188,7 @@ public class TaskController implements Initializable {
 
     @FXML
     private void deleteTaskAction(MouseEvent event) {
-        Window owner = pagination.getScene().getWindow();
+        Window owner = taskTable.getScene().getWindow();
         Task task = taskTable.getSelectionModel().getSelectedItem();
         st.deleteTask(task.getTaskId());
         AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation", "Task deleted successfully!");

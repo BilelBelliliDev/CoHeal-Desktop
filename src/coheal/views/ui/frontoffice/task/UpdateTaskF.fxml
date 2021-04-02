@@ -41,9 +41,9 @@
                </children>
             </AnchorPane>
             <Circle fill="DODGERBLUE" layoutX="858.0" layoutY="423.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
-            <Pane layoutX="36.0" layoutY="-21.0" prefHeight="38.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
+            <Pane layoutX="36.0" layoutY="-21.0" prefHeight="38.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;">
                <children>
-                  <Label layoutX="21.0" layoutY="5.0" prefHeight="30.0" prefWidth="124.0" style="-fx-font-size: 20px;" text="Update Task" textFill="WHITE" />
+                  <Label layoutX="21.0" layoutY="5.0" prefHeight="30.0" prefWidth="169.0" style="-fx-font-size: 20px;" text="Update Task" textFill="WHITE" />
                </children>
             </Pane>
          </children>
