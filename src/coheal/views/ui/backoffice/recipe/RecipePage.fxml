@@ -17,7 +17,7 @@
    <children>
       <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="1059.0" layoutY="24.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
       <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="1035.0" layoutY="25.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
-      <TableView fx:id="RecipeTable" layoutX="76.0" layoutY="312.0" prefHeight="341.0" prefWidth="1010.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="24.0">
+      <TableView fx:id="RecipeTable" layoutX="76.0" layoutY="312.0" prefHeight="341.0" prefWidth="1010.0" stylesheets="@../../../../resources/css/tab.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="24.0">
          <columns>
             <TableColumn fx:id="img_col" prefWidth="111.0" text="Image" />
             <TableColumn fx:id="title_col" minWidth="0.0" prefWidth="141.0" text="Title" />
