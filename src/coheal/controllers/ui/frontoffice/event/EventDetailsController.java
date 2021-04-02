@@ -44,7 +44,6 @@ import org.controlsfx.control.Rating;
  */
 public class EventDetailsController implements Initializable {
 
-    
     @FXML
     private Label eventDescription;
     @FXML
@@ -69,7 +68,7 @@ public class EventDetailsController implements Initializable {
     @FXML
     private ScrollPane eventPane;
     private Event event1;
-    ServiceEvent se=new ServiceEvent();
+    ServiceEvent se = new ServiceEvent();
     EventHolder eh = EventHolder.getINSTANCE();
     ServiceUserEvent sut = new ServiceUserEvent();
     RateService rs = new RateService();
@@ -84,45 +83,48 @@ public class EventDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         new ZoomIn(eventPane).play();
-        if(rs.ratesListById("event", eh.getId())==0){
+        if (rs.ratesListById("event", eh.getId()) == 0) {
             rateLabel.setVisible(true);
             ratingId.setVisible(false);
-        }else {        
+        } else {
             System.out.println(rs.ratesListById("event", eh.getId()));
             ratingId.setRating(rs.ratesListById("event", eh.getId()));
             rateLabel.setVisible(false);
             ratingId.setVisible(true);
         }
-        event1=se.getEvent(eh.getId());
+        event1 = se.getEvent(eh.getId());
         System.out.println(event1.getUser().getUserId());
         UserEvent u = sut.getUserEvent(UserSession.getUser_id(), event1.getEventId());
         if (u.getEvent() == null && u.getUser() == null) {
             participateButton.setVisible(true);
         }
-        
-        if (UserSession.getRole().equals("therapist") ) {
+
+        if (UserSession.getRole().equals("therapist")) {
             updateIcon.setVisible(true);
             deleteIcon.setVisible(true);
         }
+        if (UserSession.getRole().equals("moderator")) {
+            deleteIcon.setVisible(true);
+        }
         eventDescription.setText(event1.getDescription());
-        if(event1.getPrice()!=0){
+        if (event1.getPrice() != 0) {
             price.setText(String.valueOf(event1.getPrice()));
         }
         eventImg.setImage(event1.getImg().getImage());
         eventTitle.setText(event1.getTitle());
         location.setText(event1.getLocation());
-        String start=event1.getStartDate().toLocalDate().format(DateTimeFormatter.ofPattern("dd")) + " "
-                    + event1.getStartDate().toLocalDate().format(DateTimeFormatter.ofPattern("MMM")) + " 20"
-                    + event1.getStartDate().toLocalDate().format(DateTimeFormatter.ofPattern("YY"));
-        String end=event1.getEndDate().toLocalDate().format(DateTimeFormatter.ofPattern("dd")) + " "
-                    + event1.getEndDate().toLocalDate().format(DateTimeFormatter.ofPattern("MMM")) + " 20"
-                    + event1.getEndDate().toLocalDate().format(DateTimeFormatter.ofPattern("YY"));
+        String start = event1.getStartDate().toLocalDate().format(DateTimeFormatter.ofPattern("dd")) + " "
+                + event1.getStartDate().toLocalDate().format(DateTimeFormatter.ofPattern("MMM")) + " 20"
+                + event1.getStartDate().toLocalDate().format(DateTimeFormatter.ofPattern("YY"));
+        String end = event1.getEndDate().toLocalDate().format(DateTimeFormatter.ofPattern("dd")) + " "
+                + event1.getEndDate().toLocalDate().format(DateTimeFormatter.ofPattern("MMM")) + " 20"
+                + event1.getEndDate().toLocalDate().format(DateTimeFormatter.ofPattern("YY"));
         startDate.setText(start);
         endDate.setText(end);
-        if(event1.getPrice()!=0){
+        if (event1.getPrice() != 0) {
             price.setText(String.valueOf(event1.getPrice()));
         }
-    }    
+    }
 
     @FXML
     private void updateEvent(MouseEvent event) throws IOException {
@@ -158,10 +160,10 @@ public class EventDetailsController implements Initializable {
     @FXML
     private void participateAction(ActionEvent event) {
         sut.addUserEvent(UserSession.getUser_id(), eh.getId());
-        ServiceNotification service=new ServiceNotification();
+        ServiceNotification service = new ServiceNotification();
         Notification n = new Notification();
         n.setId(event1.getUser().getUserId());
-        n.setMessage(UserSession.getFirst_name()+" "+UserSession.getLast_name()+" a participer a votre tache "+event1.getTitle());
+        n.setMessage(UserSession.getFirst_name() + " " + UserSession.getLast_name() + " a participer a votre tache " + event1.getTitle());
         service.addNotification(n);
     }
 
@@ -173,5 +175,4 @@ public class EventDetailsController implements Initializable {
 
     }
 
-    
 }
