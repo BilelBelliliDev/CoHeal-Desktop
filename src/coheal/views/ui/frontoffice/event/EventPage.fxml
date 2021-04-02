@@ -35,7 +35,7 @@
                </font>
             </JFXButton>
             <JFXComboBox fx:id="comboBox" layoutX="44.0" layoutY="472.0" onAction="#comboBoxAction" prefHeight="34.0" prefWidth="146.0" promptText="Select" />
-            <Pagination fx:id="pagination" layoutX="11.0" layoutY="538.0" maxPageIndicatorCount="5" pageCount="3" prefHeight="627.0" prefWidth="1038.0" />
+            <Pagination fx:id="pagination" layoutX="11.0" layoutY="538.0" maxPageIndicatorCount="5" pageCount="3" prefHeight="627.0" prefWidth="1038.0" stylesheets="@../../../../resources/css/pagination.css" />
          </children>
       </AnchorPane>
    </content>
