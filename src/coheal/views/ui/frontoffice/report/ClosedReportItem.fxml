@@ -4,14 +4,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="149.0" prefWidth="280.0" style="-fx-background-color: #dbeac6; -fx-background-radius: 1em;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.ClosedReportItemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="109.0" prefWidth="280.0" style="-fx-background-color: #7fcbc3; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.ClosedReportItemController">
    <children>
-      <AnchorPane layoutX="21.0" layoutY="-20.0" prefHeight="45.0" prefWidth="51.0" style="-fx-background-color: #9cc069; -fx-background-radius: 1em;">
+      <AnchorPane layoutX="21.0" layoutY="-20.0" prefHeight="45.0" prefWidth="51.0" style="-fx-background-color: #59adb4; -fx-background-radius: 1em;">
          <children>
             <FontAwesomeIconView fx:id="icon" fill="WHITE" glyphName="BOOK" layoutX="15.0" layoutY="30.0" size="23" />
          </children>
       </AnchorPane>
-      <Label fx:id="title" alignment="CENTER" layoutX="71.0" layoutY="4.0" prefHeight="29.0" prefWidth="199.0" style="-fx-font-size: 18px;" text="&quot;Test Book&quot;" textFill="#9cc069" wrapText="true" />
-      <Label fx:id="note" alignment="TOP_LEFT" layoutX="11.0" layoutY="35.0" prefHeight="107.0" prefWidth="267.0" style="-fx-font-size: 14px;" text="&quot;This book is bad and offensive, f fdfd  fd fdf df d fdfd fdfd fdf please delete it&quot;" textFill="#497d59" wrapText="true" />
+      <Label fx:id="title" alignment="CENTER" layoutX="71.0" layoutY="4.0" prefHeight="29.0" prefWidth="199.0" style="-fx-font-size: 18px;" text="&quot;Test Book&quot;" textFill="WHITE" wrapText="true" />
+      <Label fx:id="note" alignment="TOP_LEFT" layoutX="11.0" layoutY="35.0" prefHeight="72.0" prefWidth="267.0" style="-fx-font-size: 14px;" text="&quot;This book is bad and offensive, f fdfd  fd fdf df d fdfd fdfd fdf please delete it&quot;" textFill="WHITE" wrapText="true" />
    </children>
 </AnchorPane>

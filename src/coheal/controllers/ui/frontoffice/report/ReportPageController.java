@@ -12,6 +12,7 @@ import coheal.services.report.ReportService;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,14 +107,15 @@ public class ReportPageController implements Initializable {
     }
 
     @FXML
-    private void filtreAction(MouseEvent event) {
-        if (filterIsDisplayed) {
+    private void filtreAction(MouseEvent event) throws InterruptedException {
+        if (filterIsDisplayed) {           
             filterIsDisplayed = false;
             new ZoomOut(filterDialogPane).play();
+            filterDialogPane.setVisible(false);
         } else {
+            filterDialogPane.setVisible(true);
             filterIsDisplayed = true;
             new ZoomIn(filterDialogPane).play();
-
         }
     }
 
@@ -546,6 +548,26 @@ public class ReportPageController implements Initializable {
 
     @FXML
     private void isTyping(KeyEvent event) {
+        if (isChecked()) {
+            if (closedCheckBox.isSelected() || openCheckBox.isSelected()) {
+                System.out.println(fList.size());
+                pagination.setPageFactory((pageindex) -> grid(pageindex, fList.stream()
+                        .filter(r -> r.getTitle().toLowerCase().contains(searchBytitle.getText().toLowerCase()))
+                        .collect(Collectors.toList())));
+            } else {
+                System.out.println(filteredReportsList.size());
+                pagination.setPageFactory((pageindex) -> grid(pageindex, filteredReportsList.stream()
+                        .filter(r -> r.getTitle().toLowerCase().contains(searchBytitle.getText().toLowerCase()))
+                        .collect(Collectors.toList())));
+            }
+        } else {
+            pagination.setPageFactory((pageindex) -> grid(pageindex, reportsList.stream()
+                    .filter(r -> r.getTitle().toLowerCase().contains(searchBytitle.getText().toLowerCase()))
+                    .collect(Collectors.toList())));
+        }
+    }
+
+    private void isTyping1(KeyEvent event) {
         if (isChecked()) {
             if (closedCheckBox.isSelected() || openCheckBox.isSelected()) {
                 System.out.println(fList.size());

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -37,5 +38,12 @@
          </effect>
       </ImageView>
       <OctIconView glyphName="BOOK" layoutX="196.0" layoutY="129.0" onMouseClicked="#displayAction" size="40" style="-fx-cursor: hand; -fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" text="" />
+      <AnchorPane fx:id="menuId" layoutX="205.0" layoutY="-32.0" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" visible="false">
+         <children>
+            <FontAwesomeIconView fill="WHITE" glyphName="FLAG" layoutX="53.0" layoutY="29.0" onMouseClicked="#reportAction" size="25" style="-fx-cursor: hand;" text="" />
+            <FontAwesomeIconView fill="WHITE" glyphName="STAR" layoutX="16.0" layoutY="29.0" onMouseClicked="#rateAction" size="25" style="-fx-cursor: hand;" text="" />
+         </children>
+      </AnchorPane>
+      <FontAwesomeIconView fill="#13547a" glyphName="ELLIPSIS_H" layoutX="279.0" layoutY="27.0" onMouseClicked="#dotsAction" size="20" style="-fx-cursor: hand;" />
    </children>
 </Pane>
