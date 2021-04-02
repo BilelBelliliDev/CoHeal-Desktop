@@ -89,7 +89,7 @@ public class ReportUIController implements Initializable {
 
     @FXML
     private void closeReportAction(ActionEvent event) {
-        rs.closeReport(Integer.parseInt(reportId.getText()));
+        rs.closeReport("");
     }
 
     @FXML
