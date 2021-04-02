@@ -51,7 +51,11 @@ public class RecipeCategoryItemController implements Initializable {
     private void showRecipes(MouseEvent event) throws IOException {
         RecipeCategoryHolder holder = RecipeCategoryHolder.getINSTANCE();
         holder.setName(recipeCatgTitle.getText());
-        AnchorPane pageHolder = (AnchorPane) recipeCatgTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        AnchorPane pageHolder = (AnchorPane) recipeCatgTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        if(pageHolder==null){
+             pageHolder = (AnchorPane) recipeCatgTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+        }
+//        AnchorPane pageHolder = (AnchorPane) recipeCatgTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipesByCategory.fxml")));
 

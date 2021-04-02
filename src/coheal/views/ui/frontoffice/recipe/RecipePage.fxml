@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
@@ -38,6 +39,7 @@
             <Pagination fx:id="pagination" layoutX="35.0" layoutY="535.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="1572.0" prefWidth="1028.0" />
             <JFXComboBox fx:id="ComboBox" layoutX="236.0" layoutY="474.0" onAction="#ComboBoxRole" prefHeight="29.0" prefWidth="83.0" visible="false" />
             <JFXTextField fx:id="searchRecipe" layoutX="364.0" layoutY="482.0" onKeyPressed="#rechercheRecipe" prefHeight="31.0" prefWidth="171.0" promptText="search recipe" />
+            <FontAwesomeIconView fx:id="refreshBtn" fill="#13547a" glyphName="REFRESH" layoutX="828.0" layoutY="450.0" onMouseClicked="#refreshPage" size="20" visible="false" />
          </children>
       </AnchorPane>
    </content>

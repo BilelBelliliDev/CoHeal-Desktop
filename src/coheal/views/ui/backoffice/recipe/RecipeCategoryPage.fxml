@@ -12,12 +12,13 @@
 
 <AnchorPane fx:id="moderationPane" prefHeight="446.0" prefWidth="770.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.recipe.RecipeCategoryPageController">
    <children>
-      <Pane layoutX="17.0" layoutY="19.0" prefHeight="408.0" prefWidth="733.0" style="-fx-background-radius: 1em; -fx-background-color: #FFFEFB; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;">
+      <Pane layoutX="17.0" layoutY="17.0" prefHeight="412.0" prefWidth="736.0" style="-fx-background-radius: 1em; -fx-background-color: #FFFEFB; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 3;">
          <children>
             <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="668.0" layoutY="20.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" text="" />
-            <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="690.0" layoutY="19.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" />
+            <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="689.0" layoutY="20.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" text="" />
             <JFXTextField fx:id="NameTF" layoutX="37.0" layoutY="171.0" prefHeight="25.0" prefWidth="145.0" style="-fx-border-color: gray;" unFocusColor="WHITE" />
             <JFXTextField fx:id="ImgUrlTF" layoutX="37.0" layoutY="213.0" prefHeight="25.0" prefWidth="116.0" style="-fx-border-color: gray;" unFocusColor="WHITE" />
+            <FontAwesomeIconView fill="#13547a" glyphName="REFRESH" layoutX="641.0" layoutY="20.0" onMouseClicked="#RefreshPage" size="20" />
          </children>
       </Pane>
       <TableView fx:id="RecipeCatTable" layoutX="292.0" layoutY="129.0" prefHeight="263.0" prefWidth="425.0" style="-fx-background-color: #FFFEFB;" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="292.0" AnchorPane.rightAnchor="85.0">

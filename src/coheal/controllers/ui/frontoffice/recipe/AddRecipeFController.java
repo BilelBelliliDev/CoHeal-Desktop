@@ -269,7 +269,7 @@ public class AddRecipeFController implements Initializable {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
         IngredientsTF.setValidators(valid);
-        valid.setMessage("Enter the ingredients");
+        valid.setMessage("Enter the description");
         IngredientsTF.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
@@ -295,7 +295,7 @@ public class AddRecipeFController implements Initializable {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
         StepsTF.setValidators(valid);
-        valid.setMessage("Enter the steps");
+        valid.setMessage("Enter the description");
         StepsTF.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
