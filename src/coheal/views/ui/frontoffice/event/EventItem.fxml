@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +12,7 @@
 
 <AnchorPane prefHeight="105.0" prefWidth="483.0" style="-fx-background-color: EFF6FA; -fx-background-radius: 0.5em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.event.EventItemController">
    <children>
-      <AnchorPane prefHeight="105.0" prefWidth="90.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 0.5em 0 0 0.5em;">
+      <AnchorPane prefHeight="105.0" prefWidth="91.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 0.5em 0 0 0.5em;">
          <children>
             <VBox alignment="CENTER" layoutY="16.0" prefHeight="74.0" prefWidth="108.0">
                <children>
@@ -34,7 +35,7 @@
             <Image url="@../../../../resources/images/events/hiking-activities.jpg" />
          </image>
       </ImageView>
-      <VBox layoutX="213.0" prefHeight="105.0" prefWidth="169.0" spacing="5.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="213.0" prefHeight="105.0" prefWidth="189.0" spacing="5.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="eventTitle" prefHeight="23.0" prefWidth="149.0" style="-fx-font-size: 20;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Title" textFill="#13547a">
                <font>
@@ -64,5 +65,12 @@
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </JFXButton>
+      <FontAwesomeIconView fill="#13547a" glyphName="ELLIPSIS_H" layoutX="457.0" layoutY="24.0" onMouseClicked="#dotsAction" size="20" style="-fx-cursor: hand;" />
+      <AnchorPane fx:id="menuId" layoutX="376.0" layoutY="-32.0" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" visible="false">
+         <children>
+            <FontAwesomeIconView fill="WHITE" glyphName="FLAG" layoutX="53.0" layoutY="29.0" onMouseClicked="#reportAction" size="25" style="-fx-cursor: hand;" text="" />
+            <FontAwesomeIconView fill="WHITE" glyphName="STAR" layoutX="16.0" layoutY="29.0" onMouseClicked="#rateAction" size="25" style="-fx-cursor: hand;" text="" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

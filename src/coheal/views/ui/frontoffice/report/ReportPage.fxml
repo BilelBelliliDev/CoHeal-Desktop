@@ -116,7 +116,7 @@
             </AnchorPane>
          </children>
       </VBox>
-      <VBox layoutX="23.0" layoutY="312.0" prefHeight="257.0" prefWidth="381.0" spacing="30.0">
+      <VBox layoutX="23.0" layoutY="331.0" prefHeight="257.0" prefWidth="381.0" spacing="30.0">
          <children>
             <AnchorPane prefHeight="58.0" prefWidth="379.0" style="-fx-background-color: rgba(19, 84, 122, 0.1); -fx-background-radius: 1em;">
                <children>

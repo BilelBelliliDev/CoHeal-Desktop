@@ -5,9 +5,17 @@
  */
 package coheal.controllers.ui.frontoffice.task;
 
+import animatefx.animation.ZoomIn;
+import animatefx.animation.ZoomOut;
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
+import coheal.controllers.ui.frontoffice.recipe.RecipeItemController;
+import coheal.controllers.ui.frontoffice.report.RateAlertUIController;
+import coheal.controllers.ui.frontoffice.report.RatePopupUIController;
+import coheal.controllers.ui.frontoffice.report.ReportPopupUIController;
 import coheal.entities.task.PaidTask;
 import coheal.entities.task.Task;
+import coheal.services.report.RateService;
+import coheal.services.user.UserSession;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,6 +50,9 @@ public class TaskItemController implements Initializable {
     int id = 0;
     @FXML
     private Label price;
+    @FXML
+    private AnchorPane menuId;
+    private boolean menuIsDisplayed = false;
 
     /**
      * Initializes the controller class.
@@ -75,5 +86,57 @@ public class TaskItemController implements Initializable {
         AnchorPane pageHolder = (AnchorPane) taskTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/task/TaskDetails.fxml")));
+    }
+
+    @FXML
+    private void dotsAction(MouseEvent event) {
+        if (menuIsDisplayed) {           
+            menuIsDisplayed = false;
+            new ZoomOut(menuId).play();
+            menuId.setDisable(true);
+        } else {
+            menuId.setVisible(true);
+            menuId.setDisable(false);
+            menuIsDisplayed = true;
+            new ZoomIn(menuId).play();
+        }
+    }
+
+    @FXML
+    private void reportAction(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/ReportPopupUI.fxml"));
+        Parent root=null;
+            try {
+                root = loader.load();
+            } catch (IOException ex) {
+                Logger.getLogger(RecipeItemController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        ReportPopupUIController c = loader.getController();
+        c.setData(id, UserSession.getUser_id(), "Task", taskTitle.getText());
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void rateAction(MouseEvent event) throws IOException {
+        RateService rs = new RateService();
+        if (rs.isRated(id, UserSession.getUser_id(), "Task")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/RateAlertUI.fxml"));
+            Parent root = loader.load();
+            RateAlertUIController c = loader.getController();
+            c.setData(id, UserSession.getUser_id(), "Task");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/RatePopupUI.fxml"));
+            Parent root = loader.load();
+            RatePopupUIController c = loader.getController();
+            c.setData(id, UserSession.getUser_id(), "Task");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
     }
 }
