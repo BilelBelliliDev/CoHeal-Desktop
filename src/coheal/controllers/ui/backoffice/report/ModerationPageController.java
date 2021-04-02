@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -131,6 +133,7 @@ public class ModerationPageController implements Initializable {
         sessionTable();
         urgentReports();
         pieChart();
+        
     }
 
     public void pieChart() {
@@ -148,6 +151,20 @@ public class ModerationPageController implements Initializable {
             Tooltip toolTip = new Tooltip(percentage);
             Tooltip.install(data.getNode(), toolTip);
         });
+        final Label caption = new Label("");
+        caption.setTextFill(Color.DARKORANGE);
+        caption.setStyle("-fx-font: 24 arial;");
+        for (final PieChart.Data data : pieChart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent e) {
+                    caption.setTranslateX(e.getSceneX());
+                    caption.setTranslateY(e.getSceneY());
+                    caption.setText(String.valueOf(data.getPieValue()) + "%");
+                }
+            });
+        }
     }
 
     public void urgentReports() {
