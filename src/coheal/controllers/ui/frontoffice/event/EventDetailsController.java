@@ -12,6 +12,7 @@ import coheal.entities.event.UserEvent;
 import coheal.entities.task.Notification;
 import coheal.services.event.ServiceEvent;
 import coheal.services.event.ServiceUserEvent;
+import coheal.services.report.RateService;
 import coheal.services.task.ServiceNotification;
 import coheal.services.user.UserSession;
 import com.jfoenix.controls.JFXButton;
@@ -34,6 +35,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.Rating;
 
 /**
  * FXML Controller class
@@ -70,6 +72,11 @@ public class EventDetailsController implements Initializable {
     ServiceEvent se=new ServiceEvent();
     EventHolder eh = EventHolder.getINSTANCE();
     ServiceUserEvent sut = new ServiceUserEvent();
+    RateService rs = new RateService();
+    @FXML
+    private Rating ratingId;
+    @FXML
+    private Label rateLabel;
 
     /**
      * Initializes the controller class.
@@ -77,6 +84,15 @@ public class EventDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         new ZoomIn(eventPane).play();
+        if(rs.ratesListById("event", eh.getId())==0){
+            rateLabel.setVisible(true);
+            ratingId.setVisible(false);
+        }else {        
+            System.out.println(rs.ratesListById("event", eh.getId()));
+            ratingId.setRating(rs.ratesListById("event", eh.getId()));
+            rateLabel.setVisible(false);
+            ratingId.setVisible(true);
+        }
         event1=se.getEvent(eh.getId());
         System.out.println(event1.getUser().getUserId());
         UserEvent u = sut.getUserEvent(UserSession.getUser_id(), event1.getEventId());
@@ -156,5 +172,6 @@ public class EventDetailsController implements Initializable {
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/event/EventPage.fxml")));
 
     }
+
     
 }

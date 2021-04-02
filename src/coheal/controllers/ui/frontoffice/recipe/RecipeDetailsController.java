@@ -9,6 +9,7 @@ import coheal.controllers.ui.frontoffice.HomePageHolderController;
 import coheal.entities.recipe.Recipe;
 import static coheal.services.recipe.Constants.projectPath;
 import coheal.services.recipe.RecipeService;
+import coheal.services.report.RateService;
 import coheal.services.user.UserSession;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -42,6 +43,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Duration;
+import org.controlsfx.control.Rating;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -84,13 +86,26 @@ public class RecipeDetailsController implements Initializable {
     private FontAwesomeIconView printBtn;
     @FXML
     private Label Imgurl;
+    @FXML
+    private Rating ratingId;
+    @FXML
+    private Label rateLabel;
+    RateService rateService = new RateService();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        if(rateService.ratesListById("recipe", rh.getId())==0){
+            rateLabel.setVisible(true);
+            ratingId.setVisible(false);
+        }else {        
+            System.out.println(rateService.ratesListById("recipe", rh.getId()));
+            ratingId.setRating(rateService.ratesListById("recipe", rh.getId()));
+            rateLabel.setVisible(false);
+            ratingId.setVisible(true);
+        }
         RecipeHolder rh = RecipeHolder.getINSTANCE();
         Recipe r = rs.getRecipe(rh.getId());
         
