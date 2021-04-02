@@ -9,6 +9,7 @@ import coheal.entities.event.Event;
 import coheal.entities.event.EventCategory;
 import coheal.services.event.ServiceCategory;
 import coheal.services.event.ServiceEvent;
+import coheal.services.event.ServiceMail;
 import coheal.services.user.UserSession;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -74,7 +75,7 @@ public class AddEventFController implements Initializable {
     private String cat = "";
     private ToggleGroup group = new ToggleGroup();
     private static String projectPath = System.getProperty("user.dir").replace("/", "\\");
-    private boolean titleV = false,descriptionV = false,locationV = false,priceV = false ;
+    private boolean titleV = false, descriptionV = false, locationV = false, priceV = false;
 
     /**
      * Initializes the controller class.
@@ -87,7 +88,7 @@ public class AddEventFController implements Initializable {
         for (int i = 0; i < sc.AfficherCategoryEvent().size(); i++) {
             comboEventCatg.getItems().add(sc.AfficherCategoryEvent().get(i).getName());
         }
-        
+
         titleValidator();
         priceValidator();
         locationValidator();
@@ -161,8 +162,13 @@ public class AddEventFController implements Initializable {
             e.printStackTrace();
         }
         se.AddEvent(e);
+        ServiceMail SM = new ServiceMail();
+
+        String Msg = "Bonjour Mr/Mme , Il y'a un nouvel évènement bientôt , Veuillez consulter l'application pour plus de details  ";
+
+        SM.sendmailfunc("farah.gargabou@esprit.tn", Msg);
     }
-    
+
     public void titleValidator() {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
@@ -188,7 +194,7 @@ public class AddEventFController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public void descriptionValidator() {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
@@ -214,7 +220,7 @@ public class AddEventFController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public void priceValidator() {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^(0|[1-9][0-9]*)$");
@@ -240,7 +246,7 @@ public class AddEventFController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public void locationValidator() {
         RegexValidator valid = new RegexValidator();
         valid.setRegexPattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
