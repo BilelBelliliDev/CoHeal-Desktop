@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="313.0" prefWidth="378.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1.25em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 1em; -fx-border-width: 5;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.OpenReportDetailsPageController">
+   <children>
+      <Label fx:id="title" alignment="CENTER" layoutX="31.0" layoutY="39.0" prefHeight="29.0" prefWidth="317.0" style="-fx-font-size: 20px;" text="Title" textFill="#13547a" />
+      <Label fx:id="note" alignment="TOP_LEFT" layoutX="36.0" layoutY="93.0" prefHeight="169.0" prefWidth="307.0" style="-fx-font-size: 18px;" text="Title Title Title Title Title Title Title Title Title" wrapText="true" />
+      <FontAwesomeIconView fill="#13547a" glyphName="LOCK" layoutX="334.0" layoutY="295.0" onMouseClicked="#openAlert" size="35" style="-fx-cursor: hand;" />
+      <FontAwesomeIconView fill="#13547a" glyphName="CLOSE" layoutX="350.0" layoutY="27.0" onMouseClicked="#close" size="20" style="-fx-cursor: hand;" />
+      <AnchorPane layoutX="10.0" layoutY="249.0" prefHeight="44.0" prefWidth="48.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 0.65em 0 1em 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <FontAwesomeIconView fx:id="icon" fill="WHITE" glyphName="BOOK" layoutX="11.0" layoutY="32.0" size="25" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

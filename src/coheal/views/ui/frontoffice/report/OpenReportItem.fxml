@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="109.0" prefWidth="280.0" style="-fx-background-color: #398fa3; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.OpenReportItemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#details" prefHeight="109.0" prefWidth="280.0" style="-fx-background-color: #398fa3; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.OpenReportItemController">
    <children>
       <AnchorPane layoutX="21.0" layoutY="-20.0" prefHeight="45.0" prefWidth="51.0" style="-fx-background-color: #1f7190; -fx-background-radius: 1.5em;">
          <children>
@@ -15,6 +15,6 @@
       <Label fx:id="title" alignment="CENTER" layoutX="71.0" layoutY="4.0" prefHeight="29.0" prefWidth="199.0" style="-fx-font-size: 18px;" text="&quot;Test Book&quot;" textFill="WHITE" wrapText="true" />
       <Label fx:id="note" alignment="TOP_LEFT" layoutX="11.0" layoutY="35.0" prefHeight="66.0" prefWidth="267.0" style="-fx-font-size: 14px;" text="&quot;This book is bad and offensive, f fdfd  fd fdf df d fdfd fdfd fdf please delete it&quot;" textFill="WHITE" wrapText="true" />
       <Circle fill="#1f7190" layoutX="274.0" layoutY="7.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <FontAwesomeIconView fill="WHITE" glyphName="SPINNER" layoutX="263.0" layoutY="15.0" size="23" />
+      <FontAwesomeIconView fill="WHITE" glyphName="SPINNER" layoutX="263.0" layoutY="15.0" onMouseClicked="#details" size="23" />
    </children>
 </AnchorPane>

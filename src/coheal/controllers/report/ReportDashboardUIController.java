@@ -208,7 +208,7 @@ public class ReportDashboardUIController implements Initializable {
     @FXML
     private void closeReportAction(ActionEvent event) {
         if (isSelected) {
-            rs.closeReport(selectedId);
+            rs.closeReport("");
             reportsTable.setItems((ObservableList<Report>) rs.reportsList("book_report"));
         }
 

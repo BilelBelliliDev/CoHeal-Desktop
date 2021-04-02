@@ -5,7 +5,6 @@
  */
 package coheal.services.report;
 
-import coheal.entities.event.Event;
 import coheal.entities.report.BookReport;
 import coheal.entities.report.EventReport;
 import coheal.entities.report.RecipeReport;
@@ -21,8 +20,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -105,9 +102,9 @@ public class ReportService implements IReportService {
     }
 
     @Override
-    public void closeReport(int reportId) {
+    public void closeReport(String title) {
         try {
-            String query = "update report set is_closed=1 where report_id=" + reportId + "";
+            String query = "update report set is_closed=1 where title='" + title + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(query);
         } catch (SQLException ex) {
