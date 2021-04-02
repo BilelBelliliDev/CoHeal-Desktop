@@ -95,6 +95,9 @@ public class SessionItemController implements Initializable {
             suprimer.setVisible(true);
 
         }
+        if (UserSession.getRole().equals("moderator")) {
+            suprimer.setVisible(true);
+        }
 
     }
 

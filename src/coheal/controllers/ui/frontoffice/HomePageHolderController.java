@@ -92,7 +92,11 @@ public class HomePageHolderController implements Initializable {
         userName.setText(UserSession.getFirst_name() + " " + UserSession.getLast_name());
         userName1.setText(UserSession.getFirst_name() + " " + UserSession.getLast_name());
         userEmail.setText(UserSession.getEmail());
-
+        if (UserSession.getRole().equals("moderator")) {
+            reportsSideBar.setVisible(true);
+        } else {
+            reportsSideBar.setVisible(false);
+        }
         try {
             pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/HomePage.fxml")));
         } catch (IOException ex) {

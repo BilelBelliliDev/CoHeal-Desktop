@@ -102,6 +102,9 @@ public class BookDetailsController implements Initializable {
                 trash.setVisible(true);
                 modif.setVisible(true);
             }
+            if(UserSession.getRole().equals("moderator")){
+                trash.setVisible(true);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(BookDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }

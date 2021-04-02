@@ -123,6 +123,9 @@ public class TaskDetailsController implements Initializable {
             deleteIcon.setVisible(true);
             participateButton.setVisible(false);
         }
+        if (UserSession.getRole().equals("moderator")) {
+            deleteIcon.setVisible(true);
+        }
 
         int y = 0;
         int x = 0;

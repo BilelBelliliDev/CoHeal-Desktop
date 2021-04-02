@@ -114,6 +114,9 @@ public class RecipeDetailsController implements Initializable {
             deleteIcon.setVisible(true);
             printBtn.setVisible(false);
         }
+        if (UserSession.getRole().equals("moderator")) {
+            deleteIcon.setVisible(true);
+        }
 
         if (r != null) {
             //sets

@@ -12,7 +12,6 @@ import coheal.services.report.ReportService;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -169,7 +167,7 @@ public class ReportPageController implements Initializable {
             filterDialogPane.setDisable(false);
             filterDialogPane.setVisible(true);
             filterIsDisplayed = true;
-            new ZoomIn(filterDialogPane).play();
+            new ZoomIn(filterDialogPane).setSpeed(2).play();
         }
     }
 

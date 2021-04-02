@@ -153,9 +153,9 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="435.0" layoutY="29.0" prefHeight="291.0" prefWidth="615.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-width: 2; -fx-border-radius: 0.75em;">
+      <AnchorPane layoutX="435.0" layoutY="29.0" prefHeight="298.0" prefWidth="625.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-width: 2; -fx-border-radius: 0.75em;">
          <children>
-            <PieChart fx:id="pieChart" layoutX="10.0" layoutY="11.0" prefHeight="269.0" prefWidth="611.0" stylesheets="@../../../../resources/css/pie.css" />
+            <PieChart fx:id="pieChart" layoutX="10.0" layoutY="11.0" legendSide="LEFT" prefHeight="277.0" prefWidth="611.0" stylesheets="@../../../../resources/css/pie.css" />
          </children>
       </AnchorPane>
       <Pane layoutX="461.0" layoutY="13.0" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #FFFEFB;">
