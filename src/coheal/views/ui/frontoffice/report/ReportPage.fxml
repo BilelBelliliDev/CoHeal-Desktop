@@ -121,7 +121,7 @@
             <AnchorPane prefHeight="58.0" prefWidth="379.0" style="-fx-background-color: rgba(19, 84, 122, 0.1); -fx-background-radius: 1em;">
                <children>
                   <Pane layoutX="8.0" layoutY="8.0" prefHeight="39.0" prefWidth="6.0" style="-fx-background-color: #13547a; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Label layoutX="28.0" layoutY="8.0" style="-fx-text-fill: #13547a; -fx-font-size: 28px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="New Reports">
+                  <Label layoutX="28.0" layoutY="8.0" style="-fx-text-fill: #13547a; -fx-font-size: 28px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Recent Reports">
                      <font>
                         <Font name="Century Gothic Bold" size="68.0" />
                      </font>
@@ -180,12 +180,12 @@
             </AnchorPane>
          </children>
       </VBox>
-      <Label fx:id="noUrgReportsLabel" layoutX="49.0" layoutY="177.0" prefHeight="13.0" prefWidth="362.0" style="-fx-font-size: 15px; -fx-text-fill: grey;" styleClass="text" text="No urgent reports, chill and drink a cup of tea" textAlignment="CENTER" visible="false" wrapText="true">
+      <Label fx:id="noUrgReportsLabel" layoutX="33.0" layoutY="178.0" prefHeight="13.0" prefWidth="362.0" style="-fx-font-size: 15px; -fx-text-fill: grey;" styleClass="text" text="No urgent reports, chill and drink a cup of tea" textAlignment="CENTER" visible="false" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="noNewReportsLabel" layoutX="55.0" layoutY="463.0" prefHeight="24.0" prefWidth="344.0" style="-fx-font-size: 15px; -fx-text-fill: grey;" styleClass="text" text="No new reports, chill and drink a cup of tea" textAlignment="CENTER" visible="false" wrapText="true">
+      <Label fx:id="noNewReportsLabel" layoutX="42.0" layoutY="460.0" prefHeight="24.0" prefWidth="344.0" style="-fx-font-size: 15px; -fx-text-fill: grey;" styleClass="text" text="No new reports, chill and drink a cup of tea" textAlignment="CENTER" visible="false" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>

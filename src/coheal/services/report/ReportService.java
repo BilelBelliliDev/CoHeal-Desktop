@@ -142,7 +142,7 @@ public class ReportService implements IReportService {
         List<Report> reports = new ArrayList();
         try {
             Statement stm = cnx.createStatement();
-            String query = "select * from report ";
+            String query = "select * from report order by created_at desc";
             ResultSet rst = stm.executeQuery(query);
             while (rst.next()) {
                 Report r = new BookReport();
