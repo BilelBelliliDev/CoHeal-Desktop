@@ -119,6 +119,24 @@ public class ServiceUser implements IServiceUser{
         return Users;
        
     }
+    
+    public int userCount() {  
+        int x=0;
+        try {
+            Statement stm=cnx.createStatement();
+             String query = "SELECT count(*) as total FROM `user` where is_deleted=0";
+             ResultSet rst=stm.executeQuery(query);
+             
+             while (rst.next()){
+                 x=rst.getInt("total");
+             }
+             
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return x;
+       
+    }
  //---------------------------------------------
     @Override
     public void ModifierUser(User u ,int id) {

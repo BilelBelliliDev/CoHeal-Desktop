@@ -257,7 +257,7 @@ public class ReportService implements IReportService {
         ObservableList<Report> reports = FXCollections.observableArrayList();
         try {
             Statement stm = cnx.createStatement();
-            String query = "select *, count(*) as total from report where is_closed=0 group by title having total>9 order by total desc limit 3";
+            String query = "select *, count(*) as total from report where is_closed=0 group by title having total>4 order by total desc limit 3";
             ResultSet rst = stm.executeQuery(query);
             while (rst.next()) {
                 Report r = new BookReport();

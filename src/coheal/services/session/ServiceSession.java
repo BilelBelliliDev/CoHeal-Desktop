@@ -101,6 +101,30 @@ public class ServiceSession implements ISessionService {
         }
         return s;
     }
+    public List<Session> listSesion1() {
+        ObservableList<Session> s = FXCollections.observableArrayList();
+        try {
+            Statement st = con.createStatement();
+            String res = "select * from `session` where is_deleted=0";
+            ResultSet rs = st.executeQuery(res);
+
+            while (rs.next()) {
+                Session e = new Session();
+                e.setSessionId(rs.getInt("session_id"));
+                e.setTherpId(rs.getInt("therp_id"));
+                e.setTitle(rs.getString("title"));
+                e.setDescription(rs.getString("description"));
+                e.setNumOfDays(rs.getInt("num_of_days"));
+                e.setPrice(rs.getInt("price"));
+
+
+                s.add(e);
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de l'affichage");
+        }
+        return s;
+    }
  //@Override
     public List<Session> listSesionuser() {
         ObservableList<Session> s = FXCollections.observableArrayList();
