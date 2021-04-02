@@ -15,6 +15,7 @@ import coheal.services.user.UserSession;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -62,16 +63,19 @@ public class RecipePageController implements Initializable {
     private JFXComboBox<String> ComboBox;
     @FXML
     private JFXTextField searchRecipe;
+    @FXML
+    private FontAwesomeIconView refreshBtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         if (UserSession.getRole().equals("nutritionist")) {
             addBtn.setVisible(true);
             ComboBox.setVisible(true);
+            refreshBtn.setVisible(true);
         }
 
         new ZoomIn(recipePane).play();
@@ -173,6 +177,35 @@ public class RecipePageController implements Initializable {
             searchWord = searchRecipe.getText();
             pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord, comboValue));
         }
+
+    }
+
+    @FXML
+    private void refreshPage(MouseEvent event) {
+        new ZoomIn(recipePane).play();
+
+        ComboBox.getItems().add("All");
+        ComboBox.getItems().add("Yours");
+        ComboBox.getSelectionModel().select("All");
+
+        List<RecipeCategory> catRecipes = stc.topThreeRecCatg();
+        System.out.println(catRecipes.size());
+
+        for (int i = 0; i < catRecipes.size(); i++) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/coheal/views/ui/frontoffice/recipe/RecipeCategoryItem.fxml"));
+            System.out.println(catRecipes.get(i));
+            try {
+                AnchorPane pane = loader.load();
+                RecipeCategoryItemController c = loader.getController();
+                c.setData(catRecipes.get(i));
+                categoriesHBox.getChildren().add(pane);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+
+        pagination.setPageFactory((pageindex) -> grid(pageindex, searchWord, comboValue));
 
     }
 }

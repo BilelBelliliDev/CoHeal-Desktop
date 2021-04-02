@@ -92,7 +92,6 @@ public class RecipeCategoryPageController implements Initializable {
 
 //    //test textfield
 //    boolean name = false;
-
     /**
      * Initializes the controller class.
      */
@@ -194,7 +193,6 @@ public class RecipeCategoryPageController implements Initializable {
 
 //            showAlert(Alert.AlertType.CONFIRMATION, owner, "Confirmation!",
 //                    "Category modified successfully!");
-            
             //Notification
             TrayNotification tray = new TrayNotification();
             AnimationType type = AnimationType.POPUP;
@@ -235,11 +233,10 @@ public class RecipeCategoryPageController implements Initializable {
 //            Logger.getLogger(AddCategoryController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-
     @FXML
     private void DeleteCategory(ActionEvent event) {
         javafx.stage.Window owner = DeleteBtn.getScene().getWindow();
-        
+
         if (isSelected) {
             RecipeCategory rc = new RecipeCategory();
             rc = RecipeCatTable.getSelectionModel().getSelectedItem();
@@ -289,6 +286,27 @@ public class RecipeCategoryPageController implements Initializable {
         img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
         String n = RechercheTF.getText();
         RecipeCatTable.setItems(rcs.RechercheCatAvance(n));
+    }
+
+    @FXML
+    private void RefreshPage(MouseEvent event) {
+        RecipeCategoryService rcs = new RecipeCategoryService();
+        name_col.setCellValueFactory(new PropertyValueFactory<>("name"));
+        img_col.setCellValueFactory(new PropertyValueFactory<>("img"));
+        RecipeCatTable.setItems((ObservableList<RecipeCategory>) rcs.Afficher_RecipeCategory());
+        RecipeCatTable.setRowFactory(tv -> {
+            TableRow<RecipeCategory> row = new TableRow<>();
+            row.setOnMouseClicked(Event -> {
+                if (Event.getClickCount() == 1 && (!row.isEmpty())) {
+                    RecipeCategory rowData = row.getItem();
+                    NameTF.setText(rowData.getName());
+                    ImgUrlTF.setText(rowData.getImgUrl());
+                    selectedImg.setImage(rowData.getImg().getImage());
+                    isSelected = true;
+                }
+            });
+            return row;
+        });
     }
 
 }
