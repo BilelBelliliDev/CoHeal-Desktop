@@ -13,6 +13,7 @@ import coheal.entities.rate.RecipeRate;
 import coheal.entities.rate.SessionRate;
 import coheal.entities.rate.TaskRate;
 import coheal.services.report.RateService;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,7 +22,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import static jdk.nashorn.internal.objects.NativeMath.round;
 import org.controlsfx.control.Rating;
 
 /**
@@ -34,24 +37,49 @@ public class RatePopupUIController implements Initializable {
     private int id, userId;
     private String s;
     @FXML
-    private Label dataId;
-    @FXML
     private Rating ratingId;
     @FXML
-    private Button rateBtn;
-    @FXML
-    private Button cancelBtn;
+    private FontAwesomeIconView face;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    }
+    public int getId() {
+        return id;
+    }
 
+    public void setData(int id, int userId, String s) {
+        this.id = id;
+        this.userId = userId;
+        this.s = s;
     }
 
     @FXML
-    private void rateAction(ActionEvent event) {
+    private void rateClicked(MouseEvent event) {
+        if (ratingId.getRating() <= 2) {
+            face.setGlyphName("FROWN_ALT");
+        } else if (ratingId.getRating() > 2 && ratingId.getRating() <= 3) {
+            face.setGlyphName("MEH_ALT");
+        } else {
+            face.setGlyphName("SMILE_ALT");
+        }
+    }
+
+    @FXML
+    private void disableHover(MouseEvent event) {
+        ratingId.setUpdateOnHover(false);
+    }
+
+    @FXML
+    private void enableHover(MouseEvent event) {
+        ratingId.setUpdateOnHover(true);
+    }
+
+    @FXML
+    private void rateAction(MouseEvent event) {
         RateService rs = new RateService();
         Rate r;
         Stage stage;
@@ -61,7 +89,7 @@ public class RatePopupUIController implements Initializable {
                 r.setUserId(userId);
                 r.setScore(ratingId.getRating());
                 rs.addRate(r, id);
-                stage = (Stage) rateBtn.getScene().getWindow();
+                stage = (Stage) ratingId.getScene().getWindow();
                 stage.close();
                 break;
             case "Recipe":
@@ -69,7 +97,7 @@ public class RatePopupUIController implements Initializable {
                 r.setUserId(userId);
                 r.setScore(ratingId.getRating());
                 rs.addRate(r, id);
-                stage = (Stage) rateBtn.getScene().getWindow();
+                stage = (Stage) ratingId.getScene().getWindow();
                 stage.close();
                 break;
             case "Task":
@@ -77,7 +105,7 @@ public class RatePopupUIController implements Initializable {
                 r.setUserId(userId);
                 r.setScore(ratingId.getRating());
                 rs.addRate(r, id);
-                stage = (Stage) rateBtn.getScene().getWindow();
+                stage = (Stage) ratingId.getScene().getWindow();
                 stage.close();
                 break;
             case "Event":
@@ -85,7 +113,7 @@ public class RatePopupUIController implements Initializable {
                 r.setUserId(userId);
                 r.setScore(ratingId.getRating());
                 rs.addRate(r, id);
-                stage = (Stage) rateBtn.getScene().getWindow();
+                stage = (Stage) ratingId.getScene().getWindow();
                 stage.close();
                 break;
             case "Session":
@@ -93,28 +121,16 @@ public class RatePopupUIController implements Initializable {
                 r.setUserId(userId);
                 r.setScore(ratingId.getRating());
                 rs.addRate(r, id);
-                stage = (Stage) rateBtn.getScene().getWindow();
+                stage = (Stage) ratingId.getScene().getWindow();
                 stage.close();
                 break;
         }
-
     }
 
     @FXML
-    private void cancelAction(ActionEvent event) {
-        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+    private void cancelAction(MouseEvent event) {
+        Stage stage = (Stage) ratingId.getScene().getWindow();
         stage.close();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setData(int id, int userId, String s) {
-        this.id = id;
-        this.userId = userId;
-        this.s = s;
-        dataId.setText(s + " id: " + id + ", User id: " + userId);
     }
 
 }

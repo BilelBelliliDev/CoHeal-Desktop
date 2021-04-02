@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -26,7 +27,6 @@ public class RateAlertUIController implements Initializable {
     private String s;
     @FXML
     private Label labelId;
-    @FXML
     private Button closeBtn;
 
     /**
@@ -37,10 +37,8 @@ public class RateAlertUIController implements Initializable {
         // TODO
     }    
 
-    @FXML
     private void closeAction(ActionEvent event) {
-        Stage stage = (Stage) closeBtn.getScene().getWindow();
-        stage.close();
+        
     }
     
     public void setData(int id, int userId, String s) {
@@ -48,6 +46,12 @@ public class RateAlertUIController implements Initializable {
         this.userId=userId;
         this.s=s;
         labelId.setText("You already rated this "+s+"!");
+    }
+
+    @FXML
+    private void closeAction(MouseEvent event) {
+        Stage stage = (Stage) labelId.getScene().getWindow();
+        stage.close();
     }
     
 }

@@ -300,8 +300,25 @@ public class SessionItemController implements Initializable {
         ReportPopupUIController c = loader.getController();
         c.setData(sessionId, UserSession.getUser_id(), "Session", sessionTitle.getText());
         Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
+            HomePageHolderController hpc = new HomePageHolderController();
+            hpc.setStage(stage);
+            stage.show();
+            root.setOnMousePressed((MouseEvent mouseEvent) -> {
+                xOffset = mouseEvent.getSceneX();
+                yOffset = mouseEvent.getSceneY();
+            });
+            root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                stage.setX(mouseEvent.getScreenX() - xOffset);
+                stage.setY(mouseEvent.getScreenY() - yOffset);
+                stage.setOpacity(0.85f);
+            });
+            root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+                stage.setOpacity(1.0f);
+            });
     }
 
     @FXML
@@ -313,16 +330,50 @@ public class SessionItemController implements Initializable {
             RateAlertUIController c = loader.getController();
             c.setData(sessionId, UserSession.getUser_id(), "Session");
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
+            HomePageHolderController hpc = new HomePageHolderController();
+            hpc.setStage(stage);
             stage.show();
+            root.setOnMousePressed((MouseEvent mouseEvent) -> {
+                xOffset = mouseEvent.getSceneX();
+                yOffset = mouseEvent.getSceneY();
+            });
+            root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                stage.setX(mouseEvent.getScreenX() - xOffset);
+                stage.setY(mouseEvent.getScreenY() - yOffset);
+                stage.setOpacity(0.85f);
+            });
+            root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+                stage.setOpacity(1.0f);
+            });
         } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/RatePopupUI.fxml"));
             Parent root = loader.load();
             RatePopupUIController c = loader.getController();
             c.setData(sessionId, UserSession.getUser_id(), "Session");
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
+            HomePageHolderController hpc = new HomePageHolderController();
+            hpc.setStage(stage);
             stage.show();
+            root.setOnMousePressed((MouseEvent mouseEvent) -> {
+                xOffset = mouseEvent.getSceneX();
+                yOffset = mouseEvent.getSceneY();
+            });
+            root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                stage.setX(mouseEvent.getScreenX() - xOffset);
+                stage.setY(mouseEvent.getScreenY() - yOffset);
+                stage.setOpacity(0.85f);
+            });
+            root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+                stage.setOpacity(1.0f);
+            });
         }
     }
 
