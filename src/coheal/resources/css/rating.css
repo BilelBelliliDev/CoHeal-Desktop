@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 2, 2021, 3:46:26 AM
+    Author     : BilelxOS
+*/
+.rating > .container > .button {
+    -fx-background-image: url("unchecked.png");
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+    -fx-pref-width: 40 ;
+    -fx-pref-height: 40 ;
+    -fx-background-size: cover;
+    -fx-padding: 0;
+}
+.rating > .container > .button.strong {
+    -fx-background-image: url("checked.png");
+}

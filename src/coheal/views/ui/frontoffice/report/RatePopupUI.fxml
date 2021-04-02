@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Circle?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="224.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.RatePopupUIController">
+<AnchorPane id="AnchorPane" prefHeight="199.0" prefWidth="371.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 10em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-radius: 10em; -fx-border-width: 5;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.RatePopupUIController">
    <children>
-      <Rating fx:id="ratingId" layoutX="98.0" layoutY="80.0" />
-      <Button fx:id="rateBtn" layoutX="98.0" layoutY="155.0" mnemonicParsing="false" onAction="#rateAction" prefHeight="25.0" prefWidth="79.0" text="Rate" />
-      <Button fx:id="cancelBtn" layoutX="195.0" layoutY="155.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="25.0" prefWidth="79.0" text="Cancel" />
-      <Label fx:id="dataId" layoutX="107.0" layoutY="14.0" prefHeight="22.0" prefWidth="176.0" textAlignment="CENTER">
-         <font>
-            <Font name="Calibri Light" size="18.0" />
-         </font></Label>
+      <Rating fx:id="ratingId" layoutX="76.0" layoutY="138.0" onMouseClicked="#disableHover" onMouseEntered="#enableHover" onMouseMoved="#rateClicked" partialRating="true" rating="4.0" stylesheets="@../../../../resources/css/rating.css" updateOnHover="true" />
+      <FontAwesomeIconView fx:id="face" glyphName="SMILE_ALT" layoutX="141.0" layoutY="109.0" size="100" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+      <Circle fill="DODGERBLUE" layoutX="35.0" layoutY="186.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+      <FontAwesomeIconView fill="WHITE" glyphName="CHECK" layoutX="20.0" layoutY="196.0" onMouseClicked="#rateAction" size="30" style="-fx-cursor: hand;" />
+      <Circle fill="DODGERBLUE" layoutX="332.0" layoutY="189.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+      <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" layoutX="321.0" layoutY="199.0" onMouseClicked="#cancelAction" size="30" style="-fx-cursor: hand;" />
    </children>
 </AnchorPane>

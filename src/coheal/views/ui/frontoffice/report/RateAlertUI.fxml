@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="204.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.RateAlertUIController">
+<AnchorPane id="AnchorPane" prefHeight="86.0" prefWidth="440.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 10em; -fx-border-radius: 10em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-width: 5;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.RateAlertUIController">
    <children>
-      <Label fx:id="labelId" layoutX="67.0" layoutY="67.0" prefHeight="35.0" prefWidth="357.0">
+      <Label fx:id="labelId" layoutX="78.0" layoutY="26.0" prefHeight="35.0" prefWidth="358.0" style="-fx-font-size: 20px; -fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" styleClass="text" text="You already rated this session">
          <font>
             <Font name="Calibri Light" size="29.0" />
          </font>
       </Label>
-      <Button fx:id="closeBtn" layoutX="191.0" layoutY="147.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="25.0" prefWidth="81.0" text="Close" />
+      <Circle fill="DODGERBLUE" layoutX="41.0" layoutY="44.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+      <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" layoutX="30.0" layoutY="54.0" onMouseClicked="#closeAction" size="30" style="-fx-cursor: hand;" />
    </children>
 </AnchorPane>

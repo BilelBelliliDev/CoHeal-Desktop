@@ -7,6 +7,7 @@ package coheal.controllers.ui.frontoffice.event;
 
 import animatefx.animation.ZoomIn;
 import animatefx.animation.ZoomOut;
+import coheal.controllers.ui.frontoffice.HomePageHolderController;
 import coheal.controllers.ui.frontoffice.book.BookItemController;
 import coheal.controllers.ui.frontoffice.report.RateAlertUIController;
 import coheal.controllers.ui.frontoffice.report.RatePopupUIController;
@@ -30,7 +31,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -39,6 +42,7 @@ import javafx.stage.Stage;
  */
 public class EventItemController implements Initializable {
 
+    double xOffset, yOffset;
     @FXML
     private Label eventDay;
     @FXML
@@ -51,10 +55,10 @@ public class EventItemController implements Initializable {
     private Label eventLocation;
     @FXML
     private Label eventType;
-    int id=0;
+    int id = 0;
     @FXML
     private AnchorPane menuId;
-    
+
     private boolean menuIsDisplayed = false;
 
     /**
@@ -63,15 +67,16 @@ public class EventItemController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    public void setData(Event e){
+    }
+
+    public void setData(Event e) {
         eventTitle.setText(e.getTitle());
         eventLocation.setText(e.getLocation());
         eventDay.setText(e.getStartDate().toLocalDate().format(DateTimeFormatter.ofPattern("dd")));
         eventMonth.setText(e.getStartDate().toLocalDate().format(DateTimeFormatter.ofPattern("MMM")));
         eventType.setText(e.getType());
         eventImg.setImage(e.getImg().getImage());
-        id=e.getEventId();
+        id = e.getEventId();
     }
 
     @FXML
@@ -80,18 +85,18 @@ public class EventItemController implements Initializable {
         th.setId(id);
 
         AnchorPane pageHolder = (AnchorPane) eventTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
-         if(pageHolder==null){
-             pageHolder = (AnchorPane) eventTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
-             
+        if (pageHolder == null) {
+            pageHolder = (AnchorPane) eventTitle.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+
         }
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/event/EventDetails.fxml")));
-    
+
     }
 
     @FXML
     private void dotsAction(MouseEvent event) {
-        if (menuIsDisplayed) {           
+        if (menuIsDisplayed) {
             menuIsDisplayed = false;
             new ZoomOut(menuId).play();
             menuId.setDisable(true);
@@ -106,17 +111,34 @@ public class EventItemController implements Initializable {
     @FXML
     private void reportAction(MouseEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/ReportPopupUI.fxml"));
-        Parent root=null;
-            try {
-                root = loader.load();
-            } catch (IOException ex) {
-                Logger.getLogger(EventItemController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(EventItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ReportPopupUIController c = loader.getController();
         c.setData(id, UserSession.getUser_id(), "Event", eventTitle.getText());
         Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
+            HomePageHolderController hpc = new HomePageHolderController();
+            hpc.setStage(stage);
+            stage.show();
+            root.setOnMousePressed((MouseEvent mouseEvent) -> {
+                xOffset = mouseEvent.getSceneX();
+                yOffset = mouseEvent.getSceneY();
+            });
+            root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                stage.setX(mouseEvent.getScreenX() - xOffset);
+                stage.setY(mouseEvent.getScreenY() - yOffset);
+                stage.setOpacity(0.85f);
+            });
+            root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+                stage.setOpacity(1.0f);
+            });
     }
 
     @FXML
@@ -128,16 +150,50 @@ public class EventItemController implements Initializable {
             RateAlertUIController c = loader.getController();
             c.setData(id, UserSession.getUser_id(), "Event");
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
+            HomePageHolderController hpc = new HomePageHolderController();
+            hpc.setStage(stage);
             stage.show();
+            root.setOnMousePressed((MouseEvent mouseEvent) -> {
+                xOffset = mouseEvent.getSceneX();
+                yOffset = mouseEvent.getSceneY();
+            });
+            root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                stage.setX(mouseEvent.getScreenX() - xOffset);
+                stage.setY(mouseEvent.getScreenY() - yOffset);
+                stage.setOpacity(0.85f);
+            });
+            root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+                stage.setOpacity(1.0f);
+            });
         } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/RatePopupUI.fxml"));
             Parent root = loader.load();
             RatePopupUIController c = loader.getController();
             c.setData(id, UserSession.getUser_id(), "Event");
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
+            HomePageHolderController hpc = new HomePageHolderController();
+            hpc.setStage(stage);
             stage.show();
+            root.setOnMousePressed((MouseEvent mouseEvent) -> {
+                xOffset = mouseEvent.getSceneX();
+                yOffset = mouseEvent.getSceneY();
+            });
+            root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                stage.setX(mouseEvent.getScreenX() - xOffset);
+                stage.setY(mouseEvent.getScreenY() - yOffset);
+                stage.setOpacity(0.85f);
+            });
+            root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+                stage.setOpacity(1.0f);
+            });
         }
     }
 }
