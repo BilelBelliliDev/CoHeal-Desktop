@@ -5,7 +5,7 @@
  */
 package coheal.controllers.ui.frontoffice.report;
 
-import coheal.controllers.report.*;
+import animatefx.animation.ZoomIn;
 import coheal.entities.rate.BookRate;
 import coheal.entities.rate.EventRate;
 import coheal.entities.rate.Rate;
@@ -16,15 +16,11 @@ import coheal.services.report.RateService;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import static jdk.nashorn.internal.objects.NativeMath.round;
 import org.controlsfx.control.Rating;
 
 /**
@@ -40,12 +36,15 @@ public class RatePopupUIController implements Initializable {
     private Rating ratingId;
     @FXML
     private FontAwesomeIconView face;
+    @FXML
+    private AnchorPane anchor;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        new ZoomIn(anchor).play();
     }
     public int getId() {
         return id;

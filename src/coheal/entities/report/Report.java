@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 public abstract class Report {
     protected int reportId;
     protected int reporterId;
+    protected int total;
     protected String title;
     protected String type;
     protected String note;
@@ -35,6 +36,14 @@ public abstract class Report {
 
     public void setReporterId(int reporterId) {
         this.reporterId = reporterId;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public String getTitle() {

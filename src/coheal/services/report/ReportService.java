@@ -230,5 +230,30 @@ public class ReportService implements IReportService {
         }
         return reports;
     }
+    
+    public List<Report> reportsCount() {
+        ObservableList<Report> reports = FXCollections.observableArrayList();
+        try {
+            Statement stm = cnx.createStatement();
+            String query = "select *, count(*) as total from report where is_closed=0 group by title having total>9 order by total desc limit 3";
+            ResultSet rst = stm.executeQuery(query);
+            while (rst.next()) {
+                Report r = new BookReport();
+                r.setReportId(rst.getInt("report_id"));
+                r.setReporterId(rst.getInt("reporter_id"));
+                r.setTitle(rst.getString("title"));
+                r.setType(rst.getString("type"));
+                r.setNote(rst.getString("note"));
+                r.setIsClosed(rst.getBoolean("is_closed"));
+                r.setCreatedAt(rst.getTimestamp("created_at"));
+                r.setTotal(rst.getInt("total"));
+                reports.add(r);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return reports;
+    }
 
 }
