@@ -13,6 +13,7 @@ import coheal.entities.task.Task;
 import coheal.entities.task.TaskActions;
 import coheal.entities.task.UserTask;
 import coheal.entities.user.User;
+import coheal.services.report.RateService;
 import coheal.services.task.ServiceNotification;
 import coheal.services.task.ServicePaidTask;
 import coheal.services.task.ServiceTask;
@@ -43,6 +44,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.Rating;
 
 /**
  * FXML Controller class
@@ -84,12 +86,27 @@ public class TaskDetailsController implements Initializable {
     @FXML
     private Label price;
     private ServiceUser su=new ServiceUser();
+    @FXML
+    private Rating ratingId;
+    @FXML
+    private Label rateLabel;
+     RateService rateService = new RateService();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if(rateService.ratesListById("task", th.getId())==0){
+            rateLabel.setVisible(true);
+            ratingId.setVisible(false);
+        }else {        
+            System.out.println(rateService.ratesListById("task", th.getId()));
+            ratingId.setRating(rateService.ratesListById("task", th.getId()));
+            rateLabel.setVisible(false);
+            ratingId.setVisible(true);
+        }
+        
         taskActionsPane.setVvalue(0);
         new ZoomIn(taskActionsPane).play();
         task = st.getTask(th.getId());

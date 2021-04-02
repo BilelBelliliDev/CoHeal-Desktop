@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
 <ScrollPane fx:id="eventPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.event.EventDetailsController">
    <content>
@@ -113,11 +114,13 @@
                </children>
             </Pane>
             <FontAwesomeIconView fill="#13547a" glyphName="ARROW_LEFT" layoutX="7.0" layoutY="22.0" onMouseClicked="#backAction" size="20" style="-fx-cursor: hand;" wrappingWidth="16.428571701049805" />
-            <JFXButton fx:id="participateButton" layoutX="909.0" layoutY="89.0" onAction="#participateAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Participate" textFill="#fffefb" visible="false">
+            <JFXButton fx:id="participateButton" layoutX="909.0" layoutY="89.0" onAction="#participateAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #303c5d #303c5d; -fx-background-radius: 1em;" text="Participate" textFill="#fffefb">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </JFXButton>
+            <Rating fx:id="ratingId" layoutX="684.0" layoutY="83.0" partialRating="true" rating="4.0" stylesheets="@../../../../resources/css/rating.css" />
+            <Label fx:id="rateLabel" alignment="CENTER" layoutX="755.0" layoutY="90.0" prefHeight="29.0" prefWidth="145.0" style="-fx-font-size: 20px;" text="Not rated yet" visible="false" />
          </children>
       </AnchorPane>
    </content>

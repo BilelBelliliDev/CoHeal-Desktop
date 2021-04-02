@@ -232,4 +232,19 @@ public class RateService implements IRateService {
         return rates;
     }
 
+    public double ratesListById(String type, int id) {
+        double rates =0;
+        try {
+            Statement stm = cnx.createStatement();
+            String query = "select x." + type + "_id, round(avg(y.score),2) as score from rate y, " + type + "_rate x where x.rate_id=y.rate_id and x." + type + "_id="+id+" group by x." + type + "_id";
+            ResultSet rst = stm.executeQuery(query);
+            while (rst.next()) {
+                rates = rst.getDouble("score");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rates;
+    }
 }

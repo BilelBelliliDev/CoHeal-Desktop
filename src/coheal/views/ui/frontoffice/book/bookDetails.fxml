@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.book.BookDetailsController">
    <children>
@@ -18,7 +19,7 @@
       </FontAwesomeIconView>
       <ImageView fx:id="imgbookv" fitHeight="252.0" fitWidth="288.0" layoutX="28.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="qrv" fitHeight="113.0" fitWidth="101.0" layoutX="352.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="dess" alignment="CENTER" layoutX="28.0" layoutY="356.0" prefHeight="239.0" prefWidth="288.0" style="-fx-font-size: 22px;" textFill="#13547a">
+      <Label fx:id="dess" alignment="CENTER" layoutX="28.0" layoutY="356.0" prefHeight="204.0" prefWidth="288.0" style="-fx-font-size: 22px;" textFill="#13547a">
          <font>
             <Font name="Century Gothic Bold" size="24.0" />
          </font>
@@ -33,7 +34,7 @@
             <Font name="Century Gothic Bold" size="24.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="345.0" layoutY="557.0" onAction="#open" prefHeight="38.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #13547A; -fx-cursor: hand; -fx-background-radius: 1em; -fx-font-size: 16px;" stylesheets="@../../../../resources/css/main.css" text="read" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="352.0" layoutY="573.0" onAction="#open" prefHeight="38.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #13547A; -fx-cursor: hand; -fx-background-radius: 1em; -fx-font-size: 16px;" stylesheets="@../../../../resources/css/main.css" text="read" textFill="WHITE">
          <font>
             <Font name="Nirmala UI" size="16.0" />
          </font>
@@ -52,5 +53,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </FontAwesomeIconView>
+      <Rating fx:id="ratingId" layoutX="100.0" layoutY="569.0" partialRating="true" rating="4.0" stylesheets="@../../../../resources/css/rating.css" />
+      <Label fx:id="rateLabel" alignment="CENTER" layoutX="136.0" layoutY="574.0" prefHeight="29.0" prefWidth="145.0" style="-fx-font-size: 20px;" text="Not rated yet" />
    </children>
 </AnchorPane>
