@@ -46,6 +46,7 @@ public class AllCategoriesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        CategoryPane.setVvalue(0);
         new ZoomIn(CategoryPane).play();
         pagination.setPageFactory((pageindex) -> grid(pageindex));
     }

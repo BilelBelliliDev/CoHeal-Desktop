@@ -47,8 +47,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </FontAwesomeIconView>
-      <Circle fill="DODGERBLUE" layoutX="508.0" layoutY="257.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
-      <FontAwesomeIconView fx:id="updateButton" fill="#f9fafc" glyphName="EDIT" layoutX="496.0" layoutY="268.0" onMouseClicked="#updateCategoryAction" size="25" text="" wrappingWidth="31.0">
+      <Circle fill="DODGERBLUE" layoutX="507.0" layoutY="255.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
+      <FontAwesomeIconView fx:id="updateButton" fill="#f9fafc" glyphName="EDIT" layoutX="496.0" layoutY="266.0" onMouseClicked="#updateCategoryAction" size="25" text="" wrappingWidth="31.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -125,13 +125,16 @@ public class AddTaskFController implements Initializable {
         f = fileChooser.showOpenDialog(null);
         Image img = new Image("file:///"+f);
         image.setImage(img);
-        //imageTxt.setText(f.getName());
+        if(f!=null){
         t.setImgUrl(f.getName());
         pt.setImgUrl(f.getName());
+        }
     }
 
     @FXML
     private void addTaskAction(MouseEvent event) {
+        Window owner = Titre.getScene().getWindow();
+        if(titleV && descriptionV && daysV && cat!=""){
         if (paid.isSelected() && price != null) {
             pt.setTitle(Titre.getText());
             pt.setDescription(Description.getText());
@@ -156,6 +159,8 @@ public class AddTaskFController implements Initializable {
                 e.printStackTrace();
             }
             spt.addPaidTask(UserSession.getUser_id(), cat, pt);
+            AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation",
+                    "Task added successfully!");
         } else {
 
             t.setTitle(Titre.getText());
@@ -180,7 +185,11 @@ public class AddTaskFController implements Initializable {
                 e.printStackTrace();
             }
             st.createTask(UserSession.getUser_id(), cat, t);
+            AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation",
+                    "Task added successfully!");
         }
+        }else AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Task not added !");
     }
     private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);

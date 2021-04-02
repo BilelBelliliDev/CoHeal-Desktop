@@ -85,6 +85,7 @@ public class TaskPageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        taskPane.setVvalue(0);
         new ZoomIn(taskPane).play();
         comboBox.getItems().add("All");
         comboBox.getItems().add("Yours");

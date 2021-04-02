@@ -28,12 +28,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -155,6 +157,8 @@ public class UpdateTaskFController implements Initializable {
 
     @FXML
     private void updateTaskAction(MouseEvent event) {
+        Window owner = Titre.getScene().getWindow();
+        // if(titleV && descriptionV  && daysV && comboCatg.getValue()!=""){
         if (pt != null) {
             if (paid.isSelected() && price.getText() != "") {
                 pt.setTitle(Titre.getText());
@@ -188,6 +192,8 @@ public class UpdateTaskFController implements Initializable {
                 }
                 st.updateTask(pt, th.getId());
                 spt.updatePaidTask(pt, th.getId());
+                AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation",
+                    "Task updated successfully!");
 
             } else if (free.isSelected()) {
                 pt.setTitle(Titre.getText());
@@ -220,6 +226,8 @@ public class UpdateTaskFController implements Initializable {
                 }
                 spt.makeFreeTask(th.getId());
                 st.updateTask((Task) pt, th.getId());
+                AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation",
+                    "Task updated successfully!");
             }
 
         } else if (task != null) {
@@ -253,6 +261,8 @@ public class UpdateTaskFController implements Initializable {
                     task.setCategory(tc);
                 }
                 st.updateTask(task, th.getId());
+                AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation",
+                    "Task updated successfully!");
             } else if (paid.isSelected() && price.getText() != "") {
                 task.setTitle(Titre.getText());
                 task.setDescription(Description.getText());
@@ -285,9 +295,22 @@ public class UpdateTaskFController implements Initializable {
                 }
                 st.updateTask(task, th.getId());
                 spt.makePaidTask(th.getId(), Double.valueOf(price.getText()));
+                AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation",
+                    "Task updated successfully!");
             }
 
         }
+       // }else AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+               //     "Task not updated !");
+    }
+
+    private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 
     public void titleValidator() {
@@ -340,6 +363,7 @@ public class UpdateTaskFController implements Initializable {
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
+        
     }
 
     public void priceValidator() {
