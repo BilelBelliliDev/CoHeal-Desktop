@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="recipePane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.RecipePageController">
+<ScrollPane fx:id="recipePane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" vvalue="1.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.recipe.RecipePageController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2116.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
          <children>
@@ -36,7 +36,7 @@
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </JFXButton>
-            <Pagination fx:id="pagination" layoutX="35.0" layoutY="535.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="1572.0" prefWidth="1028.0" />
+            <Pagination fx:id="pagination" layoutX="35.0" layoutY="535.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="1572.0" prefWidth="1028.0" stylesheets="@../../../../resources/css/pagination.css" />
             <JFXComboBox fx:id="ComboBox" layoutX="236.0" layoutY="474.0" onAction="#ComboBoxRole" prefHeight="29.0" prefWidth="83.0" visible="false" />
             <JFXTextField fx:id="searchRecipe" layoutX="364.0" layoutY="482.0" onKeyPressed="#rechercheRecipe" prefHeight="31.0" prefWidth="171.0" promptText="search recipe" />
             <FontAwesomeIconView fx:id="refreshBtn" fill="#13547a" glyphName="REFRESH" layoutX="828.0" layoutY="450.0" onMouseClicked="#refreshPage" size="20" visible="false" />
