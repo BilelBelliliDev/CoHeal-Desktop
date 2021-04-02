@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="moderationPane" prefHeight="720.0" prefWidth="1084.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.report.ModerationPageController">
+<AnchorPane fx:id="moderationPane" prefHeight="720.0" prefWidth="1084.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.report.ModerationPageController">
    <children>
       <FontAwesomeIconView fx:id="close" fill="#13547a" glyphName="CLOSE" layoutX="1059.0" layoutY="24.0" onMouseClicked="#closeAction" size="20" style="-fx-cursor: hand;" />
       <FontAwesomeIconView fill="#13547a" glyphName="MINUS" layoutX="1035.0" layoutY="25.0" onMouseClicked="#minAction" size="18" style="-fx-cursor: hand;" />
@@ -153,10 +153,15 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="529.0" layoutY="29.0" prefHeight="291.0" prefWidth="474.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-width: 2; -fx-border-radius: 0.75em;">
+      <AnchorPane layoutX="435.0" layoutY="29.0" prefHeight="291.0" prefWidth="615.0" style="-fx-border-color: green; -fx-border-style: dashed; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-width: 2; -fx-border-radius: 0.75em;">
          <children>
-            <PieChart fx:id="pieChart" layoutX="15.0" layoutY="11.0" prefHeight="269.0" prefWidth="445.0" />
+            <PieChart fx:id="pieChart" layoutX="10.0" layoutY="11.0" prefHeight="269.0" prefWidth="611.0" stylesheets="@../../../../resources/css/pie.css" />
          </children>
       </AnchorPane>
+      <Pane layoutX="461.0" layoutY="13.0" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #FFFEFB;">
+         <children>
+            <Label alignment="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="29.0" prefWidth="103.0" style="-fx-font-size: 20px; -fx-text-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" styleClass="text" text="Pie Chart" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
