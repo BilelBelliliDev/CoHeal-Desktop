@@ -66,7 +66,7 @@ public class TaskController implements Initializable {
     @FXML
     private TableColumn<?, String> DaysCol;
     @FXML
-    private TableColumn<TaskCategory, String> catgCol;
+    private TableColumn<?, ?> catgCol;
     @FXML
     private TableColumn<?, String> priceCol;
     @FXML
@@ -123,7 +123,7 @@ public class TaskController implements Initializable {
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         DaysCol.setCellValueFactory(new PropertyValueFactory<>("numOfDays"));
-        catgCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        catgCol.setCellValueFactory(new PropertyValueFactory<>("cat"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         taskTable.setItems((ObservableList<Task>) l);
         TableFilter filter = new TableFilter(taskTable);
@@ -192,7 +192,7 @@ public class TaskController implements Initializable {
         Task task = taskTable.getSelectionModel().getSelectedItem();
         st.deleteTask(task.getTaskId());
         AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation", "Task deleted successfully!");
-        taskTable.getItems().clear();
+        //taskTable.getItems().clear();
         init();
     }
     

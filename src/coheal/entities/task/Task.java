@@ -32,6 +32,7 @@ public class Task {
     private Timestamp modifiedAt;
     private ImageView img;
     private User user;
+    private String cat;
 
     public Task() {
     }
@@ -70,6 +71,7 @@ public class Task {
 
     public void setCategory(TaskCategory category) {
         this.category = category;
+        cat=category.getName();
     }
 
     public String getImgUrl() {
@@ -176,10 +178,22 @@ public class Task {
         this.user = user;
     }
 
+    public String getCat() {
+        return cat;
+    }
+
+    public void setCat(String cat) {
+        this.cat = cat;
+    }
+
     
     
     @Override
     public String toString() {
-        return  "title=" + title + ", description=" + description + ", numOfDays=" + numOfDays + ", minUsers=" + minUsers + ", maxUsers=" + maxUsers + ", actions=" + actions +"\n";
+        return "Task{" + "taskId=" + taskId + ", usersTask=" + usersTask + ", category=" + category + ", imgUrl=" + imgUrl + ", title=" + title + ", description=" + description + ", numOfDays=" + numOfDays + ", minUsers=" + minUsers + ", maxUsers=" + maxUsers + ", actions=" + actions + ", isDeleted=" + isDeleted + ", deletedAt=" + deletedAt + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + ", img=" + img + ", user=" + user + '}';
     }
+
+    
+    
+   
 }
