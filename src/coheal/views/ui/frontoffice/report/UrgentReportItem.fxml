@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="43.0" prefWidth="381.0" style="-fx-background-color: rgba(197, 38, 58, 0.1); -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.UrgentReportItemController">
+<AnchorPane onMouseClicked="#details" prefHeight="43.0" prefWidth="381.0" style="-fx-background-color: rgba(197, 38, 58, 0.1); -fx-background-radius: 1em; -fx-cursor: hand;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.UrgentReportItemController">
    <children>
       <FontAwesomeIconView fx:id="icon" fill="#c5263a" glyphName="USER_MD" layoutX="14.0" layoutY="28.0" size="20" />
       <Label fx:id="text" layoutX="50.0" layoutY="11.0" prefHeight="20.0" prefWidth="322.0" style="-fx-text-fill: C5263A; -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="&quot;Test Session&quot; reported 28 times" wrapText="true">

@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="66.0" prefWidth="379.0" style="-fx-background-color: rgba(19, 84, 122, 0.1); -fx-background-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.RecentReportItemController">
+<AnchorPane onMouseClicked="#details" prefHeight="66.0" prefWidth="379.0" style="-fx-background-color: rgba(19, 84, 122, 0.1); -fx-background-radius: 1em; -fx-cursor: hand;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.RecentReportItemController">
    <children>
       <Label fx:id="label" layoutX="49.0" layoutY="10.0" prefHeight="43.0" prefWidth="322.0" style="-fx-text-fill: #13547a; -fx-font-size: 14px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="Bilel Bellili reported &quot;Test Book&quot;: hghjgjh gjhgjhgjhfdsfdsv" wrapText="true">
          <font>
