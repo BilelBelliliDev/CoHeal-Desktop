@@ -49,6 +49,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
 /**
@@ -97,9 +98,9 @@ public class TaskPageController implements Initializable {
                 Image notification = new Image("file:///" + projectPath + "/src/coheal/resources/images/tasks/alert.png");
                 TrayNotification tray = new TrayNotification();
                 tray.setTitle("participer");
-                tray.setImage(notification);
+                tray.setNotificationType(NotificationType.SUCCESS);
                 tray.setMessage(service.listNotification(UserSession.getUser_id()).get(i).getMessage());
-                tray.setRectangleFill(Paint.valueOf("#2A9A84"));
+                //tray.setRectangleFill(Paint.valueOf("#2A9A84"));
 //                tray.showAndWait();
                 tray.showAndDismiss(Duration.seconds(5));
                 service.deleteNotification(service.listNotification(UserSession.getUser_id()).get(i));

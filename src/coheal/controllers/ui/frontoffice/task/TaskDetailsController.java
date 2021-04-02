@@ -34,6 +34,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -44,6 +45,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import org.controlsfx.control.Rating;
 
 /**
@@ -181,6 +183,7 @@ public class TaskDetailsController implements Initializable {
 
     @FXML
     private void participateAction(ActionEvent event) {
+         Window owner = taskTitle.getScene().getWindow();
         User user = st.getUserById(UserSession.getUser_id());
         if (pt != null) {
             Double balance=user.getBalance()-pt.getPrice();
@@ -192,13 +195,35 @@ public class TaskDetailsController implements Initializable {
                 n.setId(task.getUser().getUserId());
                 n.setMessage(UserSession.getFirst_name() + " " + UserSession.getLast_name() + " a participer a votre tache " + task.getTitle());
                 service.addNotification(n);
+                AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation",
+                    "Participate!");
             } else {
-                System.out.println("solde insuffisant");
+                AlertBox(Alert.AlertType.ERROR, owner, "Erreur",
+                    "Task not added !");
+                System.out.println("insufficient balance");
             }
+        }else{
+              sut.participer(UserSession.getUser_id(), th.getId());
+                ServiceNotification service = new ServiceNotification();
+                Notification n = new Notification();
+                n.setId(task.getUser().getUserId());
+                n.setMessage(UserSession.getFirst_name() + " " + UserSession.getLast_name() + " a participer a votre tache " + task.getTitle());
+                service.addNotification(n);
+                AlertBox(Alert.AlertType.CONFIRMATION, owner, "Confirmation",
+                    "Participate!");
         }
 
     }
 
+     private static void AlertBox(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+     
     @FXML
     private void addTaskAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/task/AddTaskActions.fxml"));
