@@ -30,7 +30,7 @@ import javafx.stage.StageStyle;
  * @author BilelxOS
  */
 public class OpenReportItemController implements Initializable {
-double xOffset,yOffset;
+    double xOffset, yOffset;
     @FXML
     private FontAwesomeIconView icon;
     @FXML

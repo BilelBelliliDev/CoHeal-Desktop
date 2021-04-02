@@ -4,9 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="109.0" prefWidth="280.0" style="-fx-background-color: #7fcbc3; -fx-background-radius: 1em;" styleClass="item" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.ClosedReportItemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="109.0" prefWidth="280.0" style="-fx-background-color: #7fcbc3; -fx-background-radius: 1em;" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.ClosedReportItemController">
    <children>
-      <AnchorPane layoutX="21.0" layoutY="-20.0" prefHeight="45.0" prefWidth="51.0" style="-fx-background-color: #59adb4; -fx-background-radius: 1.5em;">
+      <AnchorPane layoutX="16.0" layoutY="-20.0" prefHeight="45.0" prefWidth="51.0" style="-fx-background-color: #59adb4; -fx-background-radius: 1.5em;">
          <children>
             <FontAwesomeIconView fx:id="icon" fill="WHITE" glyphName="BOOK" layoutX="15.0" layoutY="30.0" size="23" />
          </children>
