@@ -91,9 +91,9 @@ public class AddRecipeFController implements Initializable {
 
         //appel contrôle saisie
         titleValidator();
-        descValidator();
-        ingredValidator();
-        stepsValidator();
+//        descValidator();
+//        ingredValidator();
+//        stepsValidator();
         caloriesValidator();
         durationValidator();
         personsValidator();

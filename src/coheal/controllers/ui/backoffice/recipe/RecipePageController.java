@@ -120,7 +120,7 @@ public class RecipePageController implements Initializable {
 
         XYChart.Series Set = new XYChart.Series<>();
         for (int i = 0; i < 3; i++) {
-            Set.getData().add(new XYChart.Data(rcs.Afficher_RecipeCategory().get(i).getName(), stc.ListerRecipesByIdCatg(rcs.Afficher_RecipeCategory().get(i).getName()).size()));
+//            Set.getData().add(new XYChart.Data(rcs.Afficher_RecipeCategory().get(i).getName(), stc.ListerRecipesByIdCatg(rcs.Afficher_RecipeCategory().get(i).getName()).size()));
         }
         BarChart.getData().addAll(Set);
     }
