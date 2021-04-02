@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane id="AnchorPane" prefHeight="224.0" prefWidth="371.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 1em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-width: 5; -fx-border-radius: 0 2em 0 2em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.ReportPopupUIController">
+<AnchorPane id="AnchorPane" prefHeight="224.0" prefWidth="371.0" style="-fx-background-color: #FFFEFB; -fx-background-radius: 0 2em 0 2em; -fx-border-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-border-width: 5; -fx-border-radius: 0 2em 0 2em;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.frontoffice.report.ReportPopupUIController">
     <children>
       <JFXTextArea fx:id="noteId" layoutX="37.0" layoutY="69.0" prefHeight="130.0" prefWidth="311.0" promptText="What's wrong?" style="-fx-background-radius: 0 2em 0 2em; -fx-border-radius: 0 2em 0 2em;" />
       <Circle fill="DODGERBLUE" layoutX="342.0" layoutY="193.0" radius="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" />
