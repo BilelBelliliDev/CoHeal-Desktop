@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -31,16 +32,10 @@ import javafx.stage.Stage;
 public class ReportPopupUIController implements Initializable {
 
     private int id, userId;
-    private String s,bookTitle;
-    @FXML
-    private Label dataId;
+    private String s, bookTitle;
 
     @FXML
     private TextArea noteId;
-    @FXML
-    private Button reportBtn;
-    @FXML
-    private Button cancelBtn;
 
     /**
      * Initializes the controller class.
@@ -49,9 +44,19 @@ public class ReportPopupUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    public int getId() {
+        return id;
+    }
+
+    public void setData(int id, int userId, String s, String bookTitle) {
+        this.id = id;
+        this.userId = userId;
+        this.s = s;
+        this.bookTitle = bookTitle;
+    }
 
     @FXML
-    private void reportAction(ActionEvent event) {
+    private void reportAction(MouseEvent event) {
         Report r;
         Stage stage;
         ReportService rs = new ReportService();
@@ -62,7 +67,7 @@ public class ReportPopupUIController implements Initializable {
                 r.setNote(noteId.getText());
                 r.setTitle(bookTitle);
                 rs.addReport(r, id);
-                stage = (Stage) reportBtn.getScene().getWindow();
+                stage = (Stage) noteId.getScene().getWindow();
                 stage.close();
                 break;
             case "Recipe":
@@ -71,7 +76,7 @@ public class ReportPopupUIController implements Initializable {
                 r.setNote(noteId.getText());
                 r.setTitle(bookTitle);
                 rs.addReport(r, id);
-                stage = (Stage) reportBtn.getScene().getWindow();
+                stage = (Stage) noteId.getScene().getWindow();
                 stage.close();
                 break;
             case "Task":
@@ -80,7 +85,7 @@ public class ReportPopupUIController implements Initializable {
                 r.setNote(noteId.getText());
                 r.setTitle(bookTitle);
                 rs.addReport(r, id);
-                stage = (Stage) reportBtn.getScene().getWindow();
+                stage = (Stage) noteId.getScene().getWindow();
                 stage.close();
                 break;
             case "Event":
@@ -89,7 +94,7 @@ public class ReportPopupUIController implements Initializable {
                 r.setNote(noteId.getText());
                 r.setTitle(bookTitle);
                 rs.addReport(r, id);
-                stage = (Stage) reportBtn.getScene().getWindow();
+                stage = (Stage) noteId.getScene().getWindow();
                 stage.close();
                 break;
             case "Session":
@@ -98,29 +103,16 @@ public class ReportPopupUIController implements Initializable {
                 r.setNote(noteId.getText());
                 r.setTitle(bookTitle);
                 rs.addReport(r, id);
-                stage = (Stage) reportBtn.getScene().getWindow();
+                stage = (Stage) noteId.getScene().getWindow();
                 stage.close();
                 break;
         }
-
     }
 
     @FXML
-    private void cancelAction(ActionEvent event) {
-        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+    private void cancelAction(MouseEvent event) {
+        Stage stage = (Stage) noteId.getScene().getWindow();
         stage.close();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setData(int id, int userId, String s, String bookTitle) {
-        this.id = id;
-        this.userId = userId;
-        this.s = s;
-        this.bookTitle=bookTitle;
-        dataId.setText(s + " id: " + id + ", User id: " + userId);
     }
 
 }
