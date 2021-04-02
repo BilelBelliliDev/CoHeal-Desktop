@@ -111,8 +111,9 @@ public class ReportPageController implements Initializable {
         if (filterIsDisplayed) {           
             filterIsDisplayed = false;
             new ZoomOut(filterDialogPane).play();
-            filterDialogPane.setVisible(false);
+            filterDialogPane.setDisable(true);
         } else {
+            filterDialogPane.setDisable(false);
             filterDialogPane.setVisible(true);
             filterIsDisplayed = true;
             new ZoomIn(filterDialogPane).play();

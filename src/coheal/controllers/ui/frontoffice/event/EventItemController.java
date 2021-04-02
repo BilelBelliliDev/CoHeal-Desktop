@@ -5,18 +5,32 @@
  */
 package coheal.controllers.ui.frontoffice.event;
 
+import animatefx.animation.ZoomIn;
+import animatefx.animation.ZoomOut;
+import coheal.controllers.ui.frontoffice.book.BookItemController;
+import coheal.controllers.ui.frontoffice.report.RateAlertUIController;
+import coheal.controllers.ui.frontoffice.report.RatePopupUIController;
+import coheal.controllers.ui.frontoffice.report.ReportPopupUIController;
 import coheal.entities.event.Event;
+import coheal.services.report.RateService;
+import coheal.services.user.UserSession;
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,6 +52,10 @@ public class EventItemController implements Initializable {
     @FXML
     private Label eventType;
     int id=0;
+    @FXML
+    private AnchorPane menuId;
+    
+    private boolean menuIsDisplayed = false;
 
     /**
      * Initializes the controller class.
@@ -69,5 +87,57 @@ public class EventItemController implements Initializable {
         pageHolder.getChildren().removeAll(pageHolder.getChildren());
         pageHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/coheal/views/ui/frontoffice/event/EventDetails.fxml")));
     
+    }
+
+    @FXML
+    private void dotsAction(MouseEvent event) {
+        if (menuIsDisplayed) {           
+            menuIsDisplayed = false;
+            new ZoomOut(menuId).play();
+            menuId.setDisable(true);
+        } else {
+            menuId.setVisible(true);
+            menuId.setDisable(false);
+            menuIsDisplayed = true;
+            new ZoomIn(menuId).play();
+        }
+    }
+
+    @FXML
+    private void reportAction(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/ReportPopupUI.fxml"));
+        Parent root=null;
+            try {
+                root = loader.load();
+            } catch (IOException ex) {
+                Logger.getLogger(EventItemController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        ReportPopupUIController c = loader.getController();
+        c.setData(id, UserSession.getUser_id(), "Event", eventTitle.getText());
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void rateAction(MouseEvent event) throws IOException {
+        RateService rs = new RateService();
+        if (rs.isRated(id, UserSession.getUser_id(), "Event")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/RateAlertUI.fxml"));
+            Parent root = loader.load();
+            RateAlertUIController c = loader.getController();
+            c.setData(id, UserSession.getUser_id(), "Event");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/RatePopupUI.fxml"));
+            Parent root = loader.load();
+            RatePopupUIController c = loader.getController();
+            c.setData(id, UserSession.getUser_id(), "Event");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
     }
 }

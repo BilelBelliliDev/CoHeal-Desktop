@@ -45,6 +45,13 @@
             <Font size="10.0" />
          </font>
       </Button>
-      <FontAwesomeIconView fx:id="suprimer" fill="#7a60a8" glyphName="TRASH" layoutX="282.0" layoutY="18.0" onMouseClicked="#SupprierSession" size="18" />
+      <FontAwesomeIconView fx:id="suprimer" fill="#7a60a8" glyphName="TRASH" layoutX="293.0" layoutY="20.0" onMouseClicked="#SupprierSession" size="18" />
+      <FontAwesomeIconView fill="#13547a" glyphName="ELLIPSIS_H" layoutX="267.0" layoutY="22.0" onMouseClicked="#dotsAction" size="20" style="-fx-cursor: hand;" />
+      <AnchorPane fx:id="menuId" layoutX="185.0" layoutY="-34.0" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" visible="false">
+         <children>
+            <FontAwesomeIconView fill="WHITE" glyphName="FLAG" layoutX="53.0" layoutY="29.0" onMouseClicked="#reportAction" size="25" style="-fx-cursor: hand;" text="" />
+            <FontAwesomeIconView fill="WHITE" glyphName="STAR" layoutX="16.0" layoutY="29.0" onMouseClicked="#rateAction" size="25" style="-fx-cursor: hand;" text="" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

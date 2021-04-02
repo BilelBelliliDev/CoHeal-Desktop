@@ -52,6 +52,13 @@
                </font>
             </Label>
             <OctIconView glyphName="CLOCK" layoutX="12.0" layoutY="185.0" size="20" style="-fx-fill: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3);" wrappingWidth="20.0" />
+            <FontAwesomeIconView fill="#13547a" glyphName="ELLIPSIS_H" layoutX="190.0" layoutY="25.0" onMouseClicked="#dotsAction" size="20" style="-fx-cursor: hand;" />
+            <AnchorPane fx:id="menuId" layoutX="109.0" layoutY="-32.0" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" visible="false">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLAG" layoutX="53.0" layoutY="29.0" onMouseClicked="#reportAction" size="25" style="-fx-cursor: hand;" text="" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="STAR" layoutX="16.0" layoutY="29.0" onMouseClicked="#rateAction" size="25" style="-fx-cursor: hand;" text="" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <Pane layoutX="113.0" layoutY="81.0" prefHeight="134.0" prefWidth="171.0" style="-fx-background-color: #13547a; -fx-background-radius: 1em;">

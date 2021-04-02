@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -45,5 +46,12 @@
             <Label layoutX="19.0" layoutY="6.0" style="-fx-font-size: 16px;" styleClass="text" stylesheets="@../../../../resources/css/main.css" text="View details" textFill="WHITE" />
          </children>
       </Pane>
+      <FontAwesomeIconView fill="#13547a" glyphName="ELLIPSIS_H" layoutX="243.0" layoutY="32.0" onMouseClicked="#dotsAction" size="20" style="-fx-cursor: hand;" />
+      <AnchorPane fx:id="menuId" layoutX="171.0" layoutY="-33.0" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: linear-gradient(to right top, #13547a, #1f7190, #398fa3, #59adb4, #7fcbc3); -fx-background-radius: 1em;" visible="false">
+         <children>
+            <FontAwesomeIconView fill="WHITE" glyphName="FLAG" layoutX="53.0" layoutY="29.0" onMouseClicked="#reportAction" size="25" style="-fx-cursor: hand;" text="" />
+            <FontAwesomeIconView fill="WHITE" glyphName="STAR" layoutX="16.0" layoutY="29.0" onMouseClicked="#rateAction" size="25" style="-fx-cursor: hand;" text="" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
