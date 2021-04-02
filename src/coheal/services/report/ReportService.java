@@ -158,16 +158,41 @@ public class ReportService implements IReportService {
         }
         return reports;
     }
+    
+    public ObservableList<Report> allReportsListObsv() {
+        ObservableList<Report> reports = FXCollections.observableArrayList();
+        try {
+            Statement stm = cnx.createStatement();
+            String query = "select * from report order by created_at desc";
+            ResultSet rst = stm.executeQuery(query);
+            while (rst.next()) {
+                Report r = new BookReport();
+                r.setReportId(rst.getInt("report_id"));
+                r.setReporterId(rst.getInt("reporter_id"));
+                r.setTitle(rst.getString("title"));
+                r.setType(rst.getString("type"));
+                r.setNote(rst.getString("note"));
+                r.setIsClosed(rst.getBoolean("is_closed"));
+                r.setCreatedAt(rst.getTimestamp("created_at"));
+                reports.add(r);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return reports;
+    }
 
     @Override
     public List<Report> reportsList(String type) {
         ObservableList<Report> reports = FXCollections.observableArrayList();
         try {
             Statement stm = cnx.createStatement();
-            String query = "select x.report_id, y.reporter_id, y.note, y.is_closed, y.created_at from report y, "+type+" x where x.report_id=y.report_id";
+            String query = "select y.title, x.report_id, y.reporter_id, y.note, y.is_closed, y.created_at from report y, "+type+" x where x.report_id=y.report_id";
             ResultSet rst = stm.executeQuery(query);
             while (rst.next()) {
                 Report r = new BookReport();
+                r.setTitle(rst.getString("title"));
                 r.setReportId(rst.getInt("report_id"));
                 r.setReporterId(rst.getInt("reporter_id"));
                 r.setNote(rst.getString("note"));

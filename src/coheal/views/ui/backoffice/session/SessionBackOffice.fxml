@@ -12,7 +12,7 @@
     <children>
       <Label fx:id="SessionList" layoutX="150.0" layoutY="315.0" prefHeight="59.0" prefWidth="166.0" />
      
-      <TableView fx:id="tableId" layoutX="97.0" layoutY="349.0" prefHeight="273.0" prefWidth="923.0">
+      <TableView fx:id="tableId" layoutX="97.0" layoutY="349.0" prefHeight="273.0" prefWidth="923.0" stylesheets="@../../../../resources/css/tab.css">
         <columns>
           <TableColumn fx:id="col1Id" prefWidth="115.66667175292969" text="Id" />
           <TableColumn fx:id="col2Id" prefWidth="111.33334350585938" text="Th Id" />

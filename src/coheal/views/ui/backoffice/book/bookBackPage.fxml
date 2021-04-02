@@ -12,18 +12,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="bookPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" vvalue="0.72" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.book.BookBackPageController">
+<ScrollPane fx:id="bookPane" cache="true" cacheHint="SPEED" hbarPolicy="NEVER" prefHeight="593.0" prefWidth="1074.0" style="-fx-background-color: transparent;" styleClass="scroll-bar" stylesheets="@../../../../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coheal.controllers.ui.backoffice.book.BookBackPageController">
    <content>
-      <AnchorPane fx:id="page" minHeight="0.0" minWidth="0.0" prefHeight="1260.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
+      <AnchorPane fx:id="page" minHeight="0.0" minWidth="0.0" prefHeight="960.0" prefWidth="1080.0" style="-fx-background-color: #FFFEFB;">
          <children>
-            <FontAwesomeIconView fill="#303c5d" glyphName="PLUS" layoutX="948.0" layoutY="596.0" onMouseClicked="#Appelbookadd" size="30" style="-fx-cursor: hand;" text="" />
-            <FontAwesomeIconView fill="#303c5d" glyphName="SEARCH" layoutX="903.0" layoutY="594.0" onMouseClicked="#searchaction" size="27" style="-fx-cursor: hand;" text="">
+            <FontAwesomeIconView fill="#303c5d" glyphName="PLUS" layoutX="949.0" layoutY="450.0" onMouseClicked="#Appelbookadd" size="30" style="-fx-cursor: hand;" text="" />
+            <FontAwesomeIconView fill="#303c5d" glyphName="SEARCH" layoutX="904.0" layoutY="448.0" onMouseClicked="#searchaction" size="27" style="-fx-cursor: hand;" text="">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </FontAwesomeIconView>
-            <JFXTextField fx:id="recherchetf" layoutX="697.0" layoutY="570.0" promptText="enter the book id" />
-            <PieChart fx:id="stattt" layoutX="42.0" layoutY="209.0" prefHeight="346.0" prefWidth="697.0">
+            <JFXTextField fx:id="recherchetf" layoutX="698.0" layoutY="424.0" promptText="enter the book id" />
+            <PieChart fx:id="stattt" layoutX="23.0" layoutY="99.0" prefHeight="346.0" prefWidth="697.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></PieChart>
@@ -32,12 +32,12 @@
                   <Font size="96.0" />
                </font>
             </Label>
-            <FontAwesomeIconView fill="#303c5d" glyphName="REFRESH" layoutX="992.0" layoutY="596.0" onMouseClicked="#refreshact" size="30" style="-fx-cursor: hand;">
+            <FontAwesomeIconView fill="#303c5d" glyphName="REFRESH" layoutX="993.0" layoutY="450.0" onMouseClicked="#refreshact" size="30" style="-fx-cursor: hand;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </FontAwesomeIconView>
-            <TableView fx:id="tabviewsbook" layoutX="83.0" layoutY="615.0" prefHeight="455.0" prefWidth="951.0" stylesheets="@../../../../resources/css/tab.css">
+            <TableView fx:id="tabviewsbook" layoutX="84.0" layoutY="469.0" prefHeight="455.0" prefWidth="951.0" stylesheets="@../../../../resources/css/tab.css">
                <columns>
                   <TableColumn fx:id="titrelivre" prefWidth="161.0" text="titre" />
                   <TableColumn fx:id="auteurlivre" prefWidth="176.0" text="auteur" />
@@ -46,7 +46,7 @@
                </columns>
             </TableView>
             <JFXButton layoutX="197.0" layoutY="37.0" onAction="#bookCatappel" text="Book Category" />
-            <FontAwesomeIconView fill="#303c5d" glyphName="TRASH" layoutX="666.0" layoutY="595.0" onMouseClicked="#SUPP" size="23" style="-fx-cursor: hand;" text="">
+            <FontAwesomeIconView fill="#303c5d" glyphName="TRASH" layoutX="667.0" layoutY="449.0" onMouseClicked="#SUPP" size="23" style="-fx-cursor: hand;" text="">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
