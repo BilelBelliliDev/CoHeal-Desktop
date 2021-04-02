@@ -5,14 +5,18 @@
  */
 package coheal.controllers.ui.frontoffice.book;
 
+import animatefx.animation.ZoomIn;
+import animatefx.animation.ZoomOut;
+import coheal.controllers.ui.frontoffice.report.RateAlertUIController;
+import coheal.controllers.ui.frontoffice.report.RatePopupUIController;
+import coheal.controllers.ui.frontoffice.report.ReportPopupUIController;
 import coheal.controllers.ui.frontoffice.HomePageHolderController;
 import coheal.entities.book.Book;
 import static coheal.services.book.Constants.projectPath;
 import coheal.services.book.ServiceBook;
+import coheal.services.report.RateService;
 import coheal.services.user.UserSession;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,19 +26,17 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -50,6 +52,7 @@ public class BookItemController implements Initializable {
         public int id;
         ServiceBook sb = new ServiceBook();
         String name = null;
+        private int bookId=0;
 
         @FXML
         private ImageView bookimg;
@@ -62,7 +65,10 @@ public class BookItemController implements Initializable {
         @FXML
         private Pane item;
       
+        private boolean menuIsDisplayed = false;
         int uid= 0;
+    @FXML
+    private AnchorPane menuId;
 
         /**
          * Initializes the controller class.
@@ -75,6 +81,7 @@ public class BookItemController implements Initializable {
         }
 
         public void setData(Book b) {
+                bookId=b.getBookId();
                 bookTitle.setText(b.getTitle());
                 bookAuthor.setText(b.getAuthor());
                 bookViews.setText(String.valueOf(b.getViews()));
@@ -82,15 +89,12 @@ public class BookItemController implements Initializable {
                 name = b.getFilePath();
                 Image img = new Image("file:///" + projectPath + "\\src\\coheal\\resources\\images\\books\\" + b.getImgUrl());
                 bookimg.setImage(img);
-
         }
 
      
 
         @FXML
         private void displayAction(MouseEvent event) throws IOException, SQLException {
-               
-
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/book/bookDetails.fxml"));
                 Parent root = loader.load();
                 BookDetailsController bdc=loader.getController();
@@ -124,6 +128,58 @@ public class BookItemController implements Initializable {
 
 
         }
+
+    @FXML
+    private void reportAction(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/ReportPopupUI.fxml"));
+        Parent root=null;
+            try {
+                root = loader.load();
+            } catch (IOException ex) {
+                Logger.getLogger(BookItemController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        ReportPopupUIController c = loader.getController();
+        c.setData(bookId, UserSession.getUser_id(), "Book", bookTitle.getText());
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void rateAction(MouseEvent event) throws IOException {
+        RateService rs = new RateService();
+        if (rs.isRated(bookId, UserSession.getUser_id(), "Book")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/RateAlertUI.fxml"));
+            Parent root = loader.load();
+            RateAlertUIController c = loader.getController();
+            c.setData(bookId, UserSession.getUser_id(), "Book");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/coheal/views/ui/frontoffice/report/RatePopupUI.fxml"));
+            Parent root = loader.load();
+            RatePopupUIController c = loader.getController();
+            c.setData(bookId, UserSession.getUser_id(), "Book");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+    }
+
+    @FXML
+    private void dotsAction(MouseEvent event) {
+        if (menuIsDisplayed) {           
+            menuIsDisplayed = false;
+            new ZoomOut(menuId).play();
+            menuId.setDisable(true);
+        } else {
+            menuId.setVisible(true);
+            menuId.setDisable(false);
+            menuIsDisplayed = true;
+            new ZoomIn(menuId).play();
+        }
+    }
 
        
         
