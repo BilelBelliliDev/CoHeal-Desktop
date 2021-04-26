@@ -68,8 +68,14 @@ public class AddCatController implements Initializable {
                         a1.showAndWait();
                 } else {                      
                          File dest = new File(projectPath + "\\src\\coheal\\resources\\images\\bookCat\\" + file.getName());
+                          File dest2 = new File("file:///C:\\Users\\Marwen\\Desktop\\cohealWebFinale\\CoHeal-Web\\public\\assets\\img\\bookcategory" + file.getName());
                 try {
                         FileUtils.copyFile(file, dest);
+                } catch (IOException ex) {
+                        Logger.getLogger(AddbookController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                  try {
+                        FileUtils.copyFile(file, dest2);
                 } catch (IOException ex) {
                         Logger.getLogger(AddbookController.class.getName()).log(Level.SEVERE, null, ex);
                 }
