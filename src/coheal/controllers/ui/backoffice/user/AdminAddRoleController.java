@@ -75,7 +75,6 @@ public class AdminAddRoleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         AfficherListPersonnes();
-        System.out.println("test");
         try {
             piechart();
         } catch (SQLException ex) {
@@ -88,16 +87,16 @@ public class AdminAddRoleController implements Initializable {
 
         //----------------PieChart----------
         for(int i=0;i<sa.UserByRole().size();i++){
-            if("therapist".equals(sa.UserByRole().get(i).getRoleName())){
+            if("ROLE_Therapist".equals(sa.UserByRole().get(i).getRoleName())){
                 nbrTherapists=sa.UserByRole().get(i).getRoleId();
             } 
-            if("moderator".equals(sa.UserByRole().get(i).getRoleName())){
+            if("ROLE_Moderator".equals(sa.UserByRole().get(i).getRoleName())){
                 nbrModerator=sa.UserByRole().get(i).getRoleId();
             }
-            if("nutritionist".equals(sa.UserByRole().get(i).getRoleName())){
+            if("ROLE_Nutritionist".equals(sa.UserByRole().get(i).getRoleName())){
                 nbrNutritionist=sa.UserByRole().get(i).getRoleId();
             }
-            if("active_user".equals(sa.UserByRole().get(i).getRoleName())){
+            if("ROLE_Active_User".equals(sa.UserByRole().get(i).getRoleName())){
                 nbrActive_user=sa.UserByRole().get(i).getRoleId();
             }
             
