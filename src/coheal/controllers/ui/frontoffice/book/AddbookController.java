@@ -64,7 +64,7 @@ public class AddbookController implements Initializable {
         ServiceBookCategory sbc = new ServiceBookCategory();
         int cat_id = 0;
 
-        private boolean aut = false, tit = false,dd = false;
+        private boolean aut = false, tit = false, dd = false;
 
         @FXML
         private JFXComboBox<String> bcat;
@@ -122,9 +122,14 @@ public class AddbookController implements Initializable {
 
                         File dest = new File(projectPath + "\\src\\coheal\\resources\\images\\books\\" + file.getName());
                         File dest2 = new File(projectPath + "\\src\\coheal\\resources\\images\\bookfiles\\" + file2.getName());
-
+                        File dest3 = new File( "file:///C:\\Users\\Marwen\\Desktop\\cohealWebFinale\\CoHeal-Web\\public\\assets\\img\\book" + file.getName());
                         try {
                                 FileUtils.copyFile(file, dest);
+                        } catch (IOException ex) {
+                                Logger.getLogger(AddbookController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        try {
+                                FileUtils.copyFile(file, dest3);
                         } catch (IOException ex) {
                                 Logger.getLogger(AddbookController.class.getName()).log(Level.SEVERE, null, ex);
                         }

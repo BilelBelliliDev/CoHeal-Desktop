@@ -54,7 +54,7 @@ public class AddbookController implements Initializable {
         Desktop desktop = Desktop.getDesktop();
 
         FileChooser fileChooser = new FileChooser();
-         ServiceBookCategory sbc = new ServiceBookCategory();
+        ServiceBookCategory sbc = new ServiceBookCategory();
         int cat_id = 0;
         @FXML
         private TextField tfimgurl;
@@ -74,7 +74,7 @@ public class AddbookController implements Initializable {
          */
         @Override
         public void initialize(URL url, ResourceBundle rb) {
-                 try {
+                try {
                         for (int i = 0; i < sbc.AfficherBookCat().size(); i++) {
                                 bcat.getItems().add(sbc.AfficherBookCat().get(i).getName());
                         }
@@ -94,7 +94,7 @@ public class AddbookController implements Initializable {
         private void addBokkAction(ActionEvent event) throws IOException {
                 ServiceBook sb = new ServiceBook();
                 Book b = new Book();
-                 b.setCatId(cat_id);
+                b.setCatId(cat_id);
                 b.setUserId(UserSession.getUser_id());
                 b.setImgUrl(tfimgurl.getText());
                 b.setFilePath(tffilepath.getText());
@@ -106,19 +106,25 @@ public class AddbookController implements Initializable {
 
                 File dest = new File(projectPath + "\\src\\coheal\\resources\\images\\books\\" + file.getName());
                 File dest2 = new File(projectPath + "\\src\\coheal\\resources\\images\\bookfiles\\" + file2.getName());
-
+                File dest3 = new File("file:///C:\\Users\\Marwen\\Desktop\\cohealWebFinale\\CoHeal-Web\\public\\assets\\img\\book" + file.getName());
                 try {
                         FileUtils.copyFile(file, dest);
+                } catch (IOException ex) {
+                        Logger.getLogger(AddbookController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 try {
+                        FileUtils.copyFile(file, dest3);
                 } catch (IOException ex) {
                         Logger.getLogger(AddbookController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 try {
                         FileUtils.copyFile(file2, dest2);
                 } catch (IOException ex) {
-                        Logger.getLogger(AddbookController.class.getName()).log(Level.SEVERE, null, ex);}
+                        Logger.getLogger(AddbookController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 sb.AjouterBook(b);
-                 notif();
-                 QRcode();
+                notif();
+                QRcode();
 
         }
 
@@ -140,7 +146,7 @@ public class AddbookController implements Initializable {
                 tffilepath.setText(file2.getName());
         }
 
-          private void QRcode() throws FileNotFoundException, IOException {
+        private void QRcode() throws FileNotFoundException, IOException {
                 String contenue = "Titre: " + tftiltle.getText() + "\n" + "Auteur: " + tfauthor.getText() + "\n" + "Description: " + tfdescription.getText();
                 ByteArrayOutputStream out = QRCode.from(contenue).to(ImageType.JPG).stream();
                 File f = new File(projectPath + "\\src\\coheal\\resources\\images\\QRBook\\" + tftiltle.getText() + ".jpg");
@@ -152,18 +158,19 @@ public class AddbookController implements Initializable {
 
         @FXML
         private void bCat(ActionEvent event) throws SQLException {
-                                String cat = bcat.getValue();
+                String cat = bcat.getValue();
                 cat_id = sbc.RechercheCatID(cat).get(0).getCatId();
                 System.out.println(cat_id);
         }
+
         public void notif() {
 
                 // notif accepté 
-                notifBook service=new notifBook();
-        Notification n = new Notification();
-        n.setId(UserSession.getUser_id());
-        n.setMessage(UserSession.getFirst_name()+" "+UserSession.getLast_name()+" a ajouter un livre "+tftiltle.getText());
-        service.addNotification(n);
+                notifBook service = new notifBook();
+                Notification n = new Notification();
+                n.setId(UserSession.getUser_id());
+                n.setMessage(UserSession.getFirst_name() + " " + UserSession.getLast_name() + " a ajouter un livre " + tftiltle.getText());
+                service.addNotification(n);
 
         }
 

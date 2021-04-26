@@ -98,11 +98,11 @@ public class BookDetailsController implements Initializable {
             ratingId.setVisible(true);
         }
         try {
-            if (UserSession.getRole().equals("therapist") && sb.Rechercher(id).get(0).getUserId() == UserSession.getUser_id()) {
+            if (UserSession.getRole().equals("ROLE_therapist") && sb.Rechercher(id).get(0).getUserId() == UserSession.getUser_id()) {
                 trash.setVisible(true);
                 modif.setVisible(true);
             }
-            if(UserSession.getRole().equals("moderator")){
+            if(UserSession.getRole().equals("ROLE_moderator")){
                 trash.setVisible(true);
             }
         } catch (SQLException ex) {
