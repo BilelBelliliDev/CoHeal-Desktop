@@ -50,7 +50,7 @@ public class ServiceTask implements IServiceTask {
                 tc.setCatgid(rs.getInt("cat_id"));
                 t.setCategory(tc);
             }
-            String query = "INSERT INTO task(user_id,cat_id, img_url, title, description, num_of_days, min_users, max_users, created_at) "
+            String query = "INSERT INTO task(u_id,cat_id, img_url, title, description, num_of_days, min_users, max_users, created_at) "
                     + "VALUES ('" + therapistId + "','" + t.getCategory().getCatgid() + "','" + t.getImgUrl() + "','"
                     + t.getTitle() + "','" + t.getDescription() + "','" + t.getNumOfDays() + "','" + t.getMinUsers() + "','"
                     + t.getMaxUsers() + "','" + d + "');";
@@ -133,7 +133,7 @@ public class ServiceTask implements IServiceTask {
         try {
 
             Statement st = con.createStatement();
-            String query = "select task_id,user_id,cat_id,img_url,title,description,num_of_days,min_users,max_users,created_at from task  where task_id=" + idT + " and is_deleted=0 ;";
+            String query = "select task_id,u_id,cat_id,img_url,title,description,num_of_days,min_users,max_users,created_at from task  where task_id=" + idT + " and is_deleted=0 ;";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Task task = new Task();
@@ -145,7 +145,7 @@ public class ServiceTask implements IServiceTask {
                 task.setMaxUsers(rs.getInt("max_users"));
                 task.setCategory(stc.searchTaskCategoryById(rs.getInt("cat_id")));
                 task.setImgUrl(rs.getString("img_url"));
-                User u=getUserById(rs.getInt("user_id"));
+                User u=getUserById(rs.getInt("u_id"));
                 task.setUser(u);
                 String url = "file:///" + projectPath + "/src/coheal/resources/images/tasks/" + rs.getString("img_url");
                 img = new ImageView(url);
@@ -187,7 +187,7 @@ public class ServiceTask implements IServiceTask {
         try {
 
             Statement st = con.createStatement();
-            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task  where is_deleted=0 and user_id="+idU+" and task_id not in(select t.task_id from paid_task t natural join task ) order by created_at DESC;";
+            String query = "select task_id,cat_id,img_url,title,description,num_of_days,min_users,max_users from task  where is_deleted=0 and u_id="+idU+" and task_id not in(select t.task_id from paid_task t natural join task ) order by created_at DESC;";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
@@ -243,7 +243,7 @@ public class ServiceTask implements IServiceTask {
                 Task t = new Task();
                 t.setTaskId(rs.getInt("task_id"));
                 t.setTitle(rs.getString("title"));
-                t.setUser(getUserById(rs.getInt("user_id")));
+                t.setUser(getUserById(rs.getInt("u_id")));
                 t.setCreatedAt(rs.getTimestamp("created_at"));
                task=t;
             }

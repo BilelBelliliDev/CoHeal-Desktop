@@ -172,7 +172,7 @@ public class ServicePaidTask implements IServicePaidTask {
         List<PaidTask> pt = new ArrayList<PaidTask>();
         ImageView img = null;
         try {
-            String query = "SELECT * FROM `paid_task` p join task t on p.task_id=t.task_id where t.user_id="+idU +" and  t.is_deleted=0  order by t.created_at DESC";
+            String query = "SELECT * FROM `paid_task` p join task t on p.task_id=t.task_id where t.u_id="+idU +" and  t.is_deleted=0  order by t.created_at DESC";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {

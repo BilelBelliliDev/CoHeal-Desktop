@@ -138,7 +138,7 @@ public class ServiceUserTask implements IServiceUserTask {
     
         ImageView img = null;
         Task l = new Task();
-        String query = "select * from task t join user_task ut on t.task_id=ut.task_id where ut.user_id=" + id + " and t.task_id not in (select tt.task_id from task tt natural join paid_task pt join user_task ut on pt.task_id=ut.task_id where ut.user_id=" + id + ") ORDER by ut.created_at DESC LIMIT 1";
+        String query = "select * from task t join user_task ut on t.task_id=ut.task_id where ut.user_id=" + id + " and t.task_id not in (select tt.task_id from task tt natural join paid_task pt join user_task ut on pt.task_id=ut.task_id where ut.user_id=" + id + ")   LIMIT 1";
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -168,7 +168,7 @@ public class ServiceUserTask implements IServiceUserTask {
     
         ImageView img = null;
         PaidTask l = new PaidTask();
-        String query = "select * from task natural join paid_task pt join user_task ut on pt.task_id=ut.task_id where ut.user_id=" + id+" ORDER by ut.created_at DESC LIMIT 1";
+        String query = "select * from task natural join paid_task pt join user_task ut on pt.task_id=ut.task_id where ut.user_id=" + id+"   LIMIT 1";
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
