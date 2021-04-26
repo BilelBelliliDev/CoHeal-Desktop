@@ -13,6 +13,7 @@ import coheal.entities.report.SessionReport;
 import coheal.entities.report.TaskReport;
 import coheal.entities.report.UserReport;
 import coheal.iservices.report.IReportService;
+import coheal.services.user.UserSession;
 import coheal.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -45,6 +46,8 @@ public class ReportService implements IReportService {
                 stm.executeUpdate(query);
                 query = "INSERT INTO book_report(report_id,book_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
+                query = "INSERT INTO report_notification(user_id,book_id,report_id) VALUES ("+UserSession.getUser_id()+", " + id + ",LAST_INSERT_ID())";
+                stm.executeUpdate(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -55,6 +58,8 @@ public class ReportService implements IReportService {
                 stm.executeUpdate(query);
                 query = "INSERT INTO event_report(report_id,event_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
+                query = "INSERT INTO report_notification(user_id,event_id,report_id) VALUES ("+UserSession.getUser_id()+", " + id + ",LAST_INSERT_ID())";
+                stm.executeUpdate(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -63,7 +68,9 @@ public class ReportService implements IReportService {
                 Statement stm = cnx.createStatement();
                 query = "INSERT INTO report(reporter_id,title,type,note) VALUES (" + r.getReporterId() + ",'" + r.getTitle() + "','user', '" + r.getNote() + "')";
                 stm.executeUpdate(query);
-                query = "INSERT INTO user_report(report_id,user_id) VALUES (LAST_INSERT_ID(), " + id + ")";
+                query = "INSERT INTO user_report(report_id,user_id) VALUES (LAST_INSERT_ID(), " + id + ")";               
+                stm.executeUpdate(query);
+                query = "INSERT INTO report_notification(user_id,user_id,report_id) VALUES ("+UserSession.getUser_id()+", " + id + ",LAST_INSERT_ID())";
                 stm.executeUpdate(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
@@ -75,6 +82,8 @@ public class ReportService implements IReportService {
                 stm.executeUpdate(query);
                 query = "INSERT INTO task_report(report_id,task_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
+                query = "INSERT INTO report_notification(user_id,task_id,report_id) VALUES ("+UserSession.getUser_id()+", " + id + ",LAST_INSERT_ID())";
+                stm.executeUpdate(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -85,6 +94,8 @@ public class ReportService implements IReportService {
                 stm.executeUpdate(query);
                 query = "INSERT INTO session_report(report_id,session_id) VALUES (LAST_INSERT_ID(), " + id + ")";
                 stm.executeUpdate(query);
+                query = "INSERT INTO report_notification(user_id,session_id,report_id) VALUES ("+UserSession.getUser_id()+", " + id + ",LAST_INSERT_ID())";
+                stm.executeUpdate(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -94,6 +105,8 @@ public class ReportService implements IReportService {
                 query = "INSERT INTO report(reporter_id,title,type,note) VALUES (" + r.getReporterId() + ",'" + r.getTitle() + "','recipe', '" + r.getNote() + "')";
                 stm.executeUpdate(query);
                 query = "INSERT INTO recipe_report(report_id,recipe_id) VALUES (LAST_INSERT_ID(), " + id + ")";
+                stm.executeUpdate(query);
+                query = "INSERT INTO report_notification(user_id,recipe_id,report_id) VALUES ("+UserSession.getUser_id()+", " + id + ",LAST_INSERT_ID())";
                 stm.executeUpdate(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());

@@ -92,7 +92,7 @@ public class HomePageHolderController implements Initializable {
         userName.setText(UserSession.getFirst_name() + " " + UserSession.getLast_name());
         userName1.setText(UserSession.getFirst_name() + " " + UserSession.getLast_name());
         userEmail.setText(UserSession.getEmail());
-        if (UserSession.getRole().equals("moderator")) {
+        if (UserSession.getRole().equals("ROLE_Moderator")) {
             reportsSideBar.setVisible(true);
         } else {
             reportsSideBar.setVisible(false);
