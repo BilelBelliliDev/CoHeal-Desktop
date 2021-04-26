@@ -75,6 +75,7 @@ public class AdminAddRoleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         AfficherListPersonnes();
+        System.out.println("test");
         try {
             piechart();
         } catch (SQLException ex) {
