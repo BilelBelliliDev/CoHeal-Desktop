@@ -28,7 +28,7 @@ public class ServiceUser implements IServiceUser{
     public void AddUser(User u){           
         try {            
             Statement stm=cnx.createStatement();
-            String query = "INSERT INTO user(email,password,first_name,last_name,date_of_birth) VALUES('"+u.getEmail()+"','"+u.getPassword()+"','"+u.getFirstName()+"','"+u.getLastName()+"','"+u.getDateOfBirth()+"')";
+            String query = "INSERT INTO user(email,password2,first_name,last_name,date_of_birth) VALUES('"+u.getEmail()+"','"+u.getPassword()+"','"+u.getFirstName()+"','"+u.getLastName()+"','"+u.getDateOfBirth()+"')";
             stm.executeUpdate(query);  
             query = "INSERT INTO user_role(user_id,role_id) VALUES(LAST_INSERT_ID(),4)";
             stm.executeUpdate(query);
@@ -43,7 +43,7 @@ public class ServiceUser implements IServiceUser{
     @Override
     public boolean Validate_Login(String email , String password){           
         try {     
-            String query = "SELECT * FROM user WHERE email = ? and password = ? and is_deleted=0 ";
+            String query = "SELECT * FROM user WHERE email = ? and password2 = ? and is_deleted=0 ";
             // Step 2:Create a statement using connection object
             PreparedStatement pS = cnx.prepareStatement(query);
             pS.setString(1, email);
@@ -54,7 +54,7 @@ public class ServiceUser implements IServiceUser{
                 //recuperation d'id de user loged in
                 int ID = resultSet.getInt("user_id") ;
                 String EMAIL =resultSet.getString("email");
-                String PASSWORD =resultSet.getString("password");
+                String PASSWORD =resultSet.getString("password2");
                 String FIRSTNAME =resultSet.getString("first_name");
                 String LASTNAME =resultSet.getString("last_name");
                 Date DATEOFBIRTH =resultSet.getDate("date_of_birth");
@@ -155,7 +155,7 @@ public class ServiceUser implements IServiceUser{
    //---------------------------------------------
     public void ModifierUserPassword(String pw ,int id) {
         try {
-            String query = "UPDATE `user` SET `password`='"+pw+"' WHERE user_id = "+id+" ";
+            String query = "UPDATE `user` SET `password2`='"+pw+"' WHERE user_id = "+id+" ";
             Statement st = cnx.createStatement();
             st.executeUpdate(query);
             System.out.println("User password updated succesfully");
