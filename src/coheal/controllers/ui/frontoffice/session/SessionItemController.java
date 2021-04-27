@@ -20,6 +20,7 @@ import coheal.services.session.ServiceSessionChat;
 import coheal.services.ui.UIService;
 import coheal.services.user.UserSession;
 import static com.google.zxing.client.result.ParsedResultType.SMS;
+import com.teknikindustries.bulksms.SMS;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
@@ -222,7 +223,7 @@ public class SessionItemController implements Initializable {
         }
 //        SMS sms=new SMS();
 //        sms.SendSMS("haitham124", "othmani@123", "ss", "21653731850", "https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
-    }
+}
 
     @FXML
     private void msgEvent(MouseEvent event) throws IOException {
