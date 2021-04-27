@@ -91,7 +91,7 @@ public class TaskPageController implements Initializable {
         comboBox.getItems().add("All");
         comboBox.getItems().add("Yours");
         comboBox.getSelectionModel().select("All");
-        if (UserSession.getRole().equals("therapist")) {
+        if (UserSession.getRole().equals("ROLE_Therapist")) {
             addBtn.setVisible(true);
             ServiceNotification service = new ServiceNotification();
             for (int i = 0; i < service.listNotification(UserSession.getUser_id()).size(); i++) {

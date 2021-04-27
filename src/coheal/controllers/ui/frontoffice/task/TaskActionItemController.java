@@ -49,7 +49,7 @@ public class TaskActionItemController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (UserSession.getRole().equals("therapist")) {
+        if (UserSession.getRole().equals("ROLE_Therapist")) {
             updateIcon.setVisible(true);
             deleteIcon.setVisible(true);
         }
