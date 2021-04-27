@@ -117,13 +117,13 @@ public class TaskDetailsController implements Initializable {
         if (u.getTask() == null && u.getUser() == null) {
             participateButton.setVisible(true);
         }
-        if (UserSession.getRole().equals("therapist") && task.getUser().getUserId() == UserSession.getUser_id()) {
+        if (UserSession.getRole().equals("ROLE_Therapist") && task.getUser().getUserId() == UserSession.getUser_id()) {
             addActionBtn.setVisible(true);
             updateIcon.setVisible(true);
             deleteIcon.setVisible(true);
             participateButton.setVisible(false);
         }
-        if (UserSession.getRole().equals("moderator")) {
+        if (UserSession.getRole().equals("ROLE_Moderator")) {
             deleteIcon.setVisible(true);
         }
 
@@ -173,7 +173,7 @@ public class TaskDetailsController implements Initializable {
                     if (UserSession.getUser_id() == u.getUser().getUserId()) {
                         ActionGrid.add(pane, x, y);
                     }
-                } else if (UserSession.getRole().equals("therapist") && task.getUser().getUserId() == UserSession.getUser_id()) {
+                } else if (UserSession.getRole().equals("ROLE_Therapist") && task.getUser().getUserId() == UserSession.getUser_id()) {
                     ActionGrid.add(pane, x, y);
                 }
 
