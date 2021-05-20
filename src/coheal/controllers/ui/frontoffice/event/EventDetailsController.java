@@ -93,7 +93,6 @@ public class EventDetailsController implements Initializable {
             ratingId.setVisible(true);
         }
         event1 = se.getEvent(eh.getId());
-        System.out.println(event1.getUser().getUserId());
         UserEvent u = sut.getUserEvent(UserSession.getUser_id(), event1.getEventId());
         if (u.getEvent() == null && u.getUser() == null) {
             participateButton.setVisible(true);
