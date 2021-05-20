@@ -48,7 +48,7 @@ public class ServiceEvent implements IServiceEvent {
         try {
             Statement stm = cnx.createStatement();
             String query;
-            query = "insert into event(user_id,cat_id,title,description,start_date,end_date,location,type,price,img_url) values(" + e.getUserId() + "," + e.getCat().getCatId() + ",'" + e.getTitle() + "','" + e.getDescription() + "','" + e.getStartDate() + "','" + e.getEndDate() + "','" + e.getLocation() + "','" + e.getType() + "'," + e.getPrice() + ",'" + e.getImgUrl() + "')";
+            query = "insert into event(u_id,cat_id,title,description,start_date,end_date,location,type,price,img_url) values(" + e.getUserId() + "," + e.getCat().getCatId() + ",'" + e.getTitle() + "','" + e.getDescription() + "','" + e.getStartDate() + "','" + e.getEndDate() + "','" + e.getLocation() + "','" + e.getType() + "'," + e.getPrice() + ",'" + e.getImgUrl() + "')";
             stm.executeUpdate(query);
             System.out.println("event ajouter ");
         } catch (SQLException ex) {
@@ -167,7 +167,7 @@ public class ServiceEvent implements IServiceEvent {
 
             while (rst.next()) {
                 Event e = new Event();
-                User u = getUserById(rst.getInt("user_id"));
+                User u = getUserById(rst.getInt("u_id"));
                 e.setUser(u);
                 System.out.println(u);
                 e.setEventId(rst.getInt("event_id"));
@@ -202,7 +202,7 @@ public class ServiceEvent implements IServiceEvent {
         try {
 
             Statement st = cnx.createStatement();
-            String query = "select * from event  where is_deleted=0  and user_id=" + idU + " ORDER by start_date desc";
+            String query = "select * from event  where is_deleted=0  and u_id=" + idU + " ORDER by start_date desc";
             ResultSet rst = st.executeQuery(query);
 
             while (rst.next()) {
